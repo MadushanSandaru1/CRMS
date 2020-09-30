@@ -1,2 +1,2 @@
 # CRMS
-Car Rental Management System For Abaya Rent a Car - Beliaththa
+Car Rental Management System For Abhaya Rent a Car - Beliaththa
