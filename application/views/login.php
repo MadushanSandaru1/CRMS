@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/fav_icon');?>"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/login_util.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/login_main.css');?>">
 <!--===============================================================================================-->
