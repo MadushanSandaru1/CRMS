@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 02, 2020 at 09:06 AM
+-- Generation Time: Oct 02, 2020 at 09:17 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `image` varchar(255) NOT NULL,
   `price_per_day` float NOT NULL,
   `additional_price` float NOT NULL,
-  `system_registered_date` date NOT NULL DEFAULT current_timestamp(),
+  `system_registered_date` date NOT NULL,
   `insurence_date` date NOT NULL,
   `revenue_license_date` date NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
