@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 02, 2020 at 07:59 AM
+-- Generation Time: Oct 02, 2020 at 09:17 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -80,11 +80,11 @@ CREATE TABLE IF NOT EXISTS `customer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resurved`
+-- Table structure for table `reserved`
 --
 
-DROP TABLE IF EXISTS `resurved`;
-CREATE TABLE IF NOT EXISTS `resurved` (
+DROP TABLE IF EXISTS `reserved`;
+CREATE TABLE IF NOT EXISTS `reserved` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` char(12) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `image` varchar(255) NOT NULL,
   `price_per_day` float NOT NULL,
   `additional_price` float NOT NULL,
-  `system_registered_date` date NOT NULL DEFAULT current_timestamp(),
+  `system_registered_date` date NOT NULL,
   `insurence_date` date NOT NULL,
   `revenue_license_date` date NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
