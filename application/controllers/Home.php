@@ -28,4 +28,9 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('contact');
 	}
+    
+    public function ACRMS()
+	{
+		$this->load->view('login');
+	}
 }
