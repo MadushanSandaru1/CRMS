@@ -19,12 +19,21 @@
 								<p>Let us be social</p>
 								<ul class="footer-social d-flex">
 									<li><a href="https://www.facebook.com/Abhaya-Rent-A-Car-2154424461454867" target="_blank"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="https://wa.link/cvh3eu" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+									<li><a href="mailto: abhayabeliatta@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+									<li><a href="https://wa.link/pyja1c" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
 								</ul>
 							</div>
-						</div>							
-						<div class="col-lg-6  col-md-6 col-sm-6">
+						</div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h6>Contact Details</h6>
+                                <ul>
+                                    <li><a href="https://goo.gl/maps/neT3xqdEnYzZHEEG7" target="_blank">No 23/01, Wincent Road, Beliatta, Matara.</a></li>
+                                    <li><a href="tel:+94711029301">+94 71 102 9301</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3  col-md-6 col-sm-6">
 							<div class="single-footer-widget">
 								<img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="logo.png" />
 							</div>

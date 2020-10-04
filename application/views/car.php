@@ -27,44 +27,96 @@
 				
 				<div class="d-flex justify-content-between">
 					<div class="btn-group btn-group-sm" role="group" aria-label="Air Condition">
-						<button type="button" class="btn btn-outline-danger">A/C</button>
-						<button type="button" class="btn btn-outline-danger">Non A/C</button>
+						<li data-filter="*" class="filter-active btn btn-outline-danger">ALL</li>
+					</div>
+					<div id="item-flters" class="btn-group btn-group-sm" role="group" aria-label="Air Condition">
+						<li data-filter=".filter-ac" class="btn btn-outline-danger">A/C</li>
+						<li data-filter=".filter-nonac" class="btn btn-outline-danger">Non A/C</li>
 					</div>
 					<div class="btn-group btn-group-sm" role="group" aria-label="Fuel Type">
-						<button type="button" class="btn btn-outline-danger">Petrol</button>
-						<button type="button" class="btn btn-outline-danger">Diesel</button>
+						<li data-filter=".filter-petrol" class="btn btn-outline-danger">Petrol</li>
+						<li data-filter=".filter-diesel" class="btn btn-outline-danger">Diesel</li>
 					</div>
 					<div class="btn-group btn-group-sm" role="group" aria-label="Transmission">
-						<button type="button" class="btn btn-outline-danger">Auto</button>
-						<button type="button" class="btn btn-outline-danger">Manual</button>
+						<li data-filter=".filter-auto" class="btn btn-outline-danger">Auto</li>
+						<li data-filter=".filter-manual" class="btn btn-outline-danger">Manual</li>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="row align-items-center single-model item mb-3">
-			<div class="col-lg-6 model-left">
-				<h4>Audi 3000 msi</h4>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				</p>
-				<p>
-					Seat			: 04 <br>
-					Fuel			: Petrol <br>
-					Air Condition	: Dual Zone <br>
-					Transmission	: Automatic
-				</p>
-				<div class="justify-content-between d-flex">
-					<button class="text-uppercase primary-btn">Book This Car</button>
-					<h2 class="car-price">LKR 10000<span>/day</span></h2>
+		<div class="row item-container">
+			<!-- item model -->
+			<div class="row align-items-center single-model item mb-3 filter-ac">
+				<div class="col-lg-6 model-left">
+					<h4>Audi 3000 msi</h4>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</p>
+                    <table class="ml-4 mb-2">
+                        <tr>
+                            <td>Seat</td>
+                            <td class="pl-3">: <strong><b>04</b></strong> <br></td>
+                        </tr>
+                        <tr>
+                            <td>Fuel</td>
+                            <td class="pl-3">: <strong><b>Petrol</b></strong> <br></td>
+                        </tr>
+                        <tr>
+                            <td>Air Condition</td>
+                            <td class="pl-3">: <strong><b>Yes</b></strong> <br></td>
+                        </tr>
+                        <tr>
+                            <td>Transmission</td>
+                            <td class="pl-3">: <strong><b>Auto</b></strong> <br></td>
+                        </tr>
+                    </table>
+					<div class="justify-content-between d-flex">
+						<button class="text-uppercase primary-btn">Book This Car</button>
+						<h2 class="car-price">LKR 10000<span>/day</span></h2>
+					</div>
+				</div>
+				<div class="col-lg-6 model-right">
+					<img class="img-fluid mx-auto d-block" src="<?php echo base_url(); ?>assets/images/cars/car.jpg" alt="">
 				</div>
 			</div>
-			<div class="col-lg-6 model-right">
-				<img class="img-fluid mx-auto d-block" src="<?php echo base_url(); ?>assets/images/car.jpg" alt="">
-			</div>
-		</div>
 
-	</div>	
+            <div class="row align-items-center single-model item mb-3 filter-ac">
+                <div class="col-lg-6 model-left">
+                    <h4>Audi 3000 msi</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <table class="ml-4 mb-2">
+                        <tr>
+                            <td>Seat</td>
+                            <td class="pl-3">: <strong><b>04</b></strong> <br></td>
+                        </tr>
+                        <tr>
+                            <td>Fuel</td>
+                            <td class="pl-3">: <strong><b>Petrol</b></strong> <br></td>
+                        </tr>
+                        <tr>
+                            <td>Air Condition</td>
+                            <td class="pl-3">: <strong><b>Yes</b></strong> <br></td>
+                        </tr>
+                        <tr>
+                            <td>Transmission</td>
+                            <td class="pl-3">: <strong><b>Auto</b></strong> <br></td>
+                        </tr>
+                    </table>
+                    <div class="justify-content-between d-flex">
+                        <button class="text-uppercase primary-btn">Book This Car</button>
+                        <h2 class="car-price">LKR 10000<span>/day</span></h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 model-right">
+                    <img class="img-fluid mx-auto d-block" src="<?php echo base_url(); ?>assets/images/cars/car.jpg" alt="">
+                </div>
+            </div>
+
+		</div>
+    </div>
 </section>
 <!-- End model Area -->
 

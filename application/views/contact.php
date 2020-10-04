@@ -16,25 +16,34 @@
 		</div>
 	</div>
 </section>
-<!-- End banner Area -->	
+<!-- End banner Area -->
 
 <!-- Start contact-page Area -->
 <section class="contact-page-area section-gap">
 	<div class="container">
+    <?php
+    if($this->session->flashdata('msg')) {
+        ?>
+        <div class="p-3 m-3 border border-danger text-danger text-center lead">
+            <?php echo $this->session->flashdata('msg'); ?>
+        </div>
+        <?php
+    }
+    ?>
 		<div class="row">
 
 			<div class="map-wrap">
 				<div class="mapouter"><div class="gmap_canvas"><iframe width="1080" height="445" id="gmap_canvas" src="https://maps.google.com/maps?q=Abhaya%20rent%20a%20car&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net/blog/nordvpn-coupon-code/"></a></div></div>
 			</div>
-			
+
 			<div class="col-lg-4 d-flex flex-column address-wrap">
 				<div class="single-contact-address d-flex flex-row">
 					<div class="icon">
 						<span class="lnr lnr-home"></span>
 					</div>
 					<div class="contact-details">
-						<h5>Beliatta, Sri Lanka</h5>
-						<p>56/8, West Panthapath</p>
+						<h5>Beliatta, Matara</h5>
+						<p>No 23/01, Wincent Road</p>
 					</div>
 				</div>
 				<div class="single-contact-address d-flex flex-row">
@@ -43,7 +52,7 @@
 					</div>
 					<div class="contact-details">
 						<h5>(+94) 71 102 9301</h5>
-						<p>Mon to Sun 9 am to 5pm</p>
+						<p>24/7 Hours Service</p>
 					</div>
 				</div>
 				<div class="single-contact-address d-flex flex-row">
@@ -57,24 +66,33 @@
 				</div>														
 			</div>
 			<div class="col-lg-8">
-				<form class="form-area " id="myForm" action="mail.php" method="post" class="contact-form text-right">
-					<div class="row">	
-						<div class="col-lg-6 form-group">
-							<input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
-						
-							<input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
 
-							<input name="subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" required="" type="text">
+				<?php echo form_open('Contact/customer_message'); ?>
+
+				<form class="form-area " id="myForm" method="post" class="contact-form text-right">
+					<div class="row">
+						<div class="col-lg-6 form-group">
+							<input name="message_name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" type="text">
+						
+							<input name="message_email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" type="email">
+
+							<input name="message_subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" type="text">
 							<div class="mt-20 alert-msg" style="text-align: left;"></div>
 						</div>
 						<div class="col-lg-6 form-group">
-							<textarea class="common-textarea form-control" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-							<button class="primary-btn mt-20 text-white" style="float: right;">Send Message</button>
-																	
+							<textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
+							<button type="submit" class="primary-btn mt-20" style="float: right;">Send Message</button>
 						</div>
+
 					</div>
-				</form>	
-			</div>
+				</form>
+
+				<?php echo form_close(); ?>
+                <div class="text-danger">
+                    <?php echo validation_errors(); ?>
+                </div>
+
+            </div>
 		</div>
 	</div>	
 </section>
