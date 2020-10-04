@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap/bootstrap.css');?>">
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/fav_icon');?>"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/login_util.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/login_main.css');?>">
@@ -41,10 +42,10 @@
 
 					<div class="flex-sb-m w-full p-b-30">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
+							<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                              <label class="form-check-label" for="defaultCheck1">
+                                Remeber me
+                              </label>
 						</div>
 
 						<div>

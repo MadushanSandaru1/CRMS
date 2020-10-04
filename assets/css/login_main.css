@@ -313,19 +313,18 @@ input.input100 {
   display: none;
 }
 
-.label-checkbox100 {
+.form-check-label {
   font-family: Poppins-Regular;
   font-size: 13px;
   color: #999999;
   line-height: 1.4;
-
   display: block;
   position: relative;
   padding-left: 26px;
   cursor: pointer;
 }
 
-.label-checkbox100::before {
+.form-check-input::before {
   content: "\f00c";
   font-family: FontAwesome;
   font-size: 13px;
@@ -353,7 +352,7 @@ input.input100 {
   transform: translateY(-50%);
 }
 
-.input-checkbox100:checked + .label-checkbox100::before {
+.form-check-input:checked + .label-checkbox100::before {
   color: #57b846;
 }
 
