@@ -40,14 +40,7 @@
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="flex-sb-m w-full p-b-30">
-						<div class="contact100-form-checkbox">
-							<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                              <label class="form-check-label" for="defaultCheck1">
-                                Remeber me
-                              </label>
-						</div>
-
+					<div class="flex-sb-m w-full p-b-20">
 						<div>
 							<a href="#" class="txt1">
 								Forgot Password?

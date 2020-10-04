@@ -307,54 +307,6 @@ input.input100 {
 }
 
 /*==================================================================
-[ Restyle Checkbox ]*/
-
-.input-checkbox100 {
-  display: none;
-}
-
-.form-check-label {
-  font-family: Poppins-Regular;
-  font-size: 13px;
-  color: #999999;
-  line-height: 1.4;
-  display: block;
-  position: relative;
-  padding-left: 26px;
-  cursor: pointer;
-}
-
-.form-check-input::before {
-  content: "\f00c";
-  font-family: FontAwesome;
-  font-size: 13px;
-  color: transparent;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 2px;
-  background: #fff;
-  border: 1px solid #e6e6e6;
-  left: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.form-check-input:checked + .label-checkbox100::before {
-  color: #57b846;
-}
 
 /*------------------------------------------------------------------
 [ Button ]*/
@@ -380,7 +332,7 @@ input.input100 {
   min-width: 160px;
   height: 50px;
   background-color:#c70039 ;
-  border-radius: ;
+  border-radius: 12px;
 
   font-family: Poppins-Regular;
   font-size: 16px;
