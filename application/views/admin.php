@@ -35,29 +35,20 @@
 
     <!--logo-->
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/fav_icon');?>"/>
-    <style>
-        body{
-            /*background-color:#04091d;*/
-        }
 
-        .text-light{
-            color: white;
-        }
-
-    </style>
 </head>
 
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
+        <header class="header-mobile d-block d-lg-none bg-dark">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="<?php echo base_url('assets/images/logo');?>" alt="CoolAdmin" />
+                            <img src="<?php echo base_url('assets/images/logo');?>" alt="logo" />
                         </a>
-                        <button class="hamburger hamburger--slider" type="button">
+                        <button class="hamburger hamburger--slider bg-dark" type="button">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
@@ -67,9 +58,9 @@
             </div>
             <nav class="navbar-mobile">
                 <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
+                    <ul class="navbar-mobile__list list-unstyled bg-dark">
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow text-light" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
@@ -87,27 +78,27 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="chart.html">
+                            <a href="chart.html" class="text-light">
                                 <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
                         <li>
-                            <a href="table.html">
+                            <a href="table.html" class="text-light">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
                         <li>
-                            <a href="form.html">
+                            <a href="form.html" class="text-light">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
                         <li>
-                            <a href="calendar.html">
+                            <a href="calendar.html" class="text-light">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
                         <li>
-                            <a href="map.html">
+                            <a href="map.html" class="text-light">
                                 <i class="fas fa-map-marker-alt"></i>Maps</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow text-light" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
@@ -122,7 +113,7 @@
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow text-light" href="#">
                                 <i class="fas fa-desktop"></i>UI Elements</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
@@ -167,13 +158,13 @@
         <!-- END HEADER MOBILE-->
 
         <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block" style="background-color:#04091d;">
-            <div class="logo">
+        <aside class="menu-sidebar d-none d-lg-block bg-dark">
+            <div class="logo bg-dark">
                 <a href="#">
                     <img src="<?php echo base_url('assets/images/logo');?>" alt="logo" />
                 </a>
             </div>
-            <div class="menu-sidebar__content js-scrollbar1 text-light">
+            <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
@@ -195,27 +186,27 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="chart.html">
+                            <a href="chart.html" class="text-light">
                                 <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
                         <li>
-                            <a href="table.html">
+                            <a href="table.html" class="text-light">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
                         <li>
-                            <a href="form.html">
+                            <a href="form.html" class="text-light">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
                         <li>
-                            <a href="calendar.html">
+                            <a href="calendar.html" class="text-light">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
                         <li>
-                            <a href="map.html">
+                            <a href="map.html" class="text-light">
                                 <i class="fas fa-map-marker-alt"></i>Maps</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow text-light" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
@@ -230,7 +221,7 @@
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow text-light" href="#">
                                 <i class="fas fa-desktop"></i>UI Elements</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
@@ -277,7 +268,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
+            <header class="header-desktop bg-dark">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">

@@ -2354,7 +2354,7 @@ fieldset:disabled a.btn {
 .btn-danger:hover {
   color: #fff;
   background-color: #c82333;
-  border-color: #bd2130;
+  border-color: #C70039;
 }
 
 .btn-danger:focus, .btn-danger.focus {
@@ -2370,7 +2370,7 @@ fieldset:disabled a.btn {
 .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active,
 .show > .btn-danger.dropdown-toggle {
   color: #fff;
-  background-color: #bd2130;
+  background-color: #C70039;
   border-color: #b21f2d;
 }
 
@@ -2415,14 +2415,14 @@ fieldset:disabled a.btn {
 
 .btn-dark {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #04091d;
+  border-color: #04091d;
 }
 
 .btn-dark:hover {
   color: #fff;
   background-color: #23272b;
-  border-color: #1d2124;
+  border-color: #04091d;
 }
 
 .btn-dark:focus, .btn-dark.focus {
@@ -2431,14 +2431,14 @@ fieldset:disabled a.btn {
 
 .btn-dark.disabled, .btn-dark:disabled {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #04091d;
+  border-color: #04091d;
 }
 
 .btn-dark:not(:disabled):not(.disabled):active, .btn-dark:not(:disabled):not(.disabled).active,
 .show > .btn-dark.dropdown-toggle {
   color: #fff;
-  background-color: #1d2124;
+  background-color: #04091d;
   border-color: #171a1d;
 }
 
@@ -2686,16 +2686,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-dark {
-  color: #343a40;
+  color: #04091d;
   background-color: transparent;
   background-image: none;
-  border-color: #343a40;
+  border-color: #04091d;
 }
 
 .btn-outline-dark:hover {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #04091d;
+  border-color: #04091d;
 }
 
 .btn-outline-dark:focus, .btn-outline-dark.focus {
@@ -2703,15 +2703,15 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-dark.disabled, .btn-outline-dark:disabled {
-  color: #343a40;
+  color: #04091d;
   background-color: transparent;
 }
 
 .btn-outline-dark:not(:disabled):not(.disabled):active, .btn-outline-dark:not(:disabled):not(.disabled).active,
 .show > .btn-outline-dark.dropdown-toggle {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #04091d;
+  border-color: #04091d;
 }
 
 .btn-outline-dark:not(:disabled):not(.disabled):active:focus, .btn-outline-dark:not(:disabled):not(.disabled).active:focus,
@@ -4405,7 +4405,7 @@ tbody.collapse.show {
 .badge-danger[href]:hover, .badge-danger[href]:focus {
   color: #fff;
   text-decoration: none;
-  background-color: #bd2130;
+  background-color: #C70039;
 }
 
 .badge-light {
@@ -4421,13 +4421,13 @@ tbody.collapse.show {
 
 .badge-dark {
   color: #fff;
-  background-color: #343a40;
+  background-color: #04091d;
 }
 
 .badge-dark[href]:hover, .badge-dark[href]:focus {
   color: #fff;
   text-decoration: none;
-  background-color: #1d2124;
+  background-color: #04091d;
 }
 
 .jumbotron {
@@ -5551,7 +5551,7 @@ button.bg-warning:focus {
 a.bg-danger:hover, a.bg-danger:focus,
 button.bg-danger:hover,
 button.bg-danger:focus {
-  background-color: #bd2130 !important;
+  background-color: #C70039 !important;
 }
 
 .bg-light {
@@ -5565,13 +5565,13 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #04091d !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
 button.bg-dark:focus {
-  background-color: #1d2124 !important;
+  background-color: #04091d !important;
 }
 
 .bg-white {
@@ -5651,7 +5651,7 @@ button.bg-dark:focus {
 }
 
 .border-dark {
-  border-color: #343a40 !important;
+  border-color: #04091d !important;
 }
 
 .border-white {
@@ -8030,7 +8030,7 @@ a.text-warning:hover, a.text-warning:focus {
 }
 
 a.text-danger:hover, a.text-danger:focus {
-  color: #bd2130 !important;
+  color: #C70039 !important;
 }
 
 .text-light {
@@ -8042,11 +8042,11 @@ a.text-light:hover, a.text-light:focus {
 }
 
 .text-dark {
-  color: #343a40 !important;
+  color: #04091d !important;
 }
 
 a.text-dark:hover, a.text-dark:focus {
-  color: #1d2124 !important;
+  color: #04091d !important;
 }
 
 .text-muted {
