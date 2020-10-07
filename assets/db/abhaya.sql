@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 07, 2020 at 03:46 AM
+-- Generation Time: Oct 07, 2020 at 05:09 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -111,6 +111,23 @@ CREATE TABLE IF NOT EXISTS `damage` (
   `fix_amount` float NOT NULL,
   `is_solved` tinyint(1) NOT NULL DEFAULT 0,
   `is_deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gps_track`
+--
+
+DROP TABLE IF EXISTS `gps_track`;
+CREATE TABLE IF NOT EXISTS `gps_track` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_id` int(11) NOT NULL,
+  `track_time` datetime NOT NULL DEFAULT current_timestamp(),
+  `track_lng` decimal(11,7) NOT NULL,
+  `track_lat` decimal(11,7) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
