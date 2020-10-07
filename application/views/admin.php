@@ -59,95 +59,116 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled bg-dark">
+                        <li>
+                            <a href="#" class="text-light">
+                                <i class="fas fa-car"></i>Car Book</a>
+                        </li>
                         <li class="has-sub">
                             <a class="js-arrow text-light" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-car"></i>Reserved Car</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="#" class="text-white">Reserved Car</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Dashboard 2</a>
+                                    <a href="#">New Car</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">Dashboard 3</a>
+                                    <a href="#">Edit Car</a>
                                 </li>
                                 <li>
-                                    <a href="index4.html">Dashboard 4</a>
+                                    <a href="#">Delete Car</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow text-light" href="#">
+                                <i class="fas fa-user"></i>Staff</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="#" class="text-white">Users</a>
+                                </li>
+                                <li>
+                                    <a href="#">Add New User</a>
+                                </li>
+                                <li>
+                                    <a href="#">Edit User</a>
+                                </li>
+                                <li>
+                                    <a href="#">Delete User</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow text-light" href="#">
+                                <i class="fas fa-users"></i>Customer</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="#" class="text-white">Customer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Add New Customer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Edit Customer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Delete Customer</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow text-light" href="#">
+                                <i class="fas fa-car"></i>Car</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="#" class="text-white">Car</a>
+                                </li>
+                                <li>
+                                    <a href="#">Add New Car</a>
+                                </li>
+                                <li>
+                                    <a href="#">Edit Car</a>
+                                </li>
+                                <li>
+                                    <a href="#">Delete Car</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="chart.html" class="text-light">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html" class="text-light">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html" class="text-light">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html" class="text-light">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html" class="text-light">
+                            <a href="#" class="text-light">
                                 <i class="fas fa-map-marker-alt"></i>Maps</a>
                         </li>
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow text-light" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
+                                <i class="fas fa-car-crash"></i>Damage Car</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="login.html">Login</a>
+                                    <a href="#" class="text-white">View Damage Car</a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <a href="#">Add Damage Car</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Forget Password</a>
+                                    <a href="#">Delete Car</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow text-light" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
+                                <i class="fas fa-funnel-dollar"></i>Vehicle Expenses</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="button.html">Button</a>
+                                    <a href="#">Expenses</a>
                                 </li>
                                 <li>
-                                    <a href="badge.html">Badges</a>
+                                    <a href="#">Add Expenses</a>
                                 </li>
                                 <li>
-                                    <a href="tab.html">Tabs</a>
+                                    <a href="#">Update Expenses</a>
                                 </li>
                                 <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
+                                    <a href="#">Delete Expenses</a>
                                 </li>
                             </ul>
                         </li>
