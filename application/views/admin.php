@@ -35,7 +35,11 @@
 
     <!--logo-->
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/fav_icon');?>"/>
-
+    <style>
+        .has-sub a{
+            color: whitesmoke;
+        }
+    </style>
 </head>
 
 <body class="animsition">
@@ -190,21 +194,8 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
                             <a class="js-arrow text-light" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-<!--                            <ul class="list-unstyled navbar__sub-list js-sub-list">-->
-<!--                                <li>-->
-<!--                                    <a href="index.html">Dashboard 1</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="index2.html">Dashboard 2</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="index3.html">Dashboard 3</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="index4.html">Dashboard 4</a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                            </a>
                         </li>
                         <li>
                             <a href="#" class="text-light">
