@@ -37,5 +37,9 @@ class Home extends CI_Controller {
     public function admin()
     {
         $this->load->view('admin');
+	}
+	public function admin_damage()
+    {
+        $this->load->view('admin_damage');
     }
 }

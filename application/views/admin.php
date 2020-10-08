@@ -285,7 +285,7 @@
                                     <a href="#" class="text-white">View Damage Car</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add Damage Car</a>
+                                    <a href="<?php base_url('crms/index.php/home/admin_damage')?>">Add Damage Car</a>
                                 </li>
                                 <li>
                                     <a href="#">Delete Car</a>
