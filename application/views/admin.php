@@ -45,12 +45,12 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none bg-dark">
+        <header class="header-mobile d-block d-lg-none bg-dark fixed-top">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="<?php echo base_url('assets/images/logo');?>" alt="logo" />
+                            <img src="<?php echo base_url('assets/images/logo');?>" alt="logo"/>
                         </a>
                         <button class="hamburger hamburger--slider bg-dark" type="button">
                             <span class="hamburger-box">
@@ -185,7 +185,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block bg-dark">
             <div class="logo bg-dark">
-                <a href="<?php base_url('crms/index.php/home/index')?>">
+                <a href="<?php base_url('index.php/home/index');?>">
                     <img src="<?php echo base_url('assets/images/logo');?>" alt="logo" />
                 </a>
             </div>
@@ -193,7 +193,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow text-light" href="#">
+                            <a class="js-arrow text-light" href="<?php base_url('index.php/Home/admin');?>">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
@@ -282,7 +282,7 @@
                                 <i class="fas fa-car-crash"></i>Damage Car</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="#" class="text-white">View Damage Car</a>
+                                    <a href="<?php echo base_url('index.php/home/view_damage_car');?>" class="text-white">View Damage Car</a>
                                 </li>
                                 <li>
                                     <a href="<?php base_url('crms/index.php/home/admin_damage')?>">Add Damage Car</a>
@@ -448,13 +448,13 @@
                                             <img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Logout</a>
+                                            <a class="js-acc-btn text-white" href="#">john doe</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
