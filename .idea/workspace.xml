@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d335eabc-e194-42f0-89bd-f6de596269d4" name="Default Changelist" comment="" />
+    <list default="true" id="4e7709d9-8729-4d0d-a566-c6fe46074ab3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,10 +10,7 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="1iNuk96D8gZouF6zbVP32fIPehb" />
+  <component name="ProjectId" id="1iZLQ21qdTRqeNw4S7XgqzTyz0J" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -21,7 +18,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -30,28 +27,21 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\test\application\views" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d335eabc-e194-42f0-89bd-f6de596269d4" name="Default Changelist" comment="" />
-      <created>1601760521133</created>
+      <changelist id="4e7709d9-8729-4d0d-a566-c6fe46074ab3" name="Default Changelist" comment="" />
+      <created>1602110147764</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1601760521133</updated>
-<<<<<<< HEAD
-      <workItem from="1601760530019" duration="11992000" />
-      <workItem from="1601884285179" duration="284000" />
-      <workItem from="1601885585012" duration="1842000" />
-=======
-      <workItem from="1601760530019" duration="11717000" />
-      <workItem from="1601813446096" duration="959000" />
-      <workItem from="1601816421633" duration="4099000" />
-      <workItem from="1601860345545" duration="524000" />
-      <workItem from="1601885239716" duration="6340000" />
-<<<<<<< Updated upstream
-=======
->>>>>>> a26a0780fa785da8f4df8fd88691ea54cda6ba03
->>>>>>> Stashed changes
+      <updated>1602110147764</updated>
+      <workItem from="1602110148895" duration="7287000" />
+      <workItem from="1602159105194" duration="22785000" />
     </task>
     <servers />
   </component>
@@ -59,25 +49,21 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="390" y="12" key="#PHP" timestamp="1601760854068">
+    <state x="380" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602111054996">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="12" key="#PHP/0.0.1366.738@0.0.1366.738" timestamp="1601760854068" />
-    <state x="211" y="194" width="943" height="349" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1601765448593">
+    <state x="380" y="171" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1602111054996" />
+    <state x="360" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602159831936">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="211" y="194" width="943" height="349" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1366.738@0.0.1366.738" timestamp="1601765448593" />
-    <state x="496" y="110" key="FileChooserDialogImpl" timestamp="1601860867909">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="496" y="110" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601860867909" />
-    <state x="332" y="107" key="NewPhpClassDialog" timestamp="1601772075034">
+    <state x="360" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1602159831936" />
+    <state x="517" y="292" key="NewPhpFileDialog" timestamp="1602159162104">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="332" y="107" key="NewPhpClassDialog/0.0.1366.738@0.0.1366.738" timestamp="1601772075034" />
-    <state x="0" y="0" width="585" height="738" key="find.popup" timestamp="1601765423125">
+    <state x="517" y="292" key="NewPhpFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1602159162104" />
+    <state x="281" y="66" width="585" height="592" key="find.popup" timestamp="1602178987109">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="0" y="0" width="585" height="738" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1601765423125" />
+    <state x="281" y="66" width="585" height="592" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1602178987109" />
   </component>
 </project>

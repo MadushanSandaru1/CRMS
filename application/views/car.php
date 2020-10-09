@@ -1,5 +1,5 @@
 <?php
-	require_once('partials/header.php');
+	require_once('header.php');
 ?>
 
 <!-- start banner Area -->
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid mx-auto d-block" src="<?php echo base_url(); ?>assets/images/cars/car.jpg" alt="">
+					<img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/cars/car.jpg'); ?>" alt="">
 				</div>
 			</div>
 
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 model-right">
-                    <img class="img-fluid mx-auto d-block" src="<?php echo base_url(); ?>assets/images/cars/car.jpg" alt="">
+                    <img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/cars/car.jpg'); ?>" alt="">
                 </div>
             </div>
 
@@ -121,5 +121,5 @@
 <!-- End model Area -->
 
 <?php
-	require_once('partials/footer.php');
+	require_once('footer.php');
 ?>

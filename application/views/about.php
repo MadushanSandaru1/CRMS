@@ -1,5 +1,5 @@
 <?php
-	require_once('partials/header.php');
+	require_once('header.php');
 ?>
 
 <!-- start banner Area -->
@@ -23,7 +23,7 @@
 	<div class="container-fluid">				
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-6 no-padding home-about-left">
-				<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/about-img.jpg" alt="">
+				<img class="img-fluid" src="<?php echo base_url('assets/images/about-img.jpg'); ?>" alt="">
 			</div>
 			<div class="col-lg-6 no-padding home-about-right">
 				<h1>Globally Connected <br>
@@ -72,7 +72,7 @@
 					<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/car.jpg" alt="">
+					<img class="img-fluid" src="<?php echo base_url('assets/images/car.jpg'); ?>" alt="">
 				</div>
 			</div>
 			<div class="row align-items-center single-model item">
@@ -93,7 +93,7 @@
 					<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/car.jpg" alt="">
+					<img class="img-fluid" src="<?php echo base_url('assets/images/car.jpg'); ?>" alt="">
 				</div>
 			</div>
 			<div class="row align-items-center single-model item">
@@ -114,7 +114,7 @@
 					<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/car.jpg" alt="">
+					<img class="img-fluid" src="<?php echo base_url('assets/images/car.jpg'); ?>" alt="">
 				</div>
 			</div>												
 		</div>
@@ -291,7 +291,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b1.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b1.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -306,7 +306,7 @@
 			</div>
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b2.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b2.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -321,7 +321,7 @@
 			</div>
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b3.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b3.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -336,7 +336,7 @@
 			</div>
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b4.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b4.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -355,5 +355,5 @@
 <!-- End blog Area -->
 
 <?php
-	require_once('partials/footer.php');
+	require_once('footer.php');
 ?>

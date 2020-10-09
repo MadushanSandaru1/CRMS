@@ -1,5 +1,5 @@
 <?php
-	require_once('partials/header.php');
+	require_once('header.php');
 ?>
 
 <!-- start banner Area -->
@@ -89,66 +89,66 @@
 
 <!-- Start feature Area -->
 <section class="feature-area section-gap" id="service">
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-8 pb-40 header-text">
-				<h1>What Services we offer to our clients</h1>
-				<p>
-					Who are in extremely love with eco friendly system.
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-4 col-md-6">
-				<div class="single-feature">
-					<h4><i class="fa fa-user-o" aria-hidden="true"></i> Expert Technicians</h4>
-					<p>
-						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-					</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-feature">
-					<h4><i class="fa fa-certificate" aria-hidden="true"></i> Professional Service</h4>
-					<p>
-						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-					</p>								
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-feature">
-					<h4><i class="fa fa-phone" aria-hidden="true"></i> Great Support</h4>
-					<p>
-						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-					</p>								
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-feature">
-					<h4><i class="fa fa-rocket" aria-hidden="true"></i> Technical Skills</h4>
-					<p>
-						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-					</p>				
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-feature">
-					<h4><i class="fa fa-diamond" aria-hidden="true"></i> Highly Recomended</h4>
-					<p>
-						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-					</p>								
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-feature">
-					<h4><i class="fa fa-comment-o" aria-hidden="true"></i> Positive Reviews</h4>
-					<p>
-						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-					</p>									
-				</div>
-			</div>						
-		</div>
-	</div>	
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 pb-40 header-text">
+                <h1>What Services we offer to our clients</h1>
+                <p>
+                    Who are in extremely love with eco friendly system.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-user"></span>Expert Technicians</h4>
+                    <p>
+                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-license"></span>Professional Service</h4>
+                    <p>
+                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-phone"></span>Great Support</h4>
+                    <p>
+                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-rocket"></span>Technical Skills</h4>
+                    <p>
+                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-diamond"></span>Highly Recomended</h4>
+                    <p>
+                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-bubble"></span>Positive Reviews</h4>
+                    <p>
+                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- End feature Area -->		
 
@@ -157,7 +157,7 @@
 	<div class="container-fluid">				
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-6 no-padding home-about-left">
-				<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/about-img.jpg" alt="">
+				<img class="img-fluid" src="<?php echo base_url('assets/images/about-img.jpg'); ?>" alt="">
 			</div>
 			<div class="col-lg-6 no-padding home-about-right">
 				<h1>Globally Connected <br>
@@ -206,7 +206,7 @@
 					<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/car.jpg" alt="">
+					<img class="img-fluid" src="<?php echo base_url('assets/images/car.jpg'); ?>" alt="">
 				</div>
 			</div>
 			<div class="row align-items-center single-model item">
@@ -227,7 +227,7 @@
 					<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/car.jpg" alt="">
+					<img class="img-fluid" src="<?php echo base_url('assets/images/car.jpg'); ?>" alt="">
 				</div>
 			</div>
 			<div class="row align-items-center single-model item">
@@ -248,7 +248,7 @@
 					<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/car.jpg" alt="">
+					<img class="img-fluid" src="<?php echo base_url('assets/images/car.jpg'); ?>" alt="">
 				</div>
 			</div>												
 		</div>
@@ -425,7 +425,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b1.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b1.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -440,7 +440,7 @@
 			</div>
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b2.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b2.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -455,7 +455,7 @@
 			</div>
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b3.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b3.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -470,7 +470,7 @@
 			</div>
 			<div class="col-lg-3 col-md-6 single-blog">
 				<div class="thumb">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/b4.jpg" alt="">								
+					<img class="img-fluid" src="<?php echo base_url('assets/images/b4.jpg'); ?>" alt="">
 				</div>
 				<p class="date">10 Jan 2018</p>
 				<a href="blog-single.html"><h4>Addiction When Gambling
@@ -489,5 +489,5 @@
 <!-- End blog Area -->
 
 <?php
-	require_once('partials/footer.php');
+	require_once('footer.php');
 ?>

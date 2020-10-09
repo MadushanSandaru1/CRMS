@@ -1,5 +1,5 @@
 <?php
-	require_once('partials/header.php');
+	require_once('header.php');
 ?>
 
 <!-- start banner Area -->
@@ -99,5 +99,5 @@
 <!-- End contact-page Area -->
 
 <?php
-	require_once('partials/footer.php');
+	require_once('footer.php');
 ?>

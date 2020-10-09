@@ -1,323 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- page head -->
-    <head>
-        <!-- meta tags -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Car rental management system for Abhaya">
-        <meta name="author" content="Semicolon">
-        <meta name="keywords" content="Semicolon Abhaya">
+<head>
+    <!-- meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Title Page -->
-        <title>Dashboard</title>
+    <!-- page title -->
+    <title>Abhaya rent a car</title>
 
-        <!-- title icon -->
-        <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/fav_icon');?>"/>
+    <!-- page title icon -->
+    <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.png');?>" />
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <!-- css -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/mdi/css/materialdesignicons.min.css');?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/css/vendor.bundle.base.css');?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
+</head>
 
-        <!-- icon CSS -->
-        <link href="<?php echo base_url('assets/css/admin_font-face.css');?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/font-awesome-4.7/css/font-awesome.min.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/font-awesome-5/css/fontawesome-all.min.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/mdi-font/css/material-design-iconic-font.min.css')?>" rel="stylesheet" media="all">
+<body>
+    <div class="container-scroller">
+        <!-- navbar -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <!-- navbar logo -->
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="<?php echo base_url('index.php/Home/crms_dash'); ?>"><img src="<?php echo base_url('assets/images/logo.png');?>" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="<?php echo base_url('index.php/Home/crms_dash'); ?>"><img src="<?php echo base_url('assets/images/logo-mini.png');?>" alt="logo" /></a>
+            </div>
 
-        <!-- Bootstrap CSS -->
-        <link href="<?php echo base_url('assets/js/vendor/vendor/bootstrap-4.1/bootstrap.min.css')?>" rel="stylesheet" media="all">
+            <!-- navbar icons -->
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <!-- sidebar minimize icon -->
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
 
-        <!-- Vendor CSS -->
-        <link href="<?php echo base_url('assets/js/vendor/vendor/animsition/animsition.min.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/wow/animate.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/css-hamburgers/hamburgers.min.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/slick/slick.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/animsition/animsition.min.css')?>" rel="stylesheet" media="all">
-        <link href="<?php echo base_url('assets/js/vendor/vendor/perfect-scrollbar/perfect-scrollbar.css')?>" rel="stylesheet" media="all">
-
-        <!-- Main CSS -->
-        <link href="<?php echo base_url('assets/css/admin_theme.css')?>" rel="stylesheet" media="all">
-
-        <script type="text/javascript">
-            $(document).ready( function(){
-                $('#time').load('time.php');
-                refresh();
-            });
-
-            function refresh()
-            {
-                setTimeout( function() {
-                    $('#time').load('time.php');
-                    refresh();
-                }, 1000);
-            }
-        </script>
-
-    </head>
-    
-    <!-- page body -->
-    <body class="animsition">
-        <div class="page-wrapper">
-            
-            <!-- HEADER MOBILE-->
-            <header class="header-mobile d-block d-lg-none bg-dark">
-                
-                <div class="header-mobile__bar">
-                    <div class="container-fluid">
-                        <div class="header-mobile-inner">
-                            <a class="logo" href="<?php base_url('crms/index.php/home/crms_dashboard')?>"><img src="<?php echo base_url('assets/images/logo');?>" alt="logo" /></a>
-                            <button class="hamburger hamburger--slider bg-dark" type="button">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <nav class="navbar-mobile">
-                    <div class="container-fluid">
-                        <ul class="navbar-mobile__list list-unstyled bg-dark">
-                            <li><a href="#" class="text-light"><i class="fas fa-car"></i>Car Book</a></li>
-                            <li class=""><a class="js-arrow text-light" href="#"><i class="fas fa-car"></i>Reserved Car</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li><a href="#" class="text-white">Reserved Car</a></li>
-                                    <li><a href="#">New Car</a></li>
-                                    <li><a href="#">Edit Car</a></li>
-                                    <li><a href="#">Delete Car</a></li>
-                                </ul>
-                            </li>
-                            <li class="active "><a class="js-arrow text-light" href="#"><i class="fas fa-user"></i>Staff</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li><a href="#" class="text-white">Users</a></li>
-                                    <li><a href="#">Add New User</a></li>
-                                    <li><a href="#">Edit User</a></li>
-                                    <li><a href="#">Delete User</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a class="js-arrow text-light" href="#">
-                                    <i class="fas fa-users"></i>Customer</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li><a href="#" class="text-white">Customer</a></li>
-                                    <li><a href="#">Add New Customer</a></li>
-                                    <li><a href="#">Edit Customer</a></li>
-                                    <li><a href="#">Delete Customer</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a class="js-arrow text-light" href="#"><i class="fas fa-car"></i>Car</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li><a href="#" class="text-white">Car</a></li>
-                                    <li><a href="#">Add New Car</a></li>
-                                    <li><a href="#">Edit Car</a></li>
-                                    <li><a href="#">Delete Car</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Maps</a></li>
-                            <li class="active"><a class="js-arrow text-light" href="<?php base_url('crms/index.php/home/crms_damage')?>"><i class="fas fa-car-crash"></i>Damage Car</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li><a href="#" class="text-white">View Damage Car</a></li>
-                                    <li><a href="#">Add Damage Car</a></li>
-                                    <li><a href="#">Delete Car</a></li>
-                                </ul>
-                            </li>
-                            <li class=""><a class="js-arrow text-light" href="#"><i class="fas fa-funnel-dollar"></i>Vehicle Expenses</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li><a href="#">Expenses</a></li>
-                                    <li><a href="#">Add Expenses</a></li>
-                                    <li><a href="#">Update Expenses</a></li>
-                                    <li><a href="#">Delete Expenses</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <!-- END HEADER MOBILE-->
-
-            <!-- MENU SIDEBAR-->
-            <aside class="menu-sidebar d-none d-lg-block bg-dark">
-                <div class="logo bg-dark">
-                    <a href="<?php base_url('crms/index.php/home/crms_dashboard')?>">
-                        <img src="<?php echo base_url('assets/images/logo');?>" alt="logo" />
-                    </a>
-                </div>
-                <div class="menu-sidebar__content js-scrollbar1">
-                    <nav class="navbar-sidebar">
-                        <ul class="list-unstyled navbar__list">
-                            <li class="active"><a class="js-arrow text-light" href="<?php base_url('crms/index.php/home/crms_dashboard')?>"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
-                            <li><a href="#" class="text-light"><i class="fas fa-car"></i>Car Book</a></li>
-                            <li class="active"><a class="js-arrow text-light" href="#"><i class="fas fa-car"></i>Reserved Car</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li><a href="#" class="text-white">Reserved Car</a></li>
-                                    <li><a href="#">New Car</a></li>
-                                    <li><a href="#">Edit Car</a></li>
-                                    <li><a href="#">Delete Car</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a class="js-arrow text-light" href="#"><i class="fas fa-user"></i>Staff</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li><a href="#" class="text-white">Users</a></li>
-                                    <li><a href="#">Add New User</a></li>
-                                    <li><a href="#">Edit User</a></li>
-                                    <li><a href="#">Delete User</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a class="js-arrow text-light" href="#"><i class="fas fa-users"></i>Customer</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li><a href="#" class="text-white">Customer</a></li>
-                                    <li><a href="#">Add New Customer</a></li>
-                                    <li><a href="#">Edit Customer</a></li>
-                                    <li><a href="#">Delete Customer</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a class="js-arrow text-light" href="#"><i class="fas fa-car"></i>Car</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li><a href="#" class="text-white">Car</a></li>
-                                    <li><a href="#">Add New Car</a></li>
-                                    <li><a href="#">Edit Car</a></li>
-                                    <li><a href="#">Delete Car</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Maps</a></li>
-                            <li class="active"><a class="text-light" href="<?php base_url('crms/index.php/home/crms_damage')?>"><i class="fas fa-car-crash"></i>Damage Car</a></li>
-                            <li class=""><a class="js-arrow text-light" href="#"><i class="fas fa-funnel-dollar"></i>Vehicle Expenses</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li><a href="#">Expenses</a></li>
-                                    <li><a href="#">Add Expenses</a></li>
-                                    <li><a href="#">Update Expenses</a></li>
-                                    <li><a href="#">Delete Expenses</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
-            <!-- END MENU SIDEBAR-->
-
-            <!-- PAGE CONTAINER-->
-            <div class="page-container">
-                <!-- HEADER DESKTOP-->
-                <header class="header-desktop bg-dark">
-                    <div class="section__content section__content--p30">
-                        <div class="container-fluid">
-                            <div class="header-wrap">
-                                <?php
-                                    require_once('time_now.php');
-                                ?>
-                                <div class="header-button">
-                                    <div class="noti-wrap">
-                                        <div class="noti__item js-item-menu"><i class="zmdi zmdi-comment-more"></i><span class="quantity">1</span>
-                                            <div class="mess-dropdown js-dropdown">
-                                                <div class="mess__title"><p>You have 2 news message</p></div>
-                                                <div class="mess__item">
-                                                    <div class="image img-cir img-40">
-                                                        <img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="Michelle Moreno" />
-                                                    </div>
-                                                    <div class="content">
-                                                        <h6>Michelle Moreno</h6>
-                                                        <p>Have sent a photo</p>
-                                                        <span class="time">3 min ago</span>
-                                                    </div>
-                                                </div>
-                                                <div class="mess__item">
-                                                    <div class="image img-cir img-40"><img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="Diane Myers" /></div>
-                                                    <div class="content">
-                                                        <h6>Diane Myers</h6>
-                                                        <p>You are now connected on message</p>
-                                                        <span class="time">Yesterday</span>
-                                                    </div>
-                                                </div>
-                                                <div class="mess__footer"><a href="#">View all messages</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="noti__item js-item-menu"><i class="zmdi zmdi-email"></i><span class="quantity">1</span>
-                                            <div class="email-dropdown js-dropdown">
-                                                <div class="email__title"><p>You have 3 New Emails</p></div>
-                                                <div class="email__item">
-                                                    <div class="image img-cir img-40">
-                                                        <img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="Cynthia Harvey" />
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>Meeting about new dashboard...</p>
-                                                        <span>Cynthia Harvey, 3 min ago</span>
-                                                    </div>
-                                                </div>
-                                                <div class="email__item">
-                                                    <div class="image img-cir img-40"><img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="Cynthia Harvey" /></div>
-                                                    <div class="content">
-                                                        <p>Meeting about new dashboard...</p>
-                                                        <span>Cynthia Harvey, Yesterday</span>
-                                                    </div>
-                                                </div>
-                                                <div class="email__item">
-                                                    <div class="image img-cir img-40"><img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="Cynthia Harvey" /></div>
-                                                    <div class="content">
-                                                        <p>Meeting about new dashboard...</p>
-                                                        <span>Cynthia Harvey, April 12,,2018</span>
-                                                    </div>
-                                                </div>
-                                                <div class="email__footer">
-                                                    <a href="#">See all emails</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="noti__item js-item-menu"><i class="zmdi zmdi-notifications"></i><span class="quantity">3</span>
-                                            <div class="notifi-dropdown js-dropdown">
-                                                <div class="notifi__title"><p>You have 3 Notifications</p></div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c1 img-cir img-40"><i class="zmdi zmdi-email-open"></i></div>
-                                                    <div class="content">
-                                                        <p>You got a email notification</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c2 img-cir img-40"><i class="zmdi zmdi-account-box"></i></div>
-                                                    <div class="content">
-                                                        <p>Your account has been blocked</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c3 img-cir img-40"><i class="zmdi zmdi-file-text"></i></div>
-                                                    <div class="content">
-                                                        <p>You got a new file</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__footer"><a href="#">All notifications</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="account-wrap">
-                                        <div class="account-item clearfix js-item-menu">
-                                            <div class="image"><img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="User Image" /></div>
-                                            <div class="content"><a class="js-acc-btn" href="#">Logout</a></div>
-                                            <div class="account-dropdown js-dropdown">
-                                                <div class="info clearfix">
-                                                    <div class="image"><a href="#"><img src="<?php echo base_url('assets/images/avatar-01.jpg');?>" alt="John Doe" /></a></div>
-                                                    <div class="content">
-                                                        <h5 class="name"><a href="#">john doe</a></h5>
-                                                        <span class="email">johndoe@example.com</span>
-                                                    </div>
-                                                </div>
-                                                <div class="account-dropdown__body">
-                                                    <div class="account-dropdown__item"><a href="#"><i class="zmdi zmdi-account"></i>Account</a></div>
-                                                    <div class="account-dropdown__item"><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></div>
-                                                    <div class="account-dropdown__item"><a href="#"><i class="zmdi zmdi-money-box"></i>Billing</a></div>
-                                                </div>
-                                                <div class="account-dropdown__footer"><a href="#"><i class="zmdi zmdi-power"></i>Logout</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                <!-- search bar-->
+                <div class="search-field d-none d-md-block">
+                    <form class="d-flex align-items-center h-100" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-transparent">
+                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
                             </div>
+                            <input type="text" class="form-control bg-transparent border-danger border-left-0 border-right-0 border-top-0" placeholder="Search projects">
                         </div>
-                    </div>
-                </header>
-                <!-- HEADER DESKTOP -->
+                    </form>
+                </div>
 
-                <!-- MAIN CONTENT-->
-                <div class="main-content">
-                    <div class="section__content section__content--p30">
-                        <div class="container-fluid">
+                <ul class="navbar-nav navbar-nav-right">
+                    <!-- profile dropdown -->
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="<?php echo base_url('assets/images/faces/face1.jpg');?>" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text"><p class="mb-1 text-black">David Greymaax</p></div>
+                        </a>
+
+                        <!-- profile dropdown list -->
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="<?php echo base_url('index.php/Home/crms_profile'); ?>"><i class="mdi mdi-account-circle mr-2 text-success"></i> Profile </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                        </div>
+                    </li>
+
+                    <!-- full screen icon -->
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link"><i class="mdi mdi-fullscreen" id="fullscreen-button"></i></a>
+                    </li>
+
+                    <!-- message icon -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-message-outline"></i>
+                            <span class="count-symbol bg-warning"></span>
+                        </a>
+
+                        <!-- message list -->
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                            <h6 class="p-3 mb-0">Messages</h6>
+
+                            <!-- message item -->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="<?php echo base_url('assets/images/faces/face4.jpg');?>" alt="image" class="profile-pic">
+                                </div>
+                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
+                                    <p class="text-gray mb-0"> 1 Minutes ago </p>
+                                </div>
+                            </a>
+                            <!-- ** message item -->
+
+                            <div class="dropdown-divider"></div>
+
+                            <!-- message link -->
+                            <a href="<?php echo base_url('index.php/Home/crms_message'); ?>"><h6 class="p-3 mb-0 text-center">See all messages</h6></a>
+                        </div>
+                    </li>
+                    <!-- ** message icon -->
+
+                    <!-- notification icon -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                            <i class="mdi mdi-bell-outline"></i>
+                            <span class="count-symbol bg-danger"></span>
+                        </a>
+
+                        <!-- notification list -->
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                            <h6 class="p-3 mb-0">Notifications</h6>
+
+                            <!-- notification item -->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success"><i class="mdi mdi-calendar"></i></div>
+                                </div>
+                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
+                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
+                                </div>
+                            </a>
+                            <!-- ** notification item -->
+
+                            <div class="dropdown-divider"></div>
+
+                            <!-- notification link -->
+                            <a href="<?php echo base_url('index.php/Home/crms_notification'); ?>"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>
+                        </div>
+                    </li>
+                    <!-- ** notification icon -->
+
+                    <!-- logout icon -->
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-power"></i>
+                        </a>
+                    </li>
+                    <!-- ** logout icon -->
+
+                    <!-- settings icon -->
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-format-line-spacing"></i>
+                        </a>
+                    </li>
+                    <!-- ** settings icon -->
+                </ul>
+
+                <!-- mobile view toggle icon -->
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <!-- ** mobile view toggle icon -->
+            </div>
+        </nav>
+        <!-- ** navbar -->
+
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- sidebar -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+
+                    <!-- profile -->
+                    <li class="nav-item nav-profile">
+                        <a href="<?php echo base_url('index.php/Home/crms_profile'); ?>" class="nav-link">
+                            <div class="nav-profile-image">
+                                <img src="<?php echo base_url('assets/images/faces/face1.jpg');?>" alt="profile">
+                                <span class="login-status online"></span> <!--change to offline or busy as needed -->
+                            </div>
+                            <div class="nav-profile-text d-flex flex-column">
+                                <span class="font-weight-bold mb-2">David Grey. H</span>
+                                <span class="text-secondary text-small">Administrator</span>
+                            </div>
+                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                        </a>
+                    </li>
+                    <!-- ** profile -->
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_dash'); ?>">
+                            <span class="menu-title">Dashboard</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_user'); ?>">
+                            <span class="menu-title">Staff User</span>
+                            <i class="mdi mdi-account-box menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_car'); ?>">
+                            <span class="menu-title">Car</span>
+                            <i class="mdi mdi-car menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_customer'); ?>">
+                            <span class="menu-title">Customer</span>
+                            <i class="mdi mdi-account menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_reserved'); ?>">
+                            <span class="menu-title">Car Reserved</span>
+                            <i class="mdi mdi-car menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_booking'); ?>">
+                            <span class="menu-title">Car Booking</span>
+                            <i class="mdi mdi-bookmark-plus menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_tracking'); ?>">
+                            <span class="menu-title">Car Tracking</span>
+                            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                            <span class="menu-title">Other</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-settings menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_damage'); ?>">Car Damage</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_expenses'); ?>">Car Expenses</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_outsourcing'); ?>">Car Outsourcing</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item sidebar-actions">
+                        <span class="nav-link">
+                            <div class="border-bottom">
+                                <h6 class="font-weight-normal mb-3">Reports</h6>
+                            </div>
+
+                            <div class="mt-4">
+                                <div class="border-bottom">
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_damage_report'); ?>">Damage Report</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_inc_exp_report'); ?>">Income/Expense Report</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </span>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- ** sidebar -->
+
+            <!-- page content -->
+            <div class="main-panel">
