@@ -1,7 +1,7 @@
                 <!-- footer -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy; <script>document.write(new Date().getFullYear());</script> <a href="">Semicolon</a>. All rights reserved.</span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="" class="text-danger">Team Semicolon</a></span>
                     </div>
                 </footer>
                 <!-- ** footer -->

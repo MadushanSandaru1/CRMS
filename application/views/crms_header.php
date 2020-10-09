@@ -9,7 +9,7 @@
     <title>Abhaya rent a car</title>
 
     <!-- page title icon -->
-    <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.png');?>" />
+    <link rel="shortcut icon" href="<?php echo base_url('assets/images/logos/favicon.png');?>" />
 
     <!-- css -->
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/mdi/css/materialdesignicons.min.css');?>">
@@ -23,8 +23,8 @@
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <!-- navbar logo -->
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="<?php echo base_url('index.php/Home/crms_dash'); ?>"><img src="<?php echo base_url('assets/images/logo.png');?>" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="<?php echo base_url('index.php/Home/crms_dash'); ?>"><img src="<?php echo base_url('assets/images/logo-mini.png');?>" alt="logo" /></a>
+                <a class="navbar-brand brand-logo" href="<?php echo base_url('index.php/Home/crms_dash'); ?>"><img src="<?php echo base_url('assets/images/logos/logo.png');?>" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="<?php echo base_url('index.php/Home/crms_dash'); ?>"><img src="<?php echo base_url('assets/images/logos/logo-mini.png');?>" alt="logo" /></a>
             </div>
 
             <!-- navbar icons -->
@@ -51,7 +51,7 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                             <div class="nav-profile-img">
-                                <img src="<?php echo base_url('assets/images/faces/face1.jpg');?>" alt="image">
+                                <img src="<?php echo base_url('assets/images/users/user1.jpg');?>" alt="image">
                                 <span class="availability-status online"></span>
                             </div>
                             <div class="nav-profile-text"><p class="mb-1 text-black">David Greymaax</p></div>
@@ -85,7 +85,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="<?php echo base_url('assets/images/faces/face4.jpg');?>" alt="image" class="profile-pic">
+                                    <img src="<?php echo base_url('assets/images/customers/customer2.jpg');?>" alt="image" class="profile-pic">
                                 </div>
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                                     <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
@@ -170,7 +170,7 @@
                     <li class="nav-item nav-profile">
                         <a href="<?php echo base_url('index.php/Home/crms_profile'); ?>" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="<?php echo base_url('assets/images/faces/face1.jpg');?>" alt="profile">
+                                <img src="<?php echo base_url('assets/images/users/user1.jpg');?>" alt="profile">
                                 <span class="login-status online"></span> <!--change to offline or busy as needed -->
                             </div>
                             <div class="nav-profile-text d-flex flex-column">

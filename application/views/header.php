@@ -4,7 +4,7 @@
 		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.png'); ?>">
+		<link rel="shortcut icon" href="<?php echo base_url('assets/images/logos/favicon.png'); ?>">
 		<!-- Author Meta -->
 		<meta name="author" content="codepixer">
 		<!-- Meta Description -->
@@ -35,7 +35,7 @@
 			<div class="container">
 				<div class="row align-items-center justify-content-between d-flex">
 					<div id="logo">
-						<a href="<?php echo base_url('index.php/Home/index'); ?>"><img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="logo.png" /></a>
+						<a href="<?php echo base_url('index.php/Home/index'); ?>"><img src="<?php echo base_url('assets/images/logos/logo.png'); ?>" alt="logo.png" /></a>
 					</div>
 					<nav id="nav-menu-container">
 						<ul class="nav-menu">

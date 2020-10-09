@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-lg-3  col-md-6 col-sm-6">
 							<div class="single-footer-widget">
-								<img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="logo.png" />
+								<img src="<?php echo base_url('assets/images/logos/logo.png'); ?>" alt="logo.png" />
 							</div>
 						</div>	
 						<p class="mx-auto footer-text col-lg-12">

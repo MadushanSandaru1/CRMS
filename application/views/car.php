@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/cars/car.jpg'); ?>" alt="">
+					<img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/vehicles/car.jpg'); ?>" alt="">
 				</div>
 			</div>
 
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 model-right">
-                    <img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/cars/car.jpg'); ?>" alt="">
+                    <img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/vehicles/car.jpg'); ?>" alt="">
                 </div>
             </div>
 
