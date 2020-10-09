@@ -34,8 +34,9 @@ class Home extends CI_Controller {
 		$this->load->view('login');
 	}
 
-    public function admin()
+    public function crms_dashboard()
     {
+<<<<<<< Updated upstream
         $this->load->view('admin');
 	}
 	
@@ -43,5 +44,13 @@ class Home extends CI_Controller {
     public function view_damage_car()
     {
         $this->load->view('admin_damage');
+=======
+        $this->load->view('crms_dashboard');
+    }
+
+    public function crms_damage()
+    {
+        $this->load->view('crms_damage');
+>>>>>>> Stashed changes
     }
 }
