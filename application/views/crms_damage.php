@@ -28,30 +28,34 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Basic form elements</h4>
-                        <p class="card-description"> Basic form elements </p>
+                        <h4 class="card-title">Recored Vehicle Damage Details</h4>
+                        <!--<p class="card-description"> Basic form elements </p>-->
                         <form class="forms-sample">
                             <div class="form-group">
-                                <label for="exampleInputName1">Name</label>
-                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail3">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword4">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleSelectGender">Gender</label>
-                                <select class="form-control" id="exampleSelectGender">
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                <label for="exampleInputName1">Vehicle ID</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="001">001</option>
+                                    <option value="002">002</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>File upload</label>
+                                <label for="exampleInputEmail3">Vehicle Registration Number</label>
+                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword4">Vehicle Type </label>
+                                <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Nature of Damage</label>
+                                <select class="form-control" id="exampleSelectGender">
+                                    <option>left or Right Signal light</option>
+                                    <option>Door damage</option>
+                                    <option value="">Left and Right Side mirror damages</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Upload Damage Vehicle Picture</label>
                                 <input type="file" name="img[]" class="file-upload-default">
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
