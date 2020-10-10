@@ -2644,7 +2644,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .callaction-area {
-  background: url('../../assets/images/callaction-bg.jpg') center;
+  background: url('../../assets/images/website/callaction-bg.jpg') center;
   background-size: cover;
   text-align: center;
   color: #fff;
@@ -3404,6 +3404,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 .commentform-area .form-control {
   border: none;
   background: #f9f9ff;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /*

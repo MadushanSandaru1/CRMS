@@ -11,7 +11,7 @@
 				<h1 class="text-white">
 					Cars				
 				</h1>	
-				<p class="text-white link-nav"><a href="index.html">Home &nbsp;</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a href="about.html">&nbsp; Cars</a></p>
+				<p class="text-white link-nav"><a href="<?php echo base_url('index.php/Home/index'); ?>">Home &nbsp;</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a href="<?php echo base_url('index.php/Home/car'); ?>">&nbsp; Cars</a></p>
 			</div>											
 		</div>
 	</div>
@@ -21,8 +21,8 @@
 <!-- Start model Area -->
 <section class="model-area section-gap" id="cars">
 	<div class="container">
-		<div class="row d-flex justify-content-center pb-40">
-			<div class="col-md-8 pb-40 header-text">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-8 pb-20 header-text">
 				<h1 class="text-center pb-10 mb-4">Choose your Desired Car Model</h1>
 				
 				<div class="d-flex justify-content-between">
@@ -44,6 +44,12 @@
 				</div>
 			</div>
 		</div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-5 pb-40 header-text">
+                <input type="email" class="form-control form-control-sm border-danger text-danger text-center" id="colFormLabelSm" placeholder="Search vehicle">
+            </div>
+        </div>
 
 		<div class="row item-container">
 			<!-- item model -->
