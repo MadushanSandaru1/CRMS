@@ -28,7 +28,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Recored Vehicle Damage Details</h4>
+                        <h4 class="card-title">Registration of Vehicle Damage Details</h4>
                         <!--<p class="card-description"> Basic form elements </p>-->
                         <form class="forms-sample">
                             <div class="form-group">
@@ -40,11 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail3">Vehicle Registration Number</label>
-                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Vehicle Registration Number">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Vehicle Type </label>
-                                <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                                <input type="text" class="form-control" id="exampleInputPassword4" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelectGender">Nature of Damage</label>
@@ -65,14 +65,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputCity1">City</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+                                <label for="exampleInputCity1">Reserved Customer</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter customer NIC number">
                             </div>
                             <div class="form-group">
-                                <label for="exampleTextarea1">Textarea</label>
-                                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                                <label for="exampleInputCity1">Fix Amount</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter fix amount">
                             </div>
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Is damage solved</label>
+                                <select class="form-control" id="exampleSelectGender">
+                                    <option>Yes of Course!</option>
+                                    <option>No Still it remaining </option>
+                                    
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Register</button>
                             <button class="btn btn-light">Cancel</button>
                         </form>
                     </div>
