@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputCity1">Reserved ID</label>
-                                <select name="reserved_id" id="">
+                                <select name="reserved_id" id="" class="form-control">
                                     <option value="">RV001</option>
                                     <option value="">RV002</option>
                                 </select>
