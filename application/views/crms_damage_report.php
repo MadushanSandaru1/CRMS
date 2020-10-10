@@ -25,7 +25,103 @@
         </div>
 
         <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #F7396F;">Damage Report Generation</h4>
+                        <!--<p class="card-description"> Basic form layout </p>-->  
+                        <br>
+                        <form class="forms-sample">
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Vahicle ID</label>
+                                <select class="form-control">
+                                    <option>001</option>
+                                    <option>002</option>
+                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Time Duration</label>
+                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder="">
+                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Include Damage Picture</label>
+                                <select class="form-control">
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Types of Solved</label>
+                                <select class="form-control">
+                                    <option>All</option>
+                                    <option>Solved Damages</option>
+                                    <option>Not Solved Damages</option>
+                                </select>
+                            </div>
+                      
+                      
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Generate</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Table part -->
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #F7396F;">Damage Details</h4>
+                        <!--<p class="card-description"> Add class <code>.table</code></p>-->
+                    
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Vehicle ID</th>
+                                    <th>Date</th>
+                                    <th>Discription</th>
+                                    <th>Reserved ID</th>
+                                    <!--<th style="text-align: center;">Picture</th>-->
+                                    <th>Fix Amount</th>
+                                    <th>Is Solved</th>
+                                    <th style="text-align: center;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                          	        <td>Ruvindu</td>
+                          	        <td>12 May 2020</td>
+                          	        <td>left or Right Signal light</td>
+                          	        <td>53275531</td>
+                          	        <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
+                          	        <td>1000 LKR/-</td>
+                          	        <td><b style="color: red;">Not yet</b></td>
+                          	        <td>
+                          		        <input type="submit" name="" class="btn btn-success" value="Edit">
+                          		        <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
+                          	        </td>
+
+                                </tr>
+                       	        <tr>
+                          	        <td>Madushan</td>
+                          	        <td>12 May 2020</td>
+                          	        <td>left or Right Signal light</td>
+                          	        <td>53275531</td>
+                          	        <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
+                          	        <td>1000 LKR/-</td>
+                          	        <td><b style="color: green;">Yes</b></td>
+                          	        <td>
+                          		        <input type="submit" name="" class="btn btn-success" value="Edit">
+                          		        <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
+                          	        </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
