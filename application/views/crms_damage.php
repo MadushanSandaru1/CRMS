@@ -30,34 +30,31 @@
                     <div class="card-body">
                         <h4 class="card-title" style = "color :#F7396F;">Registration of Vehicle Damage Details</h4><br><br>
                         <!--<p class="card-description"> Basic form elements </p>-->
+                        <div class="alert alert-danger">
+                            <?php echo validation_errors(); ?>
+                        </div>
                         <?php echo form_open('Damage/DamageVehicle'); ?>
                         
                             <div class="form-group">
                                 <label for="exampleInputName1">Vehicle ID</label>
-                                <select name="" id="" class="form-control">
+                                <select name="vehicle_id" id="" class="form-control">
                                     <option value="001">001</option>
                                     <option value="002">002</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail3">Vehicle Registration Number</label>
-                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Vehicle Registration Number">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword4">Vehicle Type </label>
-                                <input type="text" class="form-control" id="exampleInputPassword4" placeholder="">
-                            </div>
+                            
+                            
                             <div class="form-group">
                                 <label for="exampleSelectGender">Nature of Damage</label>
-                                <select class="form-control" id="exampleSelectGender">
-                                    <option>left or Right Signal light</option>
-                                    <option>Door damage</option>
-                                    <option value="">Left and Right Side mirror damages</option>
+                                <select class="form-control" id="exampleSelectGender" name="description">
+                                    <option values="left or Right Signal light">left or Right Signal light</option>
+                                    <option values="Door damage">Door damage</option>
+                                    <option value="Left and Right Side mirror damages">Left and Right Side mirror damages</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Upload Damage Vehicle Picture</label>
-                                <input type="file" name="img[]" class="file-upload-default">
+                                <input type="file" name="img[]" class="file-upload-default" name="image_file">
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                     <span class="input-group-append">
@@ -66,18 +63,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputCity1">Reserved Customer</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter customer NIC number">
+                                <label for="exampleInputCity1">Reserved ID</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter reserved ID" name="reserved_id">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputCity1">Fix Amount</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter fix amount">
+                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter fix amount" name="fix_amount">
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelectGender">Is damage solved</label>
-                                <select class="form-control" id="exampleSelectGender">
-                                    <option>Yes of Course!</option>
-                                    <option>No Still it remaining </option>
+                                <select class="form-control" id="exampleSelectGender" name="is_solved">
+                                    <option values="yes">Yes of Course!</option>
+                                    <option values="no">No Still it remaining </option>
                                     
                                 </select>
                             </div>
