@@ -30,7 +30,8 @@
                     <div class="card-body">
                         <h4 class="card-title" style = "color :#F7396F;">Registration of Vehicle Damage Details</h4><br><br>
                         <!--<p class="card-description"> Basic form elements </p>-->
-                        <form class="forms-sample">
+                        <?php echo form_open('Damage/DamageVehicle'); ?>
+                        
                             <div class="form-group">
                                 <label for="exampleInputName1">Vehicle ID</label>
                                 <select name="" id="" class="form-control">
@@ -82,7 +83,7 @@
                             </div>
                             <button type="submit" class="btn btn-gradient-primary mr-2">Register</button>
                             <button class="btn btn-light">Cancel</button>
-                        </form>
+                         <?php echo form_close(); ?>   
                     </div>
                 </div>
               </div>
