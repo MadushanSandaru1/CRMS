@@ -31,7 +31,10 @@
                         <h4 class="card-title" style = "color :#F7396F;">Registration of Vehicle Damage Details</h4><br><br>
                         <!--<p class="card-description"> Basic form elements </p>-->
                         <div class="alert alert-danger">
-                            <?php echo validation_errors(); ?>
+                            <?php 
+                                    if(!empty(validation_errors()))
+                                        echo validation_errors(); 
+                            ?>
                         </div>
                         <?php echo form_open('Damage/DamageVehicle'); ?>
                         
