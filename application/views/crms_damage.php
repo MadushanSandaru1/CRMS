@@ -28,7 +28,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Registration of Vehicle Damage Details</h4>
+                        <h4 class="card-title" style = "color :#F7396F;">Registration of Vehicle Damage Details</h4><br><br>
                         <!--<p class="card-description"> Basic form elements </p>-->
                         <form class="forms-sample">
                             <div class="form-group">
