@@ -67,7 +67,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputCity1">Reserved ID</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter reserved ID" name="reserved_id">
+                                <select name="reserved_id" id="">
+                                    <option value="">RV001</option>
+                                    <option value="">RV002</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputCity1">Fix Amount</label>
