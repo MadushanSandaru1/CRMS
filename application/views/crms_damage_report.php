@@ -54,7 +54,7 @@
                           	        <td>1000 LKR/-</td>
                           	        <td><b style="color: red;">Not yet</b></td>
                           	        <td>
-                          		        <input type="submit" name="" class="btn btn-warning" value="Edit">
+                          		        <input type="submit" name="" class="btn btn-primary" value="Edit">
                           		        <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
                           	        </td>
 
@@ -68,7 +68,7 @@
                           	        <td>1000 LKR/-</td>
                           	        <td><b style="color: green;">Yes</b></td>
                           	        <td>
-                          		        <input type="submit" name="" class="btn btn-warning" value="Edit">
+                          		        <input type="submit" name="" class="btn btn-primary" value="Edit">
                           		        <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
                           	        </td>
 
