@@ -31,29 +31,35 @@
                         <h4 class="card-title" style="color: #F7396F;">Damage Report Generation</h4>
                         <!--<p class="card-description"> Basic form layout </p>-->  
                         <br>
-                        <form class="forms-sample">
+                        <div class="alert alert-danger">
+                            <?php 
+                                    if(!empty(validation_errors()))
+                                        echo validation_errors(); 
+                            ?>
+                        </div>
+                        <?php echo form_open('Damage_Report/GenerateDamageReport'); ?>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Vahicle ID</label>
-                                <select class="form-control">
+                                <select class="form-control" name="vehicle_id">
                                     <option>001</option>
                                     <option>002</option>
                                  </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Time Duration</label>
-                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder="">
-                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder="">
+                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder="" name = "fdate">
+                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder=" " name = "tdate">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Include Damage Picture</label>
-                                <select class="form-control">
+                                <select class="form-control" name = "is_include_damage_picture">
                                     <option>Yes</option>
                                     <option>No</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Types of Solved</label>
-                                <select class="form-control">
+                                <select class="form-control" name="is_solved_type">
                                     <option>All</option>
                                     <option>Solved Damages</option>
                                     <option>Not Solved Damages</option>
@@ -63,7 +69,7 @@
                       
                             <button type="submit" class="btn btn-gradient-primary mr-2">Generate</button>
                             <button class="btn btn-light">Cancel</button>
-                        </form>
+                        <?php echo form_close(); ?>   
                     </div>
                 </div>
             </div>
