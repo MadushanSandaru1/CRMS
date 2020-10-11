@@ -41,8 +41,11 @@
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Vahicle ID</label>
                                 <select class="form-control" name="vehicle_id">
-                                    <option>001</option>
-                                    <option>002</option>
+                                    <?php if(count($getVehicleID)): ?>
+                                        <?php foreach($getVehicleID as $value):?>
+                                            <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
+                                        <?php endforeach;?>
+                                    <?php endif; ?>
                                  </select>
                             </div>
                             <div class="form-group">

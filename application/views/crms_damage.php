@@ -41,8 +41,11 @@
                             <div class="form-group">
                                 <label for="exampleInputName1">Vehicle ID</label>
                                 <select name="vehicle_id" id="" class="form-control">
-                                    <option value="001">001</option>
-                                    <option value="002">002</option>
+                                    <?php if(count($getVehicleID)): ?>
+                                        <?php foreach($getVehicleID as $value):?>
+                                            <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
+                                        <?php endforeach;?>
+                                    <?php endif; ?>
                                 </select>
                             </div>
                             
@@ -68,8 +71,11 @@
                             <div class="form-group">
                                 <label for="exampleInputCity1">Reserved ID</label>
                                 <select name="reserved_id" id="" class="form-control">
-                                    <option value="">RV001</option>
-                                    <option value="">RV002</option>
+                                    <?php if(count($getReservedID)): ?>
+                                        <?php foreach($getReservedID as $value):?>
+                                            <option value=<?php echo $value->id;?>><?php echo "CRMSCUS".$value->customer_id;?></option>
+                                        <?php endforeach;?>
+                                    <?php endif; ?>
                                 </select>
                             </div>
                             <div class="form-group">

@@ -124,7 +124,10 @@ class Home extends CI_Controller {
     //crms car damage page
     public function crms_damage()
     {
-        $this->load->view('crms_damage');
+        $this->load->model('DamageModel');
+        $getVehicleID = $this->DamageModel->getVehicleID();
+        $getReservedID = $this->DamageModel->getReservedID();
+        $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID]);
     }
 
     //crms car expenses page
@@ -142,7 +145,9 @@ class Home extends CI_Controller {
     //crms damage report page
     public function crms_damage_report()
     {
-        $this->load->view('crms_damage_report');
+        $this->load->model('Damage_Report');
+        $getVehicleID = $this->Damage_Report->getVehicleID();
+        $this->load->view('crms_damage_report',['getVehicleID'=>$getVehicleID]);
     }
 
     //crms income/expense report page
