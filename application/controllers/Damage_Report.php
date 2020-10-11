@@ -11,7 +11,9 @@
 
             if($this->form_validation->run() == FALSE)
                {
-                    $this->load->view('crms_damage_report');
+                    $this->load->model('Damage_Report_Model');
+                    $getVehicleID = $this->Damage_Report_Model->getVehicleID();
+                    $this->load->view('crms_damage_report',['getVehicleID'=>$getVehicleID]);
                     
                }
                else{

@@ -60,13 +60,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Upload Damage Vehicle Picture</label>
-                                <input type="file" name="img[]" class="file-upload-default" name="image_file">
+                                <input type="file"  class="form-control" name="image_file">
+                                <!--
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                     <span class="input-group-append">
                                         <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                     </span>
                                 </div>
+                                -->
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputCity1">Reserved ID</label>

@@ -12,11 +12,23 @@
 
                if($this->form_validation->run() == FALSE)
                {
-                   $this->load->view('crms_damage');
+                    $this->load->model('DamageModel');
+                    $getVehicleID = $this->DamageModel->getVehicleID();
+                    $getReservedID = $this->DamageModel->getReservedID();
+                    $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID]);
                }
                else{
-                   echo "ok";
-                   die();
+                   //echo "ok";
+                   $config['allowed_types'] = 'jpg|png|jpeg'; 
+                   $config['upload_path'] = './uploads/damages/';
+                   $this->load->library('upload',$config);
+
+                   if($this->upload->do_upload('image_file'))
+                   {
+                        print_r($this->upload->data());
+                   }
+                   else
+                        print_r($this->upload->display_errors());
                }
             }
         }

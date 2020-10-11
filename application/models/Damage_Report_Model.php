@@ -1,5 +1,5 @@
 <?php
-        class Damage_Report extends CI_Model
+        class Damage_Report_Model extends CI_Model
         {
             public function getVehicleID()
             {
