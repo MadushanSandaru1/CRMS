@@ -30,14 +30,29 @@
                     <div class="card-body">
                         <h4 class="card-title" style = "color :#F7396F;">Registration of Vehicle Damage Details</h4><br><br>
                         <!--<p class="card-description"> Basic form elements </p>-->
-                        <div class="alert alert-danger">
+                        <!--<div class="alert alert-danger">-->
                             <?php 
-                                    if(!empty(validation_errors()))
-                                        echo validation_errors(); 
+                                    if(isset($_SESSION['msgValidation'])){
+                                        echo "<h4 style='color:red;'>"."You have to Upload Image!"."</h4>"; 
+                                        echo "<h4 style='color:red;'>".validation_errors()."</h4>";
+                                    } 
+                                    else
+                                        echo "<h4 style='color:red;'>".validation_errors()."</h4>";       
                             ?>
-                        </div>
-                        <?php echo form_open('Damage/DamageVehicle'); ?>
-                        
+                        <!--</div>-->
+                        <?php
+                                if($this->session->flashdata('damage_status'))
+                                {
+                        ?>    
+                                <div class="alert alert-success">
+                                    <?php echo $this->session->flashdata('damage_status'); ?>
+                                </div>
+                        <?php        
+                                }
+                         ?>
+                         <br>
+                        <!--<?php echo form_open('Damage/DamageVehicle'); ?>-->
+                        <?php echo form_open_multipart('Damage/DamageVehicle'); ?>
                             <div class="form-group">
                                 <label for="exampleInputName1">Vehicle ID</label>
                                 <select name="vehicle_id" id="" class="form-control">
@@ -81,14 +96,18 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputCity1">Date</label>
+                                <input type="date" class="form-control" id="exampleInputCity1" placeholder="Enter date" name="d_date">
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputCity1">Fix Amount</label>
                                 <input type="text" class="form-control" id="exampleInputCity1" placeholder="Enter fix amount" name="fix_amount">
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelectGender">Is damage solved</label>
                                 <select class="form-control" id="exampleSelectGender" name="is_solved">
-                                    <option values="yes">Yes of Course!</option>
-                                    <option values="no">No Still it remaining </option>
+                                    <option values="1">Yes of Course!</option>
+                                    <option values="0">No Still it remaining </option>
                                     
                                 </select>
                             </div>
