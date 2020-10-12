@@ -34,10 +34,10 @@
                             <?php 
                                     if(isset($_SESSION['msgValidation'])){
                                         echo "<h4 style='color:red;'>"."You have to Upload Image!"."</h4>"; 
-                                        echo "<h4 style='color:red;'>".validation_errors()."</h4>";
+                                        echo "<span style='color:red;'>".validation_errors()."</span>";
                                     } 
                                     else
-                                        echo "<h4 style='color:red;'>".validation_errors()."</h4>";       
+                                        echo "<span style='color:red;'>".validation_errors()."</span>";       
                             ?>
                         <!--</div>-->
                         <?php
@@ -58,7 +58,7 @@
                                 <select name="vehicle_id" id="" class="form-control">
                                     <?php if(count($getVehicleID)): ?>
                                         <?php foreach($getVehicleID as $value):?>
-                                            <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
+                                            <option value=<?php echo $value->id;?>><?php echo $value->id;?></option>
                                         <?php endforeach;?>
                                     <?php endif; ?>
                                 </select>
@@ -90,7 +90,7 @@
                                 <select name="reserved_id" id="" class="form-control">
                                     <?php if(count($getReservedID)): ?>
                                         <?php foreach($getReservedID as $value):?>
-                                            <option value=<?php echo $value->id;?>><?php echo "CRMSCUS".$value->customer_id;?></option>
+                                            <option value=<?php echo $value->id;?>><?php echo "".$value->customer_id;?></option>
                                         <?php endforeach;?>
                                     <?php endif; ?>
                                 </select>

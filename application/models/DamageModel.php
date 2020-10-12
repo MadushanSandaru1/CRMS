@@ -40,6 +40,8 @@
                         //print_r($values);
                         return $this->db->insert('damage', $values);
                 }
+
+                
         }
 
  ?>

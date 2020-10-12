@@ -147,8 +147,9 @@ class Home extends CI_Controller {
     public function crms_damage_report()
     {
         $this->load->model('Damage_Report_Model');
+        $getDamageDetails = $this->Damage_Report_Model->getDamageDetails();
         $getVehicleID = $this->Damage_Report_Model->getVehicleID();
-        $this->load->view('crms_damage_report',['getVehicleID'=>$getVehicleID]);
+        $this->load->view('crms_damage_report',['getVehicleID'=>$getVehicleID,'getDamageDetails'=>$getDamageDetails]);
     }
 
     //crms income/expense report page

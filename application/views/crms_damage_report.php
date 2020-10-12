@@ -31,19 +31,20 @@
                         <h4 class="card-title" style="color: #F7396F;">Damage Report Generation</h4>
                         <!--<p class="card-description"> Basic form layout </p>-->  
                         <br>
-                        <div class="alert alert-danger">
+
+                        <!--<div class="alert alert-danger">-->
                             <?php 
                                     if(!empty(validation_errors()))
-                                        echo validation_errors(); 
+                                        echo "<span style='color:red;'>".validation_errors()."</span>"; 
                             ?>
-                        </div>
+                        <!--</div>-->
                         <?php echo form_open('Damage_Report/GenerateDamageReport'); ?>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Vahicle ID</label>
                                 <select class="form-control" name="vehicle_id">
                                     <?php if(count($getVehicleID)): ?>
                                         <?php foreach($getVehicleID as $value):?>
-                                            <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
+                                            <option value=<?php echo $value->id;?>><?php echo $value->id;?></option>
                                         <?php endforeach;?>
                                     <?php endif; ?>
                                  </select>
@@ -98,34 +99,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                          	        <td>Ruvindu</td>
-                          	        <td>12 May 2020</td>
-                          	        <td>left or Right Signal light</td>
-                          	        <td>53275531</td>
-                          	        <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
-                          	        <td>1000 LKR/-</td>
-                          	        <td><b style="color: red;">Not yet</b></td>
-                          	        <td>
-                          		        <input type="submit" name="" class="btn btn-success" value="Edit">
-                          		        <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
-                          	        </td>
+                                <?php if(count($getDamageDetails)):?>
+                                    <?php foreach($getDamageDetails as $values): ?>                                    
+                                        <tr>
+                          	                <td><?php echo "".$values->vehicle_id;?></td>
+                          	                <td><?php echo $values->date;?></td>
+                          	                <td><?php echo $values->description; ?></td>
+                          	                <td><?php echo "".$values->reserved_id; ?></td>
+                          	                <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
+                          	                <td><?php echo $values->fix_amount." LKR/-"; ?></td>
+                                            <td>
+                                                <?php
+                                                        if($values->is_solved == 0)
+                                                        {
+                                                            echo "<b style='color: red;'>Not Yet</b>" ;
+                                                        } 
+                                                        else
+                                                            echo "<b style='color: green;'>Yes</b>" ;
+                                                ?>
+                                            </td>
+                          	                <td>
+                          		                <input type="submit" name="" class="btn btn-success" value="Edit">
+                          		                <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
+                          	                </td>
 
-                                </tr>
-                       	        <tr>
-                          	        <td>Madushan</td>
-                          	        <td>12 May 2020</td>
-                          	        <td>left or Right Signal light</td>
-                          	        <td>53275531</td>
-                          	        <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
-                          	        <td>1000 LKR/-</td>
-                          	        <td><b style="color: green;">Yes</b></td>
-                          	        <td>
-                          		        <input type="submit" name="" class="btn btn-success" value="Edit">
-                          		        <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
-                          	        </td>
-
-                                </tr>
+                                        </tr>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                       	        
                             </tbody>
                         </table>
                     </div>

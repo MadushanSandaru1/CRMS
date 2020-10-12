@@ -10,5 +10,15 @@
                                 return $query->result();
                         }
             }
+
+            public function getDamageDetails()
+            {
+                        $query =$this->db->get('damage');
+
+                        if($query->num_rows() > 0)
+                        {
+                                return $query->result();
+                        }
+            }
         }
  ?>
