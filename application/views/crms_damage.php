@@ -39,7 +39,7 @@ $("#otherAnswer").hide();
         </div>
 
         <div class="row">
-            <div class="col-9 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title text-danger" >Registration of Vehicle Damage Details</h4><br><br>
