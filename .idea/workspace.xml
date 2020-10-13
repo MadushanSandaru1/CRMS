@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e7709d9-8729-4d0d-a566-c6fe46074ab3" name="Default Changelist" comment="" />
+    <list default="true" id="4e7709d9-8729-4d0d-a566-c6fe46074ab3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/crms_car.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/crms_car.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,11 +68,23 @@
       <workItem from="1602159105194" duration="22785000" />
       <workItem from="1602248842797" duration="9351000" />
       <workItem from="1602304698328" duration="6098000" />
+      <workItem from="1602494172268" duration="7143000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="380" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602111054996">
@@ -62,6 +95,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="360" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1602159831936" />
+    <state x="468" y="87" key="NewPhpClassDialog" timestamp="1602494276229">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="468" y="87" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1602494276229" />
     <state x="517" y="292" key="NewPhpFileDialog" timestamp="1602159162104">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
