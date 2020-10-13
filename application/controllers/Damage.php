@@ -16,8 +16,8 @@
                     $this->load->model('DamageModel');
                     $getVehicleID = $this->DamageModel->getVehicleID();
                     $getReservedID = $this->DamageModel->getReservedID();
-                
-                    $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID]);
+                    $getDamageDetails = $this->DamageModel->getDamageDetails();
+                    $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=>$getDamageDetails]);
                }
                else{
                    //echo "ok";

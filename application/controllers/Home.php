@@ -125,10 +125,11 @@ class Home extends CI_Controller {
     public function crms_damage()
     {
         $this->load->model('DamageModel');
+        $getDamageDetails = $this->DamageModel->getDamageDetails();
         $getVehicleID = $this->DamageModel->getVehicleID();
         $getReservedID = $this->DamageModel->getReservedID();
         
-        $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID]);
+        $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=> $getDamageDetails]);
     }
 
     //crms car expenses page

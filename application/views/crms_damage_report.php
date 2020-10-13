@@ -28,7 +28,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="color: #F7396F;">Damage Report Generation</h4>
+                        <h4 class="card-title text-danger">Damage Report Generation</h4>
                         <!--<p class="card-description"> Basic form layout </p>-->  
                         <br>
 
@@ -40,30 +40,51 @@
                         <!--</div>-->
                         <?php echo form_open('Damage_Report/GenerateDamageReport'); ?>
                             <div class="form-group">
-                                <label for="exampleInputUsername1">Vahicle ID</label>
-                                <select class="form-control" name="vehicle_id">
+                                <label for="exampleInputUsername1"><b>Vahicle ID</b></label>
+                                <select class="custom-select" name="vehicle_id">
+                                    <option value="">Select Vahicle ID</option>
                                     <?php if(count($getVehicleID)): ?>
                                         <?php foreach($getVehicleID as $value):?>
-                                            <option value=<?php echo $value->id;?>><?php echo $value->id;?></option>
+                                            <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
                                         <?php endforeach;?>
                                     <?php endif; ?>
                                  </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Time Duration</label>
-                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder="" name = "fdate">
-                                <input type="Date" class="form-control" id="exampleInputEmail1" placeholder=" " name = "tdate">
+                                    <label for="exampleInputEmail1"><b>Time Specification</b></label><br><br>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample " checked>
+                                        <label class="mdi mdi-swap-vertical" for="customRadioInline1">Regular</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
+                                        <label class="mdi mdi-swap-vertical " for="customRadioInline2">Specific Time  Duration</label>
+                                    </div>
+                                    
+                                    <div class="collapse " id="custome" aria-labelledby="customRadioInline2">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="date" name="" class="form-control" value="9">
+                                            </div>
+                                            <div class="col">
+                                                <input type="date" name="" class="form-control">    
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputUsername1">Include Damage Picture</label>
-                                <select class="form-control" name = "is_include_damage_picture">
+                                <label for="exampleInputUsername1"><b>Include Damage Picture</b></label>
+                                <select class="custom-select" name = "is_include_damage_picture">
                                     <option>Yes</option>
                                     <option>No</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Types of Solved</label>
-                                <select class="form-control" name="is_solved_type">
+                                <label for="exampleInputPassword1"><b>Types of Solved</b></label>
+                                <select class="custom-select" name="is_solved_type">
                                     <option>All</option>
                                     <option>Solved Damages</option>
                                     <option>Not Solved Damages</option>
@@ -79,59 +100,7 @@
             </div>
 
             <!-- Table part -->
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title" style="color: #F7396F;">Damage Details</h4>
-                        <!--<p class="card-description"> Add class <code>.table</code></p>-->
-                    
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Vehicle ID</th>
-                                    <th>Date</th>
-                                    <th>Discription</th>
-                                    <th>Reserved ID</th>
-                                    <!--<th style="text-align: center;">Picture</th>-->
-                                    <th>Fix Amount</th>
-                                    <th>Is Solved</th>
-                                    <th style="text-align: center;">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if(count($getDamageDetails)):?>
-                                    <?php foreach($getDamageDetails as $values): ?>                                    
-                                        <tr>
-                          	                <td><?php echo "".$values->vehicle_id;?></td>
-                          	                <td><?php echo $values->date;?></td>
-                          	                <td><?php echo $values->description; ?></td>
-                          	                <td><?php echo "".$values->reserved_id; ?></td>
-                          	                <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
-                          	                <td><?php echo $values->fix_amount." LKR/-"; ?></td>
-                                            <td>
-                                                <?php
-                                                        if($values->is_solved == 0)
-                                                        {
-                                                            echo "<b style='color: red;'>Not Yet</b>" ;
-                                                        } 
-                                                        else
-                                                            echo "<b style='color: green;'>Yes</b>" ;
-                                                ?>
-                                            </td>
-                          	                <td>
-                          		                <input type="submit" name="" class="btn btn-success" value="Edit">
-                          		                <input type="submit" name="" class="btn btn-gradient-primary" value="Remove"></td>
-                          	                </td>
-
-                                        </tr>
-                                    <?php endforeach;?>
-                                <?php endif;?>
-                       	        
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+          
         </div>
 
     </div>
