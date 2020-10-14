@@ -1,18 +1,5 @@
 <?php require_once 'crms_header.php';?>
-    <script>
-        $(document).ready(function(){
-        $("input[type='radio']").change(function(){
-        if($(this).val()=="other")
-        {
-            $("#otherAnswer").show();
-}
-else
-{
-$("#otherAnswer").hide(); 
-}
-});
-});
-    </script>
+    
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">
             <div class="col-12">
@@ -53,7 +40,7 @@ $("#otherAnswer").hide();
                         <br>
                         <div class="collapse " id="viewDetails" aria-labelledby="customRadioInline2">
                             
-                            <br>
+                            <br><br>
                             <!--<?php echo form_open('Damage/DamageVehicle'); ?>-->
                                 <?php echo form_open_multipart('Damage/DamageVehicle'); ?>
                                 <div class="form-group">
@@ -93,16 +80,16 @@ $("#otherAnswer").hide();
                                 <div class="form-group">
                                     <label for="exampleInputCity1"><b>Reserved From</b></label><br><br>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample " checked>
+                                        <input type="radio" id="customRadioInline1" name="chooser" class="custom-control-input" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample " checked>
                                         <label class="mdi mdi-swap-vertical" for="customRadioInline1">Reserved ID</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
+                                        <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
                                         <label class="mdi mdi-swap-vertical " for="customRadioInline2">Custom Choose </label>
                                     </div>
                                     <div class="collapse " id="collapseExample" aria-labelledby="customRadioInline1">
                                     <br>
-                                        <select name="reserved_id" id="showReservedId" class="custom-select"  >
+                                        <select name="cr_vehicle_id" id="showReservedId" class="custom-select"  >
                                             <option value="">Select Reserved ID</option>    
                                             <?php if(count($getReservedID)): ?>
                                                 <?php foreach($getReservedID as $value):?>
@@ -115,7 +102,7 @@ $("#otherAnswer").hide();
                                         <br>
                                         <div class="row">
                                             <div class="col">
-                                                <select name="reserved_id" id="showReservedId" class="custom-select mb-2 "  >
+                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  >
                                                     <option value="">Select Vehicle ID</option>
                                                     <?php if(count($getVehicleID)): ?>
                                                         <?php foreach($getVehicleID as $value):?>
@@ -125,14 +112,16 @@ $("#otherAnswer").hide();
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select name="reserved_id" id="showReservedId" class="custom-select"  >
+                                                <select name="c_customer_id" id="showReservedId" class="custom-select"  >
                                                     <option value="">Select Customer</option>
-                                                    <?php if(count($getVehicleID)): ?>
-                                                         <?php foreach($getVehicleID as $value):?>
-                                                            <option value=<?php echo $value->id;?>><?php echo "".$value->registered_number;?></option>
-                                                        <?php endforeach;?>
+                                                    <?php if(count($getReservedID) && count($getCustomerDetails)): ?>
+                                                         <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
+                                                              <?php if($getReservedID->customer_id == $getCustomerDetails->id):?>
+                                                                    <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getCustomerDetails[$i]->nic;?></option>
+                                                              <?php endif; ?>
+                                                              <?php endfor;?>
                                                     <?php endif; ?>
-                                                </select>     
+                                                </select>       
                                             </div>
                                         </div>
                                     
@@ -142,7 +131,7 @@ $("#otherAnswer").hide();
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputCity1"><b>Date</b></label>
-                                    <input type="text" class="form-control" id="exampleInputCity1" value=<?php echo date('d/M/yy');?> name="d_date" readonly>
+                                    <input type="text" class="form-control" id="exampleInputCity1" value=<?php echo date('yy-m-d');?> name="d_date" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputCity1"><b>Are customer willing to pay now? </b></label><br><br>

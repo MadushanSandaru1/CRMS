@@ -128,8 +128,16 @@ class Home extends CI_Controller {
         $getDamageDetails = $this->DamageModel->getDamageDetails();
         $getVehicleID = $this->DamageModel->getVehicleID();
         $getReservedID = $this->DamageModel->getReservedID();
-        
-        $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=> $getDamageDetails]);
+        $getCustomerDetails = $this->DamageModel-> getCustomerDetails();
+        $this->load->view(
+            'crms_damage',
+            [
+                'getVehicleID'=>$getVehicleID,
+                'getReservedID'=>$getReservedID,
+                'getDamageDetails'=> $getDamageDetails,
+                'getCustomerDetails' =>$getCustomerDetails
+            ]
+        );
     }
 
     //crms car expenses page
