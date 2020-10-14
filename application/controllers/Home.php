@@ -190,4 +190,10 @@ class Home extends CI_Controller {
 //        $this->load->view('crms_message');
         $this->load->view('crms_message',$data);
     }
+
+    public function test_ms()
+    {
+        $this->load->view('test_msg');
+    }
+
 }
