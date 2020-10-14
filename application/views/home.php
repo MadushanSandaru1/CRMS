@@ -50,7 +50,6 @@
 	</div>	
 </section>
 <!-- End home-about Area -->
-
 <!-- Start blog Area -->
 <section class="blog-area section-gap" id="blog">
     <div class="container">

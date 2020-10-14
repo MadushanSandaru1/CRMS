@@ -82,7 +82,10 @@ class Home extends CI_Controller {
     //crms dashboard page
     public function crms_dash()
     {
-        $this->load->view('crms_dashboard');
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+        $this->load->view('crms_dashboard',$data);
+//        $this->load->view('crms_dashboard');
     }
 
     //crms staff user page
@@ -182,6 +185,9 @@ class Home extends CI_Controller {
     //crms message page
     public function crms_message()
     {
-        $this->load->view('crms_message');
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->getCustomMessage();
+//        $this->load->view('crms_message');
+        $this->load->view('crms_message',$data);
     }
 }

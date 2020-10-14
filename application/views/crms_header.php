@@ -85,10 +85,22 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="<?php echo base_url('assets/images/customers/customer2.jpg');?>" alt="image" class="profile-pic">
+<!--                                    <img src="--><?php //echo base_url('assets/images/customers/customer2.jpg');?><!--" alt="image" class="profile-pic">-->
                                 </div>
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
+
+                                    <?php
+                                    foreach($fetch_data->result() as $row){
+                                        ?>
+                                        <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $row->subject;?></h6>
+                                            <?php echo $row->name;?><br>
+
+<!--                                            --><?php //echo $row->received_time;?>
+
+                                        <?php
+                                    }
+                                    ?>
+
                                     <p class="text-gray mb-0"> 1 Minutes ago </p>
                                 </div>
                             </a>

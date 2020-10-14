@@ -14,4 +14,17 @@ class Customer_message extends CI_Model {
 
         return $this->db->insert('customer_message', $data);
     }
+
+    function getCustomMessage(){
+        $query=$this->db->query("SELECT * FROM customer_message ORDER BY received_time DESC ");
+//        $query=$this->db->get("customer_message");
+
+        return $query;
+    }
+
+    function getCustomMessage_header(){
+        $query1=$this->db->query("SELECT * FROM customer_message ORDER BY received_time DESC LIMIT 2");
+
+        return $query1;
+    }
 }
