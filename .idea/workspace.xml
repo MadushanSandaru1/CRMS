@@ -70,6 +70,7 @@
       <workItem from="1602304698328" duration="6098000" />
       <workItem from="1602494172268" duration="7143000" />
       <workItem from="1602606198450" duration="4301000" />
+      <workItem from="1602649727461" duration="3571000" />
     </task>
     <servers />
   </component>
@@ -126,5 +127,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="371" y="-1" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1602607887547" />
+    <state x="487" y="310" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602653952447">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="487" y="310" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.824@0.0.1536.824" timestamp="1602653952447" />
   </component>
 </project>
