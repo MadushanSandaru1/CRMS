@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 12, 2020 at 08:41 AM
--- Server version: 5.7.21
--- PHP Version: 7.2.4
+-- Generation Time: Oct 09, 2020 at 12:54 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `to_date` datetime NOT NULL,
   `posting_date` datetime NOT NULL,
   `message` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -59,16 +59,9 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `nic_copy` varchar(255) NOT NULL,
   `license_copy` varchar(255) NOT NULL,
   `light_bill_copy` varchar(255) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`id`, `name`, `nic`, `email`, `phone`, `address`, `nic_copy`, `license_copy`, `light_bill_copy`, `is_deleted`) VALUES
-(1, 'Mithila Madushanka', '971911379V', 'mithilamadusanka97@gmail.com', 714090179, 'Heeloya, Bandarawela', 'uploads/customer/nic.jpg', 'uploads/customer/license_copy.jpg', 'uploads/customer/light_bill.jpg', 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -83,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `customer_message` (
   `email` varchar(100) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `message` varchar(500) NOT NULL,
-  `received_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_replied` tinyint(1) NOT NULL DEFAULT '0',
+  `received_time` datetime NOT NULL DEFAULT current_timestamp(),
+  `is_replied` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
@@ -110,18 +103,10 @@ CREATE TABLE IF NOT EXISTS `damage` (
   `image` varchar(255) NOT NULL,
   `reserved_id` int(11) NOT NULL,
   `fix_amount` float NOT NULL,
-  `is_solved` tinyint(1) NOT NULL DEFAULT '0',
-  `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `is_solved` tinyint(1) NOT NULL DEFAULT 0,
+  `is_deleted` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `damage`
---
-
-INSERT INTO `damage` (`id`, `vehicle_id`, `description`, `date`, `image`, `reserved_id`, `fix_amount`, `is_solved`, `is_deleted`) VALUES
-(1, 2, 'left or Right Signal light', '2020-10-11', 'uploads/damages/sidemirror_damage.jpg', 1, 2000, 0, 0),
-(2, 1, 'Left and Right Side mirror damages', '2020-10-02', 'uploads/damages/sidemirror_damage.jpg', 1, 2000, 1, 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -133,10 +118,10 @@ DROP TABLE IF EXISTS `gps_track`;
 CREATE TABLE IF NOT EXISTS `gps_track` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_id` int(11) NOT NULL,
-  `track_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `track_time` datetime NOT NULL DEFAULT current_timestamp(),
   `track_lng` decimal(11,7) NOT NULL,
   `track_lat` decimal(11,7) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -155,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `guarantor` (
   `phone` int(11) NOT NULL,
   `address` varchar(255) NOT NULL,
   `license_copy` varchar(255) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -174,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `outsourcing_supplier` (
   `phone` int(11) NOT NULL,
   `address` varchar(255) NOT NULL,
   `nic_copy` varchar(255) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -191,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `outsourcing_vehicle` (
   `registered_number` varchar(15) NOT NULL,
   `seat` int(11) NOT NULL,
   `fuel_type` char(1) NOT NULL,
-  `ac` tinyint(1) NOT NULL DEFAULT '0',
+  `ac` tinyint(1) NOT NULL DEFAULT 0,
   `transmission` char(1) NOT NULL,
   `image` varchar(255) NOT NULL,
   `price_per_day` float NOT NULL,
@@ -200,8 +185,8 @@ CREATE TABLE IF NOT EXISTS `outsourcing_vehicle` (
   `system_registered_date` date NOT NULL,
   `insurence_date` date NOT NULL,
   `revenue_license_date` date NOT NULL,
-  `is_service_out` tinyint(1) NOT NULL DEFAULT '0',
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_service_out` tinyint(1) NOT NULL DEFAULT 0,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -229,17 +214,10 @@ CREATE TABLE IF NOT EXISTS `reserved` (
   `start_meter_value` float NOT NULL,
   `stop_meter_value` float NOT NULL,
   `advance_payment` float NOT NULL,
-  `is_returned` tinyint(1) NOT NULL DEFAULT '0',
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_returned` tinyint(1) NOT NULL DEFAULT 0,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `reserved`
---
-
-INSERT INTO `reserved` (`id`, `customer_id`, `vehicle_id`, `from_date`, `to_date`, `start_meter_value`, `stop_meter_value`, `advance_payment`, `is_returned`, `is_deleted`) VALUES
-(1, '1', 1, '2020-10-01 00:00:00', '2020-10-02 00:00:00', 21004, 21058, 2000, 1, 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -252,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_id` int(11) NOT NULL,
   `type` char(1) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
   `amount` float NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -274,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `image` varchar(255) NOT NULL,
   `role` char(5) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -291,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `registered_number` varchar(15) NOT NULL,
   `seat` int(11) NOT NULL,
   `fuel_type` char(1) NOT NULL,
-  `ac` tinyint(1) NOT NULL DEFAULT '0',
+  `ac` tinyint(1) NOT NULL DEFAULT 0,
   `transmission` char(1) NOT NULL,
   `image` varchar(255) NOT NULL,
   `price_per_day` float NOT NULL,
@@ -300,8 +278,8 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `system_registered_date` date NOT NULL,
   `insurence_date` date NOT NULL,
   `revenue_license_date` date NOT NULL,
-  `is_service_out` tinyint(1) NOT NULL DEFAULT '0',
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `is_service_out` tinyint(1) NOT NULL DEFAULT 0,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 

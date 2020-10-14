@@ -53,12 +53,12 @@
                             <div class="form-group">
                                     <label for="exampleInputEmail1"><b>Time Specification</b></label><br><br>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="" data-toggle="collapse"  href="#collapseExample" aria-expanded="false" aria-controls="collapseExample ">
+                                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="" data-toggle="collapse"  href="#custome" aria-expanded="false" aria-controls="collapseExample "  checked>
                                         <label class="ml-2" for="customRadioInline1" data-toggle="tooltip" data-placement="top" title="Its return all the records">Regular</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
-                                        <label class="mdi mdi-view-grid" for="customRadioInline2" data-toggle="tooltip" data-placement="top" title="You can get recored for specific time time"> Specific Time  Duration</label>
+                                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
+                                        <label class="ml-2" for="customRadioInline2" data-toggle="tooltip" data-placement="top" title="You can get recored for specific time time"> Specific Time  Duration</label>
                                     </div>
                                     
                                     <div class="collapse " id="custome" aria-labelledby="customRadioInline2">
@@ -105,4 +105,6 @@
 
     </div>
     <!-- content-wrapper ends -->
+
+    
 <?php require_once 'crms_footer.php';?>

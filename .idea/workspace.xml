@@ -68,7 +68,25 @@
       <workItem from="1602159105194" duration="22785000" />
       <workItem from="1602248842797" duration="9351000" />
       <workItem from="1602304698328" duration="6098000" />
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <workItem from="1602494172268" duration="7143000" />
+      <workItem from="1602606198450" duration="4301000" />
+<<<<<<< HEAD
+      <workItem from="1602649727461" duration="3571000" />
+=======
+=======
+=======
+>>>>>>> Stashed changes
+      <workItem from="1602346059756" duration="796000" />
+      <workItem from="1602385826783" duration="1107000" />
+      <workItem from="1602410800817" duration="43000" />
+      <workItem from="1602467711271" duration="15000" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+>>>>>>> 8e4202653261783495c13eda0c7ca8ae6b887ca5
+=======
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -85,6 +103,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="380" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602111054996">
@@ -103,9 +122,30 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="517" y="292" key="NewPhpFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1602159162104" />
-    <state x="559" y="85" width="585" height="592" key="find.popup" timestamp="1602319551703">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="568" y="5" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602607863823">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="568" y="5" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1602607863823" />
+    <state x="629" y="95" width="700" height="722" key="find.popup" timestamp="1602607901071">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="559" y="85" width="585" height="592" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1602319551703" />
+    <state x="629" y="95" width="700" height="722" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1602607901071" />
+    <state width="750" height="535" key="javadoc.popup" timestamp="1602607892205">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="750" height="535" key="javadoc.popup/0.0.1536.824@0.0.1536.824" timestamp="1602607892205" />
+    <state x="346" y="76" width="875" height="663" key="recent.locations.popup" timestamp="1602607906109">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="346" y="76" width="875" height="663" key="recent.locations.popup/0.0.1536.824@0.0.1536.824" timestamp="1602607906109" />
+    <state x="371" y="-1" key="search.everywhere.popup" timestamp="1602607887547">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="371" y="-1" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1602607887547" />
+    <state x="487" y="310" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602653952447">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="487" y="310" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.824@0.0.1536.824" timestamp="1602653952447" />
   </component>
 </project>

@@ -83,6 +83,9 @@ class Home extends CI_Controller {
     public function crms_dash()
     {
         $this->load->view('crms_dashboard');
+//        $this->load->model("Customer_message");
+//        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+//        $this->load->view('crms_dashboard',$data);
     }
 
     //crms staff user page
@@ -128,8 +131,16 @@ class Home extends CI_Controller {
         $getDamageDetails = $this->DamageModel->getDamageDetails();
         $getVehicleID = $this->DamageModel->getVehicleID();
         $getReservedID = $this->DamageModel->getReservedID();
-        
-        $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=> $getDamageDetails]);
+        $getCustomerDetails = $this->DamageModel->getCustomerDetails();
+        $this->load->view(
+            'crms_damage',
+            [
+                'getVehicleID'=>$getVehicleID,
+                'getReservedID'=>$getReservedID,
+                'getDamageDetails'=> $getDamageDetails,
+                'getCustomerDetails' =>$getCustomerDetails
+            ]
+        );
     }
 
     //crms car expenses page
@@ -174,6 +185,15 @@ class Home extends CI_Controller {
     //crms message page
     public function crms_message()
     {
-        $this->load->view('crms_message');
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->getCustomMessage();
+//        $this->load->view('crms_message');
+        $this->load->view('crms_message',$data);
     }
+
+    public function test_ms()
+    {
+        $this->load->view('test_msg');
+    }
+
 }

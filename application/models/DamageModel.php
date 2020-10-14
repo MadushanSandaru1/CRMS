@@ -24,6 +24,17 @@
                 public function insertDamage($data)
                 {
                         //$date = now('Asia/Colombo');
+                        $reserved_id=0;
+                        $vehicleReserved_id =(int)$this->input->post('c_vehicle_id',TRUE);
+                        $customerReserved_id =(int)$this->input->post('c_customer_id',TRUE);
+
+                        if($vehicleReserved_id >0)
+                                $reserved_id = $vehicleReserved_id;
+                        if($customerReserved_id >0)
+                                $reserved_id = $customerReserved_id;
+                        if($vehicleReserved_id == $customerReserved_id)
+                                $reserved_id = $vehicleReserved_id;
+
                         $is_solved =(int)$this->input->post('is_solved', TRUE);
                         $is_deleted =0;
                         $values = array(
@@ -31,7 +42,7 @@
                                 'description' => $this->input->post('description', TRUE),
                                 'date' => $this->input->post('d_date', TRUE),
                                 'image'=> $data,
-                                'reserved_id'=> $this->input->post('reserved_id', TRUE),
+                                'reserved_id'=> $reserved_id,
                                 'fix_amount'=> $this->input->post('fix_amount', TRUE),
                                 'is_solved'=> $is_solved,
                                 'is_deleted'=> $is_deleted,
@@ -43,6 +54,16 @@
                 public function getDamageDetails()
                 {
                         $query =$this->db->get('damage');
+
+                        if($query->num_rows() > 0)
+                        {
+                                return $query->result();
+                        }
+                }
+
+                public function getCustomerDetails()
+                {
+                        $query =$this->db->get('customer');
 
                         if($query->num_rows() > 0)
                         {
