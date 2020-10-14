@@ -131,7 +131,7 @@ class Home extends CI_Controller {
         $getDamageDetails = $this->DamageModel->getDamageDetails();
         $getVehicleID = $this->DamageModel->getVehicleID();
         $getReservedID = $this->DamageModel->getReservedID();
-        $getCustomerDetails = $this->DamageModel-> getCustomerDetails();
+        $getCustomerDetails = $this->DamageModel->getCustomerDetails();
         $this->load->view(
             'crms_damage',
             [

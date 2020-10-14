@@ -17,8 +17,8 @@
                     $getVehicleID = $this->DamageModel->getVehicleID();
                     $getReservedID = $this->DamageModel->getReservedID();
                     $getDamageDetails = $this->DamageModel->getDamageDetails();
-                    $getCustomerDetails = $this->DamageModel-> getCustomerDetails();
-                    $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=>$getDamageDetails,' getCustomerDetails'=> $getCustomerDetails]);
+                    $getCustomerDetails = $this->DamageModel->getCustomerDetails();
+                    $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=>$getDamageDetails,'getCustomerDetails'=> $getCustomerDetails]);
                }
                else{
                    //echo "ok";
@@ -40,9 +40,8 @@
                             $this->load->model('DamageModel');
                             $getVehicleID = $this->DamageModel->getVehicleID();
                             $getReservedID = $this->DamageModel->getReservedID();
-                            $getDamageDetails = $this->DamageModel->getDamageDetails();
                             $this->session->set_flashdata('damage_status', 'Data Recorded Successfully!');
-                            $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=>$getDamageDetails]);
+                            $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID]);
                         }
                         
                    }
@@ -51,9 +50,8 @@
                         $this->load->model('DamageModel');
                         $getVehicleID = $this->DamageModel->getVehicleID();
                         $getReservedID = $this->DamageModel->getReservedID();
-                        $getDamageDetails = $this->DamageModel->getDamageDetails();
                         $this->session->set_flashdata('msgValidation', 'You have to upload Picture');
-                        $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=>$getDamageDetails]);
+                        $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID]);
                    }     
                }
             }
