@@ -26,6 +26,71 @@
 
         <div class="row">
 
+            <!-- add customer form start-->
+                <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title text-danger mb-5">Add customer details</h4>
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label for="InputName">Name</label>
+                        <input type="text" class="form-control" id="InputName" placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="InputNIC">NIC</label>
+                        <input type="password" class="form-control" id="InputNIC" placeholder="NIC">
+                      </div>
+                      <div class="form-group">
+                        <label for="InputEmail">Email address</label>
+                        <input type="email" class="form-control" id="InputEmail" placeholder="Email address">
+                      </div>
+                      <div class="form-group">
+                        <label for="InputPhone">Phone</label>
+                        <input type="email" class="form-control" id="InputPhone" placeholder="Phone">
+                      </div>
+                      <div class="form-group">
+                        <label for="InputAddress">Address</label>
+                        <textarea class="form-control" id="InputAddress" rows="4" placeholder="Phone"> </textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label>NIC Copy</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>License Copy</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Light Bill Copy</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            <!-- add customer form end-->
+
         </div>
 
     </div>

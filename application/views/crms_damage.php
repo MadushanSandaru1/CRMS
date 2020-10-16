@@ -45,7 +45,7 @@
                                 <?php echo form_open_multipart('Damage/DamageVehicle'); ?>
                                 <div class="form-group">
                                     <label for="exampleInputName1"><b>Vehicle ID</b></label>
-                                    <select name="vehicle_id" id="" class="custom-select mr-sm-2">
+                                    <select name="vehicle_id" id="" class="custom-select mr-sm-2" required>
                                         <option value="">Select Vehicle ID</option>
                                         <?php if(count($getVehicleID)): ?>
                                             <?php foreach($getVehicleID as $value):?>
@@ -58,7 +58,7 @@
                             
                                 <div class="form-group">
                                     <label for="exampleSelectGender"><b>Nature of Damage</b></label>
-                                    <select class="custom-select mr-sm-2" id="exampleSelectGender" name="description">
+                                    <select class="custom-select mr-sm-2" id="exampleSelectGender" name="description" required>
                                         <option value="">Select Nature of Damage</option>
                                         <option values="left or Right Signal light">left or Right Signal light</option>
                                         <option values="Door damage">Door damage</option>
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label><b>Upload Damage Vehicle Picture</b></label>
-                                    <input type="file"  class="form-control" name="image_file">
+                                    <input type="file"  class="form-control" name="image_file" required>
                                     <!--
                                     <div class="input-group col-xs-12">
                                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
@@ -80,14 +80,14 @@
                                 <div class="form-group">
                                     <label for="exampleInputCity1"><b>Reserved From</b></label><br><br>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline1" name="chooser" class="custom-control-input" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample " checked>
-                                        <label class="mdi mdi-swap-vertical" for="customRadioInline1">Reserved ID</label>
+                                        <!-- <input type="radio" id="customRadioInline1" name="chooser" class="custom-control-input" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample " checked>
+                                        <label class="mdi mdi-swap-vertical" for="customRadioInline1">Reserved ID</label> -->
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
+                                        <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom " required>
                                         <label class="mdi mdi-swap-vertical " for="customRadioInline2">Custom Choose </label>
                                     </div>
-                                    <div class="collapse " id="collapseExample" aria-labelledby="customRadioInline1">
+                                    <!-- <div class="collapse " id="collapseExample" aria-labelledby="customRadioInline1">
                                     <br>
                                         <select name="cr_vehicle_id" id="showReservedId" class="custom-select"  >
                                             <option value="">Select Reserved ID</option>    
@@ -97,22 +97,24 @@
                                                 <?php endforeach;?>
                                             <?php endif; ?>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="collapse " id="custome" aria-labelledby="customRadioInline2">
                                         <br>
                                         <div class="row">
                                             <div class="col">
-                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  >
+                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  required>
                                                     <option value="">Select Vehicle ID</option>
-                                                    <?php if(count($getVehicleID)): ?>
-                                                        <?php foreach($getVehicleID as $value):?>
-                                                            <option value=<?php echo $value->id;?>><?php echo "".$value->registered_number;?></option>
-                                                        <?php endforeach;?>
+                                                    <?php if(count($getReservedID) && count($getVehicleID)): ?>
+                                                         <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
+                                                              <?php if($getReservedID->vehicle_id == $getVehicleID->registered_number):?>
+                                                                    <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getVehicleID[$i]->registered_number;?></option>
+                                                              <?php endif; ?>
+                                                              <?php endfor;?>
                                                     <?php endif; ?>
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select name="c_customer_id" id="showReservedId" class="custom-select"  >
+                                                <select name="c" id="showReservedId" class="custom-select"  required    >
                                                     <option value="">Select Customer</option>
                                                     <?php if(count($getReservedID) && count($getCustomerDetails)): ?>
                                                          <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
@@ -161,7 +163,8 @@
                 </div>
               </div>
         </div>
-        <div class="col-lg-12 grid-margin stretch-card">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <?php
@@ -193,12 +196,24 @@
                             </thead>
                             <tbody>
                                 <?php if(count($getDamageDetails)):?>
-                                    <?php foreach($getDamageDetails as $values): ?>                                    
+                                    <?php foreach($getDamageDetails as $values): ?>
                                         <tr>
-                          	                <td><?php echo "".$values->vehicle_id;?></td>
+                          	                <td>
+                                                <?php for($i=0;$i < sizeof($getVehicleID);$i++): ?>
+                                                    <?php if($values->vehicle_id == $getVehicleID[$i]->id):?>
+                                                        <?php echo $getVehicleID[$i]->registered_number; ?>
+                                                    <?php endif;?>
+                                                <?php endfor; ?>
+                                            </td>
                           	                <td><?php echo $values->date;?></td>
                           	                <td><?php echo $values->description; ?></td>
-                          	                <td><?php echo "".$values->reserved_id; ?></td>
+                          	                <td>
+                                                <?php for($i=0;$i < sizeof($getCustomerDetails);$i++): ?>
+                                                    <?php if($values->reserved_id == $getCustomerDetails[$i]->id):?>
+                                                        <?php echo $getCustomerDetails[$i]->nic; ?>
+                                                    <?php endif;?>
+                                                <?php endfor;?>
+                                            </td>
                           	                <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
                           	                <td><?php echo $values->fix_amount." LKR/-"; ?></td>
                                             <td>
@@ -225,7 +240,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
     </div>
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>
