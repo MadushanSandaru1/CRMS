@@ -163,7 +163,8 @@
                 </div>
               </div>
         </div>
-        <div class="col-lg-12 grid-margin stretch-card">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <?php
@@ -195,12 +196,24 @@
                             </thead>
                             <tbody>
                                 <?php if(count($getDamageDetails)):?>
-                                    <?php foreach($getDamageDetails as $values): ?>                                    
+                                    <?php foreach($getDamageDetails as $values): ?>
                                         <tr>
-                          	                <td><?php echo "".$values->vehicle_id;?></td>
+                          	                <td>
+                                                <?php for($i=0;$i < sizeof($getVehicleID);$i++): ?>
+                                                    <?php if($values->vehicle_id == $getVehicleID[$i]->id):?>
+                                                        <?php echo $getVehicleID[$i]->registered_number; ?>
+                                                    <?php endif;?>
+                                                <?php endfor; ?>
+                                            </td>
                           	                <td><?php echo $values->date;?></td>
                           	                <td><?php echo $values->description; ?></td>
-                          	                <td><?php echo "".$values->reserved_id; ?></td>
+                          	                <td>
+                                                <?php for($i=0;$i < sizeof($getCustomerDetails);$i++): ?>
+                                                    <?php if($values->reserved_id == $getCustomerDetails[$i]->id):?>
+                                                        <?php echo $getCustomerDetails[$i]->nic; ?>
+                                                    <?php endif;?>
+                                                <?php endfor;?>
+                                            </td>
                           	                <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
                           	                <td><?php echo $values->fix_amount." LKR/-"; ?></td>
                                             <td>
@@ -227,7 +240,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
     </div>
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>
