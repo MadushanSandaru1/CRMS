@@ -27,4 +27,9 @@ class Customer_message extends CI_Model {
 
         return $query1;
     }
+
+    function getMsg($id){
+        $query2=$this->db->query("SELECt * FROM customer_message WHERE id='$id'");
+        return $query2;
+    }
 }

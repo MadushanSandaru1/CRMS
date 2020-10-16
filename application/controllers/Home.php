@@ -193,7 +193,12 @@ class Home extends CI_Controller {
 
     public function test_ms()
     {
-        $this->load->view('test_msg');
+        $this->input->post('data');
+        $id=$_POST["id"];
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->getMsg($id);
+
+        $this->load->view('test_msg',$data);
     }
 
 }
