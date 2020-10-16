@@ -4,8 +4,8 @@
          public function GenerateDamageReport()
          {
             $this->form_validation->set_rules('vehicle_id','Vehicle ID','required');
-            $this->form_validation->set_rules('fdate','From Date','required');
-            $this->form_validation->set_rules('tdate','To Date','required');
+            $this->form_validation->set_rules('get_time','Time Period','required');
+            //$this->form_validation->set_rules('tdate','To Date','required');
             $this->form_validation->set_rules('is_include_damage_picture','is include damage picture','required');
             $this->form_validation->set_rules('is_solved_type','is solved type','required');
 
@@ -18,8 +18,8 @@
                     
                }
                else{
-                   echo "ok";
-                   die();
+                   $this->load->model('Damage_Report_Model');
+                   $this->Damage_Report_Model->getDamages();
                }
          }
      }

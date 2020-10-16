@@ -53,11 +53,11 @@
                             <div class="form-group">
                                     <label for="exampleInputEmail1"><b>Time Specification</b></label><br><br>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="" data-toggle="collapse"  href="#custome" aria-expanded="false" aria-controls="collapseExample "  checked>
+                                        <input type="radio" id="customRadioInline1" name="get_time" value="all" class="" data-toggle="collapse"  href="#custome" aria-expanded="false" aria-controls="collapseExample "  checked>
                                         <label class="ml-2" for="customRadioInline1" data-toggle="tooltip" data-placement="top" title="Its return all the records">Regular</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
+                                        <input type="radio" id="customRadioInline2" name="get_time" value="customize" class="" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom ">
                                         <label class="ml-2" for="customRadioInline2" data-toggle="tooltip" data-placement="top" title="You can get recored for specific time time"> Specific Time  Duration</label>
                                     </div>
                                     
@@ -65,10 +65,10 @@
                                         <br>
                                         <div class="row">
                                             <div class="col">
-                                                <input type="date" name="" class="form-control" value="9">
+                                                <input type="date" name="start_date" class="form-control" value="9">
                                             </div>
                                             <div class="col">
-                                                <input type="date" name="" class="form-control">    
+                                                <input type="date" name="end_date" class="form-control">
                                             </div>
                                         </div>
                                     
@@ -78,16 +78,16 @@
                             <div class="form-group">
                                 <label for="exampleInputUsername1"><b>Include Damage Picture</b></label>
                                 <select class="custom-select" name = "is_include_damage_picture">
-                                    <option>Yes</option>
-                                    <option>No</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1"><b>Types of Solved</b></label>
                                 <select class="custom-select" name="is_solved_type">
-                                    <option>All</option>
-                                    <option>Solved Damages</option>
-                                    <option>Not Solved Damages</option>
+                                    <option value="all">All</option>
+                                    <option value="solved">Solved Damages</option>
+                                    <option value="not_solved">Not Solved Damages</option>
                                 </select>
                             </div>
                       
