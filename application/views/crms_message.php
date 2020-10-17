@@ -11,19 +11,8 @@
             #show_reply{
                 /*display: none;*/
             }
-        </style>
-        <script>
-            //show message box
-            $(document).ready(function(){
-                $("#btn").click(function (){
-                    $("#show_msg").slideDown();
-                });
 
-                $("#reply-btn").click(function (){
-                    $("#show_reply").slideDown();
-                });
-            });
-        </script>
+        </style>
     </head>
     <body>
     <?php require_once 'crms_header.php';?>
@@ -65,9 +54,7 @@
                             <table class="table">
                                 <tr>
                                     <th>Name</th>
-                                    <th>Email</th>
                                     <th>Subject</th>
-<!--                                    <th>Message</th>-->
                                     <th>Data</th>
                                     <th>View Message</th>
                                 </tr>
@@ -76,10 +63,9 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $row->name;?></td>
-                                        <td><?php echo $row->email;?></td>
                                         <td><?php echo $row->subject;?></td>
                                         <td><?php echo $row->received_time;?></td>
-                                        <td><button class="btn btn-danger" id="btn" onclick="getMsgId(<?php echo $row->id;?>)">View Message</button></td>
+                                        <td><a href="#show_msg"><button class="btn btn-primary" id="btn btn2" onclick="getMsgId(<?php echo $row->id;?>); viewmsg()">View Message</button></a></td>
                                     </tr>
                                     <?php
                                 }
@@ -92,6 +78,9 @@
         </div>
 
 <!--Message View-->
+        <br>
+        <br>
+        <br>
         <div class="row" id="show_msg">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card" id="card">
@@ -102,7 +91,7 @@
 <!--                        <samp>Email : </samp> <label id="email"></label><br>-->
 <!--                        <p id="demo"> </p>-->
 <!--                        <samp>Message : </samp> <label id="msg"></label><br><br>-->
-<!--                        <button class="btn btn-danger" id="reply-btn">Reply</button>-->
+<!--                        <a href="#show_reply"><button class="btn btn-danger" id="reply-btn">Reply</button></a>-->
 <!--                    </div>-->
                 </div>
             </div>
@@ -113,48 +102,37 @@
         <div class="row" >
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card " id="show_reply">
-                    <div class="card-body">
-                        <br>
-                        <h4 class="card-title" style="color: #f5005e">Reply</h4>
-                        <!--<p class="card-description"> Add class <code>.table</code></p>-->
-                        <?php echo form_open('Home/crms_message'); ?>
-
-                        <form class="form-area " id="myForm" method="post" class="contact-form text-right">
-                            <div class="row">
-                                <div class="col-lg-6 form-group">
-                                    <label class="col-form-label">Name : </label>
-                                    <input name="message_name" placeholder="Enter your name" class="common-input mb-20 form-control" type="text" id="re-name" autocomplete="off" readonly>
-                                    <label class="col-form-label">Email : </label>
-                                    <input name="message_email" placeholder="Enter email address" id="re-email" class="common-input mb-20 form-control"  readonly>
-                                    <label class="col-form-label">Message : </label>
-                                    <textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-                                    <br><button class="btn btn-danger" onclick="send_reply_btn()">Reply</button>
-                                </div>
-
-                            </div>
-                        </form>
-
-                        <?php echo form_close(); ?>
-                        <div class="text-danger">
-                            <?php echo validation_errors(); ?>
-                        </div>
-
-                    </div>
+<!--                    <div class="card-body">-->
+<!--                        <br>-->
+<!--                        <h4 class="card-title" style="color: #f5005e">Reply</h4>-->
+<!--                        <p class="card-description"> Add class <code>.table</code></p>-->
+<!--                        --><?php //echo form_open('Home/crms_message'); ?>
+<!---->
+<!--                        <form class="form-area " id="myForm" method="post" class="contact-form text-right">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-lg-6 form-group">-->
+<!--                                    <label class="col-form-label">Name : </label>-->
+<!--                                    <input name="message_name" placeholder="Enter your name" class="common-input mb-20 form-control" type="text" id="re-name" autocomplete="off" readonly>-->
+<!--                                    <label class="col-form-label">Email : </label>-->
+<!--                                    <input name="message_email" placeholder="Enter email address" id="re-email" class="common-input mb-20 form-control"  readonly>-->
+<!--                                    <label class="col-form-label">Message : </label>-->
+<!--                                    <textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>-->
+<!--                                    <br><button class="btn btn-primary" onclick="send_reply_btn()">Send</button>-->
+<!--                                </div>-->
+<!---->
+<!--                            </div>-->
+<!--                        </form>-->
+<!---->
+<!--                        --><?php //echo form_close(); ?>
+<!--                        <div class="text-danger">-->
+<!--                            --><?php //echo validation_errors(); ?>
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
 <!--End of Reply section-->
     <script>
-        // //show message box
-        // $(document).ready(function(){
-        //     $("#btn").click(function (){
-        //         $("#show_msg").slideDown();
-        //     });
-        //
-        //     $("#reply-btn").click(function (){
-        //         $("#show_reply").slideDown();
-        //     });
-        // });
         // function getMsgId(id){
         //     // alert(id);
         //     var xhttp = new XMLHttpRequest();
@@ -167,17 +145,9 @@
         //     xhttp.send();
         // }
 
-        // function getMsgId(msg,name,subject,email){
-        //     document.getElementById("name").innerHTML=name;
-        //     document.getElementById("subject").innerHTML=subject;
-        //     document.getElementById("msg").innerHTML=msg;
-        //     document.getElementById("email").innerHTML=email;
-        // }
-
         function getMsgId(id){
-            //alert(id);
             $.ajax({
-                url:"<?php echo base_url('index.php/Home/test_ms')?>",
+                url:"<?php echo base_url('index.php/Home/view_msg')?>",
                 method:"POST",
                 data: {id:id},
                 success:function (data){
@@ -186,11 +156,69 @@
             });
          }
 
+        $(document).ready(function(){
+            $("#btn2").click(function (){
+                $("#show_msg").slideDown();
+            });
+
+            $("#reply-btn").click(function (){
+                $("#show_reply").toggle(1000);
+            });
+        });
+
+        // function viewmsg(){
+        //     //alert("id");
+        //     document.getElementById("show_reply").style.display="block";
+        // }
+
+        // function reply_btn(email,name){
+        //     document.getElementById("re-name").value=name;
+        //     document.getElementById("re-email").value=email;
+        // }
+
         function reply_btn(email,name){
-            document.getElementById("re-name").value=name;
-            document.getElementById("re-email").value=email;
+            $.ajax({
+                url:"<?php echo base_url('index.php/Home/reply_msg')?>",
+                method:"POST",
+                data: {email:email,name:name},
+                success:function (data){
+                    document.getElementById("show_reply").innerHTML=data;
+                }
+            });
         }
 
+        // function smoothscroll(target,duration){
+        //     var target=document.querySelector(target);
+        //     var targetPosition=target.getBoundingClientRect().top;
+        //     var startPosition=window.pageYOffset;
+        //     var distance =targetPosition-startPosition;
+        //     var startTime=null;
+        //     console.log(startPosition);
+        //     console.log(targetPosition);
+        //     console.log(target);
+        //
+        //     function animation(currentTime){
+        //         if(startTime===0)startTime=currentTime;
+        //         var timeElapsed=currentTime-startTime;
+        //         var run=ease(timeElapsed,startPosition,distance,duration);
+        //         window.scrollTo(0,run);
+        //         if(timeElapsed<duration) requestAnimationFrame(animation);
+        //     }
+        //
+        //     function ease(t,b,c,d){
+        //         t/=d/2;
+        //         if(t<1) return c/1*t*t+b;
+        //         t--;
+        //         return -c/2*(t*(t-2)-1)+b;
+        //     }
+        //
+        //     requestAnimationFrame(animation);
+        // }
+        //
+        // var viewbtn=document.querySelector(".viewbtn");
+        // viewbtn.addEventListener('click',function (){
+        //     smoothscroll(".card",2000);
+        // });
     </script>
 
     </div>

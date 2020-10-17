@@ -187,18 +187,22 @@ class Home extends CI_Controller {
     {
         $this->load->model("Customer_message");
         $data["fetch_data"]=$this->Customer_message->getCustomMessage();
-//        $this->load->view('crms_message');
         $this->load->view('crms_message',$data);
     }
 
-    public function test_ms()
+    public function view_msg()
     {
-        $this->input->post('data');
+//        $this->input->post('data');
         $id=$_POST["id"];
         $this->load->model("Customer_message");
         $data["fetch_data"]=$this->Customer_message->getMsg($id);
+        $this->load->view('view_msg',$data);
+    }
 
-        $this->load->view('test_msg',$data);
+    public function reply_msg()
+    {
+//        $data=$this->input->post('data');
+        $this->load->view('reply_msg');
     }
 
 }
