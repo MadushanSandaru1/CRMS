@@ -30,7 +30,7 @@
                 <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title text-danger mb-5">Add guarantor details</h4>
+                    <h4 class="card-title text-danger mb-5">Add Guarantor details</h4>
                     <form class="forms-sample">
                         <div class="form-group">
                             <label for="guarantorID"><b>Reserved ID</b></label>
