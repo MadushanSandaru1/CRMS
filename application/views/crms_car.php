@@ -135,6 +135,7 @@
                                 <th>Additional Price per Hour</th>
                                 <th>Insurance Date</th>
                                 <th>Revenue License Date</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>

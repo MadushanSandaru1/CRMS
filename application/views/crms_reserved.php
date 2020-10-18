@@ -25,7 +25,81 @@
         </div>
 
         <div class="row">
+            <!-- add reserved vehicle form start-->
 
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-danger mb-5">Add reserved vehicle details</h4>
+                        <form class="forms-sample">
+                            <div class="form-group">
+                                <label for="reservedCustomerID"><b>Customer ID</b></label>
+                                <select class="custom-select" name="reservedCustomerID">
+                                    <option value="">Select Reserved ID</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleID"><b>Vehicle ID</b></label>
+                                <select class="custom-select" name="reservedVehicleID">
+                                    <option value="">Select Vehicle ID</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleDate">Reserved Date</label>
+                                <input type="date" class="form-control" id="reservedVehicleDate" placeholder="Reserved Date">
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleDate">Returned Date</label>
+                                <input type="date" class="form-control" id="reservedVehicleDate" placeholder="Returned Date">
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleStartValue">Start Meter Value</label>
+                                <input type="number" class="form-control" id="reservedVehicleStartValue" placeholder="In meters">
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleStopValue">Stop Meter Value</label>
+                                <input type="number" class="form-control" id="reservedVehicleStopValue" placeholder="In meters">
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleAdvancedPayment">Advanced Payment</label>
+                                <input type="number" class="form-control" id="reservedVehicleAdvancedPayment" placeholder="1000.00">
+                            </div>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-danger">Reserved Vehicle Details</h4></p>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Customer ID</th>
+                                <th>Vehicle ID</th>
+                                <th>Reserved Date</th>
+                                <th>Returned Date</th>
+                                <th>Start Meter Value</th>
+                                <th>Stop Meter Value</th>
+                                <th>Advanced Payment</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Photoshop</td>
+                                <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td>
+                                <td><label class="badge badge-danger">Pending</label></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

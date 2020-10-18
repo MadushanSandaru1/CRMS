@@ -39,7 +39,7 @@
                             ?>
                         <!--</div>-->
                         <?php echo form_open('Damage_Report/GenerateDamageReport'); ?>
-                            <div class="form-group">
+                            `<div class="form-group">
                                 <label for="exampleInputUsername1"><b>Vahicle ID</b></label>
                                 <select class="custom-select" name="vehicle_id">
                                     <option value="">Select Vahicle ID</option>
@@ -49,7 +49,7 @@
                                         <?php endforeach;?>
                                     <?php endif; ?>
                                  </select>
-                            </div>
+                            </div>`
                             <div class="form-group">
                                     <label for="exampleInputEmail1"><b>Time Specification</b></label><br><br>
                                     <div class="custom-control custom-radio custom-control-inline">
