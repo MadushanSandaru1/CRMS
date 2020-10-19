@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
@@ -5,7 +6,7 @@
 
         <style>
             .card-body{
-                font-family: Arial;
+                font-family: Arial;    
             }
 
             #show_reply{
@@ -84,15 +85,6 @@
         <div class="row" id="show_msg">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card" id="card">
-<!--                    <div class="card-body">-->
-<!--                        <br>-->
-<!--                        <h4 class="card-title" style="color: #f5005e" id="subject"></h4><hr>-->
-<!--                        <samp>Name : </samp> <label id="name"></label><br>-->
-<!--                        <samp>Email : </samp> <label id="email"></label><br>-->
-<!--                        <p id="demo"> </p>-->
-<!--                        <samp>Message : </samp> <label id="msg"></label><br><br>-->
-<!--                        <a href="#show_reply"><button class="btn btn-danger" id="reply-btn">Reply</button></a>-->
-<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -102,35 +94,9 @@
         <div class="row" >
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card " id="show_reply">
-<!--                    <div class="card-body">-->
-<!--                        <br>-->
-<!--                        <h4 class="card-title" style="color: #f5005e">Reply</h4>-->
-<!--                        <p class="card-description"> Add class <code>.table</code></p>-->
-<!--                        --><?php //echo form_open('Home/crms_message'); ?>
-<!---->
-<!--                        <form class="form-area " id="myForm" method="post" class="contact-form text-right">-->
-<!--                            <div class="row">-->
-<!--                                <div class="col-lg-6 form-group">-->
-<!--                                    <label class="col-form-label">Name : </label>-->
-<!--                                    <input name="message_name" placeholder="Enter your name" class="common-input mb-20 form-control" type="text" id="re-name" autocomplete="off" readonly>-->
-<!--                                    <label class="col-form-label">Email : </label>-->
-<!--                                    <input name="message_email" placeholder="Enter email address" id="re-email" class="common-input mb-20 form-control"  readonly>-->
-<!--                                    <label class="col-form-label">Message : </label>-->
-<!--                                    <textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>-->
-<!--                                    <br><button class="btn btn-primary" onclick="send_reply_btn()">Send</button>-->
-<!--                                </div>-->
-<!---->
-<!--                            </div>-->
-<!--                        </form>-->
-<!---->
-<!--                        --><?php //echo form_close(); ?>
-<!--                        <div class="text-danger">-->
-<!--                            --><?php //echo validation_errors(); ?>
-<!--                        </div>-->
-<!--                    </div>-->
+
                 </div>
             </div>
-        </div>
 <!--End of Reply section-->
     <script>
         // function getMsgId(id){
@@ -169,11 +135,6 @@
         // function viewmsg(){
         //     //alert("id");
         //     document.getElementById("show_reply").style.display="block";
-        // }
-
-        // function reply_btn(email,name){
-        //     document.getElementById("re-name").value=name;
-        //     document.getElementById("re-email").value=email;
         // }
 
         function reply_btn(email,name){

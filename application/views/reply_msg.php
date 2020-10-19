@@ -9,7 +9,7 @@
         <br>
         <h4 class="card-title" style="color: #f5005e">Reply</h4>
         <!--<p class="card-description"> Add class <code>.table</code></p>-->
-        <?php echo form_open('Home/crms_message'); ?>
+        <?php echo form_open('Home/mail'); ?>
 
         <form class="form-area " id="myForm" method="post" class="contact-form text-right">
             <div class="row">
@@ -17,7 +17,7 @@
                     <label class="col-form-label">Name : </label>
                     <input class="common-input mb-20 form-control" type="text" value="<?php echo $name;?>"  readonly>
                     <label class="col-form-label">Email : </label>
-                    <input name="message_email"  value="<?php echo $email;?>" class="common-input mb-20 form-control"  readonly>
+                    <input value="<?php echo $email;?>" name="email" class="common-input mb-20 form-control"  readonly>
                     <label class="col-form-label">Message : </label>
                     <textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
                     <br><button class="btn btn-primary" onclick="send_reply_btn()">Send</button>
