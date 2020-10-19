@@ -106,6 +106,12 @@ class Home extends CI_Controller {
         $this->load->view('crms_customer');
     }
 
+    //crms guarantor page
+    public function crms_guarantor()
+    {
+        $this->load->view('crms_guarantor');
+    }
+
     //crms car reserved page
     public function crms_reserved()
     {

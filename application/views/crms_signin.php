@@ -31,21 +31,33 @@
                                 <h4>Hello! let's get started</h4>
                                 <h6 class="font-weight-light">Sign in to continue.</h6>
 
+                                <?php #echo form_open('Signin/user_signin'); ?>
+
                                 <!-- sign in form -->
-                                <form class="pt-3">
+                                <div class="pt-3">
                                     <!-- username -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username or Email">
+                                        <input type="text" name="signin_username" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username or Email">
                                     </div>
 
                                     <!-- password -->
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                                        <input type="password" name="signin_password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
                                     </div>
+
+                                    <?php
+                                    /*if($this->session->flashdata('msg')) {
+                                        ?>
+                                        <div class="p-3 m-3 border border-danger text-danger text-center lead">
+                                            <?php echo $this->session->flashdata('msg'); ?>
+                                        </div>
+                                        <?php
+                                    }*/
+                                    ?>
 
                                     <!-- sign in button -->
                                     <div class="mt-3">
-                                        <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="<?php echo base_url('index.php/Home/crms_dash'); ?>">SIGN IN</a>
+                                        <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                                     </div>
 
                                     <div class="my-2 d-flex justify-content-between align-items-center">
@@ -58,8 +70,14 @@
                                         <!-- forgot password button -->
                                         <a href="<?php echo base_url('index.php/Home/crms_forgot_pwd'); ?>" class="auth-link text-black">Forgot password?</a>
                                     </div>
-                                </form>
+                                </div>
                                 <!-- ** sign in form -->
+
+                                <?php #echo form_close(); ?>
+                                <div class="text-danger">
+                                    <?php #echo validation_errors(); ?>
+                                </div>
+
                             </div>
                         </div>
                     </div>

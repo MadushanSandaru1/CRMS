@@ -218,6 +218,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_guarantor'); ?>">
+                            <span class="menu-title">Guarantor</span>
+                            <i class="mdi mdi-shield-half-full menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_reserved'); ?>">
                             <span class="menu-title">Car Reserved</span>
                             <i class="mdi mdi-car menu-icon"></i>

@@ -25,7 +25,58 @@
         </div>
 
         <div class="row">
-
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-danger mb-5">Add Expenses details</h4>
+                        <form class="forms-sample">
+                            <div class="form-group">
+                                <label for="expenseVehicleID"><b>Vehicle ID</b></label>
+                                <select class="custom-select" name="expenseVehicleID">
+                                    <option value="">Select Vehicle ID</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="expensedVehicleDate">Date</label>
+                                <input type="date" class="form-control" id="expensedVehicleDate" placeholder="Date">
+                            </div>
+                            <div class="form-group">
+                                <label for="expenseAmount">Amount</label>
+                                <input type="number" class="form-control" id="expenseAmount" placeholder="1000.00">
+                            </div>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-danger">Vehicle Expense Details</h4></p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Vehicle ID</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Jacob</td>
+                            <td>Photoshop</td>
+                            <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td>
+                            <td><label class="badge badge-danger">Pending</label></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         </div>
 
     </div>
