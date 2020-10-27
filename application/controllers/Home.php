@@ -82,10 +82,10 @@ class Home extends CI_Controller {
     //crms dashboard page
     public function crms_dash()
     {
-        $this->load->view('crms_dashboard');
-//        $this->load->model("Customer_message");
-//        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
-//        $this->load->view('crms_dashboard',$data);
+//        $this->load->view('crms_dashboard');
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+        $this->load->view('crms_dashboard',$data);
     }
 
     //crms staff user page
@@ -218,13 +218,15 @@ class Home extends CI_Controller {
             'smtp_host'=>'ssl://smtp.googlemail.com',
             'smtp_port'=>465,
             'smtp_user'=>'lahirusampathsadaruwan@gmail.com',
-            'smtp_pass'=>'*****',
+            'smtp_pass'=>'Sampath@98',
             'mailtype'=>'html',
             'charset'=>'iso-8859-1',
             'wordwrap'=>TRUE,
         );
 	    $email=$this->input->post('email');
 	    $msg=$this->input->post('message_content');
+        $msg_id=$this->input->post('msg_id');
+        $class="none";
 
 	    $this->load->library('email',$config);
 	    $this->email->set_newline("\r\n");
@@ -234,9 +236,14 @@ class Home extends CI_Controller {
 	    $this->email->message($msg);
 
 	    if($this->email->send()){
-	        redirect('Home/crms_message');
+            //reply msg  1 ;
+            $this->load->model("Customer_message");
+            $this->Customer_message->updateReply($msg_id);
+            $class="block";
+	        redirect('Home/crms_message/'.$class);
         }else{
-	        echo "error";
+            $class="none";
+            redirect('Home/crms_message/'.$class);
         }
 
     }

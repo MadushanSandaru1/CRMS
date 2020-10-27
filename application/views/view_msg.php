@@ -15,7 +15,7 @@
                     <p id="demo"> </p>
                     <label>Message : </label> <label id="msg"><?php echo $row->message;?></label><br><br>
                     <a href="#show_reply">
-                        <button class="btn btn-primary" id="reply-btn" onclick="reply_btn('<?php echo $row->email;?>','<?php echo $row->name;?>')">Reply</button>
+                        <button class="btn btn-primary" id="reply-btn" onclick="reply_btn('<?php echo $row->email;?>','<?php echo $row->name;?>','<?php echo $row->id;?>')">Reply</button>
                     </a>
                 </div>
             </div>

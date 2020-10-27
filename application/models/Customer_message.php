@@ -16,7 +16,7 @@ class Customer_message extends CI_Model {
     }
 
     function getCustomMessage(){
-        $query=$this->db->query("SELECT * FROM customer_message ORDER BY received_time DESC ");
+        $query=$this->db->query("SELECT * FROM customer_message WHERE is_replied='0' ORDER BY received_time DESC ");
 //        $query=$this->db->get("customer_message");
 
         return $query;
@@ -31,5 +31,10 @@ class Customer_message extends CI_Model {
     function getMsg($id){
         $query2=$this->db->query("SELECt * FROM customer_message WHERE id='$id'");
         return $query2;
+    }
+
+    function updateReply($msg_id){
+        $update_reply=$this->db->query("UPDATE customer_message SET is_replied=1 WHERE id='$msg_id'");
+        return $update_reply;
     }
 }

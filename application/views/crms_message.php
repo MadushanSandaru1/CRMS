@@ -1,4 +1,15 @@
+<?php
+    // alert box...
+    $class_err="none";
+    $class_scc="none";
 
+    $class= $this->uri->segment(3);
+    if($class=="block"){
+        $class_scc="block";
+    }else if($class=="none"){
+        $class_err="block";
+    }
+?>
 <html>
     <head>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
@@ -9,8 +20,8 @@
                 font-family: Arial;    
             }
 
-            #show_reply{
-                /*display: none;*/
+            .alert{
+                display: none;
             }
 
         </style>
@@ -34,6 +45,7 @@
                   <i class="mdi mdi-message"></i>
                 </span> Message
             </h3>
+
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
@@ -42,7 +54,12 @@
                 </ul>
             </nav>
         </div>
-
+        <div class="alert alert-info" role="alert" style="display: <?php echo $class_scc;?>">
+            Send  Message Successful..
+        </div>
+        <div class="alert alert-danger" role="alert" style="display:<?php echo $class_err;?>">
+            Send  Message Not Successful..
+        </div>
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
@@ -66,7 +83,7 @@
                                         <td><?php echo $row->name;?></td>
                                         <td><?php echo $row->subject;?></td>
                                         <td><?php echo $row->received_time;?></td>
-                                        <td><a href="#show_msg"><button class="btn btn-primary" id="btn btn2" onclick="getMsgId(<?php echo $row->id;?>); viewmsg()">View Message</button></a></td>
+                                        <td><a href="#show_msg"><button class="btn btn-primary" id="btn btn2" onclick="getMsgId(<?php echo $row->id;?>)">View Message</button></a></td>
                                     </tr>
                                     <?php
                                 }
@@ -132,16 +149,11 @@
             });
         });
 
-        // function viewmsg(){
-        //     //alert("id");
-        //     document.getElementById("show_reply").style.display="block";
-        // }
-
-        function reply_btn(email,name){
+        function reply_btn(email,name,msg_id){
             $.ajax({
                 url:"<?php echo base_url('index.php/Home/reply_msg')?>",
                 method:"POST",
-                data: {email:email,name:name},
+                data: {email:email,name:name,msg_id:msg_id},
                 success:function (data){
                     document.getElementById("show_reply").innerHTML=data;
                 }
