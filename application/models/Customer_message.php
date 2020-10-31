@@ -37,4 +37,13 @@ class Customer_message extends CI_Model {
         $update_reply=$this->db->query("UPDATE customer_message SET is_replied=1 WHERE id='$msg_id'");
         return $update_reply;
     }
+
+    //delete old msg between after 30days
+    function deleteOldMsg(){
+        date_default_timezone_set('Asia/Colombo');
+        $back_date=date("Y-m-d H:i:s",strtotime("-30 day"));
+        $delete_msg=$this->db->query("DELETE FROM customer_message WHERE received_time <'$back_date'");
+
+        return $delete_msg;
+    }
 }

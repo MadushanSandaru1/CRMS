@@ -192,6 +192,7 @@ class Home extends CI_Controller {
     public function crms_message()
     {
         $this->load->model("Customer_message");
+        $this->Customer_message->deleteOldMsg(); // delete old msg
         $data["fetch_data"]=$this->Customer_message->getCustomMessage();
         $this->load->view('crms_message',$data);
     }
@@ -207,8 +208,8 @@ class Home extends CI_Controller {
 
     public function reply_msg()
     {
-//        $data=$this->input->post('data');
-        $this->load->view('reply_msg');
+       $data=$this->input->post('data');
+       $this->load->view('reply_msg');
     }
 
     //email

@@ -1,5 +1,4 @@
 <?php
-    // alert box...
     $class_err="none";
     $class_scc="none";
 
@@ -94,7 +93,6 @@
                 </div>
             </div>
         </div>
-
 <!--Message View-->
         <br>
         <br>

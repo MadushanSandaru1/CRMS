@@ -128,13 +128,13 @@
                                     <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
 <!--                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>-->
                                     <p class="text-gray ellipsis mb-0">
-                                        <?php
-                                        foreach($fetch_data->result() as $row){
-                                            ?>
-                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $row->subject;?></h6>
-                                    <?php
-                                        }
-                                        ?>
+<!--                                        --><?php
+//                                        foreach($fetch_data->result() as $row){
+//                                            ?>
+<!--                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">--><?php //echo $row->subject;?><!--</h6>-->
+<!--                                    --><?php
+//                                        }
+//                                        ?>
                                     </p>
                                 </div>
                             </a>
@@ -143,7 +143,7 @@
                             <div class="dropdown-divider"></div>
 
                             <!-- notification link -->
-                            <a href="<?php echo base_url('index.php/Home/crms_notification'); ?>"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>
+<!--                            <a href="--><?php //echo base_url('index.php/Home/crms_notification'); ?><!--"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>-->
                         </div>
                     </li>
                     <!-- ** notification icon -->
