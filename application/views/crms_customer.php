@@ -27,10 +27,16 @@
         <div class="row">
 
             <!-- add customer form start-->
+
+
+
                 <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title text-danger mb-5">Add customer details</h4>
+                
+                    
+                    <?php echo form_open_multipart('Customer/add_customer');?>
                     <form class="forms-sample">
                       <div class="form-group">
                         <label for="InputName">Name</label>
@@ -86,6 +92,8 @@
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
+                    <?php echo form_close(); ?>   
+                    
                   </div>
                 </div>
               </div>
