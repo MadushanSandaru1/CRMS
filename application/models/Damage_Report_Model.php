@@ -52,7 +52,13 @@
                         {
                                 if($solved_type == "all")
                                 {
-                                    echo "time-all pic-yes is_solved-all";
+                                    //echo "time-all pic-yes is_solved-all";
+                                    $query =$this->db->get('damage');
+
+                                    if($query->num_rows() > 0)
+                                    {
+                                        return $query->result();
+                                    }
                                 }
                                 if($solved_type == "solved")
                                 {
