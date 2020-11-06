@@ -26,11 +26,15 @@
                else{
                    $this->load->model('Damage_Report_Model');
                    $damages = $this->Damage_Report_Model->getDamages();
+                   $vehicles =$this->Damage_Report_Model->getVehicleID();
 
                    if(!empty($damages))
                    {
+                                             
                        $table = "";
-                       $table.="<table>";
+                       $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
+                       $table.="<h2><font color='blue'> Damage Details</font>"."</h2>";
+                       $table.="<table class='table'>";
                             $table.="<tr>";
                                 $table.="<th>"."Vehicle ID"."</th>";
                                 $table.="<th>"."Description"."</th>";
@@ -44,13 +48,17 @@
                             for($i=0;$i < sizeof($damages);$i++)
                             {
                                 $table.="<tr>";
+                                
                                 $table.="<td>".$damages[$i]->vehicle_id."</td>";
                                 $table.="<td>".$damages[$i]->description."</td>";
                                 $table.="<td>".$damages[$i]->date."</td>";
-                                $table.="<td>".$damages[$i]->image."</td>";
+                                $table.="<td>"."<img base_url(../../".$damages[$i]->image.") >"."</td>";
                                 $table.="<td>".$damages[$i]->reserved_id."</td>";
-                                $table.="<td>".$damages[$i]->fix_amount."</td>";
-                                $table.="<td>".$damages[$i]->is_solved."</td>";
+                                $table.="<td>".$damages[$i]->fix_amount." LKR/-"."</td>";
+                                if($damages[$i]->is_solved == 0)
+                                    $table.="<td>"."<font color='red'>No</font>"."</td>";
+                                else
+                                    $table.="<td>"."<font color='green'>Yes</font>"."</td>";    
                                 $table.="</tr>";
                             }
 
