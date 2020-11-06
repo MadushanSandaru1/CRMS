@@ -21,6 +21,26 @@
                         }
             }
 
+            public function getCustomerID()
+            {
+                        $query =$this->db->get('customer');
+
+                        if($query->num_rows() > 0)
+                        {
+                                return $query->result();
+                        }
+            }
+
+            public function getReservedID()
+            {
+                        $query =$this->db->get('reserved');
+
+                        if($query->num_rows() > 0)
+                        {
+                                return $query->result();
+                        }
+            }
+
             public function getDamages()
             {
                 $start_date="";

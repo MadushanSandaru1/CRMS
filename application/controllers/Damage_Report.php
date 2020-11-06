@@ -27,16 +27,34 @@
                    $this->load->model('Damage_Report_Model');
                    $damages = $this->Damage_Report_Model->getDamages();
                    $vehicles =$this->Damage_Report_Model->getVehicleID();
+                   $cus =$this->Damage_Report_Model->getCustomerID();
+                   $res_id =$this->Damage_Report_Model->getReservedID();
+
+                   $vehicle =0;
+                   $reg_no="";
 
                    if(!empty($damages))
                    {
-                                             
+                       
+                       for($i=0;$i < sizeof($damages);$i++)
+                       {
+                            $vehicle = $damages[$i]->vehicle_id;
+                       }  
+                       
+                       for($i=0;$i < sizeof($vehicles);$i++)
+                       {
+                            if($vehicles[$i]->id == $vehicle)
+                            {
+                                $reg_no = $vehicles[$i]->registered_number;
+                            }
+                       }
+
                        $table = "";
                        $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
-                       $table.="<h2><font color='blue'> Damage Details</font>"."</h2>";
+                       $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
                        $table.="<table class='table'>";
                             $table.="<tr>";
-                                $table.="<th>"."Vehicle ID"."</th>";
+                                // $table.="<th>"."Vehicle ID"."</th>";
                                 $table.="<th>"."Description"."</th>";
                                 $table.="<th>"."Date"."</th>";
                                 $table.="<th>"."Image"."</th>";
@@ -49,7 +67,7 @@
                             {
                                 $table.="<tr>";
                                 
-                                $table.="<td>".$damages[$i]->vehicle_id."</td>";
+                                // $table.="<td>".$damages[$i]->vehicle_id."</td>";
                                 $table.="<td>".$damages[$i]->description."</td>";
                                 $table.="<td>".$damages[$i]->date."</td>";
                                 $table.="<td>"."<img base_url(../../".$damages[$i]->image.") >"."</td>";
