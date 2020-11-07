@@ -22,7 +22,7 @@ class Vehicle extends CI_Controller
         else
         {
             $this->load->model('Vehicle_Model');
-            $response = $this->Vehicle_Model->insertUserData();
+            $response = $this->Vehicle_Model->insertVehicleData();
 
             if($response) {
                 $this->session->set_flashdata('vehicle_status', 'Registered Succuessful');

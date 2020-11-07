@@ -3,7 +3,7 @@
 
 class Vehicle_Model extends CI_Model
 {
-    public function insertUserData(){
+    public function insertVehicleData(){
         $user_data = array(
             'title' => $this->input->post('vehicleType', TRUE),
             'registered_number' => $this->input->post('vehicleRegisteredNumber', TRUE),
