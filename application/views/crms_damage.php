@@ -168,14 +168,14 @@
                 <div class="card">
                     <div class="card-body">
                         <?php
-                                if($this->session->flashdata('damage_status'))
-                                {
-                        ?>    
-                                <div class="alert alert-success">
-                                    <?php echo $this->session->flashdata('damage_status'); ?>
-                                </div>
-                        <?php        
-                                }
+                        if($this->session->flashdata('damage_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success">
+                                <?php echo $this->session->flashdata('damage_status'); ?>
+                            </div>
+                            <?php
+                        }
                         ?>
                         <br>
                         <h4 class="card-title text-danger">Damage Details</h4>
