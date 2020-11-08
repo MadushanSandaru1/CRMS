@@ -427,7 +427,7 @@
                        $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
                     }
 
-                   // Genarate report has  time specification and  want image also not solved damages
+                   // Genarate report has  time specification and  want image also all damages
                     if($get_time == "customize" && $damage_pic == "Yes" && $solved_type == "all")
                     {
                        $damages_cus = $this->Damage_Report_Model->getDateSpecificDamages();
@@ -448,6 +448,7 @@
 
                        $table = "";
                        $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
+                       $table.="<img src='".base_url('assets/images/report_header.png')."' >";
                        $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
                        $table.="<table class='table'>";
                             $table.="<tr>";
@@ -482,7 +483,7 @@
 
                             $table.="<br>";
                             $table.="<tr>";
-                                $table.="<td colspan=2>"."<b>Grant Total</b>"."</td>";
+                                $table.="<td colspan=4>"."<b>Grant Total</b>"."</td>";
                                 $table.="<td><b><u><u>".$sum." LKR/-"."</u></u></b></td>";
                             $table.="</tr>";
                        $table.="</table>";
@@ -491,7 +492,265 @@
                        $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
                    }
 
+                   // Genarate report has  time specification and  want image also  solved damages
+                   if($get_time == "customize" && $damage_pic == "Yes" && $solved_type == "solved")
+                   {
+                      $damages_cus = $this->Damage_Report_Model->getDateSpecificDamages();
+                      $sum =0;
+                      for($i=0;$i < sizeof($damages_cus);$i++)
+                      {
+                          if($damages[$i]->vehicle_id == $v_id)
+                               $vehicle = $damages[$i]->vehicle_id;
+                      }  
+                      
+                      for($i=0;$i < sizeof($vehicles);$i++)
+                      {
+                           if($vehicles[$i]->id == $vehicle)
+                           {
+                               $reg_no = $vehicles[$i]->registered_number;
+                           }
+                      }
 
+                      $table = "";
+                      $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
+                      $table.="<img src='".base_url('assets/images/report_header.png')."' >";
+                      $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
+                      $table.="<table class='table'>";
+                           $table.="<tr>";
+                               // $table.="<th>"."Vehicle ID"."</th>";
+                               $table.="<th>"."Description"."</th>";
+                               $table.="<th>"."Date"."</th>";
+                               $table.="<th>"."Image"."</th>";
+                               // $table.="<th>"."Reserved ID"."</th>";
+                               $table.="<th>"."Fix Amount"."</th>";
+                               $table.="<th>"."Is Solved"."</th>";
+                           $table.="</tr>";
+
+                           for($i=0;$i < sizeof($damages_cus);$i++)
+                           {
+                               if($damages[$i]->vehicle_id == $v_id && $damages[$i]->is_solved==1)
+                               {
+                                   $table.="<tr>";
+                                   $sum +=$damages[$i]->fix_amount;
+                                   // $table.="<td>".$damages[$i]->vehicle_id."</td>";
+                                   $table.="<td>".$damages_cus[$i]->description."</td>";
+                                   $table.="<td>".$damages_cus[$i]->d_date."</td>";
+                                   $table.="<td><img src='".base_url($damages_cus[$i]->image)."'></td>";
+                                   // $table.="<td>".$nic_arr[$i]."</td>";
+                                   $table.="<td>".$damages_cus[$i]->fix_amount." LKR/-"."</td>";
+                                   if($damages[$i]->is_solved == 0)
+                                       $table.="<td>"."<font color='red'>No</font>"."</td>";
+                                   else
+                                       $table.="<td>"."<font color='green'>Yes</font>"."</td>";    
+                                   $table.="</tr>";
+                               }
+                           }
+
+                           $table.="<br>";
+                           $table.="<tr>";
+                               $table.="<td colspan=4>"."<b>Grant Total</b>"."</td>";
+                               $table.="<td><b><u><u>".$sum." LKR/-"."</u></u></b></td>";
+                           $table.="</tr>";
+                      $table.="</table>";
+                      $this->pdf->loadHtml($table);
+                      $this->pdf->render();
+                      $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
+                  }
+
+                   // Genarate report has  time specification and  want image also  not solved damages
+                   if($get_time == "customize" && $damage_pic == "Yes" && $solved_type == "not_solved")
+                   {
+                      $damages_cus = $this->Damage_Report_Model->getDateSpecificDamages();
+                      $sum =0;
+                      for($i=0;$i < sizeof($damages_cus);$i++)
+                      {
+                          if($damages[$i]->vehicle_id == $v_id)
+                               $vehicle = $damages[$i]->vehicle_id;
+                      }  
+                      
+                      for($i=0;$i < sizeof($vehicles);$i++)
+                      {
+                           if($vehicles[$i]->id == $vehicle)
+                           {
+                               $reg_no = $vehicles[$i]->registered_number;
+                           }
+                      }
+
+                      $table = "";
+                      $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
+                      $table.="<img src='".base_url('assets/images/report_header.png')."' >";
+                      $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
+                      $table.="<table class='table'>";
+                           $table.="<tr>";
+                               // $table.="<th>"."Vehicle ID"."</th>";
+                               $table.="<th>"."Description"."</th>";
+                               $table.="<th>"."Date"."</th>";
+                               $table.="<th>"."Image"."</th>";
+                               // $table.="<th>"."Reserved ID"."</th>";
+                               $table.="<th>"."Fix Amount"."</th>";
+                               $table.="<th>"."Is Solved"."</th>";
+                           $table.="</tr>";
+
+                           for($i=0;$i < sizeof($damages_cus);$i++)
+                           {
+                               if($damages[$i]->vehicle_id == $v_id && $damages[$i]->is_solved==0)
+                               {
+                                   $table.="<tr>";
+                                   $sum +=$damages[$i]->fix_amount;
+                                   // $table.="<td>".$damages[$i]->vehicle_id."</td>";
+                                   $table.="<td>".$damages_cus[$i]->description."</td>";
+                                   $table.="<td>".$damages_cus[$i]->d_date."</td>";
+                                   $table.="<td><img src='".base_url($damages_cus[$i]->image)."'></td>";
+                                   // $table.="<td>".$nic_arr[$i]."</td>";
+                                   $table.="<td>".$damages_cus[$i]->fix_amount." LKR/-"."</td>";
+                                   if($damages[$i]->is_solved == 0)
+                                       $table.="<td>"."<font color='red'>No</font>"."</td>";
+                                   else
+                                       $table.="<td>"."<font color='green'>Yes</font>"."</td>";    
+                                   $table.="</tr>";
+                               }
+                           }
+
+                           $table.="<br>";
+                           $table.="<tr>";
+                               $table.="<td colspan=4>"."<b>Grant Total</b>"."</td>";
+                               $table.="<td><b><u><u>".$sum." LKR/-"."</u></u></b></td>";
+                           $table.="</tr>";
+                      $table.="</table>";
+                      $this->pdf->loadHtml($table);
+                      $this->pdf->render();
+                      $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
+                  }
+
+                  // Genarate report has  time specification and  want image also all damages
+                  if($get_time == "customize" && $damage_pic == "No" && $solved_type == "all")
+                  {
+                     $damages_cus = $this->Damage_Report_Model->getDateSpecificDamages();
+                     $sum =0;
+                     for($i=0;$i < sizeof($damages_cus);$i++)
+                     {
+                         if($damages[$i]->vehicle_id == $v_id)
+                              $vehicle = $damages[$i]->vehicle_id;
+                     }  
+                     
+                     for($i=0;$i < sizeof($vehicles);$i++)
+                     {
+                          if($vehicles[$i]->id == $vehicle)
+                          {
+                              $reg_no = $vehicles[$i]->registered_number;
+                          }
+                     }
+
+                     $table = "";
+                     $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
+                     $table.="<img src='".base_url('assets/images/report_header.png')."' >";
+                     $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
+                     $table.="<table class='table'>";
+                          $table.="<tr>";
+                              // $table.="<th>"."Vehicle ID"."</th>";
+                              $table.="<th>"."Description"."</th>";
+                              $table.="<th>"."Date"."</th>";
+                            //   $table.="<th>"."Image"."</th>";
+                              // $table.="<th>"."Reserved ID"."</th>";
+                              $table.="<th>"."Fix Amount"."</th>";
+                              $table.="<th>"."Is Solved"."</th>";
+                          $table.="</tr>";
+
+                          for($i=0;$i < sizeof($damages_cus);$i++)
+                          {
+                              if($damages[$i]->vehicle_id == $v_id)
+                              {
+                                  $table.="<tr>";
+                                  $sum +=$damages[$i]->fix_amount;
+                                  // $table.="<td>".$damages[$i]->vehicle_id."</td>";
+                                  $table.="<td>".$damages_cus[$i]->description."</td>";
+                                  $table.="<td>".$damages_cus[$i]->d_date."</td>";
+                                //   $table.="<td><img src='".base_url($damages_cus[$i]->image)."'></td>";
+                                  // $table.="<td>".$nic_arr[$i]."</td>";
+                                  $table.="<td>".$damages_cus[$i]->fix_amount." LKR/-"."</td>";
+                                  if($damages[$i]->is_solved == 0)
+                                      $table.="<td>"."<font color='red'>No</font>"."</td>";
+                                  else
+                                      $table.="<td>"."<font color='green'>Yes</font>"."</td>";    
+                                  $table.="</tr>";
+                              }
+                          }
+
+                          $table.="<br>";
+                          $table.="<tr>";
+                              $table.="<td colspan=3>"."<b>Grant Total</b>"."</td>";
+                              $table.="<td><b><u><u>".$sum." LKR/-"."</u></u></b></td>";
+                          $table.="</tr>";
+                     $table.="</table>";
+                     $this->pdf->loadHtml($table);
+                     $this->pdf->render();
+                     $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
+                 }
+
+                  // Genarate report has  time specification and  want image also  solved damages
+                  if($get_time == "customize" && $damage_pic == "No" && $solved_type == "solved")
+                  {
+                     $damages_cus = $this->Damage_Report_Model->getDateSpecificDamages();
+                     $sum =0;
+                     for($i=0;$i < sizeof($damages_cus);$i++)
+                     {
+                         if($damages[$i]->vehicle_id == $v_id)
+                              $vehicle = $damages[$i]->vehicle_id;
+                     }  
+                     
+                     for($i=0;$i < sizeof($vehicles);$i++)
+                     {
+                          if($vehicles[$i]->id == $vehicle)
+                          {
+                              $reg_no = $vehicles[$i]->registered_number;
+                          }
+                     }
+
+                     $table = "";
+                     $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
+                     $table.="<img src='".base_url('assets/images/report_header.png')."' >";
+                     $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
+                     $table.="<table class='table'>";
+                          $table.="<tr>";
+                              // $table.="<th>"."Vehicle ID"."</th>";
+                              $table.="<th>"."Description"."</th>";
+                              $table.="<th>"."Date"."</th>";
+                            //   $table.="<th>"."Image"."</th>";
+                              // $table.="<th>"."Reserved ID"."</th>";
+                              $table.="<th>"."Fix Amount"."</th>";
+                              $table.="<th>"."Is Solved"."</th>";
+                          $table.="</tr>";
+
+                          for($i=0;$i < sizeof($damages_cus);$i++)
+                          {
+                              if($damages[$i]->vehicle_id == $v_id && $damages[$i]->is_solved==1)
+                              {
+                                  $table.="<tr>";
+                                  $sum +=$damages[$i]->fix_amount;
+                                  // $table.="<td>".$damages[$i]->vehicle_id."</td>";
+                                  $table.="<td>".$damages_cus[$i]->description."</td>";
+                                  $table.="<td>".$damages_cus[$i]->d_date."</td>";
+                                //   $table.="<td><img src='".base_url($damages_cus[$i]->image)."'></td>";
+                                  // $table.="<td>".$nic_arr[$i]."</td>";
+                                  $table.="<td>".$damages_cus[$i]->fix_amount." LKR/-"."</td>";
+                                  if($damages[$i]->is_solved == 0)
+                                      $table.="<td>"."<font color='red'>No</font>"."</td>";
+                                  else
+                                      $table.="<td>"."<font color='green'>Yes</font>"."</td>";    
+                                  $table.="</tr>";
+                              }
+                          }
+
+                          $table.="<br>";
+                          $table.="<tr>";
+                              $table.="<td colspan=3>"."<b>Grant Total</b>"."</td>";
+                              $table.="<td><b><u><u>".$sum." LKR/-"."</u></u></b></td>";
+                          $table.="</tr>";
+                     $table.="</table>";
+                     $this->pdf->loadHtml($table);
+                     $this->pdf->render();
+                     $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
+                 }
             }
         }
 

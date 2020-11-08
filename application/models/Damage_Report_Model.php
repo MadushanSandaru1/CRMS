@@ -128,8 +128,11 @@
                 $start_date=$this->input->post('start_date',TRUE);
                 $end_date=$this->input->post('end_date',TRUE);
 
-                $this->db->query("select *from damage where d_date >= '$start_date' ");
-                $query = $this->db->get('damage');
+                $this->db->select('*');
+                $this->db->where('d_date >=',$start_date);
+                $this->db->where('d_date <=',$end_date);
+                $this->db->from('damage');
+                $query = $this->db->get();
                 if($query->num_rows() > 0)
                 {
                         return $query->result();
