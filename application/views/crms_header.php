@@ -120,7 +120,7 @@
 
                             <!-- notification item -->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
+                            <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification')?>">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-success"><i class="mdi mdi-calendar"></i></div>
                                 </div>

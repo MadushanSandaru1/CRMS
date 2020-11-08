@@ -187,7 +187,9 @@ class Home extends CI_Controller {
     //crms notification page
     public function crms_notification()
     {
-        $this->load->view('crms_notification');
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->vehiacal_notifi();
+        $this->load->view('crms_notification',$data);
     }
 
     //crms message page
