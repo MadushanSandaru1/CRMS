@@ -9,10 +9,16 @@
         border-radius:250px;
     }
 
-    .alert-danger:hover{
+    .alert{
+        box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.3), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        background-color:white;
+    }
+
+    .alert:hover{
         transform: scale(1.01);
         transition: 0.5s;
         box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.3), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        background-color:rgba(255,185,196,0.44);
     }
 </style>
 
@@ -56,7 +62,7 @@
                                 if( $back_date < $today_date && $future_date > $today_date){
 
                         ?>
-                        <div class="alert alert-danger notification  text-black" role="alert">
+                        <div class="alert notification  text-black" role="alert">
                             <img src="<?php echo base_url($row->image);?>"
                             <label class="mr-4">The Revenue License of this vehicle  <b><?php echo $row->registered_number;?></b>, is about to expire .The date of expire is <?php echo $after_one_year;?></label>
                             <label class="mr-4"></label>
@@ -73,7 +79,7 @@
                                 $back_date=date("Y-m-d",strtotime($after_one_year."-10 day"));
                                 if( $back_date < $today_date && $future_date > $today_date){
                         ?>
-                        <div class="alert alert-danger notification  text-black" role="alert">
+                        <div class="alert notification  text-black" role="alert">
                             <img src="<?php echo base_url($row->image);?>"
                             <label class="mr-4">The Insuranse of this vehicle <b><?php echo $row->registered_number;?></b> is about to expire .The date of expire is <?php echo $after_one_year;?></label>
                             <label class="mr-4"></label>
