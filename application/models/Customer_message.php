@@ -46,4 +46,9 @@ class Customer_message extends CI_Model {
 
         return $delete_msg;
     }
+
+    function vehiacal_notifi(){
+        $vehical=$this->db->query("SELECt * FROM vehicle");
+        return $vehical;
+    }
 }

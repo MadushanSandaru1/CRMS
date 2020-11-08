@@ -1,3 +1,21 @@
+<style>
+    .notification{
+        cursor: pointer;
+        user-select:text;
+    }
+    .notification img{
+        width:80px;
+        height:80px;
+        border-radius:250px;
+    }
+
+    .alert-danger:hover{
+        transform: scale(1.01);
+        transition: 0.5s;
+        box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.3), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    }
+</style>
+
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">
@@ -25,7 +43,48 @@
         </div>
 
         <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body ">
+                        <?php
+                            date_default_timezone_set('Asia/Colombo');
+                            $today_date=date("Y-m-d");
+                            foreach($fetch_data->result() as $row){
+                                $after_one_year=date("Y-m-d",strtotime($row->revenue_license_date."+365 day"));
+                                $future_date=date("Y-m-d",strtotime($after_one_year."+10 day"));
+                                $back_date=date("Y-m-d",strtotime($after_one_year."-10 day"));
+                                if( $back_date < $today_date && $future_date > $today_date){
 
+                        ?>
+                        <div class="alert alert-danger notification  text-black" role="alert">
+                            <img src="<?php echo base_url($row->image);?>"
+                            <label class="mr-4">The Revenue License of this vehicle  <b><?php echo $row->registered_number;?></b>, is about to expire .The date of expire is <?php echo $after_one_year;?></label>
+                            <label class="mr-4"></label>
+                        </div>
+                        <?php
+                                }
+                            }
+                        ?>
+
+                        <?php
+                            foreach($fetch_data->result() as $row){
+                                $after_one_year=date("Y-m-d",strtotime($row->insurence_date."+365 day"));
+                                $future_date=date("Y-m-d",strtotime($after_one_year."+10 day"));
+                                $back_date=date("Y-m-d",strtotime($after_one_year."-10 day"));
+                                if( $back_date < $today_date && $future_date > $today_date){
+                        ?>
+                        <div class="alert alert-danger notification  text-black" role="alert">
+                            <img src="<?php echo base_url($row->image);?>"
+                            <label class="mr-4">The Insuranse of this vehicle <b><?php echo $row->registered_number;?></b> is about to expire .The date of expire is <?php echo $after_one_year;?></label>
+                            <label class="mr-4"></label>
+                        </div>
+                        <?php
+                                }
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
