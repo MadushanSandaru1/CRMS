@@ -133,13 +133,9 @@
                 $this->db->where('d_date <=',$end_date);
                 $this->db->from('damage');
                 $query = $this->db->get();
-                if($query->num_rows() > 0)
-                {
-                        return $query->result();
-                }
-                else
-                        return 0;
+                return $query->result();
                 
+                               
             }
         }
  ?>
