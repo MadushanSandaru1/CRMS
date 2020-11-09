@@ -1,3 +1,29 @@
+<?php
+
+    //session timeout error
+    if ((!$this->session->userdata('user_id')) && ($user_data->num_rows() <= 0)) {
+        $this->session->set_flashdata('user_status', 'Session timeout');
+
+        //redirect to sign in page
+        redirect('Home/crms_signin');
+    }
+
+    if (!$this->session->userdata('user_id')) {
+        $user_data_row = (array)$user_data->result()[0];
+        $session_data = array(
+            'user_id' => $user_data_row['id'],
+            'user_name' => $user_data_row['name'],
+            'user_nic' => $user_data_row['nic'],
+            'user_email' => $user_data_row['email'],
+            'user_phone' => $user_data_row['phone'],
+            'user_address' => $user_data_row['address'],
+            'user_image' => $user_data_row['image'],
+            'user_role' => $user_data_row['role']
+        );
+        $this->session->set_userdata($session_data);
+    }
+?>
+
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">

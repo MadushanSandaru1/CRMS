@@ -1,3 +1,15 @@
+<?php
+
+    //session timeout error
+    if (!$this->session->userdata('user_id')) {
+        $this->session->set_flashdata('user_status', 'Session timeout');
+
+        //redirect to sign in page
+        redirect('Home/crms_signin');
+    }
+
+?>
+
 <style>
     .notification{
         cursor: pointer;

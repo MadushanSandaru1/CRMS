@@ -82,9 +82,12 @@ class Home extends CI_Controller {
     //crms dashboard page
     public function crms_dash()
     {
-//        $this->load->view('crms_dashboard');
-        $this->load->model("Customer_message");
-        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+//        $this->load->model("Customer_message");
+//        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+
+        $this->load->model("User_Model");
+        $data['user_data'] = $this->User_Model->getSpecificUserDetails();
+
         $this->load->view('crms_dashboard',$data);
     }
 
