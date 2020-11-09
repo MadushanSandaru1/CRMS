@@ -1,7 +1,7 @@
 <style>
     .notification{
         cursor: pointer;
-        user-select:text;
+        user-select:none;
     }
     .notification img{
         width:80px;
@@ -11,7 +11,6 @@
 
     .alert{
         box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.3), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-        background-color:white;
     }
 
     .alert:hover{
@@ -53,6 +52,7 @@
                 <div class="card">
                     <div class="card-body ">
                         <?php
+
                             date_default_timezone_set('Asia/Colombo');
                             $today_date=date("Y-m-d");
                             foreach($fetch_data->result() as $row){
@@ -60,13 +60,18 @@
                                 $future_date=date("Y-m-d",strtotime($after_one_year."+10 day"));
                                 $back_date=date("Y-m-d",strtotime($after_one_year."-10 day"));
                                 if( $back_date < $today_date && $future_date > $today_date){
-
+                                    if($after_one_year < $today_date){
+                                        $bg_coloe="#ff0000";
+                                    }else{
+                                        $bg_coloe="";
+                                    }
                         ?>
-                        <div class="alert notification  text-black" role="alert">
-                            <img src="<?php echo base_url($row->image);?>"
-                            <label class="mr-4">The Revenue License of this vehicle  <b><?php echo $row->registered_number;?></b>, is about to expire .The date of expire is <?php echo $after_one_year;?></label>
-                            <label class="mr-4"></label>
+                        <a href="#notify">
+                        <div class="alert notification  text-black" style="color:<?php echo $bg_coloe;?>" onclick="revenue_lic('<?php echo $row->id;?>')">
+                            <img src="<?php echo base_url($row->image);?>">&nbsp;&nbsp;
+                            <label class="mr-10" >The Revenue License of this vehicle  <b><?php echo $row->registered_number;?></b>, is about to expire . The date of expire is  <b><?php echo $after_one_year;?></b></label>
                         </div>
+                        </a>
                         <?php
                                 }
                             }
@@ -76,13 +81,17 @@
                             foreach($fetch_data->result() as $row){
                                 $after_one_year=date("Y-m-d",strtotime($row->insurence_date."+365 day"));
                                 $future_date=date("Y-m-d",strtotime($after_one_year."+10 day"));
-                                $back_date=date("Y-m-d",strtotime($after_one_year."-10 day"));
+                                $back_date=date("Y-m-d",strtotime($after_one_year."-20 day"));
                                 if( $back_date < $today_date && $future_date > $today_date){
+                                    if($after_one_year < $today_date){
+                                        $bg_coloe="#ff0000";
+                                    }else{
+                                        $bg_coloe="";
+                                    }
                         ?>
-                        <div class="alert notification  text-black" role="alert">
-                            <img src="<?php echo base_url($row->image);?>"
-                            <label class="mr-4">The Insuranse of this vehicle <b><?php echo $row->registered_number;?></b> is about to expire .The date of expire is <?php echo $after_one_year;?></label>
-                            <label class="mr-4"></label>
+                        <div class="alert notification  text-black" style="color:<?php echo $bg_coloe;?>" onclick="revenue_lic(<?php echo $row->id?>)">
+                            <img src="<?php echo base_url($row->image);?>">&nbsp;&nbsp;
+                            <label class="mr-4">The Insurance of this vehicle <b><?php echo $row->registered_number;?></b> is about to expire . The date of expire is  <b><?php echo $after_one_year;?></b></label>
                         </div>
                         <?php
                                 }
@@ -93,6 +102,36 @@
             </div>
         </div>
 
+    <!--notification show-->
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card" >
+                    <div class="card-body" id="notify">
+<!--                        <label id="n">-->
+<!--                            <img src="--><?php //echo base_url("assets/images/b2.jpg");?><!--" id="myImg">-->
+<!--                        </label>-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- content-wrapper ends -->
-<?php require_once 'crms_footer.php';?>
+<?php require_once "crms_footer.php";?>
+<script>
+    function revenue_lic(id){
+        //document.getElementById("myImg").src=id;
+
+        $.ajax({
+            url:"<?php echo base_url('index.php/Home/notification_show')?>",
+            method:"POST",
+            data: {id:id},
+            success:function (data){
+                document.getElementById("notify").innerHTML=data;
+            }
+        });
+    }
+
+    function insurense(id){
+
+    }
+</script>

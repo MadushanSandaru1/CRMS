@@ -252,4 +252,12 @@ class Home extends CI_Controller {
         }
 
     }
+
+    public function notification_show(){
+//        $data=$this->input->post('data');
+        $id=$_POST['id'];
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->notifi_show($id);
+        $this->load->view('notification_show_ajax',$data);
+    }
 }

@@ -51,4 +51,9 @@ class Customer_message extends CI_Model {
         $vehical=$this->db->query("SELECt * FROM vehicle");
         return $vehical;
     }
+
+    function notifi_show($id){
+        $vehical_noti=$this->db->query("SELECt * FROM vehicle WHERE id='$id'");
+        return $vehical_noti;
+    }
 }
