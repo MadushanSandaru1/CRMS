@@ -1,6 +1,6 @@
 <?php 
 
-	class Contact extends CI_Controller
+	class Customer extends CI_Controller
 
     {
 
