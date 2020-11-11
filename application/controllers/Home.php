@@ -82,9 +82,12 @@ class Home extends CI_Controller {
     //crms dashboard page
     public function crms_dash()
     {
-//        $this->load->view('crms_dashboard');
-        $this->load->model("Customer_message");
-        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+//        $this->load->model("Customer_message");
+//        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+
+        $this->load->model("User_Model");
+        $data['user_data'] = $this->User_Model->getSpecificUserDetails();
+
         $this->load->view('crms_dashboard',$data);
     }
 
@@ -97,7 +100,9 @@ class Home extends CI_Controller {
     //crms car page
     public function crms_car()
     {
-        $this->load->view('crms_car');
+        $this->load->model("Vehicle_Model");
+        $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
+        $this->load->view('crms_car', $data);
     }
 
     //crms customer page
@@ -185,7 +190,9 @@ class Home extends CI_Controller {
     //crms notification page
     public function crms_notification()
     {
-        $this->load->view('crms_notification');
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->vehiacal_notifi();
+        $this->load->view('crms_notification',$data);
     }
 
     //crms message page
@@ -247,5 +254,13 @@ class Home extends CI_Controller {
             redirect('Home/crms_message/'.$class);
         }
 
+    }
+
+    public function notification_show(){
+//        $data=$this->input->post('data');
+        $id=$_POST['id'];
+        $this->load->model("Customer_message");
+        $data["fetch_data"]=$this->Customer_message->notifi_show($id);
+        $this->load->view('notification_show_ajax',$data);
     }
 }

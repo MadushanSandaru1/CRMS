@@ -1,3 +1,9 @@
+<?php
+    if ($this->session->userdata('user_id')) {
+        redirect('Home/crms_dash');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,24 +37,38 @@
                                 <h4>Recover Password</h4>
                                 <h6 class="font-weight-light">Don't worry, happens to the best of us.</h6>
 
-                                <!-- sign in form -->
-                                <form class="pt-3">
+                                <!-- password recover form -->
+                                <?php echo form_open('User/recover_password'); ?>
+                                <div class="pt-3">
                                     <!-- username -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username or Email">
+                                        <input type="text" class="form-control form-control-lg" name="recover_email" placeholder="Email">
                                     </div>
 
-                                    <!-- reset button -->
+                                    <!-- recover button code -->
                                     <div class="mt-3">
-                                        <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="<?php echo base_url('index.php/Home/crms_reset_code'); ?>">GET RESET CODE</a>
+                                        <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">GET RESET CODE</button>
                                     </div>
 
                                     <div class="my-2 d-flex justify-content-center align-items-center">
                                         <!-- back to sign in button -->
                                         <a href="<?php echo base_url('index.php/Home/crms_signin'); ?>" class="mt-2 auth-link text-black">Back to sign in</a>
                                     </div>
-                                </form>
-                                <!-- ** sign in form -->
+                                </div>
+                                <!-- ** password recover form -->
+
+                                <?php echo form_close(); ?>
+                                <div class="text-danger">
+                                    <?php
+                                    if($this->session->flashdata('recover_status'))
+                                    {
+                                        echo $this->session->flashdata('recover_status');
+                                    }
+
+                                    echo validation_errors();
+                                    ?>
+                                </div>
+
                             </div>
                         </div>
                     </div>

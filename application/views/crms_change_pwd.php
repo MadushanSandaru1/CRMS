@@ -1,3 +1,9 @@
+<?php
+    if ($this->session->userdata('user_id')) {
+        redirect('Home/crms_dash');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

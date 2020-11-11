@@ -1,3 +1,15 @@
+<?php
+
+    //session timeout error
+    if (!$this->session->userdata('user_id')) {
+        $this->session->set_flashdata('user_status', 'Session timeout');
+
+        //redirect to sign in page
+        redirect('Home/crms_signin');
+    }
+
+?>
+
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">

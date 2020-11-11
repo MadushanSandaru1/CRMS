@@ -1,3 +1,9 @@
+<?php
+    if ($this->session->userdata('user_id')) {
+        redirect('Home/crms_dash');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,18 +37,18 @@
                                 <h4>Hello! let's get started</h4>
                                 <h6 class="font-weight-light">Sign in to continue.</h6>
 
-                                <?php #echo form_open('Signin/user_signin'); ?>
+                                <?php echo form_open('User/user_signin'); ?>
 
                                 <!-- sign in form -->
                                 <div class="pt-3">
                                     <!-- username -->
                                     <div class="form-group">
-                                        <input type="text" name="signin_username" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username or Email">
+                                        <input type="text" value="<?php echo get_cookie('keep_signin'); ?>" name="signin_email" class="form-control form-control-lg" id="signin_email" placeholder="Email">
                                     </div>
 
                                     <!-- password -->
                                     <div class="form-group">
-                                        <input type="password" name="signin_password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                                        <input type="password" name="signin_password" class="form-control form-control-lg" id="signin_password" placeholder="Password">
                                     </div>
 
                                     <?php
@@ -64,7 +70,7 @@
                                         <!-- keep me checkbox button -->
                                         <div class="form-check">
                                             <label class="form-check-label text-muted">
-                                                <input type="checkbox" class="form-check-input"> Keep me signed in </label>
+                                                <input type="checkbox" name="keep_signin" class="form-check-input" <?php if(get_cookie('keep_signin')) echo 'checked';  ?>> Remember me </label>
                                         </div>
 
                                         <!-- forgot password button -->
@@ -73,9 +79,16 @@
                                 </div>
                                 <!-- ** sign in form -->
 
-                                <?php #echo form_close(); ?>
+                                <?php echo form_close(); ?>
                                 <div class="text-danger">
-                                    <?php #echo validation_errors(); ?>
+                                    <?php
+                                        if($this->session->flashdata('user_status'))
+                                        {
+                                            echo $this->session->flashdata('user_status');
+                                        }
+
+                                        echo validation_errors();
+                                    ?>
                                 </div>
 
                             </div>
