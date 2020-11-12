@@ -4,21 +4,15 @@
                 public function getVehicleID()
                 {
                         $query = $this->db->get('vehicle');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
 
                 public function getReservedID()
                 {
                         $query =$this->db->get('reserved');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
 
                 public function insertDamage($data)
@@ -54,21 +48,15 @@
                 public function getDamageDetails()
                 {
                         $query =$this->db->get('damage');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
 
                 public function getCustomerDetails()
                 {
                         $query =$this->db->get('customer');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
                 
         }
