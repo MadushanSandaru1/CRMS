@@ -18,7 +18,7 @@
                     'additional_price_per_hour' => $this->input->post('per_hour',TRUE),
                     'system_registered_date' => $cur_date,
                     'insurence_date' => $this->input->post('insurence_date',TRUE),
-                    'revenue_license_date' => $this->input->post('revenue_licence_date',TRUE),
+                    'revenue_license_date' => $this->input->post('revenue_license_date',TRUE),
                 );
 
                 //print_r($values);

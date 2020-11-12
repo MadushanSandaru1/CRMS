@@ -114,7 +114,10 @@ class Home extends CI_Controller {
     //crms guarantor page
     public function crms_guarantor()
     {
-        $this->load->view('crms_guarantor');
+        $this->load->model("Guarantor_Model");
+        $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
+        $data['reserved_data'] = $this->Guarantor_Model->getReservedData();
+        $this->load->view('crms_guarantor', $data);
     }
 
     //crms car reserved page
