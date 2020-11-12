@@ -22,7 +22,7 @@
                     <input value="<?php echo $email;?>" name="email" class="common-input mb-20 form-control"  readonly>
                     <label class="col-form-label">Message : </label>
                     <textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-                    <br><input type="submit" class="btn btn-primary" name="submit" value="Send"></input>
+                    <br><input type="submit" class="btn btn-primary" name="submit" value="Send">
                 </div>
 
             </div>
