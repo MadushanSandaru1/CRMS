@@ -43,33 +43,33 @@
                    $reg_no="";
 
                    //arrays
-                   $res_ids = array();
-                   $cus_ids = array();
-                   $nic_arr = array();
+                //    $res_ids = array();
+                //    $cus_ids = array();
+                //    $nic_arr = array();
 
                    //get reseved ids to array
-                   for($i=0;$i < sizeof($damages);$i++)
-                   {
-                       array_push($res_ids,$damages[$i]->reserved_id);
-                   }
+                //    for($i=0;$i < sizeof($damages);$i++)
+                //    {
+                //        array_push($res_ids,$damages[$i]->reserved_id);
+                //    }
                
                    //get customers ids to array
-                   for($i=0;$i < sizeof($res_id);$i++)
-                   {
-                       if($res_ids[$i] == $res_id[$i]->id)
-                       {
-                            array_push($cus_ids,$res_id[$i]->customer_id);
-                       }
-                   }
+                //    for($i=0;$i < sizeof($res_id);$i++)
+                //    {
+                //        if($res_ids[$i] == $res_id[$i]->id)
+                //        {
+                //             array_push($cus_ids,$res_id[$i]->customer_id);
+                //        }
+                //    }
 
                    //get customer nic numbers to array
-                   for($i=0;$i < sizeof($cus);$i++)
-                   {
-                       if($cus_ids[$i] == $cus[$i]->id)
-                       {
-                            array_push($nic_arr,$cus[$i]->nic);
-                       }
-                   }
+                //    for($i=0;$i < sizeof($cus);$i++)
+                //    {
+                //        if($cus_ids[$i] == $cus[$i]->id)
+                //        {
+                //             array_push($nic_arr,$cus[$i]->nic);
+                //        }
+                //    }
 
                    // Genarate report has no time specification and want image 
                    if($get_time == "all" && $damage_pic == "Yes" && $solved_type == "all")
@@ -160,7 +160,7 @@
                                 // $table.="<th>"."Vehicle ID"."</th>";
                                 $table.="<th>"."Description"."</th>";
                                 $table.="<th>"."Date"."</th>";
-                                $table.="<th>"."Reserved ID"."</th>";
+                                // $table.="<th>"."Reserved ID"."</th>";
                                 $table.="<th>"."Fix Amount"."</th>";
                                 $table.="<th>"."Is Solved"."</th>";
                             $table.="</tr>";
@@ -174,7 +174,7 @@
                                     // $table.="<td>".$damages[$i]->vehicle_id."</td>";
                                     $table.="<td>".$damages[$i]->description."</td>";
                                     $table.="<td>".$damages[$i]->d_date."</td>";
-                                    $table.="<td>".$nic_arr[$i]."</td>";
+                                    // $table.="<td>".$nic_arr[$i]."</td>";
                                     $table.="<td>".$damages[$i]->fix_amount." LKR/-"."</td>";
                                     if($damages[$i]->is_solved == 0)
                                         $table.="<td>"."<font color='red'>No</font>"."</td>";

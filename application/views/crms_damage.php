@@ -217,7 +217,7 @@
                                                     <?php endif;?>
                                                 <?php endfor; ?>
                                             </td>
-                          	                <td><?php echo $values->date;?></td>
+                          	                <td><?php echo $values->d_date;?></td>
                           	                <td><?php echo $values->description; ?></td>
                           	                <td>
                                                 <?php for($i=0;$i < sizeof($getCustomerDetails);$i++): ?>

@@ -34,7 +34,7 @@
                         $values = array(
                                 'vehicle_id' => $this->input->post('vehicle_id', TRUE),
                                 'description' => $this->input->post('description', TRUE),
-                                'date' => $this->input->post('d_date', TRUE),
+                                'd_date' => $this->input->post('d_date', TRUE),
                                 'image'=> $data,
                                 'reserved_id'=> $reserved_id,
                                 'fix_amount'=> $this->input->post('fix_amount', TRUE),
