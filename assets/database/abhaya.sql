@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 12, 2020 at 04:03 AM
+-- Generation Time: Nov 12, 2020 at 04:12 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -32,6 +32,9 @@ DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_nic` char(12) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
+  `customer_email` varchar(100) NOT NULL,
+  `customer_phone` char(10) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
   `from_date` datetime NOT NULL,
   `to_date` datetime NOT NULL,
@@ -46,8 +49,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id`, `customer_nic`, `vehicle_id`, `from_date`, `to_date`, `posting_date`, `message`, `status`, `is_deleted`) VALUES
-(1, '980171329V', 2, '2020-11-19 00:00:00', '2020-11-20 00:00:00', '2020-11-12 00:00:00', 'Testing message', 0, 0);
+INSERT INTO `booking` (`id`, `customer_nic`, `customer_name`, `customer_email`, `customer_phone`, `vehicle_id`, `from_date`, `to_date`, `posting_date`, `message`, `status`, `is_deleted`) VALUES
+(1, '980171329V', 'Sapumal', 'sapu@gmail.com', '0752410236', 2, '2020-11-19 00:00:00', '2020-11-20 00:00:00', '2020-11-12 00:00:00', 'Testing message', 0, 0);
 
 -- --------------------------------------------------------
 
