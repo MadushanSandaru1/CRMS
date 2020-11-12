@@ -42,33 +42,55 @@
                 <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
+
+                      <?php
+                      if($this->session->flashdata('guarantor_status'))
+                      {
+                          ?>
+                          <div class="alert alert-success">
+                              <?php echo $this->session->flashdata('guarantor_status'); ?>
+                          </div>
+                          <?php
+                      }
+                      ?>
+                    <br>
                     <h4 class="card-title text-danger mb-5">Add Guarantor details</h4>
-                    <form class="forms-sample">
+                      <?php echo validation_errors(); ?>
+                      <?php echo form_open('Guarantor/add_guarantor');  ?>
                         <div class="form-group">
                             <label for="guarantorID"><b>Reserved ID</b></label>
-                            <select class="custom-select" name="guarantorID">
-                                <option value="">Select Reserved ID</option>
+                            <select class="custom-select" name="reservedID">
+                                <?php
+                                if($reserved_data->num_rows() > 0) {
+                                    foreach ($reserved_data->result() as $data_row) {
+                                        echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                    }
+                                } else {
+                                    echo "<option>Data not found</option>";
+                                }
+                                ?>
+
                             </select>
                         </div>
                       <div class="form-group">
                         <label for="guarantorName">Name</label>
-                        <input type="text" class="form-control" id="guarantorName" placeholder="Name">
+                        <input type="text" class="form-control" id="guarantorName" name="guarantorName" placeholder="Name">
                       </div>
                       <div class="form-group">
                         <label for="guarantorNIC">NIC</label>
-                        <input type="password" class="form-control" id="guarantorNIC" placeholder="NIC">
+                        <input type="text" class="form-control" id="guarantorNIC" name="guarantorNIC" placeholder="NIC">
                       </div>
                       <div class="form-group">
                         <label for="guarantorPhone">Phone</label>
-                        <input type="email" class="form-control" id="guarantorPhone" placeholder="Phone">
+                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="Phone">
                       </div>
                       <div class="form-group">
                         <label for="guarantorAddress">Address</label>
-                        <textarea class="form-control" id="guarantorAddress" rows="4" placeholder="Phone"> </textarea>
+                        <textarea class="form-control" id="guarantorAddress" name="guarantorAddress" rows="4" placeholder="address"> </textarea>
                       </div>
                       <div class="form-group">
                         <label>License Copy</label>
-                        <input type="file" name="img[]" class="file-upload-default">
+                        <input type="file" name="licenseImage" class="file-upload-default">
                         <div class="input-group col-xs-12">
                           <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                           <span class="input-group-append">
@@ -78,7 +100,7 @@
                       </div>
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
-                    </form>
+                      <?php echo form_close();  ?>
                   </div>
                 </div>
               </div>
@@ -95,23 +117,42 @@
                                 <th>NIC</th>
                                 <th>Phone</th>
                                 <th>Address</th>
-                                <th>License Copy</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Photoshop</td>
-                                <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td>
-                                <td><label class="badge badge-danger">Pending</label></td>
-                            </tr>
+                            <?php
+                            if($guarantor_data->num_rows() > 0) {
+                                foreach ($guarantor_data->result() as $data_row){
+                            ?>
+                                    <tr>
+                                        <td><?php echo $data_row->id; ?></td>
+                                        <td> <?php echo $data_row->reserved_id; ?> </td>
+                                        <td><?php echo $data_row->name; ?></td>
+                                        <td><?php echo $data_row->nic; ?></td>
+                                        <td><?php echo $data_row->phone; ?></td>
+                                        <td><?php echo $data_row->address; ?></td>
+                                        <td>
+                                            <a href=""><span class="mdi mdi-eyedropper "> Edit</span></a>
+                                            <a href=""><span class="mdi mdi-close-circle ml-4"> Remove</span></a>
+                                        </td>
+                                    </tr>
+                            <?php
+                                }
+                            }
+                            else {
+                            ?>
+                                <tr>
+                                    <td colspan="14">No Data Found</td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
