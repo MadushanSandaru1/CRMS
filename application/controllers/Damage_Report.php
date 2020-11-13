@@ -136,7 +136,7 @@
                        
                        $this->load->view('crms_genarate_pdf_file.php');
                        $html = $this->output->get_output();
-                       $this->pdf->loadHtml($html);
+                       $this->pdf->loadHtml($table);
                        $this->pdf->render();
                        $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
                    }
