@@ -129,6 +129,8 @@
                                 $table.="<td><b><u><u>".$sum." LKR/-"."</u></u></b></td>";
                             $table.="</tr>";
                        $table.="</table>";
+                    //    $this->pdf->loadHtml($aData['html']);
+                    //    $this->pdf->set_option('isRemoteEnabled',TRUE);
                        $this->pdf->loadHtml($table);
                        $this->pdf->render();
                        $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
