@@ -114,7 +114,10 @@ class Home extends CI_Controller {
     //crms guarantor page
     public function crms_guarantor()
     {
-        $this->load->view('crms_guarantor');
+        $this->load->model("Guarantor_Model");
+        $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
+        $data['reserved_data'] = $this->Guarantor_Model->getReservedData();
+        $this->load->view('crms_guarantor', $data);
     }
 
     //crms car reserved page
@@ -221,8 +224,8 @@ class Home extends CI_Controller {
 
     //email
     public function mail(){
-	    $config=Array(
-	      'protocol'=>'smtp',
+        $config=Array(
+            'protocol'=>'smtp',
             'smtp_host'=>'ssl://smtp.googlemail.com',
             'smtp_port'=>465,
             'smtp_user'=>'lahirusampathsadaruwan@gmail.com',
@@ -231,24 +234,24 @@ class Home extends CI_Controller {
             'charset'=>'iso-8859-1',
             'wordwrap'=>TRUE,
         );
-	    $email=$this->input->post('email');
-	    $msg=$this->input->post('message_content');
+        $email=$this->input->post('email');
+        $msg=$this->input->post('message_content');
         $msg_id=$this->input->post('msg_id');
         $class="none";
 
-	    $this->load->library('email',$config);
-	    $this->email->set_newline("\r\n");
-	    $this->email->from('lahirusampathsadaruwan@gmail.com'); //my gmail address
-	    $this->email->to($email); //to gmail address
-	    $this->email->subject('Test mail');
-	    $this->email->message($msg);
+        $this->load->library('email',$config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('lahirusampathsadaruwan@gmail.com'); //my gmail address
+        $this->email->to('lahirusampath8899@gmail.com'); //to gmail address
+        $this->email->subject('Test mail');
+        $this->email->message('as');
 
-	    if($this->email->send()){
+        if($this->email->send()){
             //reply msg  1 ;
             $this->load->model("Customer_message");
             $this->Customer_message->updateReply($msg_id);
             $class="block";
-	        redirect('Home/crms_message/'.$class);
+            redirect('Home/crms_message/'.$class);
         }else{
             $class="none";
             redirect('Home/crms_message/'.$class);

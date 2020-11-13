@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="vehicleLicense">Revenue License Date</label>
-                                        <input type="date" class="form-control" id="vehicleLicense" placeholder="Revenue License Date" name="revenue_licence_date" required>
+                                        <input type="date" class="form-control" id="vehicleLicense" placeholder="Revenue License Date" name="revenue_license_date" required>
                                     </div>
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                     <button type="reset" class="btn btn-light">Reset</button>

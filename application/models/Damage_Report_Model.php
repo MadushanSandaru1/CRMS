@@ -4,11 +4,8 @@
             public function getVehicleID()
             {
                 $query = $this->db->get('vehicle');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                return $query->result();
+                        
             }
 
             public function getDamageDetails()
