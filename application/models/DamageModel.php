@@ -59,6 +59,15 @@
                         
                 }
                 
+                public function filterDamagesDetails()
+                {
+                        $v_id = $this->input->post('vehicle_id',TRUE);
+                        $this->db->select('*');
+                        $this->db->where('id=',$v_id);
+                        $this->db->from('damage');
+                        $query = $this->db->get();
+                        return $query->result();
+                }
         }
 
  ?>

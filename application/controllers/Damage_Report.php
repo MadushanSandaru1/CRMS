@@ -1,4 +1,5 @@
 <?php
+     defined('BASEPATH') OR exit('No direct script access allowed');
      class Damage_Report extends CI_Controller
      {
          function __construct()
@@ -91,6 +92,7 @@
 
                        $table = "";
                        $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
+                       $table.="<img src=".base_url('assets/images/report_header.png')." >";
                        $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
                        $table.="<table class='table'>";
                             $table.="<tr>";
@@ -112,7 +114,7 @@
                                     // $table.="<td>".$damages[$i]->vehicle_id."</td>";
                                     $table.="<td>".$damages[$i]->description."</td>";
                                     $table.="<td>".$damages[$i]->d_date."</td>";
-                                    $table.="<td><img src='".base_url()."../".$damages[$i]->image."'></td>";
+                                    $table.="<td><img src='".base_url()."".$damages[$i]->image."'></td>";
                                     // $table.="<td>".$nic_arr[$i]."</td>";
                                     $table.="<td>".$damages[$i]->fix_amount." LKR/-"."</td>";
                                     if($damages[$i]->is_solved == 0)
@@ -131,7 +133,10 @@
                        $table.="</table>";
                     //    $this->pdf->loadHtml($aData['html']);
                     //    $this->pdf->set_option('isRemoteEnabled',TRUE);
-                       $this->pdf->loadHtml($table);
+                       
+                       $this->load->view('crms_genarate_pdf_file.php');
+                       $html = $this->output->get_output();
+                       $this->pdf->loadHtml($html);
                        $this->pdf->render();
                        $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
                    }
