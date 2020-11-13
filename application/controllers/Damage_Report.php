@@ -92,8 +92,9 @@
 
                        $table = "";
                        $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
-                       $table.="<img src=".base_url('assets/images/report_header.png')." >";
-                       $table.="<h4><font color='blue'>".$reg_no." Vehicle Damage Details</font>"."</h4>";
+                       $table.="<img src=assets/images/report_header.png  width=100% heighr=20%>";
+                       $table.="<center><h4>Vehicle Damage Details</h4></center><br>";
+                       $table.="<font> Vehicle Registration Number : ".$reg_no."</font>"."</h4><br><br>";
                        $table.="<table class='table'>";
                             $table.="<tr>";
                                 // $table.="<th>"."Vehicle ID"."</th>";
@@ -114,7 +115,7 @@
                                     // $table.="<td>".$damages[$i]->vehicle_id."</td>";
                                     $table.="<td>".$damages[$i]->description."</td>";
                                     $table.="<td>".$damages[$i]->d_date."</td>";
-                                    $table.="<td><img src='".base_url()."".$damages[$i]->image."'></td>";
+                                    $table.="<td><img src='".$damages[$i]->image."' width=180px height=150px></td>";
                                     // $table.="<td>".$nic_arr[$i]."</td>";
                                     $table.="<td>".$damages[$i]->fix_amount." LKR/-"."</td>";
                                     if($damages[$i]->is_solved == 0)
@@ -127,7 +128,7 @@
 
                             $table.="<br>";
                             $table.="<tr>";
-                                $table.="<td colspan=4>"."<b>Grant Total</b>"."</td>";
+                                $table.="<td colspan=3>"."<b>Grant Total</b>"."</td>";
                                 $table.="<td><b><u><u>".$sum." LKR/-"."</u></u></b></td>";
                             $table.="</tr>";
                        $table.="</table>";
@@ -136,6 +137,7 @@
                        
                        $this->load->view('crms_genarate_pdf_file.php');
                        $html = $this->output->get_output();
+                    //    $this->pdf->loadHtml('<img src=assets/images/report_header.png  width=100% heighr=20%> ');
                        $this->pdf->loadHtml($table);
                        $this->pdf->render();
                        $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
