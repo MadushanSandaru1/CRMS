@@ -166,7 +166,10 @@ class Home extends CI_Controller {
     //crms car outsourcing page
     public function crms_outsourcing()
     {
-        $this->load->view('crms_outsourcing');
+        $this->load->model('OutsourceVehicleModel');
+        $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
+        $supplier = $this->OutsourceVehicleModel->getSupplier();
+        $this->load->view('crms_outsourcing',['outsourceVehicle'=>$outSourceDetails,'supplier'=>$supplier]);
     }
 
     //crms damage report page
