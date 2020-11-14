@@ -20,6 +20,19 @@
                         var_dump($values);
                         return $this->db->insert('customer', $values);
                 }
+
+
+
+                public function getCustomers(){
+
+                        $this->db->select('*');
+                        $this->db->where('is_deleted', 0);
+                        $this->db->order_by('id', 'ASC');
+                        $query = $this->db->get('customer');
+                        //$query=$this->db->query("SELECT * FROM customer WHERE is_deleted=0 ORDER BY id ASC ");
+                        return $query;
+                    
+                }
                 
                 
         }
