@@ -6,6 +6,7 @@
             {
                 $cur_date = date("yy-m-d");
                 $values = array(
+                    'supplier_id'=>$this->input->post('supplier_id',TRUE),
                     'title' => $this->input->post('vehicle_title',TRUE),
                     'registered_number' => $this->input->post('registered_no',TRUE),
                     'seat' => $this->input->post('no_of_seat',TRUE),
@@ -23,6 +24,24 @@
 
                 //print_r($values);
                 return $this->db->insert('outsourcing_vehicle',$values);
+            }
+
+            public function getOutsourceDetails()
+            {
+                $this->db->select('*');
+                $this->db->where('is_deleted',0);
+                $this->db->where('is_service_out',0);
+                $this->db->from('outsourcing_vehicle');
+                $query = $this->db->get();
+                return $query->result();
+
+            }
+
+            public function getSupplier()
+            {
+                $query = $this->db->get('outsourcing_supplier');
+                return $query->result();
+                        
             }
     }
 ?>
