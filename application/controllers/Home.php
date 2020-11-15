@@ -266,4 +266,8 @@ class Home extends CI_Controller {
         $data["fetch_data"]=$this->Customer_message->notifi_show($id);
         $this->load->view('notification_show_ajax',$data);
     }
+
+    public function update_revenueL_date(){
+        redirect('Home/crms_notification');
+    }
 }
