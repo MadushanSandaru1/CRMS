@@ -44,7 +44,6 @@
                 </span>
             </div>
         </div-->
-
         <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -128,7 +127,8 @@
                     </div>
                     <div class="modal-body">
                         <?php echo form_open('Home/update_revenueL_date'); ?>
-                        <form>
+                        <form method="post">
+                            <input type="hidden" id="ve_id" name="vehicle_id">
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label>Expire on : </label>
@@ -142,17 +142,19 @@
                                         <label>New Date : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="date" name="start_date" class="form-control" value="<?php echo $today_date;?>" style="width: 100%;">
+                                    <input type="date" name="revenueL_date" class="form-control" value="<?php echo $today_date;?>" style="width: 100%;">
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save Date</button>
+                            <div class="form-row">
+                                <div class="form-group col-md-3"></div>
+                                <div class="form-group col-md-9">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save Date</button>
+                                </div>
                             </div>
                         </form>
                         <?php echo form_close(); ?>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -169,7 +171,8 @@
                     </div>
                     <div class="modal-body">
                         <?php echo form_open('Home/update_Insurance_date'); ?>
-                        <form>
+                        <form method="post">
+                            <input type="hidden" id="i_ve_id" name="vehicle_id">
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label>Expire on : </label>
@@ -183,12 +186,15 @@
                                         <label>New Date : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="date" name="start_date" class="form-control" value="<?php echo $today_date;?>" style="width: 100%;">
+                                    <input type="date" name="insurance_date" class="form-control" value="<?php echo $today_date;?>" style="width: 100%;">
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save Date</button>
+                            <div class="form-row">
+                                <div class="form-group col-md-3"></div>
+                                <div class="form-group col-md-9">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save Date</button>
+                                </div>
                             </div>
                         </form>
                         <?php echo form_close(); ?>
@@ -197,26 +203,18 @@
                 </div>
             </div>
         </div>
-<!--        /******************************************************/-->
-    <!--notification show-->
-        <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card" >
-                    <div class="card-body" id="notify">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--/******************************************************/-->
     <!-- content-wrapper ends -->
 <?php require_once "crms_footer.php";?>
 <script>
     function revenue_lic(id,date,reg_num){
+        document.getElementById("ve_id").value=id;
         document.getElementById("m_date").innerHTML=date;
         document.getElementById("reg_num").innerHTML=reg_num;
     }
 
     function Insurance(id,date,reg_num){
+        document.getElementById("i_ve_id").value=id;
         document.getElementById("i_date").innerHTML=date;
         document.getElementById("i_reg_num").innerHTML=reg_num;
     }

@@ -202,8 +202,8 @@ class Home extends CI_Controller {
     //crms notification page
     public function crms_notification()
     {
-        $this->load->model("Customer_message");
-        $data["fetch_data"]=$this->Customer_message->vehiacal_notifi();
+        $this->load->model("notification");
+        $data["fetch_data"]=$this->notification->vehiacal_notifi();
         $this->load->view('crms_notification',$data);
     }
 
@@ -268,15 +268,19 @@ class Home extends CI_Controller {
 
     }
 
-    public function notification_show(){
-//        $data=$this->input->post('data');
-        $id=$_POST['id'];
-        $this->load->model("Customer_message");
-        $data["fetch_data"]=$this->Customer_message->notifi_show($id);
-        $this->load->view('notification_show_ajax',$data);
+    public function update_revenueL_date(){
+        $vehi_id=$this->input->post('vehicle_id');
+        $date=$this->input->post('revenueL_date');
+        $this->load->model("notification");
+        $this->notification->update_revenue_date($vehi_id,$date);
+        redirect('Home/crms_notification');
     }
 
-    public function update_revenueL_date(){
+    public function update_Insurance_date(){
+        $vehi_id=$this->input->post('vehicle_id');
+        $date=$this->input->post('insurance_date');
+        $this->load->model("notification");
+        $this->notification->update_insurence_date($vehi_id,$date);
         redirect('Home/crms_notification');
     }
 }
