@@ -38,6 +38,71 @@
 
         <div class="row">
 
+            <!--  traker start-->
+
+
+
+                <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title text-danger mb-5">Location </h4>
+
+                    <form class="forms-sample">
+                      
+                      <div class="form-group">
+                        <label class="mb-3">Select car</label>
+                        
+                        <div class="input-group col-xs-12">
+                          
+                          <select class="form-control file-upload-info" >
+                            <?php 
+                                foreach ($vehicle_data->result() as $row) {
+                                    echo "<option value='".$row->id."''>".$row->title." - ".$row->registered_number."</option>";
+                                }
+                             ?>
+                         </select>
+
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary ml-3" type="button">Track</button>
+                          </span>
+                        </div>
+                      </div>
+                      
+                      
+                    </form>
+                    
+                    <!-- source from =  https://www.embedgooglemap.net/en/?gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqu2cC2RGI1ESI87-N5bI1ei8kmfskNZkPgoxyKfzOymGafr0QTRbsaAoHVEALw_wcB-->
+
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe width="100%" height="800" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                                
+                            </iframe>
+                            
+                        </div>
+                        <style>
+                            .mapouter{
+                                position:relative;
+                                text-align:right;
+                                height:800px;
+                                width:100%;
+                                }
+                                .gmap_canvas {
+                                    overflow:hidden;
+                                    background:none!important;
+                                    height:800px;
+                                    width:100%;
+                                }
+                        </style>
+                    </div>
+                   
+                    
+                  </div>
+                </div>
+              </div>
+            <!-- tracker end-->
+
+
         </div>
 
     </div>

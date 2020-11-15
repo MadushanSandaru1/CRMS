@@ -108,7 +108,11 @@ class Home extends CI_Controller {
     //crms customer page
     public function crms_customer()
     {
-        $this->load->view('crms_customer');
+
+        $this->load->model("Customer_Model");
+        $data['customer_data']=$this->Customer_Model->getCustomers();
+        $this->load->view('crms_customer',$data);
+        //$this->load->view('crms_customer');
     }
 
     //crms guarantor page
@@ -134,8 +138,10 @@ class Home extends CI_Controller {
 
     //crms car tracking page
     public function crms_tracking()
-    {
-        $this->load->view('crms_tracking');
+    {   
+        $this->load->model('Tracker_Model');
+        $data['vehicle_data']=$this->Tracker_Model->getVehicles();
+        $this->load->view('crms_tracking',$data);
     }
 
     //crms car damage page
@@ -166,7 +172,10 @@ class Home extends CI_Controller {
     //crms car outsourcing page
     public function crms_outsourcing()
     {
-        $this->load->view('crms_outsourcing');
+        $this->load->model('OutsourceVehicleModel');
+        $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
+        $supplier = $this->OutsourceVehicleModel->getSupplier();
+        $this->load->view('crms_outsourcing',['outsourceVehicle'=>$outSourceDetails,'supplier'=>$supplier]);
     }
 
     //crms damage report page

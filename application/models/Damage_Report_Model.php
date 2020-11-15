@@ -4,11 +4,8 @@
             public function getVehicleID()
             {
                 $query = $this->db->get('vehicle');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                return $query->result();
+                        
             }
 
             public function getDamageDetails()
@@ -129,8 +126,8 @@
                 $end_date=$this->input->post('end_date',TRUE);
 
                 $this->db->select('*');
-                $this->db->where('d_date >=',$start_date);
-                $this->db->where('d_date <=',$end_date);
+                $this->db->where('d_date >= ',$start_date);
+                $this->db->where('d_date <= ',$end_date);
                 $this->db->from('damage');
                 $query = $this->db->get();
                 return $query->result();

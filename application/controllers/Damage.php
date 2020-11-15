@@ -42,6 +42,7 @@
                             $getReservedID = $this->DamageModel->getReservedID();
                             $getDamageDetails = $this->DamageModel->getDamageDetails();
                             $getCustomerDetails = $this->DamageModel->getCustomerDetails();
+                            $damageSearchDetails = $this->DamageModel->filterDamagesDetails();
                             $this->session->set_flashdata('damage_status', 'Data Recorded Successfully!');
                             $this->load->view(
                                 'crms_damage',
@@ -49,7 +50,8 @@
                                     'getVehicleID'=>$getVehicleID,
                                     'getReservedID'=>$getReservedID,
                                     'getDamageDetails'=>$getDamageDetails,
-                                    'getCustomerDetails'=>$getCustomerDetails
+                                    'getCustomerDetails'=>$getCustomerDetails,
+                                    'getSearchDamages'=>$damageSearchDetails
                                 ]
                             );
                         }
@@ -63,6 +65,26 @@
                 //         $this->session->set_flashdata('msgValidation', 'You have to upload Picture');
                 //         $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID]);
                 //    }     
+            }
+
+            public function SearchDamageVehicle()
+            {
+                $this->load->model('DamageModel');
+                $getVehicleID = $this->DamageModel->getVehicleID();
+                $getReservedID = $this->DamageModel->getReservedID();
+                $getDamageDetails = $this->DamageModel->getDamageDetails();
+                $getCustomerDetails = $this->DamageModel->getCustomerDetails();
+                $damageSearchDetails = $this->DamageModel->filterDamagesDetails();
+                $this->load->view(
+                    'crms_damage',
+                    [
+                        'getVehicleID'=>$getVehicleID,
+                        'getReservedID'=>$getReservedID,
+                        'getDamageDetails'=>$getDamageDetails,
+                        'getCustomerDetails'=>$getCustomerDetails,
+                        'getSearchDamages'=>$damageSearchDetails
+                    ]
+                );
             }
             
         }

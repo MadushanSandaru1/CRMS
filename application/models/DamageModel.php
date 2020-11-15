@@ -4,21 +4,15 @@
                 public function getVehicleID()
                 {
                         $query = $this->db->get('vehicle');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
 
                 public function getReservedID()
                 {
                         $query =$this->db->get('reserved');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
 
                 public function insertDamage($data)
@@ -40,7 +34,7 @@
                         $values = array(
                                 'vehicle_id' => $this->input->post('vehicle_id', TRUE),
                                 'description' => $this->input->post('description', TRUE),
-                                'date' => $this->input->post('d_date', TRUE),
+                                'd_date' => $this->input->post('d_date', TRUE),
                                 'image'=> $data,
                                 'reserved_id'=> $reserved_id,
                                 'fix_amount'=> $this->input->post('fix_amount', TRUE),
@@ -54,23 +48,26 @@
                 public function getDamageDetails()
                 {
                         $query =$this->db->get('damage');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
 
                 public function getCustomerDetails()
                 {
                         $query =$this->db->get('customer');
-
-                        if($query->num_rows() > 0)
-                        {
-                                return $query->result();
-                        }
+                        return $query->result();
+                        
                 }
                 
+                public function filterDamagesDetails()
+                {
+                        $v_id = $this->input->post('vehicle_id',TRUE);
+                        $this->db->select('*');
+                        $this->db->where('id=',$v_id);
+                        $this->db->from('damage');
+                        $query = $this->db->get();
+                        return $query->result();
+                }
         }
 
  ?>

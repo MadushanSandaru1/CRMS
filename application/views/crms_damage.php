@@ -47,6 +47,7 @@
                         <div class="custom-control custom-radio custom-control-inline">
                                     
                                     <input type="button" value="New Damage Registration" class="btn btn-primary" id="view" data-toggle="collapse" href="#viewDetails" aria-expanded="false" aria-controls="viewDetails">
+                                    <input type="button" value="Edit Damage Registration" class="btn btn-primary ml-3" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails">
                                     
                         </div>
                         <br>
@@ -168,7 +169,61 @@
                                 <button class="btn btn-light">Cancel</button>
                             <?php echo form_close(); ?>   
                         </div>
-                           
+                        
+                        <div class="collapse row" id="EditDetails" aria-labelledby="customRadioInline2">
+                            <br><br>
+                            <div class="col-md-6">
+                                <br><br>
+                                <hr>
+                                <!--<?php echo form_open('Damage/SearchDamageVehicle'); ?>-->
+                                <?php echo form_open_multipart('Damage/SearchDamageVehicle'); ?>
+                                <div class="form-group">
+                                    <label for="exampleInputName1"><b>Search By Vehicle </b></label><br><br>
+                                    <select name="vehicle_id" id="" class="custom-select mr-sm-2" required>
+                                        <option value="">Select Vehicle ID</option>
+                                        <?php if(count($getReservedID) && count($getVehicleID)): ?>
+                                            <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
+                                                <?php if($getReservedID->vehicle_id == $getVehicleID->id):?>
+                                                    <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getVehicleID[$i]->registered_number;?></option>
+                                                <?php endif; ?>
+                                            <?php endfor;?>
+                                        <?php endif; ?>
+                                    </select><br><br>
+                                    <button class="btn btn-gradient-primary mdi mdi-car-wash mt-2"> Search</button>
+                                </div> 
+                                <center><img src="<?php echo base_url('assets/images/damage_default.png');?>" alt="" width="40%" height="230px"></center>
+                                <?php echo form_close(); ?>                            
+                            </div>
+                            <div class="col-md-6">
+                                <hr>
+                                <!--<?php echo form_open('Damage/DamageVehicle'); ?>-->
+                                <?php echo form_open_multipart('Damage/DamageVehicle'); ?>
+                                
+                                <font color='green'> You can see bellow Search Result..</font>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-3"><b>Vehicle ID</b></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-0"><b>Nature of Damage</b></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-0"><b>Reported Date</b></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-0"><b>Reserved From</b></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-0"><b>Is Solved</b></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Edit</button>
+                                <?php echo form_close(); ?>
+                            </div>   
+                        </div>    
                         <!--</div>-->
                        
                     </div>
@@ -217,7 +272,7 @@
                                                     <?php endif;?>
                                                 <?php endfor; ?>
                                             </td>
-                          	                <td><?php echo $values->date;?></td>
+                          	                <td><?php echo $values->d_date;?></td>
                           	                <td><?php echo $values->description; ?></td>
                           	                <td>
                                                 <?php for($i=0;$i < sizeof($getCustomerDetails);$i++): ?>
@@ -239,7 +294,7 @@
                                                 ?>
                                             </td>
                           	                <td>
-                          		                <a href=""><span class="mdi mdi-eyedropper " style="color:green;font-size:16px;"> Edit</span></a>
+                          		                <a id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper " style="color:green;font-size:16px;"> Edit</span></a>
                           		                <a href=""><span class="mdi mdi-close-circle ml-4" style="color:red;font-size:16px;"> Remove</span></a>
                           	                </td>
 

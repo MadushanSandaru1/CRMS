@@ -51,6 +51,15 @@
                                 <?php echo form_open_multipart('VehicleOutsource/outsourcingVehicle'); ?>
                                 <div class="forms-sample">
                                     <div class="form-group">
+                                        <label for="vehicleTitle">Supplier</label>
+                                        <select name="supplier_id" id="" class="form-control " required>
+                                            <option value="">Select Supplier..</option>
+                                            <?php for($i=0;$i < sizeof($supplier);$i++): ?>
+                                                <option value=<?php echo $supplier[$i]->id;?>><?php echo $supplier[$i]->name;?></option>
+                                            <?php endfor;?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="vehicleTitle">Title</label>
                                         <input type="text" class="form-control" id="vehicleTitle" placeholder="Vehicle Title" name="vehicle_title" required>
                                     </div>
@@ -101,11 +110,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Vehicle Image</label>
-<!--                                        <input type="file" name="img[]" class="">-->
+                                        <!--<input type="file" name="img[]" class="">-->
                                         <div class="input-group col-xs-12">
                                             <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="outsource_pic" required>
-<!--                                            <span class="input-group-append">-->
-<!--                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>-->
+                                            <!--<span class="input-group-append">-->
+                                            <!--<button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>-->
                                     </span>
                                         </div>
                                     </div>
@@ -135,7 +144,61 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th><b>Vehicle ID</b></th>
+                                        <th><b>Supplier</b></th>
+                                        <th><b>Addition Price Per km</b></th>
+                                        <th><b>Addition Price Per Hour</b></th>
+                                        <!--<th style="text-align: center;">Picture</th>-->
+                                        <th><b>Price Per Day</b></th>
+                                        <th><b>Insurence Date</b></th>
+                                        <th><b>Revenue Licence Date</b></th>
+                                        <th><b>Actions</b></th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+                                <?php if(count($outsourceVehicle)):?>
+                                    <?php foreach($outsourceVehicle as $values): ?>
+                                        <tr>
+                          	                <td>
+                                                <?php echo $values->registered_number; ?>
+                                            </td>
+                                            <td>
+                                                <?php for($i=0;$i < sizeof($supplier);$i++): ?>
+                                                    <?php if($values->supplier_id == $supplier[$i]->id):?>
+                                                        <?php echo $supplier[$i]->name; ?>
+                                                    <?php endif;?>
+                                                <?php endfor;?>
+                                            </td>    
+                          	                <td><?php echo $values->additional_price_per_km." LKR/-"; ?></td>
+                          	                <td>
+                                                <?php echo $values->additional_price_per_hour." LKR/-"; ?>
+                                            </td>
+                          	                <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
+                          	                <td><?php echo $values->price_per_day." LKR/-"; ?></td>
+                                            <td>
+                                                <?php echo $values->insurence_date; ?>                                                                                                 
+                                            </td>
+                                            <td><?php echo $values->revenue_license_date; ?></td>
+                          	                <td>
+                          		                <a id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper " style="color:green;font-size:16px;"> Edit</span></a>
+                          		                <a href=""><span class="mdi mdi-close-circle ml-4" style="color:red;font-size:16px;"> Remove</span></a>
+                          	                </td>
 
+                                        </tr>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                       	        
+                            </tbody>
+                            </table>    
+                        </div>
+                    </div>    
+                </div>    
         </div>
 
     </div>
