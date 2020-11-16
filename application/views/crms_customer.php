@@ -47,15 +47,27 @@
                   <div class="card-body">
                     <h4 class="card-title text-danger mb-5">Add new customer</h4>
 
-                    <?php 
-                            if ($this->session->flashdata('status')) {
-                    ?>
-                    <div class="alert alert-success">
-                       <?php echo $this->session->flashdata('status'); ?>
-                    </div>
-                    <?php } ?>
                     
-                    <?php echo validation_errors();?>
+                    <?php 
+                    // Success status
+                      if ($this->session->flashdata('status')) {
+                          echo " <div class=\"alert alert-success\">";
+                          echo $this->session->flashdata('status');
+                          echo "</div>";
+                      }
+
+
+                    // errors status
+                      $errors = explode("\n",strip_tags(validation_errors()));
+                      
+                      foreach ($errors as $error) {
+                        if(strcmp("", $error)){
+                          echo "<div class=\"alert alert-danger\">";
+                          echo $error;
+                          echo "</div>";
+                        }
+                      }
+                    ?>
                     <?php echo form_open_multipart('Customer/prepareToInsertCustomer');?>
                     <form class="forms-sample">
                       <div class="form-group">
@@ -154,8 +166,11 @@
                               <td><a href="<?php echo base_url('assets/images/customers/img_documents/'.$row->nic_copy); ?>"><span class="mdi mdi-camera "> View</span></a></td>
                               <td><a href="<?php echo base_url('assets/images/customers/img_documents/'.$row->license_copy); ?>"><span class="mdi mdi-camera "> View</span></a></td>
                               <td><a href="<?php echo base_url('assets/images/customers/img_documents/'.$row->light_bill_copy); ?>"><span class="mdi mdi-camera "> View</span></a></td>
-                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Delete</button></td>
+
+                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodel" onclick="loadCustomerData(<?php echo $row->id.",'".$row->name."','".$row->nic."','".$row->email."','".$row->phone."','".$row->address."','".$row->nic_copy."','".$row->license_copy."','".$row->light_bill_copy."'" ?>)"><span class="mdi mdi-eyedropper "> Edit</span></button></td>
+
+                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><span class="mdi mdi-close-circle "> Remove</span></button></td>
+
                           </tr>
                         <?php } ?>
 
@@ -165,14 +180,29 @@
                 </div>
               </div>
 
-              <span class="iconify" data-icon="carbon:document-view" data-inline="false"></span>
+              <script type="text/javascript">
+                
+                function loadCustomerData(id,name,nic,email,phone,address,nic_copy,license_copy,light_bill_copy){
+                  document.getElementById("EditID").value = id;
+                  document.getElementById("EditName").value = name;
+                  document.getElementById("EditNIC").value = nic;
+                  document.getElementById("EditEmail").value = email;
+                  document.getElementById("EditPhone").value = phone;
+                  document.getElementById("EditAddress").value = address;
+                  document.getElementById("EditNicCopy").value = nic_copy;
+                  document.getElementById("EditLicenseCopy").value = license_copy;
+                  document.getElementById("EditLightBillCopy").value = light_bill_copy;
 
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                }
+              </script>
+
+
+              <!-- Edit Modal -->
+              <div class="modal fade" id="editmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Customer Details</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -183,36 +213,39 @@
                       <div class="col-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title text-danger mb-5">Add new customer</h4>
+                          <!--h4 class="card-title text-danger mb-5">Add new customer</h4-->
 
-          
+                          <?php echo form_open_multipart('Customer/prepareToUpdateCustomer');?>
                           <form class="forms-sample">
                             <div class="form-group">
-                              <label for="InputName">Name</label>
-                              <input type="text" class="form-control" id="InputName" placeholder="Name" name="name">
+                              
+                              <input type="hidden" id="EditID" name="edit_id" >
+
+                              <label for="EditName">Name</label>
+                              <input type="text" class="form-control" id="EditName" placeholder="Name" name="edit_name">
                             </div>
                             <div class="form-group">
-                              <label for="InputNIC">NIC</label>
-                              <input type="text" class="form-control" id="InputNIC" placeholder="NIC" name="nic">
+                              <label for="EditNIC">NIC</label>
+                              <input type="text" class="form-control" id="EditNIC" placeholder="NIC" name="edit_nic">
                             </div>
                             <div class="form-group">
-                              <label for="InputEmail">Email address</label>
-                              <input type="email" class="form-control" id="InputEmail" placeholder="Email address" name="email">
+                              <label for="EditEmail">Email address</label>
+                              <input type="email" class="form-control" id="EditEmail" placeholder="Email address" name="edit_email">
                             </div>
                             <div class="form-group">
-                              <label for="InputPhone">Phone</label>
-                              <input type="text" class="form-control" id="InputPhone" placeholder="Phone" name="phone">
+                              <label for="EditPhone">Phone</label>
+                              <input type="text" class="form-control" id="EditPhone" placeholder="Phone" name="edit_phone">
                             </div>
                             <div class="form-group">
-                              <label for="InputAddress">Address</label>
-                              <textarea class="form-control" id="InputAddress" rows="4" placeholder="Phone" name="address"> </textarea>
+                              <label for="EditAddress">Address</label>
+                              <textarea class="form-control" id="EditAddress" rows="4" placeholder="Phone" name="edit_address"> </textarea>
                             </div>
 
                             <div class="form-group">
                               <label>NIC Copy</label>
-                              <input type="file" name="nic_copy" class="file-upload-default">
+                              <input type="file" name="edit_nic_copy" class="file-upload-default">
                               <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <input type="text" class="form-control file-upload-info" id="EditNicCopy" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                   <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                 </span>
@@ -220,9 +253,9 @@
                             </div>
                             <div class="form-group">
                               <label>License Copy</label>
-                              <input type="file" name="license_copy" class="file-upload-default">
+                              <input type="file" name="edit_license_copy" class="file-upload-default">
                               <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <input type="text" class="form-control file-upload-info" id="EditLicenseCopy" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                   <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                 </span>
@@ -230,16 +263,16 @@
                             </div>
                             <div class="form-group">
                               <label>Light Bill Copy</label>
-                              <input type="file" name="light_bill_copy" class="file-upload-default">
+                              <input type="file" name="edit_light_bill_copy" class="file-upload-default">
                               <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <input type="text" class="form-control file-upload-info" id="EditLightBillCopy" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                   <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                 </span>
                               </div>
                             </div>
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                            <button class="btn btn-light">Cancel</button>
+                            <button class="btn btn-light" data-dismiss="modal">Cancel</button>
                           </form>
                           <?php echo form_close(); ?>   
                           
@@ -250,10 +283,10 @@
 
 
                     </div>
-                    <div class="modal-footer">
+                    <!--div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    </div-->
                   </div>
                 </div>
               </div>
