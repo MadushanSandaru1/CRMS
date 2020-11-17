@@ -14,6 +14,7 @@
     .notification{
         cursor: pointer;
         user-select:none;
+        font-family: Arial;
     }
     .notification img{
         width:80px;
@@ -35,15 +36,6 @@
 
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
-        <!--div class="row" id="proBanner">
-            <div class="col-12">
-                <span class="d-flex align-items-center purchase-popup">
-                  <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
-                  <a href="" class="btn download-button purchase-button ml-auto">Upgrade To Pro</a>
-                  <i class="mdi mdi-close" id="bannerClose"></i>
-                </span>
-            </div>
-        </div-->
         <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -114,7 +106,6 @@
                 </div>
             </div>
         </div>
-<!--        //***************************************************************************//-->
         <!-- Modal revenueL-->
         <div class="modal fade" id="revenueL" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -158,13 +149,12 @@
                 </div>
             </div>
         </div>
-<!--        /******************************************************/-->
         <!-- Modal Insurance-->
         <div class="modal fade" id="Insurance" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" style="color: #f5005e" id="exampleModalLongTitle">Insurance License of  <label id="i_reg_num"></label></h5>
+                        <h5 class="modal-title" style="color: #f5005e" id="exampleModalLongTitle">Insurance of  <label id="i_reg_num"></label></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -203,7 +193,6 @@
                 </div>
             </div>
         </div>
-<!--/******************************************************/-->
     <!-- content-wrapper ends -->
 <?php require_once "crms_footer.php";?>
 <script>
