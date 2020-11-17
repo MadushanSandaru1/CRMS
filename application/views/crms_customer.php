@@ -10,6 +10,8 @@
 
 ?>
 
+
+
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">
@@ -71,6 +73,22 @@
                     <?php echo form_open_multipart('Customer/prepareToInsertCustomer');?>
                     <form class="forms-sample">
                       <div class="form-group">
+                        <label>Customer's photograph</label>
+                        <div class="row">
+                          
+                          <div class="col-12 photgraph-outer mt-2 mb-2">
+                            <div>
+                              <div class="inputCamera" ></div>
+                              <div class="shutterbtn"><button type="button" class="btn btn-gradient-primary " onclick="take_pictuer()" data-toggle="modal" data-target="#previewModal" ><span class="mdi mdi-camera "> Capture</span></button></div>
+                              <div id="capturedFrame" ></div>
+                            </div>
+                          </div> 
+
+                          
+                          
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label for="InputName">Name</label>
                         <input type="text" class="form-control" id="InputName" placeholder="Name" name="name">
                       </div>
@@ -130,6 +148,27 @@
                 </div>
               </div>
             <!-- add customer form end-->
+
+
+            
+
+              <!--Preveiw image Modal-->
+              <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+                <div class="modal-dialog prev-modal" role="document" >
+                  <div class="modal-content prev-modal" >
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Save image</h5>
+                    </div>
+                    <div class="modal-body shutterbtn">
+                      <div id="preivFrame" ></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveSnap()">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
             <!-- view customer table start-->
@@ -300,4 +339,45 @@
 
     </div>
     <!-- content-wrapper ends -->
+
+<audio id="sound">
+      <source src="<?php echo base_url('assets/audio/shutter-click.mp3'); ?>" type="audio/mpeg" >
+</audio>
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js" integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw==" crossorigin="anonymous"></script>
+<script>
+
+      Webcam.set({
+          width:510,
+          height:380,
+          image_format:'jpg',
+          jpeg_quality:90
+      })
+
+      Webcam.attach(".inputCamera")
+
+      function take_pictuer(){
+          Webcam.snap(function(data_uri){
+              var x = document.getElementById("sound");
+              x.play(); 
+              document.getElementById("preivFrame").innerHTML='<img id="preview" class="imageCaptured" src="'+data_uri+'"/>';
+          });
+      }
+      
+      function saveSnap(){
+
+          var base64image = document.getElementById("preview").src;
+          document.getElementById("capturedFrame").innerHTML='<img id="avatar" class="imageCaptured" src="'+base64image+'"/>';
+           // Get base64 value from <img id='imageprev'> source
+           /*var base64image = document.getElementById("webcam").src;
+           Webcam.upload( base64image, 'webcam.php', function(code, text) {
+            console.log('Save successfully');
+            //console.log(text);
+          });*/
+      }
+</script>
+
+
+
 <?php require_once 'crms_footer.php';?>

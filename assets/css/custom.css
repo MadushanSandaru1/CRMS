@@ -1,0 +1,28 @@
+/*Web camera*/
+
+.inputCamera, .imageCaptured{
+    width: 535px;
+    height: 400px;
+    border: 1px solid #DDDDDD;
+    border-radius: 7px;
+    margin:5px;
+}
+
+.photgraph-outer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.shutterbtn{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+
+.prev-modal{
+	width: 600px;
+}
+/*-----------*/
+

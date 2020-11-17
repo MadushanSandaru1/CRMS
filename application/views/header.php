@@ -28,6 +28,7 @@
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.css'); ?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/main.css'); ?>">
 		
+		
 	</head>
 	
 	<body>

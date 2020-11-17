@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/mdi/css/materialdesignicons.min.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/css/vendor.bundle.base.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/custom.css'); ?>">
+    
 </head>
 
 <body>
