@@ -30,14 +30,75 @@
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                        <span></span><i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
         </div>
 
         <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addStaffUser" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Staff User Details</button>
 
+                        <div class="collapse " id="addStaffUser" aria-labelledby="customRadioInline2">
+                            <form class="forms-sample">
+                                <div class="form-group">
+                                    <label for="expenseVehicleID"><b>Vehicle ID</b></label>
+                                    <select class="custom-select" name="expenseVehicleID">
+                                        <option value="">Select Vehicle ID</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="expensedVehicleDate">Date</label>
+                                    <input type="date" class="form-control" id="expensedVehicleDate" placeholder="Date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expenseAmount">Amount</label>
+                                    <input type="number" class="form-control" id="expenseAmount" placeholder="1000.00">
+                                </div>
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                <button class="btn btn-light">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-danger">Staff User Details</h4>
+                        <div style="overflow-x:auto;">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Vehicle ID</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Jacob</td>
+                                    <td>Photoshop</td>
+                                    <td>Jacob</td>
+                                    <td>Jacob</td>
+                                    <td>Photoshop</td>
+                                    <td>
+                                        <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                        <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

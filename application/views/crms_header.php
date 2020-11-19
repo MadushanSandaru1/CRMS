@@ -272,6 +272,7 @@
                                 <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_damage'); ?>">Car Damage</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_expenses'); ?>">Car Expenses</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_outsourcing'); ?>">Car Outsourcing</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_outsourcing_supplier'); ?>">Car Outsourcing Supplier</a></li>
                             </ul>
                         </div>
                     </li>

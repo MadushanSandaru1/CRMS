@@ -30,7 +30,7 @@
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                        <span></span><i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -48,11 +48,13 @@
                             <div class="alert alert-success">
                                 <?php echo $this->session->flashdata('vehicle_status'); ?>
                             </div>
+                            <br>
                             <?php
                         }
                         ?>
-                        <br>
-                        <h4 class="card-title text-danger mb-5">Add Vehicle Details</h4>
+                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addVehicle" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Details</button>
+
+                        <div class="collapse " id="addVehicle" aria-labelledby="customRadioInline2">
                         <?php echo validation_errors(); ?>
                         <?php echo form_open('Vehicle/add_vehicle');  ?>
 
@@ -235,6 +237,7 @@
                         }
                         ?>
                         <?php echo form_close();  ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -243,66 +246,64 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-danger">Vehicle Details</h4></p>
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Type</th>
-                                <th>Registered Number</th>
-                                <th>No of Seat</th>
-                                <th>Fuel Type</th>
-                                <th>A/C or Non-A/C</th>
-                                <th>Transmission Type</th>
-                                <th>Rental Price per Day</th>
-                                <th>Additional Price per KM</th>
-                                <th>Additional Price per Hour</th>
-                                <th>System Registered Date</th>
-                                <th>Insurance Date</th>
-                                <th>Revenue License Date</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
+                        <h4 class="card-title text-danger">Vehicle Details</h4>
+                        <div style="overflow-x:auto;">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Type</th>
+                                    <th>Registered Number</th>
+                                    <th>No of Seat</th>
+                                    <th>Fuel Type</th>
+                                    <th>A/C or Non-A/C</th>
+                                    <th>Transmission Type</th>
+                                    <th>Rental Price per Day</th>
+                                    <th>Additional Price per KM</th>
+                                    <th>Additional Price per Hour</th>
+                                    <th>System Registered Date</th>
+                                    <th>Insurance Date</th>
+                                    <th>Revenue License Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
                                 if($vehicle_data->num_rows() > 0) {
                                     foreach ($vehicle_data->result() as $data_row){
-                            ?>
-                            <tr>
-                                <td><?php echo $data_row->id; ?></td>
-                                <td>
-                                    <a href="<?php echo base_url('Vehicle/update_vehicle/'.$data_row->id); ?>"><span class="mdi mdi-eyedropper "> Edit</span></a>
-                                    <a href=""><span class="mdi mdi-close-circle ml-4"> Remove</span></a>
-                                </td>
-                                <td><?php echo $data_row->title; ?></td>
-                                <td><?php echo $data_row->registered_number; ?></td>
-                                <td><?php echo $data_row->seat; ?></td>
-                                <td><?php if($data_row->fuel_type == 'P') echo "Petrol"; else echo "Diesel"; ?></td>
-                                <td><?php if($data_row->ac == 'A') echo "AC"; else echo "Non A/C"; ?></td>
-                                <td><?php if($data_row->transmission == 'A') echo "Auto"; else echo "Manual"; ?></td>
-                                <td><?php echo $data_row->price_per_day; ?></td>
-                                <td><?php echo $data_row->additional_price_per_km; ?></td>
-                                <td><?php echo $data_row->additional_price_per_hour; ?></td>
-                                <td><?php echo $data_row->system_registered_date; ?></td>
-                                <td><?php echo $data_row->insurence_date; ?></td>
-                                <td><?php echo $data_row->revenue_license_date; ?></td>
-                                <td>
-                                    <a href=""><span class="mdi mdi-eyedropper "> Edit</span></a>
-                                    <a href=""><span class="mdi mdi-close-circle ml-4"> Remove</span></a>
-                                </td>
-                            </tr>
-                            <?php
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $data_row->id; ?></td>
+                                            <td><?php echo $data_row->title; ?></td>
+                                            <td><?php echo $data_row->registered_number; ?></td>
+                                            <td><?php echo $data_row->seat; ?></td>
+                                            <td><?php if($data_row->fuel_type == 'P') echo "Petrol"; else echo "Diesel"; ?></td>
+                                            <td><?php if($data_row->ac == 'A') echo "AC"; else echo "Non A/C"; ?></td>
+                                            <td><?php if($data_row->transmission == 'A') echo "Auto"; else echo "Manual"; ?></td>
+                                            <td><?php echo $data_row->price_per_day; ?></td>
+                                            <td><?php echo $data_row->additional_price_per_km; ?></td>
+                                            <td><?php echo $data_row->additional_price_per_hour; ?></td>
+                                            <td><?php echo $data_row->system_registered_date; ?></td>
+                                            <td><?php echo $data_row->insurence_date; ?></td>
+                                            <td><?php echo $data_row->revenue_license_date; ?></td>
+                                            <td>
+                                                <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                                <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                            </td>
+                                        </tr>
+                                        <?php
                                     }
                                 } else {
-                            ?>
-                            <tr>
-                                <td colspan="14">No Data Found</td>
-                            </tr>
-                            <?php
+                                    ?>
+                                    <tr>
+                                        <td colspan="14">No Data Found</td>
+                                    </tr>
+                                    <?php
                                 }
-                            ?>
-                            </tbody>
-                        </table>
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
