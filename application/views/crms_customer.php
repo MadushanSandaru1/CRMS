@@ -73,7 +73,7 @@
                     <?php echo form_open_multipart('Customer/prepareToInsertCustomer');?>
                     <form class="forms-sample">
                       <div class="form-group">
-                        <label>Customer's photograph</label>
+                        <label class="ml-1 mt-2"><b>Customer's photograph</b></label>
                         <div class="row">
                           
                           <div class="col-12 photgraph-outer mt-2 mb-2">
@@ -84,9 +84,8 @@
                             </div>
                           </div> 
 
-                          
-                          
                         </div>
+                        <input type="hidden" name="avatarReady" id="InputAvatar" value="">
                       </div>
                       <div class="form-group">
                         <label for="InputName">Name</label>
@@ -351,7 +350,7 @@
       Webcam.set({
           width:510,
           height:380,
-          image_format:'jpg',
+          image_format:'png',
           jpeg_quality:90
       })
 
@@ -369,6 +368,7 @@
 
           var base64image = document.getElementById("preview").src;
           document.getElementById("capturedFrame").innerHTML='<img id="avatar" class="imageCaptured" src="'+base64image+'"/>';
+          document.getElementById("InputAvatar").value = base64image;
            // Get base64 value from <img id='imageprev'> source
            /*var base64image = document.getElementById("webcam").src;
            Webcam.upload( base64image, 'webcam.php', function(code, text) {

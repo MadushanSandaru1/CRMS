@@ -39,6 +39,7 @@
         	//$this->form_validation->set_rules('nic_copy', 'NIC Copy', 'required');
         	//$this->form_validation->set_rules('license_copy', 'License Copy', 'required');
 
+
         	//check validated
         	if($this->form_validation->run() == FALSE){
 
