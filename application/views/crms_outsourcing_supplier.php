@@ -26,7 +26,7 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-cash-multiple"></i>
-                </span> Car Expenses </h3>
+                </span> Car Outsourcing Supplier </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
@@ -40,9 +40,9 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addExpense" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Expense Details</button>
+                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addOutsourcingSupplier" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Outsourcing Supplier Details</button>
 
-                        <div class="collapse " id="addExpense" aria-labelledby="customRadioInline2">
+                        <div class="collapse " id="addOutsourcingSupplier" aria-labelledby="customRadioInline2">
                             <form class="forms-sample">
                                 <div class="form-group">
                                     <label for="expenseVehicleID"><b>Vehicle ID</b></label>
@@ -68,7 +68,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-danger">Vehicle Expense Details</h4>
+                    <h4 class="card-title text-danger">Vehicle Outsourcing Supplier Details</h4>
                     <div style="overflow-x:auto;">
                         <table class="table table-hover">
                             <thead>

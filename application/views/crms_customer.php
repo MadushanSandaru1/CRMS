@@ -32,7 +32,7 @@
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                        <span></span><i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -47,7 +47,6 @@
                 <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title text-danger mb-5">Add new customer</h4>
 
                     
                     <?php 
@@ -70,6 +69,9 @@
                         }
                       }
                     ?>
+                      <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addCustomer" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Customer Details</button>
+
+                      <div class="collapse " id="addCustomer" aria-labelledby="customRadioInline2">
                     <?php echo form_open_multipart('Customer/prepareToInsertCustomer');?>
                     <form class="forms-sample">
                       <div class="form-group">
@@ -141,7 +143,8 @@
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                       <button type="reset" class="btn btn-light">Cancel</button>
                     </form>
-                    <?php echo form_close(); ?>   
+                    <?php echo form_close(); ?>
+                      </div>
                     
                   </div>
                 </div>
@@ -175,45 +178,44 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Customers</h4>
-                    <p class="card-description">Maintain customer details
-                    </p>
-                    <table class="table table-striped" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                      <thead>
-                        <tr>
-                          <th> Name </th>
-                          <th> NIC </th>
-                          <th> Email </th>
-                          <th> Phone </th>
-                          <th> Address </th>
-                          <th> NIC Copy </th>
-                          <th> License Copy </th>
-                          <th> Light Bill Copy </th>
-              
-                          <th colspan="2"> Action </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach($customer_data->result() as $row){ ?>
-                          <tr>
-                              <td><?php echo $row->name;?></td>
-                              <td><?php echo $row->nic;?></td>
-                              <td><?php echo $row->email;?></td>
-                              <td><?php echo $row->phone;?></td>
-                              <td><?php echo $row->address;?></td>
-                              <td><a href="<?php echo base_url('assets/images/customers/img_documents/'.$row->nic_copy); ?>"><span class="mdi mdi-camera "> View</span></a></td>
-                              <td><a href="<?php echo base_url('assets/images/customers/img_documents/'.$row->license_copy); ?>"><span class="mdi mdi-camera "> View</span></a></td>
-                              <td><a href="<?php echo base_url('assets/images/customers/img_documents/'.$row->light_bill_copy); ?>"><span class="mdi mdi-camera "> View</span></a></td>
+                    <h4 class="card-title text-danger">Customers Details</h4>
+                      <div style="overflow-x:auto;">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th> Name </th>
+                              <th> NIC </th>
+                              <th> Email </th>
+                              <th> Phone </th>
+                              <th> Address </th>
+                              <th> NIC Copy </th>
+                              <th> License Copy </th>
+                              <th> Light Bill Copy </th>
 
-                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodel" onclick="loadCustomerData(<?php echo $row->id.",'".$row->name."','".$row->nic."','".$row->email."','".$row->phone."','".$row->address."','".$row->nic_copy."','".$row->license_copy."','".$row->light_bill_copy."'" ?>)"><span class="mdi mdi-eyedropper "> Edit</span></button></td>
+                              <th colspan="2"> Action </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php foreach($customer_data->result() as $row){ ?>
+                              <tr>
+                                  <td><?php echo $row->name;?></td>
+                                  <td><?php echo $row->nic;?></td>
+                                  <td><?php echo $row->email;?></td>
+                                  <td><?php echo $row->phone;?></td>
+                                  <td><?php echo $row->address;?></td>
+                                  <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                  <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->license_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                  <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->light_bill_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                  <td>
+                                      <a href="" data-toggle="modal" data-target="#editmodel" onclick="loadCustomerData(<?php echo $row->id.",'".$row->name."','".$row->nic."','".$row->email."','".$row->phone."','".$row->address."','".$row->nic_copy."','".$row->license_copy."','".$row->light_bill_copy."'" ?>)"><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                      <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                  </td>
+                              </tr>
+                            <?php } ?>
 
-                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><span class="mdi mdi-close-circle "> Remove</span></button></td>
-
-                          </tr>
-                        <?php } ?>
-
-                      </tbody>
-                    </table>
+                          </tbody>
+                        </table>
+                      </div>
                   </div>
                 </div>
               </div>

@@ -30,7 +30,7 @@
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                        <span></span><i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -39,7 +39,7 @@
         <div class="row">
 
             <!-- add guarantor form start-->
-                <div class="col-12 grid-margin stretch-card">
+            <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
 
@@ -50,11 +50,13 @@
                           <div class="alert alert-success">
                               <?php echo $this->session->flashdata('guarantor_status'); ?>
                           </div>
+                          <br>
                           <?php
                       }
                       ?>
-                    <br>
-                    <h4 class="card-title text-danger mb-5">Add Guarantor details</h4>
+                      <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
+
+                      <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
                       <?php echo validation_errors(); ?>
                       <?php echo form_open('Guarantor/add_guarantor');  ?>
                         <div class="form-group">
@@ -89,8 +91,8 @@
                         <textarea class="form-control" id="guarantorAddress" name="guarantorAddress" rows="4" placeholder="address"> </textarea>
                       </div>
                       <div class="form-group">
-                        <label>License Copy</label>
-                        <input type="file" name="licenseImage" class="file-upload-default">
+                        <label>NIC Copy</label>
+                        <input type="file" name="nicImage" class="file-upload-default">
                         <div class="input-group col-xs-12">
                           <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                           <span class="input-group-append">
@@ -101,55 +103,60 @@
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                       <?php echo form_close();  ?>
+                      </div>
                   </div>
                 </div>
-              </div>
+            </div>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-danger">Guarantor Details</h4></p>
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Reserved ID</th>
-                                <th>Name</th>
-                                <th>NIC</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            if($guarantor_data->num_rows() > 0) {
-                                foreach ($guarantor_data->result() as $data_row){
-                            ?>
-                                    <tr>
-                                        <td><?php echo $data_row->id; ?></td>
-                                        <td> <?php echo $data_row->reserved_id; ?> </td>
-                                        <td><?php echo $data_row->name; ?></td>
-                                        <td><?php echo $data_row->nic; ?></td>
-                                        <td><?php echo $data_row->phone; ?></td>
-                                        <td><?php echo $data_row->address; ?></td>
-                                        <td>
-                                            <a href=""><span class="mdi mdi-eyedropper "> Edit</span></a>
-                                            <a href=""><span class="mdi mdi-close-circle ml-4"> Remove</span></a>
-                                        </td>
-                                    </tr>
-                            <?php
-                                }
-                            }
-                            else {
-                            ?>
+                        <h4 class="card-title text-danger">Guarantor Details</h4>
+                        <div style="overflow-x:auto;">
+                            <table class="table table-hover">
+                                <thead>
                                 <tr>
-                                    <td colspan="14">No Data Found</td>
+                                    <th>#</th>
+                                    <th>Reserved ID</th>
+                                    <th>Name</th>
+                                    <th>NIC</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>NIC Copy</th>
+                                    <th>Actions</th>
                                 </tr>
-                            <?php
+                                </thead>
+                                <tbody>
+                                <?php
+                                if($guarantor_data->num_rows() > 0) {
+                                    foreach ($guarantor_data->result() as $data_row){
+                                ?>
+                                        <tr>
+                                            <td><?php echo $data_row->id; ?></td>
+                                            <td> <?php echo $data_row->reserved_id; ?> </td>
+                                            <td><?php echo $data_row->name; ?></td>
+                                            <td><?php echo $data_row->nic; ?></td>
+                                            <td><?php echo $data_row->phone; ?></td>
+                                            <td><?php echo $data_row->address; ?></td>
+                                            <td><a href="<?php echo base_url('assets/images/guarantor/'.$data_row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                            <td>
+                                                <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                                <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    }
                                 }
-                            ?>
-                            </tbody>
-                        </table>
+                                else {
+                                ?>
+                                    <tr>
+                                        <td colspan="14">No Data Found</td>
+                                    </tr>
+                                <?php
+                                    }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,4 +164,5 @@
 
     </div>
     <!-- content-wrapper ends -->
+
 <?php require_once 'crms_footer.php';?>

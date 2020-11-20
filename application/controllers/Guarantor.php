@@ -9,7 +9,7 @@ class Guarantor extends CI_Controller
         $this->form_validation->set_rules('guarantorNIC', 'Guarantor NIC number', 'required|is_unique[guarantor.nic]');
         $this->form_validation->set_rules('guarantorPhone', 'Guarantor Phone number', 'required');
         $this->form_validation->set_rules('guarantorAddress', 'Guarantor Address', 'required');
-        $this->form_validation->set_rules('licenseImage', 'Guarantor License Image', 'required');
+        $this->form_validation->set_rules('nicImage', 'Guarantor NIC Image', 'required');
 
         if($this->form_validation->run() == FALSE){
             $this->load->view('crms_guarantor');

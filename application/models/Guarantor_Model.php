@@ -9,7 +9,7 @@ class Guarantor_Model extends CI_Model
             'nic' => $this->input->post('guarantorNIC', TRUE),
             'phone' => $this->input->post('guarantorPhone', TRUE),
             'address' => $this->input->post('guarantorAddress', TRUE),
-            'license_copy' => $this->input->post('licenseImage', TRUE)
+            'nic_copy' => $this->input->post('nicImage', TRUE)
         );
 
         return $this->db->insert('guarantor',$guarantor_data);

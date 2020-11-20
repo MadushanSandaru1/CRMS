@@ -31,7 +31,7 @@
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                        <span></span><i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -247,63 +247,65 @@
                         <br>
                         <h4 class="card-title text-danger">Damage Details</h4>
                         <!--<p class="card-description"> Add class <code>.table</code></p>-->
-                    
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Vehicle ID</th>
-                                    <th>Date</th>
-                                    <th>Discription</th>
-                                    <th>Reserved ID</th>
-                                    <!--<th style="text-align: center;">Picture</th>-->
-                                    <th>Fix Amount</th>
-                                    <th>Is Solved</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if(count($getDamageDetails)):?>
-                                    <?php foreach($getDamageDetails as $values): ?>
-                                        <tr>
-                          	                <td>
-                                                <?php for($i=0;$i < sizeof($getVehicleID);$i++): ?>
-                                                    <?php if($values->vehicle_id == $getVehicleID[$i]->id):?>
-                                                        <?php echo $getVehicleID[$i]->registered_number; ?>
-                                                    <?php endif;?>
-                                                <?php endfor; ?>
-                                            </td>
-                          	                <td><?php echo $values->d_date;?></td>
-                          	                <td><?php echo $values->description; ?></td>
-                          	                <td>
-                                                <?php for($i=0;$i < sizeof($getCustomerDetails);$i++): ?>
-                                                    <?php if($values->reserved_id == $getCustomerDetails[$i]->id):?>
-                                                        <?php echo $getCustomerDetails[$i]->nic; ?>
-                                                    <?php endif;?>
-                                                <?php endfor;?>
-                                            </td>
-                          	                <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
-                          	                <td><?php echo $values->fix_amount." LKR/-"; ?></td>
-                                            <td>
-                                                <?php
-                                                        if($values->is_solved == 0)
-                                                        {
-                                                            echo "<b style='color: red;'>Not Yet</b>" ;
-                                                        } 
-                                                        else
-                                                            echo "<b style='color: green;'>Yes</b>" ;
-                                                ?>
-                                            </td>
-                          	                <td>
-                          		                <a id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper " style="color:green;font-size:16px;"> Edit</span></a>
-                          		                <a href=""><span class="mdi mdi-close-circle ml-4" style="color:red;font-size:16px;"> Remove</span></a>
-                          	                </td>
 
-                                        </tr>
-                                    <?php endforeach;?>
-                                <?php endif;?>
-                       	        
-                            </tbody>
-                        </table>
+                        <div style="overflow-x:auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Vehicle ID</th>
+                                        <th>Date</th>
+                                        <th>Discription</th>
+                                        <th>Reserved ID</th>
+                                        <!--<th style="text-align: center;">Picture</th>-->
+                                        <th>Fix Amount</th>
+                                        <th>Is Solved</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(count($getDamageDetails)):?>
+                                        <?php foreach($getDamageDetails as $values): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php for($i=0;$i < sizeof($getVehicleID);$i++): ?>
+                                                        <?php if($values->vehicle_id == $getVehicleID[$i]->id):?>
+                                                            <?php echo $getVehicleID[$i]->registered_number; ?>
+                                                        <?php endif;?>
+                                                    <?php endfor; ?>
+                                                </td>
+                                                <td><?php echo $values->d_date;?></td>
+                                                <td><?php echo $values->description; ?></td>
+                                                <td>
+                                                    <?php for($i=0;$i < sizeof($getCustomerDetails);$i++): ?>
+                                                        <?php if($values->reserved_id == $getCustomerDetails[$i]->id):?>
+                                                            <?php echo $getCustomerDetails[$i]->nic; ?>
+                                                        <?php endif;?>
+                                                    <?php endfor;?>
+                                                </td>
+                                                <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
+                                                <td><?php echo $values->fix_amount." LKR/-"; ?></td>
+                                                <td>
+                                                    <?php
+                                                            if($values->is_solved == 0)
+                                                            {
+                                                                echo "<b class='text-danger'>Not Yet</b>" ;
+                                                            }
+                                                            else
+                                                                echo "<b class='text-success'>Yes</b>" ;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <a href="" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                                    <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                </td>
+
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
