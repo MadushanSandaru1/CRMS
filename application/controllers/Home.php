@@ -94,7 +94,10 @@ class Home extends CI_Controller {
     //crms staff user page
     public function crms_user()
     {
-        $this->load->view('crms_user');
+        $this->load->model('StaffModel');
+        $getStaffDetails = $this->StaffModel->getStaffDetails();
+        $this->load->view('crms_user',['staff_details'=>$getStaffDetails]);
+        
     }
 
     //crms car page
