@@ -93,17 +93,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Photoshop</td>
-                                <td>Jacob</td>
-                                <td>Jacob</td>
-                                <td>Photoshop</td>
-                                <td>
-                                    <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                    <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
-                                </td>
-                            </tr>
+                                <?php foreach($supplier_details as $values):?>
+                                    <tr>
+                                        <td><?php echo $values->name;?></td>
+                                        <td><?php echo $values->nic;?></td>
+                                        <td><?php echo $values->email;?></td>
+                                        <td><?php echo $values->phone;?></td>
+                                        <td><?php echo $values->address;?></td>
+                                        <td>
+                                            <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                            <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach;?>    
                             </tbody>
                         </table>
                     </div>

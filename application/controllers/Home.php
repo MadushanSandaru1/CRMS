@@ -184,7 +184,10 @@ class Home extends CI_Controller {
     //crms car outsourcing supplier page
     public function crms_outsourcing_supplier()
     {
-        $this->load->view('crms_outsourcing_supplier');
+        $this->load->model('OutSourceSuplierModel');
+        $supplierDetails = $this->OutSourceSuplierModel->getSupplierDetails();
+        $this->load->view('crms_outsourcing_supplier',['supplier_details'=>$supplierDetails]);
+        //$this->load->view('crms_outsourcing_supplier');
     }
 
     //crms damage report page
