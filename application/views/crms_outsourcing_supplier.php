@@ -43,20 +43,31 @@
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addOutsourcingSupplier" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Outsourcing Supplier Details</button>
 
                         <div class="collapse " id="addOutsourcingSupplier" aria-labelledby="customRadioInline2">
+                            <br><br>
                             <form class="forms-sample">
                                 <div class="form-group">
-                                    <label for="expenseVehicleID"><b>Vehicle ID</b></label>
-                                    <select class="custom-select" name="expenseVehicleID">
-                                        <option value="">Select Vehicle ID</option>
-                                    </select>
+                                    <label for="expenseVehicleID"><b>Name</b></label>
+                                    <input type="text" name="name" class="form-control" placeholder="Type Supplier Name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="expensedVehicleDate">Date</label>
-                                    <input type="date" class="form-control" id="expensedVehicleDate" placeholder="Date">
+                                    <label for="expensedVehicleDate">NIC</label>
+                                    <input type="text" class="form-control" id="expensedVehicleDate" placeholder="Supplier NIC Number">
                                 </div>
                                 <div class="form-group">
-                                    <label for="expenseAmount">Amount</label>
-                                    <input type="number" class="form-control" id="expenseAmount" placeholder="1000.00">
+                                    <label for="expenseAmount">Email</label>
+                                    <input type="email" class="form-control" id="expenseAmount" placeholder="Supplier Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expenseAmount">Phone Number</label>
+                                    <input type="text" class="form-control" id="expenseAmount" placeholder="Supplier Phone Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expenseAmount">Address</label>
+                                    <input type="text" class="form-control" id="expenseAmount" placeholder="Supplier Address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expenseAmount">Upload NIC Picture</label>
+                                    <input type="file" class="form-control" id="expenseAmount" placeholder="Supplier NIC Picture">
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
@@ -73,11 +84,11 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Vehicle ID</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                                <th>Amount</th>
+                                <th>Name</th>
+                                <th>NIC</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>

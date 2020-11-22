@@ -42,22 +42,42 @@
         {
             $id = $this->uri->segment(3);
             $supplier_name="";
-
+            $outSID=0;
             $this->load->model("OutsourceVehicleModel");
             $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
             $supplier = $this->OutsourceVehicleModel->getSupplier();
-                        
+            
+            foreach($outSourceDetails as $values)
+            {
+                if($values->id == $id)
+                {
+                    $outSID = $values->supplier_id;
+                }
+            }
+
+            for($i=0;$i<sizeof($supplier);$i++)
+            {
+                if($supplier[$i]->id == $outSID)
+                {
+                    $supplier_name = $supplier[$i]->name;
+                }
+            }
+
             $table = "";
             $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
             $table.="<img src=assets/images/report_header.png  width=100% heighr=20%>";
+            $table.="<br><center><h3>Vehicle Outsource Details</h3></center><br>";
             $table.="<table class='table'>";
             for($i=0;$i<sizeof($outSourceDetails);$i++)
             {
                 if($outSourceDetails[$i]->id == $id)
                 {
+                    $table.="<tr>";    
+                        $table.="<td colspan=2 ><center><img src=".$outSourceDetails[$i]->image." width=300px height=200px ></center></td>";
+                    $table.="</tr>";
                     $table.="<tr>";
                         $table.="<td>Supplier Name </td>";
-                        $table.="<td>".$outSourceDetails[$i]->supplier_id."</td>";
+                        $table.="<td>".$supplier_name."</td>";
                     $table.="</tr>";
                     $table.="<tr>";    
                         $table.="<td>Title </td>";
@@ -66,23 +86,72 @@
                     $table.="<tr>";    
                         $table.="<td>Vehicle Number </td>";
                         $table.="<td>".$outSourceDetails[$i]->registered_number."</td>";
-                    $table.="</tr>";    
-                    // $table.="Number of Seats : ".$outsourceDetails[$i]->seat;
-                    // $table.="Fuel Type : ".$outSourceDetails[$i]->fuel_type;
-                    // $table.="Ac Type : ".$outSourceDetails[$i]->ac;
-                    // $table.="Transmission : ".$outSourceDetails[$i]->transmission;
-                    // $table.="Price Per Day : ".$outSourceDetails[$i]->price_per_day;
-                    // $table.="Additional Price Per km : ".$outSourceDetails[$i]->additional_price_per_km;
-                    // $table.="Additional Price Per hour : ".$outSourceDetails[$i]->additional_price_per_hour;
-                    // $table.="System Registered Date : ".$outSourceDetails[$i]->system_registered_date;
-                    // $table.="Insurance Date : ".$outSourceDetails[$i]->insurence_date;
-                    // $table.="Revenue Licence Date : ".$outSourceDetails[$i]->revenue_license_date;
-                    // $table.="Is Service Out : ".$outSourceDetails[$i]->is_service_out;
-                    // $table.="<img src=".$outSourceDetails[$i]->image." width=100px height=100px >";
                     $table.="</tr>";
+                    $table.="<tr>";    
+                        $table.="<td>Number of Seats </td>";
+                        $table.="<td>".$outSourceDetails[$i]->seat."</td>";
+                    $table.="</tr>"; 
+                    $table.="<tr>";   
+                        $table.="<td>Fuel Type </td>";
+                        if($outSourceDetails[$i]->fuel_type == "P")
+                            $table.="<td>Petrol </td>";
+                        else
+                            $table.="<td>Diesel </td>";    
+                    $table.="</tr>";
+                    $table.="<tr>";    
+                        $table.="<td>Ac or Non A/c </td>";
+                        if($outSourceDetails[$i]->ac == 1)
+                            $table.="<td>AC Vehicle </td>"; 
+                        else
+                            $table.="<td>Non AC Vehicle </td>";  
+                    $table.="</tr>"; 
+                    $table.="<tr>";   
+                        $table.="<td>Transmission </td>";
+                        if($outSourceDetails[$i]->transmission == "A")
+                            $table.="<td>Auto Transmission </td>"; 
+                        else
+                            $table.="<td>Menual Transmission </td>";     
+                    $table.="</tr>"; 
+                    $table.="<tr>";   
+                        $table.="<td>Price Per Day </td>";
+                        $table.="<td>".$outSourceDetails[$i]->price_per_day." LKR/- </td>";
+                    $table.="</tr>";
+                    $table.="<tr>";
+                        $table.="<td>Additional Price Per km </td>";
+                        $table.="<td>".$outSourceDetails[$i]->additional_price_per_km." LKR /- </td>";
+                    $table.="</tr>";  
+                    $table.="<tr>";  
+                        $table.="<td>Additional Price Per hour </td>";
+                        $table.="<td>".$outSourceDetails[$i]->additional_price_per_hour." LKR/- </td>";
+                    $table.="</tr>";  
+                    $table.="<tr>";  
+                        $table.="<td>System Registered Date </td>";
+                        $table.="<td>".$outSourceDetails[$i]->system_registered_date."</td>";
+                    $table.="</tr>"; 
+                    $table.="<tr>";   
+                        $table.="<td>Insurance Date </td>";
+                        $table.="<td>".$outSourceDetails[$i]->insurence_date."</td>";
+                    $table.="</tr>";
+                    $table.="<tr>";
+                        $table.="<td>Revenue Licence Date </td>";
+                        $table.="<td>".$outSourceDetails[$i]->revenue_license_date."</td>";
+                    $table.="</tr>"; 
+                    $table.="<tr>";   
+                        $table.="<td>Is Service Out </td>";
+                        if($outSourceDetails[$i]->is_service_out == 0)
+                            $table.="<td>Service not out </td>";
+                        else
+                            $table.="<td> Yes service out </td>";    
+                    $table.="</tr>";
+                    
                 }
             }
             $table.="</table>";
+            $table.="<br>I do here by certify that all the details above furnished by me are true and accurate to the best of my knowledge. ";
+            $table.="<br><br><br>Document Issued Date : ".date('d-m-yy');
+            $table.="<br><br><br>........................................................";
+            $table.="<br>Signature";
+            $table.="<br>(Owner of the Outsource Vehicle)";
             $this->pdf->loadHtml($table);
             $this->pdf->render();
             $this->pdf->stream("Vehicle Outsourcing Details.pdf",array("Attachment" => 0));
