@@ -150,8 +150,8 @@
                                         <tr>
                                             <th><b>Vehicle ID</b></th>
                                             <th><b>Supplier</b></th>
-                                            <th><b>Addition Price Per km</b></th>
-                                            <th><b>Addition Price Per Hour</b></th>
+                                            <!-- <th><b>Addition Price Per km</b></th>
+                                            <th><b>Addition Price Per Hour</b></th> -->
                                             <!--<th style="text-align: center;">Picture</th>-->
                                             <th><b>Price Per Day</b></th>
                                             <th><b>Insurence Date</b></th>
@@ -173,10 +173,10 @@
                                                         <?php endif;?>
                                                     <?php endfor;?>
                                                 </td>
-                                                <td><?php echo $values->additional_price_per_km." LKR/-"; ?></td>
+                                                <!-- <td><?php echo $values->additional_price_per_km." LKR/-"; ?></td>
                                                 <td>
                                                     <?php echo $values->additional_price_per_hour." LKR/-"; ?>
-                                                </td>
+                                                </td> -->
                                                 <!--<td><input type="submit" name="" class="btn btn-success" value="View"></td>-->
                                                 <td><?php echo $values->price_per_day." LKR/-"; ?></td>
                                                 <td>
@@ -184,7 +184,8 @@
                                                 </td>
                                                 <td><?php echo $values->revenue_license_date; ?></td>
                                                 <td>
-                                                    <a id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                                    <a id="view"  href="<?php echo base_url("index.php/VehicleOutsource/outsourcingReport/$values->id");?>" ><span class="mdi mdi-note text-primary"> Get Report</span></a>
+                                                    <a id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success ml-3"> Edit</span></a>
                                                     <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                                 </td>
 
