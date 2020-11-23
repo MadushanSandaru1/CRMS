@@ -169,7 +169,10 @@ class Home extends CI_Controller {
     //crms car expenses page
     public function crms_expenses()
     {
-        $this->load->view('crms_expenses');
+        $this->load->model("Expense_Model");
+        $data['vehicle_data'] = $this->Expense_Model->getVehicleData();
+        $data['vehicle_expense_data'] = $this->Expense_Model->getVehicleExpenseData();
+        $this->load->view('crms_expenses', $data);
     }
 
     //crms car outsourcing page

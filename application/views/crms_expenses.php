@@ -40,27 +40,52 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+
+                        <?php
+                        if($this->session->flashdata('expense_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo $this->session->flashdata('expense_status'); ?>
+                            </div>
+                            <br>
+                            <?php
+                        }
+                        ?>
+
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addExpense" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Expense Details</button>
 
-                        <div class="collapse " id="addExpense" aria-labelledby="customRadioInline2">
-                            <form class="forms-sample">
+                        <div class="collapse" id="addExpense" aria-labelledby="customRadioInline2">
+                            <?php echo form_open('Expense/add_expense');  ?>
                                 <div class="form-group">
                                     <label for="expenseVehicleID"><b>Vehicle ID</b></label>
                                     <select class="custom-select" name="expenseVehicleID">
-                                        <option value="">Select Vehicle ID</option>
+                                        <?php
+                                        if($vehicle_data->num_rows() > 0) {
+                                            foreach ($vehicle_data->result() as $data_row) {
+                                                echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                            }
+                                        } else {
+                                            echo "<option>Data not found</option>";
+                                        }
+                                        ?>
                                     </select>
+                                    <small class="text-danger"><?php echo form_error('expenseVehicleID'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expensedVehicleDate">Date</label>
-                                    <input type="date" class="form-control" id="expensedVehicleDate" placeholder="Date">
+                                    <input type="datetime-local" class="form-control" name="expensedVehicleDate" id="expensedVehicleDate" placeholder="Date" max="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('expensedVehicleDate_fill')) echo $this->session->tempdata('expensedVehicleDate_fill'); else echo Date('Y-m-d\TH:i',time()); ?>">
+                                    <small class="text-danger"><?php echo form_error('expensedVehicleDate'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount">Amount</label>
-                                    <input type="number" class="form-control" id="expenseAmount" placeholder="1000.00">
+                                    <input type="number" class="form-control" name="expenseAmount" id="expenseAmount" placeholder="1000.00" value="<?php if($this->session->tempdata('expenseAmount_fill')) echo $this->session->tempdata('expenseAmount_fill'); ?>">
+                                    <small class="text-danger"><?php echo form_error('expenseAmount'); ?></small>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
-                            </form>
+                                <button type="reset" class="btn btn-light">Cancel</button>
+                            <?php echo form_close();  ?>
                         </div>
                     </div>
                 </div>
@@ -75,24 +100,37 @@
                             <tr>
                                 <th>#</th>
                                 <th>Vehicle ID</th>
-                                <th>Type</th>
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <?php
+                            if($vehicle_expense_data->num_rows() > 0) {
+                                foreach ($vehicle_expense_data->result() as $data_row){
+                            ?>
                             <tr>
-                                <td>Jacob</td>
-                                <td>Photoshop</td>
-                                <td>Jacob</td>
-                                <td>Jacob</td>
-                                <td>Photoshop</td>
+                                <td class="nr"><?php echo $data_row->id; ?></td>
+                                <td><?php echo $data_row->vehicle_id.' - '.$data_row->registered_number; ?></td>
+                                <td><?php echo $data_row->date; ?></td>
+                                <td class="text-right"><?php echo number_format($data_row->amount,2); ?></td>
                                 <td>
-                                    <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                    <a href=""><span class="edit_btn mdi mdi-eyedropper text-success"> Edit</span></a>
                                     <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                 </td>
                             </tr>
+                            <?php
+                                }
+                            }
+                            else {
+                                ?>
+                                <tr>
+                                    <td colspan="6">No Data Found</td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -100,6 +138,12 @@
             </div>
         </div>
         </div>
+
+        <?php if(validation_errors()) { ?>
+        <script>
+            document.getElementById("addExpense").classList.add("show");
+        </script>
+        <?php } ?>
 
     </div>
     <!-- content-wrapper ends -->

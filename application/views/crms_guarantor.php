@@ -149,7 +149,7 @@
                                 else {
                                 ?>
                                     <tr>
-                                        <td colspan="14">No Data Found</td>
+                                        <td colspan="8">No Data Found</td>
                                     </tr>
                                 <?php
                                     }
