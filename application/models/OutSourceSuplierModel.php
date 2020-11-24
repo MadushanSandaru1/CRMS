@@ -3,8 +3,12 @@
         {
             public function getSupplierDetails()
             {
-                $query = $this->db->get('outsourcing_supplier');
+                $this->db->select('*');
+                $this->db->where('is_deleted=',0);
+                $this->db->from('outsourcing_supplier');
+                $query = $this->db->get();
                 return $query->result();
+
             }
 
             public function insertOutSourceSupplier($image_path)
