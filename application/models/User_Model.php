@@ -33,7 +33,7 @@ class User_Model extends CI_Model
         $message = "Hii";
 
         $this->load->model("Email_Model");
-        $response = $this->Email_Model->sendEmail($email, $heading, $message);
+        $response = $this->Email_Model->trigger_mail($email, $heading, $message);
 
         return $response;
     }
