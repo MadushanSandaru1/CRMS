@@ -41,13 +41,13 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-danger" >Registration of Vehicle Damage Details</h4><br><br>
+                        <!-- <h4 class="card-title text-danger" >Registration of Vehicle Damage Details</h4><br><br> -->
                         <!--<p class="card-description"> Basic form elements </p>-->
                         <!--<div class="alert alert-danger">-->
                         <div class="custom-control custom-radio custom-control-inline">
                                     
-                                    <input type="button" value="New Damage Registration" class="btn btn-primary" id="view" data-toggle="collapse" href="#viewDetails" aria-expanded="false" aria-controls="viewDetails">
-                                    <input type="button" value="Edit Damage Registration" class="btn btn-primary ml-3" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails">
+                                    <button  class="btn btn-primary mb-2" id="view" data-toggle="collapse" href="#viewDetails" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i>Add Damage Details </button>
+                                    <input type="button" value="Edit Damage Details" class="btn btn-primary mb-2 ml-2" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails">
                                     
                         </div>
                         <br>
@@ -165,7 +165,7 @@
                                     <label for="exampleInputCity1 "> Yes</label>
                                 
                                 </div>
-                                <button type="submit" class="btn btn-gradient-primary mr-2">Register</button>
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Add</button>
                                 <button class="btn btn-light">Cancel</button>
                             <?php echo form_close(); ?>   
                         </div>
