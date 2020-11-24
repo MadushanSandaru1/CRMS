@@ -7,8 +7,8 @@
                 $this->form_validation->set_rules('description','Nature of Damage','required');
                 //$this->form_validation->set_rules('image_file','Damage Image File','required');
                 $this->form_validation->set_rules('chooser','Reserved ID','required');
-                $this->form_validation->set_rules('fix_amount','Fix Amount','required');
-                $this->form_validation->set_rules('is_solved','Is Solved','required');
+                //$this->form_validation->set_rules('fix_amount','Fix Amount','required');
+                //$this->form_validation->set_rules('is_solved','Is Solved','required');
                 $this->form_validation->set_rules('d_date','Damage Date','required');
 
                 if($this->form_validation->run() == FALSE)
