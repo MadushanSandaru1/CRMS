@@ -28,10 +28,13 @@ class User_Model extends CI_Model
     }
 
     public function getRecoverCode(){
-        $email = $this->session->userdata('recover_email');
+        $email = $this->input->post('recover_email', TRUE);
+        $heading = "Password recovery code";
+        $message = "Hii";
 
-        $this->db->where('email', $email);
-        $this->db->where('is_deleted', 0);
-        return $this->db->get('user');
+        $this->load->model("Email_Model");
+        $response = $this->Email_Model->sendEmail($email, $heading, $message);
+
+        return $response;
     }
 }

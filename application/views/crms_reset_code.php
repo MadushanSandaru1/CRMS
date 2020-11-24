@@ -36,6 +36,7 @@
                                 </div>
                                 <h4>Reset your password</h4>
                                 <h6 class="font-weight-light">Enter the code received to your email.</h6>
+                                <small class="text-success">Check <?php if($this->session->tempdata('recover_email_fill')) echo $this->session->tempdata('recover_email_fill'); ?></small>
 
                                 <!-- reset code form -->
                                 <form class="pt-3">

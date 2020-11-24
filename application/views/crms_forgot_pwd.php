@@ -43,6 +43,7 @@
                                     <!-- username -->
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-lg" name="recover_email" placeholder="Email">
+                                        <small class="text-danger"><?php echo form_error('recover_email'); ?></small>
                                     </div>
 
                                     <!-- recover button code -->
@@ -64,8 +65,6 @@
                                     {
                                         echo $this->session->flashdata('recover_status');
                                     }
-
-                                    echo validation_errors();
                                     ?>
                                 </div>
 

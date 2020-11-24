@@ -9,6 +9,7 @@ class User extends CI_Controller
 
         if ($this->form_validation->run() == FALSE)
         {
+            $this->session->set_tempdata('signin_email_fill', $this->input->post('signin_email', TRUE), 10);
             $this->load->view('crms_signin');
         }
         else
@@ -31,6 +32,7 @@ class User extends CI_Controller
 
                 redirect('Home/crms_dash');
             } else {
+                $this->session->unset_tempdata('signin_email_fill');
                 $this->session->set_flashdata('user_status', 'Email or Password are incorrect');
                 redirect('Home/crms_signin');
             }
@@ -65,7 +67,8 @@ class User extends CI_Controller
             $response = $this->User_Model->getRecoverCode();
 
             if($response) {
-                redirect('Home/crms_dash');
+                $this->session->set_tempdata('recover_email_fill', $this->input->post('recover_email', TRUE), 10);
+                redirect('Home/crms_reset_code');
             } else {
                 $this->session->set_flashdata('recover_status', 'Cannot get recovery code');
                 redirect('Home/crms_forgot_pwd');
