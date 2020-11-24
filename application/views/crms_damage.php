@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                     <label><b>Upload Damage Vehicle Picture</b></label>
                                     <input type="file"  class="form-control" name="image_file" >
-                                    <small class="text-danger"><?php echo form_error('image_file'); ?></small>  
+                                    <!-- <small class="text-danger"><?php echo form_error('image_file'); ?></small>   -->
                                     <!--
                                     <div class="input-group col-xs-12">
                                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
@@ -164,7 +164,7 @@
                                     <div class="collapse " id="fix" aria-labelledby="fix_amount">
                                         <br>
                                         <input type="text" name="fix_amount" id="" class="form-control" value="0" placeholder="Enter fix amount">
-                                        <small class="text-danger"><?php echo form_error('fix_amount'); ?></small>
+                                        
                                     </div>
                                 </div>
                                 <div class="form-group">
