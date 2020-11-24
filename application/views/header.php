@@ -43,7 +43,7 @@
 							<li class="menu-active"><a href="<?php echo base_url('index.php/Home/index'); ?>">Home</a></li>
 							<li><a href="<?php echo base_url('index.php/Home/about'); ?>">About</a></li>
 							<li><a href="<?php echo base_url('index.php/Home/car'); ?>">Cars</a></li>
-							<li><a href="<?php echo base_url('index.php/Home/contact'); ?>">Contact</a></li>	
+							<li><a href="<?php echo base_url('index.php/Home/contact'); ?>">Contact</a></li>
 							<!--li class="menu-has-children"><a href="#">Pages</a>
 								<ul>
 									<li><a href="blog-single.html">Blog Single</a></li>

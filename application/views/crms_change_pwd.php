@@ -1,6 +1,10 @@
 <?php
-    if ($this->session->userdata('user_id')) {
-        redirect('Home/crms_dash');
+    //session timeout error
+    if (!$this->session->tempdata('recover_email_fill')) {
+        $this->session->set_flashdata('recover_status', 'Session timeout');
+
+        //redirect to sign in page
+        redirect('Home/crms_forgot_pwd');
     }
 ?>
 
@@ -37,29 +41,43 @@
                                 <h4>Change Password</h4>
                                 <h6 class="font-weight-light">It's a good idea to use a strong password that you don't use elsewhere.</h6>
 
+                                <?php echo form_open('User/change_user_pwd'); ?>
                                 <!-- sign in form -->
-                                <form class="pt-3">
+                                <div class="pt-3">
                                     <!-- password -->
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="New Password">
+                                        <input type="password" class="form-control form-control-lg" name="new_password" id="new_password" placeholder="New Password">
+                                        <small class="text-danger"><?php echo form_error('new_password'); ?></small>
                                     </div>
 
                                     <!-- password -->
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Confirm Password">
+                                        <input type="password" class="form-control form-control-lg" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+                                        <small class="text-danger"><?php echo form_error('confirm_password'); ?></small>
                                     </div>
 
                                     <!-- confirm button -->
                                     <div class="mt-3">
-                                        <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="<?php echo base_url('index.php/Home/crms_dash'); ?>">CONFIRM</a>
+                                        <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">CONFIRM</button>
                                     </div>
 
                                     <div class="my-2 d-flex justify-content-center align-items-center">
                                         <!-- back to sign in button -->
                                         <a href="<?php echo base_url('index.php/Home/crms_signin'); ?>" class="mt-2 auth-link text-black">Back to sign in</a>
                                     </div>
-                                </form>
+                                </div>
                                 <!-- ** sign in form -->
+                                <?php echo form_close(); ?>
+
+                                <div class="text-danger">
+                                    <?php
+                                    if($this->session->flashdata('change_pwd_status'))
+                                    {
+                                        echo $this->session->flashdata('change_pwd_status');
+                                    }
+                                    ?>
+                                </div>
+
                             </div>
                         </div>
                     </div>

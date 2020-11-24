@@ -28,13 +28,45 @@ class User_Model extends CI_Model
     }
 
     public function getRecoverCode(){
-        $email = $this->input->post('recover_email', TRUE);
+
+        $random_recover_code = rand(100000,999999);
+        $this->session->set_tempdata('random_recover_code', $random_recover_code, 180);
+
+        $email = $this->session->tempdata('recover_email_fill');
         $heading = "Password recovery code";
-        $message = "Hii";
+        $message = "<b>".$random_recover_code."</b> is your Abhaya account recovery code.";
 
         $this->load->model("Email_Model");
         $response = $this->Email_Model->trigger_mail($email, $heading, $message);
 
         return $response;
     }
+
+    public function verifyRecoverCode(){
+
+        $input_recover_code = $this->input->post('recover_code', TRUE);
+
+        if($input_recover_code == $this->session->tempdata('random_recover_code')) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function changeUserPwd(){
+
+        $new_password = $this->input->post('new_password', TRUE);
+
+        $email = $this->session->tempdata('recover_email_fill');
+        $heading = "New Password";
+        $message = "<b>".$new_password."</b> is your new password of the Abhaya account.";
+
+        $this->load->model("Email_Model");
+        $response = $this->Email_Model->trigger_mail($email, $heading, $message);
+
+        return $response;
+
+    }
+
 }
