@@ -48,31 +48,37 @@
                                     <div class="forms-sample">
                                         <div class="form-group">
                                             <label for="vehicleTitle">Supplier</label>
-                                            <select name="supplier_id" id="" class="form-control " required>
+                                            <select name="supplier_id" id="" class="form-control ">
                                                 <option value="">Select Supplier..</option>
                                                 <?php for($i=0;$i < sizeof($supplier);$i++): ?>
                                                     <option value=<?php echo $supplier[$i]->id;?>><?php echo $supplier[$i]->name;?></option>
                                                 <?php endfor;?>
                                             </select>
+                                            <small class="text-danger"><?php echo form_error('supplier_id'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="vehicleTitle">Title</label>
-                                            <input type="text" class="form-control" id="vehicleTitle" placeholder="Vehicle Title" name="vehicle_title" required>
+                                            <input type="text" class="form-control" id="vehicleTitle" placeholder="Vehicle Title" name="vehicle_title" >
+                                            <small class="text-danger"><?php echo form_error('vehicle_title'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="vehicleRegisteredNumber">Registered Number</label>
-                                            <input type="text" class="form-control" id="vehicleRegisteredNumber" placeholder="Registered Number" name="registered_no" required>
+                                            <input type="text" class="form-control" id="vehicleRegisteredNumber" placeholder="Registered Number" name="registered_no" >
+                                            <small class="text-danger"><?php echo form_error('registered_no'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="vehicleSeat">Seat</label>
-                                            <input type="number" class="form-control" id="vehicleSeat" placeholder="No of Seat" name="no_of_seat" required>
+                                            <input type="number" class="form-control" id="vehicleSeat" placeholder="No of Seat" name="no_of_seat" >
+                                            <small class="text-danger"><?php echo form_error('no_of_seat'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="vehicleFuelType">Fuel Type</label>
-                                            <select class="form-control" id="vehicleFuelType" name="fuel_type" required>
+                                            <select class="form-control" id="vehicleFuelType" name="fuel_type" >
+                                                <option value="">Select Fuel Type</option>
                                                 <option value="P">Petrol</option>
                                                 <option value="D">Diesel</option>
                                             </select>
+                                            <small class="text-danger"><?php echo form_error('fuel_type'); ?></small>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">A/C or Non-A/C</label>
@@ -108,7 +114,7 @@
                                             <label>Vehicle Image</label>
                                             <!--<input type="file" name="img[]" class="">-->
                                             <div class="input-group col-xs-12">
-                                                <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="outsource_pic" required>
+                                                <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="outsource_pic" >
                                                 <!--<span class="input-group-append">-->
                                                 <!--<button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>-->
                                         </span>
@@ -116,20 +122,25 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="vehiclePrice">Rental Price per Day</label>
-                                            <input type="number" class="form-control" id="vehiclePrice" placeholder="1000.00" name="price_per_day" required>
+                                            <input type="number" class="form-control" id="vehiclePrice" placeholder="1000.00" name="price_per_day" >
+                                            <small class="text-danger"><?php echo form_error('price_per_day'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="vehicleAddKM">Additional Price</label>
-                                            <input type="number" class="form-control mb-2" id="vehicleAddKM" placeholder="Per KM" name="per_km" required>
-                                            <input type="number" class="form-control" id="vehicleAddHour" placeholder="Per Hour" name="per_hour" required>
+                                            <input type="number" class="form-control mb-2" id="vehicleAddKM" placeholder="Per KM" name="per_km" >
+                                            <small class="text-danger"><?php echo form_error('per_km'); ?></small>
+                                            <input type="number" class="form-control" id="vehicleAddHour" placeholder="Per Hour" name="per_hour" >
+                                            <small class="text-danger"><?php echo form_error('per_hour'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="vehicleInsurance">Insurance Date</label>
-                                            <input type="date" class="form-control" id="vehicleInsurance" placeholder="Insurance Date" name="insurence_date" required>
+                                            <input type="date" class="form-control" id="vehicleInsurance" placeholder="Insurance Date" name="insurence_date" >
+                                            <small class="text-danger"><?php echo form_error('insurence_date'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="vehicleLicense">Revenue License Date</label>
-                                            <input type="date" class="form-control" id="vehicleLicense" placeholder="Revenue License Date" name="revenue_license_date" required>
+                                            <input type="date" class="form-control" id="vehicleLicense" placeholder="Revenue License Date" name="revenue_license_date">
+                                            <small class="text-danger"><?php echo form_error('revenue_license_date'); ?></small>
                                         </div>
                                         <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                         <button type="reset" class="btn btn-light">Reset</button>
@@ -200,7 +211,11 @@
                     </div>    
                 </div>    
         </div>
-
+        <?php if(validation_errors()) { ?>
+        <script>
+            document.getElementById("addOutsourcingVehicle").classList.add("show");
+        </script>
+        <?php } ?>                                                    
     </div>
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>

@@ -58,7 +58,7 @@
                                 <?php echo form_open_multipart('Damage/DamageVehicle'); ?>
                                 <div class="form-group">
                                     <label for="exampleInputName1"><b>Vehicle ID</b></label>
-                                    <select name="vehicle_id" id="" class="custom-select mr-sm-2" required>
+                                    <select name="vehicle_id" id="" class="custom-select mr-sm-2" >
                                         <option value="">Select Vehicle ID</option>
                                         <?php if(count($getVehicleID)): ?>
                                             <?php foreach($getVehicleID as $value):?>
@@ -66,21 +66,24 @@
                                             <?php endforeach;?>
                                         <?php endif; ?>
                                     </select>
+                                    <small class="text-danger"><?php echo form_error('vehicle_id'); ?></small>
                                 </div>
                             
                             
                                 <div class="form-group">
                                     <label for="exampleSelectGender"><b>Nature of Damage</b></label>
-                                    <select class="custom-select mr-sm-2" id="exampleSelectGender" name="description" required>
+                                    <select class="custom-select mr-sm-2" id="exampleSelectGender" name="description">
                                         <option value="">Select Nature of Damage</option>
                                         <option values="left or Right Signal light">left or Right Signal light</option>
                                         <option values="Door damage">Door damage</option>
                                         <option value="Left and Right Side mirror damages">Left and Right Side mirror damages</option>
                                     </select>
+                                    <small class="text-danger"><?php echo form_error('description'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label><b>Upload Damage Vehicle Picture</b></label>
-                                    <input type="file"  class="form-control" name="image_file" required>
+                                    <input type="file"  class="form-control" name="image_file" >
+                                    <small class="text-danger"><?php echo form_error('image_file'); ?></small>  
                                     <!--
                                     <div class="input-group col-xs-12">
                                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
@@ -97,9 +100,11 @@
                                         <label class="mdi mdi-swap-vertical" for="customRadioInline1">Reserved ID</label> -->
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom " required>
+                                        <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom " >
                                         <label class="mdi mdi-swap-vertical " for="customRadioInline2">Custom Choose </label>
+                                        
                                     </div>
+                                    <small class="text-danger"><?php echo form_error('chooser'); ?></small>
                                     <!-- <div class="collapse " id="collapseExample" aria-labelledby="customRadioInline1">
                                     <br>
                                         <select name="cr_vehicle_id" id="showReservedId" class="custom-select"  >
@@ -115,7 +120,7 @@
                                         <br>
                                         <div class="row">
                                             <div class="col">
-                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  required>
+                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  >
                                                     <option value="">Select Vehicle ID</option>
                                                     <?php if(count($getReservedID) && count($getVehicleID)): ?>
                                                          <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
@@ -125,9 +130,10 @@
                                                               <?php endfor;?>
                                                     <?php endif; ?>
                                                 </select>
+                                                <!-- <small class="text-danger"><?php echo form_error('c_vehicle_id'); ?></small> -->
                                             </div>
                                             <div class="col">
-                                                <select name="c" id="showReservedId" class="custom-select"  required    >
+                                                <select name="c" id="showReservedId" class="custom-select" >
                                                     <option value="">Select Customer</option>
                                                     <?php if(count($getReservedID) && count($getCustomerDetails)): ?>
                                                          <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
@@ -136,7 +142,8 @@
                                                               <?php endif; ?>
                                                               <?php endfor;?>
                                                     <?php endif; ?>
-                                                </select>       
+                                                </select> 
+                                                <!-- <small class="text-danger"><?php echo form_error('c'); ?></small>       -->
                                             </div>
                                         </div>
                                     
@@ -157,13 +164,14 @@
                                     <div class="collapse " id="fix" aria-labelledby="fix_amount">
                                         <br>
                                         <input type="text" name="fix_amount" id="" class="form-control" value="0" placeholder="Enter fix amount">
+                                        <small class="text-danger"><?php echo form_error('fix_amount'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleSelectGender"><b>Is damage solved</b></label><br><br>
                                     <input type="checkbox" name="is_solved" id="damage_solved" value="1" class="">
                                     <label for="exampleInputCity1 "> Yes</label>
-                                
+                                                                
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Add</button>
                                 <button class="btn btn-light">Cancel</button>
@@ -310,6 +318,12 @@
                 </div>
             </div>
         </div>
+        <?php if(validation_errors()) { ?>
+        <script>
+            document.getElementById("viewDetails").classList.add("show");
+        </script>
+        <?php } ?>
     </div>
+    
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>

@@ -45,10 +45,10 @@
                         <br>
 
                         <!--<div class="alert alert-danger">-->
-                            <?php 
+                            <!-- <?php 
                                     if(!empty(validation_errors()))
                                         echo "<span style='color:red;'>".validation_errors()."</span>"; 
-                            ?>
+                            ?> -->
                         <!--</div>-->
                         <?php echo form_open('Damage_Report/GenerateDamageReport'); ?>
                             `<div class="form-group">
@@ -61,6 +61,7 @@
                                         <?php endforeach;?>
                                     <?php endif; ?>
                                  </select>
+                                 <small class="text-danger"><?php echo form_error('vehicle_id'); ?></small>
                             </div>`
                             <div class="form-group">
                                     <label for="exampleInputEmail1"><b>Time Specification</b></label><br><br>
@@ -117,6 +118,6 @@
 
     </div>
     <!-- content-wrapper ends -->
-
+    
     
 <?php require_once 'crms_footer.php';?>

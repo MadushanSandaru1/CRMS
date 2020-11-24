@@ -40,16 +40,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <?php
-                            if($this->session->flashdata('outsource_supplier_status'))
-                            {
-                            ?>
-                                <div class="alert alert-success">
-                                    <?php echo $this->session->flashdata('outsource_supplier_status'); ?>
-                                </div>
-                            <?php
-                            }
-                        ?>
+                        
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addOutsourcingSupplier" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Outsourcing Supplier Details</button>
 
                         <div class="collapse " id="addOutsourcingSupplier" aria-labelledby="customRadioInline2">
@@ -57,27 +48,33 @@
                             <?php echo form_open_multipart('OutSourceSupplier/outSourcingSupplier'); ?>
                                 <div class="form-group">
                                     <label for="expenseVehicleID"><b>Name</b></label>
-                                    <input type="text" name="name" class="form-control" placeholder="Type Supplier Name" required>
+                                    <input type="text" name="name" class="form-control" placeholder="Type Supplier Name" >
+                                    <small class="text-danger"><?php echo form_error('name'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expensedVehicleDate">NIC</label>
-                                    <input type="text" name="nic" class="form-control" id="expensedVehicleDate" placeholder="Supplier NIC Number" required>
+                                    <input type="text" name="nic" class="form-control" id="expensedVehicleDate" placeholder="Supplier NIC Number" >
+                                    <small class="text-danger"><?php echo form_error('nic'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount">Email</label>
-                                    <input type="email" name="email" class="form-control" id="expenseAmount" placeholder="Supplier Email" required>
+                                    <input type="email" name="email" class="form-control" id="expenseAmount" placeholder="Supplier Email" >
+                                    <small class="text-danger"><?php echo form_error('email'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount">Phone Number</label>
-                                    <input type="text" name="phone" class="form-control" id="expenseAmount" placeholder="Supplier Phone Number" required>
+                                    <input type="text" name="phone" class="form-control" id="expenseAmount" placeholder="Supplier Phone Number">
+                                    <small class="text-danger"><?php echo form_error('phone'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount">Address</label>
-                                    <input type="text" name="address" class="form-control" id="expenseAmount" placeholder="Supplier Address" required>
+                                    <input type="text" name="address" class="form-control" id="expenseAmount" placeholder="Supplier Address" >
+                                    <small class="text-danger"><?php echo form_error('address'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount">Upload NIC Picture</label>
-                                    <input type="file" name="nic_copy" class="form-control" id="expenseAmount" placeholder="Supplier NIC Picture" required>
+                                    <input type="file" name="nic_copy" class="form-control" id="expenseAmount" placeholder="Supplier NIC Picture" >
+                                    <small class="text-danger"><?php echo form_error('nic_copy'); ?></small>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
@@ -123,7 +120,11 @@
             </div>
         </div>
         </div>
-
+        <?php if(validation_errors()) { ?>
+        <script>
+            document.getElementById("addOutsourcingSupplier").classList.add("show");
+        </script>
+        <?php } ?>                             
     </div>
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>

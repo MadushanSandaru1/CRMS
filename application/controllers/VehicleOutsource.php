@@ -10,30 +10,57 @@
 
         public function  outsourcingVehicle()
         {
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['upload_path'] = './assets/images/outsourceVehicles/';
-            $this->load->library('upload',$config);
+            $this->form_validation->set_rules('supplier_id','Supplier ID','required');
+            $this->form_validation->set_rules('vehicle_title','Vehicle Title','required');
+            //$this->form_validation->set_rules('outsource_pic','OutSource Vehicle Image File','required');
+            $this->form_validation->set_rules('registered_no','Registered Number','required');
+            $this->form_validation->set_rules('no_of_seat','No of seats','required');
+            $this->form_validation->set_rules('fuel_type','Fuel Type','required');
+            $this->form_validation->set_rules('price_per_day','Price Per Day','required');
+            $this->form_validation->set_rules('per_km','Price Per KM','required');
+            $this->form_validation->set_rules('per_hour','Price Per Hour','required');
+            $this->form_validation->set_rules('insurence_date','Insurence Date','required');
+            $this->form_validation->set_rules('revenue_license_date','Revenue Licence Date','required');
 
-            if($this->upload->do_upload('outsource_pic'))
+            if($this->form_validation->run() == FALSE)
             {
-                $data = $this->input->post();
-                $info = $this->upload->data();
-                $image_path= "assets/images/outsourceVehicles/".$info['raw_name'].$info['file_ext'];
                 $this->load->model('OutsourceVehicleModel');
                 $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
                 $supplier = $this->OutsourceVehicleModel->getSupplier();
-                $response = $this->OutsourceVehicleModel->insertOutsourceVehicle($image_path);
+                $this->load->view(
+                    'crms_outsourcing',
+                    [
+                        'outsourceVehicle'=>$outSourceDetails,
+                        'supplier'=>$supplier
+                    ]
+                );
+            } 
+            else{
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $config['upload_path'] = './assets/images/outsourceVehicles/';
+                $this->load->library('upload',$config);
 
-                if ($response)
+                if($this->upload->do_upload('outsource_pic'))
                 {
-                    $this->session->set_flashdata('outsource_status',"Data Recorded Successfully");
-                    $this->load->view(
-                        'crms_outsourcing',
-                        [
-                            'outsourceVehicle'=>$outSourceDetails,
-                            'supplier'=>$supplier
-                        ]
-                    );
+                    $data = $this->input->post();
+                    $info = $this->upload->data();
+                    $image_path= "assets/images/outsourceVehicles/".$info['raw_name'].$info['file_ext'];
+                    $this->load->model('OutsourceVehicleModel');
+                    $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
+                    $supplier = $this->OutsourceVehicleModel->getSupplier();
+                    $response = $this->OutsourceVehicleModel->insertOutsourceVehicle($image_path);
+
+                    if ($response)
+                    {
+                        $this->session->set_flashdata('outsource_status',"Data Recorded Successfully");
+                        $this->load->view(
+                            'crms_outsourcing',
+                            [
+                                'outsourceVehicle'=>$outSourceDetails,
+                                'supplier'=>$supplier
+                            ]
+                        );
+                    }
                 }
             }
         }
