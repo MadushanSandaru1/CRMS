@@ -122,7 +122,7 @@
         </div>
         <?php if(validation_errors()) { ?>
         <script>
-            document.getElementById("addOutsourcingSupplier").classList.add("show");
+            document.getElementById("addOutsourcingVehicle").classList.add("show");
         </script>
         <?php } ?>                             
     </div>
