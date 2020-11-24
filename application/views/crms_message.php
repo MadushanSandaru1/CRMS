@@ -19,10 +19,6 @@
         $class_err="block";
     }
 ?>
-
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>-->
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>-->
-
 <style>
     .card-body{
         font-family: Arial;
@@ -97,14 +93,7 @@
             </div>
         </div>
 <!--end of Message View-->
-<!--Reply section-->
-        <div class="row" >
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card " id="show_reply">
 
-                </div>
-            </div>
-<!--End of Reply section-->
     <script>
         function getMsgId(id){
             $.ajax({
@@ -116,17 +105,6 @@
                 }
             });
          }
-
-        function reply_btn(email,name,msg_id){
-            $.ajax({
-                url:"<?php echo base_url('index.php/Home/reply_msg')?>",
-                method:"POST",
-                data: {email:email,name:name,msg_id:msg_id},
-                success:function (data){
-                    document.getElementById("show_reply").innerHTML=data;
-                }
-            });
-        }
     </script>
     </div>
     <!-- content-wrapper ends -->

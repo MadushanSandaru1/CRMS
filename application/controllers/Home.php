@@ -248,31 +248,15 @@ class Home extends CI_Controller {
 
     //email
     public function mail(){
-        $config=Array(
-            'protocol'=>'smtp',
-            'smtp_host'=>'ssl://smtp.googlemail.com',
-            'smtp_port'=>465,
-            'smtp_user'=>'lahirusampathsadaruwan@gmail.com',
-            'smtp_pass'=>'Sampath@98',
-            'mailtype'=>'html',
-            'charset'=>'iso-8859-1',
-            'wordwrap'=>TRUE,
-        );
         $email=$this->input->post('email');
         $msg=$this->input->post('message_content');
         $msg_id=$this->input->post('msg_id');
-        $class="none";
+        $msg_sub=$this->input->post('msg_sub');
 
-        $this->load->library('email',$config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('lahirusampathsadaruwan@gmail.com'); //my gmail address
-        $this->email->to('lahirusampath8899@gmail.com'); //to gmail address
-        $this->email->subject('Test mail');
-        $this->email->message('as');
+        $this->load->model("Email_Model");
+        $this->load->model("Customer_message");
 
-        if($this->email->send()){
-            //reply msg  1 ;
-            $this->load->model("Customer_message");
+        if($this->Email_Model->trigger_mail($email,$msg_sub,$msg,"")){
             $this->Customer_message->updateReply($msg_id);
             $class="block";
             redirect('Home/crms_message/'.$class);
@@ -280,7 +264,6 @@ class Home extends CI_Controller {
             $class="none";
             redirect('Home/crms_message/'.$class);
         }
-
     }
 
     public function update_revenueL_date(){

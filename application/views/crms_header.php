@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/css/vendor.bundle.base.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/custom.css'); ?>">
-    
+    <style>
+        h6:hover{
+            color: #0b0b0b;
+        }
+    </style>
 </head>
 
 <body>
@@ -89,14 +93,15 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="<?php echo base_url('assets/images/customers/customer2.jpg');?>" alt="image" class="profile-pic">
+<!--                                    <img src="--><?php //echo base_url('assets/images/customers/customer2.jpg');?><!--" alt="image" class="profile-pic">-->
+                                    <div class="preview-icon bg-success"><i class="mdi mdi-message-alert"></i></div>
                                 </div>
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                                     <?php
 //                                        foreach($fetch_data->result() as $row){
-//                                            ?>
-<!--                                            <h6 class="preview-subject ellipsis mb-1 font-weight-normal">--><?php //echo $row->subject;?><!--</h6>-->
-<!--                                            --><?php
+//                                    ?>
+                                            <h6 class="preview-subject ellipsis mb-1 font-weight-normal">See all Message<?php echo $this->session->userdata('user_name');?></h6>
+                                    <?php
 //                                        }
                                     ?>
                                 </div>
@@ -126,19 +131,19 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification')?>">
                                 <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success"><i class="mdi mdi-calendar"></i></div>
+                                    <div class="preview-icon bg-success"><i class="mdi mdi-bell-ring"></i></div>
                                 </div>
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
+                                    <h6 class="preview-subject font-weight-normal mb-1">Show all Notification</h6>
 <!--                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>-->
                                     <p class="text-gray ellipsis mb-0">
-<!--                                        --><?php
-//                                        foreach($fetch_data->result() as $row){
-//                                            ?>
+                                            <?php
+                                        //foreach($fetch_data->result() as $row){
+//                                  ?>
 <!--                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">--><?php //echo $row->subject;?><!--</h6>-->
-<!--                                    --><?php
+                                    <?php
 //                                        }
-//                                        ?>
+                                    ?>
                                     </p>
                                 </div>
                             </a>
