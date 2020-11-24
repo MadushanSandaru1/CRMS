@@ -3,14 +3,21 @@
 
                 public function getVehicleID()
                 {
-                        $query = $this->db->get('vehicle');
+                        $this->db->select('*');
+                        $this->db->where('is_deleted=',0);
+                        $this->db->where('is_service_out=',0);
+                        $this->db->from('vehicle');
+                        $query = $this->db->get();
                         return $query->result();
                         
                 }
 
                 public function getReservedID()
                 {
-                        $query =$this->db->get('reserved');
+                        $this->db->select('*');
+                        $this->db->where('is_deleted=',0);
+                        $this->db->from('reserved');
+                        $query = $this->db->get();
                         return $query->result();
                         
                 }
@@ -47,14 +54,20 @@
                 }
                 public function getDamageDetails()
                 {
-                        $query =$this->db->get('damage');
+                        $this->db->select('*');
+                        $this->db->where('is_deleted=',0);
+                        $this->db->from('damage');
+                        $query = $this->db->get();
                         return $query->result();
                         
                 }
 
                 public function getCustomerDetails()
                 {
-                        $query =$this->db->get('customer');
+                        $this->db->select('*');
+                        $this->db->where('is_deleted=',0);
+                        $this->db->from('customer');
+                        $query = $this->db->get();
                         return $query->result();
                         
                 }
