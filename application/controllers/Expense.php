@@ -13,9 +13,9 @@ class Expense extends CI_Controller
         $this->session->unset_tempdata('expenseAmount_fill');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_tempdata('expenseVehicleID_fill', $this->input->post('expenseVehicleID', TRUE), 10);
-            $this->session->set_tempdata('expensedVehicleDate_fill', $this->input->post('expensedVehicleDate', TRUE), 10);
-            $this->session->set_tempdata('expenseAmount_fill', $this->input->post('expenseAmount', TRUE), 10);
+            $this->session->set_tempdata('expenseVehicleID_fill', $this->input->post('expenseVehicleID', TRUE), 5);
+            $this->session->set_tempdata('expensedVehicleDate_fill', $this->input->post('expensedVehicleDate', TRUE), 5);
+            $this->session->set_tempdata('expenseAmount_fill', $this->input->post('expenseAmount', TRUE), 5);
 
             $this->load->model("Expense_Model");
             $data['vehicle_data'] = $this->Expense_Model->getVehicleData();

@@ -21,6 +21,14 @@ class Guarantor_Model extends CI_Model
         return $guarantordata_view_query;
     }
 
+    public function removeGuarantorData($guarantor_id) {
+        $this->db->set('is_deleted', 1);
+        $this->db->where('id', $guarantor_id);
+        $this->db->where('is_deleted', 0);
+
+        return $this->db->update('guarantor');;
+    }
+
     public function getReservedData() {
         //$userdata_view_query = $this->db->get('guarantor');
         $reserveddata_view_query = $this->db->query('SELECT r.id, v.`registered_number` FROM `reserved` r, `vehicle` v WHERE v.`id` = r.id AND r.`is_returned` = 0 AND r.`is_deleted` = 0');

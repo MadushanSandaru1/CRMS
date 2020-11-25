@@ -51,4 +51,12 @@ class Vehicle_Model extends CI_Model
 
         return $this->db->update('vehicle', $update_data, $conditions_data);
     }
+
+    public function removeVehicleData($vehicle_id) {
+        $this->db->set('is_deleted', 1);
+        $this->db->where('id', $vehicle_id);
+        $this->db->where('is_deleted', 0);
+
+        return $this->db->update('vehicle');;
+    }
 }
