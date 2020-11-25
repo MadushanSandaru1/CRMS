@@ -195,7 +195,7 @@
                                                 </td>
                                                 <td><?php echo $values->revenue_license_date; ?></td>
                                                 <td>
-                                                    <a id="view"  href="<?php echo base_url("index.php/VehicleOutsource/outsourcingReport/$values->id");?>" ><span class="mdi mdi-note text-primary"> Get Report</span></a>
+                                                    <a id="view"  href="<?php echo base_url("index.php/VehicleOutsource/outsourcingReport/$values->id");?>" target="_blank"><span class="mdi mdi-note "> Get Report</span></a>
                                                     <a id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success ml-3"> Edit</span></a>
                                                     <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                                 </td>
