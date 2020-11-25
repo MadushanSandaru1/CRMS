@@ -58,12 +58,19 @@ class User_Model extends CI_Model
 
         $new_password = $this->input->post('new_password', TRUE);
 
-        $email = $this->session->tempdata('recover_email_fill');
-        $heading = "New Password";
-        $message = "<b>".$new_password."</b> is your new password of the Abhaya account.";
+        $this->db->set('password', sha1($new_password));
+        $this->db->where('email', $this->session->tempdata('recover_email_fill'));
+        $this->db->where('is_deleted', 0);
+        $response = $this->db->update('user');
 
-        $this->load->model("Email_Model");
-        $response = $this->Email_Model->trigger_mail($email, $heading, $message);
+        if ($response) {
+            $email = $this->session->tempdata('recover_email_fill');
+            $heading = "New Password";
+            $message = "<b>".$new_password."</b> is your new password of the Abhaya account.";
+
+            $this->load->model("Email_Model");
+            $this->Email_Model->trigger_mail($email, $heading, $message);
+        }
 
         return $response;
 

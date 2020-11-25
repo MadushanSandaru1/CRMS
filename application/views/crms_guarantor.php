@@ -47,17 +47,18 @@
                       if($this->session->flashdata('guarantor_status'))
                       {
                           ?>
-                          <div class="alert alert-success">
+                          <div class="alert alert-success" role="alert">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                               <?php echo $this->session->flashdata('guarantor_status'); ?>
                           </div>
                           <br>
                           <?php
                       }
                       ?>
+
                       <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
 
                       <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
-                      <?php echo validation_errors(); ?>
                       <?php echo form_open('Guarantor/add_guarantor');  ?>
                         <div class="form-group">
                             <label for="guarantorID"><b>Reserved ID</b></label>
@@ -73,22 +74,27 @@
                                 ?>
 
                             </select>
+                            <small class="text-danger"><?php echo form_error('reservedID'); ?></small>
                         </div>
                       <div class="form-group">
-                        <label for="guarantorName">Name</label>
-                        <input type="text" class="form-control" id="guarantorName" name="guarantorName" placeholder="Name">
+                          <label for="guarantorName">Name</label>
+                          <input type="text" class="form-control" id="guarantorName" name="guarantorName" placeholder="Name" value="<?php if($this->session->tempdata('guarantorName_fill')) echo $this->session->tempdata('guarantorName_fill'); ?>">
+                          <small class="text-danger"><?php echo form_error('guarantorName'); ?></small>
                       </div>
                       <div class="form-group">
-                        <label for="guarantorNIC">NIC</label>
-                        <input type="text" class="form-control" id="guarantorNIC" name="guarantorNIC" placeholder="NIC">
+                          <label for="guarantorNIC">NIC</label>
+                          <input type="text" class="form-control" id="guarantorNIC" name="guarantorNIC" placeholder="NIC" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
+                          <small class="text-danger"><?php echo form_error('guarantorNIC'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="guarantorPhone">Phone</label>
-                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="Phone">
+                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="Phone" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
+                          <small class="text-danger"><?php echo form_error('guarantorPhone'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="guarantorAddress">Address</label>
                         <textarea class="form-control" id="guarantorAddress" name="guarantorAddress" rows="4" placeholder="address"> </textarea>
+                          <small class="text-danger"><?php echo form_error('guarantorAddress'); ?></small>
                       </div>
                       <div class="form-group">
                         <label>NIC Copy</label>
@@ -99,6 +105,7 @@
                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                           </span>
                         </div>
+                          <small class="text-danger"><?php echo form_error('nicImage'); ?></small>
                       </div>
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
@@ -140,7 +147,7 @@
                                             <td><a href="<?php echo base_url('assets/images/guarantor/'.$data_row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                             <td>
                                                 <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                                <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                <a href="<?php echo base_url('index.php/Guarantor/delete_guarantor/'.$data_row->id); ?>"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                             </td>
                                         </tr>
                                 <?php
@@ -161,6 +168,19 @@
                 </div>
             </div>
         </div>
+
+        <?php if(validation_errors()) { ?>
+            <script>
+                document.getElementById("addGuarantor").classList.add("show");
+            </script>
+        <?php } ?>
+
+        <?php if($this->session->tempdata('guarantorAddress_fill')) { ?>
+            <script>
+                let address=<?php echo json_encode($this->session->tempdata('guarantorAddress_fill')); ?>;
+                document.getElementById("guarantorAddress").value = address;
+            </script>
+        <?php } ?>
 
     </div>
     <!-- content-wrapper ends -->
