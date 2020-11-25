@@ -3,13 +3,35 @@
 
 class Guarantor extends CI_Controller
 {
+    public function uploadFiles($file){
+        $image_data = null;
+
+        $config['upload_path'] = './assets/images/guarantor/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        /*$config['max_size'] = '1000000';
+        $config['max_width']  = '1024000';
+        $config['max_height']  = '768000';*/
+        $config['encrypt_name'] = TRUE;
+        $config['overwrite'] = FALSE;
+        $this->load->library('upload',$config);
+
+        if ($this->upload->do_upload($file)){
+            $image_data = $this->upload->data();
+        }
+        else{
+            $this->session->set_flashdata('guarantor_status', $this->upload->display_errors());
+        }
+
+        return $image_data;
+    }
+
     public function add_guarantor(){
         $this->form_validation->set_rules('reservedID', 'Reserved ID', 'required');
         $this->form_validation->set_rules('guarantorName', 'Guarantor Name', 'required|max_length[100]');
         $this->form_validation->set_rules('guarantorNIC', 'Guarantor NIC number', 'required|min_length[9]|max_length[12]');
         $this->form_validation->set_rules('guarantorPhone', 'Guarantor Phone number', 'required|min_length[10]|max_length[10]');
         $this->form_validation->set_rules('guarantorAddress', 'Guarantor Address', 'required|max_length[255]');
-        $this->form_validation->set_rules('nicImage', 'Guarantor NIC Image', 'required');
+        //$this->form_validation->set_rules('nicImage', 'Guarantor NIC Image', 'required');
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_tempdata('reservedID_fill', $this->input->post('reservedID', TRUE), 5);
@@ -25,14 +47,28 @@ class Guarantor extends CI_Controller
             $this->load->view('crms_guarantor', $data);
         }
         else{
-            $this->load->model('Guarantor_Model');
-            $response = $this->Guarantor_Model->insertGuarantorData();
 
-            if($response) {
-                $this->session->set_flashdata('guarantor_status', 'Guarantor registration successful');
-                redirect('Home/crms_guarantor');
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['upload_path'] = './assets/images/guarantor/';
+            $this->load->library('upload',$config);
+
+            if($this->upload->do_upload('nicImage')) {
+                $data = $this->input->post();
+                $info = $this->upload->data();
+                $image_path= $info['raw_name'].$info['file_ext'];
+
+                $this->load->model('Guarantor_Model');
+                $response = $this->Guarantor_Model->insertGuarantorData($image_path);
+
+                if($response) {
+                    $this->session->set_flashdata('guarantor_status', 'Guarantor registration successful');
+                    redirect('Home/crms_guarantor');
+                } else{
+                    $this->session->set_flashdata('guarantor_status', 'Guarantor registration not successful');
+                    redirect('Home/crms_guarantor');
+                }
             } else{
-                $this->session->set_flashdata('guarantor_status', 'Guarantor registration not successful');
+                $this->session->set_flashdata('guarantor_status', 'NIC Copy cannot upload');
                 redirect('Home/crms_guarantor');
             }
         }

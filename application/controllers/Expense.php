@@ -36,4 +36,14 @@ class Expense extends CI_Controller
         }
     }
 
+    public function delete_expense($expense_id){
+        $this->load->model('Expense_Model');
+        $response = $this->Expense_Model->removeExpenseData($expense_id);
+
+        if($response) {
+            $this->session->set_flashdata('expense_status', 'Expense details were successfully removed');
+            redirect('Home/crms_expenses');
+        }
+    }
+
 }

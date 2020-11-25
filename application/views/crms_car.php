@@ -26,7 +26,7 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-car"></i>
-                </span> Car </h3>
+                </span> Vehicle </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
@@ -58,7 +58,7 @@
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addVehicle" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Details</button>
 
                         <div class="collapse " id="addVehicle" aria-labelledby="customRadioInline2">
-                        <?php echo form_open('Vehicle/add_vehicle');  ?>
+                        <?php echo form_open_multipart('Vehicle/add_vehicle');  ?>
                             <div class="form-group">
                                 <label for="vehicleType">Type</label>
                                 <input type="text" class="form-control" id="vehicleType" name="vehicleType" placeholder="Type" value="<?php if($this->session->tempdata('vehicleType_fill')) echo $this->session->tempdata('vehicleType_fill'); ?>">
@@ -178,6 +178,7 @@
                                     <th>System Registered Date</th>
                                     <th>Insurance Date</th>
                                     <th>Revenue License Date</th>
+                                    <th>Image</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -200,9 +201,10 @@
                                             <td><?php echo $data_row->system_registered_date; ?></td>
                                             <td><?php echo $data_row->insurence_date; ?></td>
                                             <td><?php echo $data_row->revenue_license_date; ?></td>
+                                            <td><a href="<?php echo base_url('assets/images/vehicles/'.$data_row->image); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                             <td>
-                                                <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                                <a href="<?php echo base_url('index.php/Vehicle/delete_vehicle/'.$data_row->id); ?>"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                <a href="" data-id="1"><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                                <a href="<?php echo base_url('index.php/Vehicle/delete_vehicle/'.$data_row->id); ?>" onclick="return confirm('Are you sure to delete this information?');"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                             </td>
                                         </tr>
                                         <?php
@@ -223,6 +225,26 @@
             </div>
             
         </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header flex-column">
+                        <button type="button" class="close text-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title w-100 text-danger">Are you sure?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete these record? This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Confirmation Modal -->
 
         <?php if(validation_errors()) { ?>
             <script>

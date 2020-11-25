@@ -117,7 +117,7 @@
                                 <td class="text-right"><?php echo number_format($data_row->amount,2); ?></td>
                                 <td>
                                     <a href=""><span class="edit_btn mdi mdi-eyedropper text-success"> Edit</span></a>
-                                    <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                    <a href="<?php echo base_url('index.php/Expense/delete_expense/'.$data_row->id); ?>" onclick="return confirm('Are you sure to delete this information?');"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                 </td>
                             </tr>
                             <?php

@@ -8,7 +8,7 @@ class Vehicle extends CI_Controller
         $this->form_validation->set_rules('vehicleRegisteredNumber', 'Vehicle Registered Number', 'required|is_unique[vehicle.registered_number]|max_length[15]');
         $this->form_validation->set_rules('vehicleSeat', 'Vehicle Seat', 'required');
         $this->form_validation->set_rules('vehicleFuelType', 'Vehicle Fuel Type', 'required');
-        $this->form_validation->set_rules('vehicleImage', 'Vehicle Image', 'required');
+        //$this->form_validation->set_rules('vehicleImage', 'Vehicle Image', 'required');
         $this->form_validation->set_rules('vehiclePrice', 'Vehicle Price', 'required');
         $this->form_validation->set_rules('vehicleAddKM', 'Vehicle Additional KM', 'required');
         $this->form_validation->set_rules('vehicleAddHour', 'Vehicle Additional Hour', 'required');
@@ -32,14 +32,29 @@ class Vehicle extends CI_Controller
             $this->load->view('crms_car', $data);
         }
         else {
-            $this->load->model('Vehicle_Model');
-            $response = $this->Vehicle_Model->insertVehicleData();
 
-            if($response) {
-                $this->session->set_flashdata('vehicle_status', 'Vehicle registration successful');
-                redirect('Home/crms_car');
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['upload_path'] = './assets/images/vehicles/';
+            $this->load->library('upload',$config);
+
+            if($this->upload->do_upload('vehicleImage')) {
+                $data = $this->input->post();
+                $info = $this->upload->data();
+                $image_path = $info['raw_name'] . $info['file_ext'];
+
+                $this->load->model('Vehicle_Model');
+                $response = $this->Vehicle_Model->insertVehicleData($image_path);
+
+                if($response) {
+                    $this->session->set_flashdata('vehicle_status', 'Vehicle registration successful');
+                    redirect('Home/crms_car');
+                } else {
+                    $this->session->set_flashdata('vehicle_status', 'Vehicle registration not successful');
+                    redirect('Home/crms_car');
+                }
+
             } else {
-                $this->session->set_flashdata('vehicle_status', 'Vehicle registration not successful');
+                $this->session->set_flashdata('vehicle_status', 'Vehicle image cannot upload');
                 redirect('Home/crms_car');
             }
         }

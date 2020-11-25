@@ -228,7 +228,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_car'); ?>">
-                            <span class="menu-title">Car</span>
+                            <span class="menu-title">Vehicle</span>
                             <i class="mdi mdi-car menu-icon"></i>
                         </a>
                     </li>

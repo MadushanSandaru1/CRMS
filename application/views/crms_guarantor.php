@@ -59,7 +59,7 @@
                       <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
 
                       <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
-                      <?php echo form_open('Guarantor/add_guarantor');  ?>
+                      <?php echo form_open_multipart('Guarantor/add_guarantor');  ?>
                         <div class="form-group">
                             <label for="guarantorID"><b>Reserved ID</b></label>
                             <select class="custom-select" name="reservedID">
@@ -99,7 +99,7 @@
                       <div class="form-group">
                         <label>NIC Copy</label>
                         <input type="file" name="nicImage" class="file-upload-default">
-                        <div class="input-group col-xs-12">
+                          <div class="input-group col-xs-12">
                           <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                           <span class="input-group-append">
                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
@@ -147,7 +147,7 @@
                                             <td><a href="<?php echo base_url('assets/images/guarantor/'.$data_row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                             <td>
                                                 <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                                <a href="<?php echo base_url('index.php/Guarantor/delete_guarantor/'.$data_row->id); ?>"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                <a href="<?php echo base_url('index.php/Guarantor/delete_guarantor/'.$data_row->id); ?>" onclick="return confirm('Are you sure to delete this information?');"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                             </td>
                                         </tr>
                                 <?php

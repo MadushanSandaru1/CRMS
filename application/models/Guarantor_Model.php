@@ -2,14 +2,14 @@
 
 class Guarantor_Model extends CI_Model
 {
-    public function insertGuarantorData(){
+    public function insertGuarantorData($image_path){
         $guarantor_data = array(
             'reserved_id' => $this->input->post('reservedID', TRUE),
             'name' => $this->input->post('guarantorName', TRUE),
             'nic' => $this->input->post('guarantorNIC', TRUE),
             'phone' => $this->input->post('guarantorPhone', TRUE),
             'address' => $this->input->post('guarantorAddress', TRUE),
-            'nic_copy' => $this->input->post('nicImage', TRUE)
+            'nic_copy' => $image_path
         );
 
         return $this->db->insert('guarantor',$guarantor_data);

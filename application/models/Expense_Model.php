@@ -14,6 +14,11 @@ class Expense_Model extends CI_Model
         return $this->db->insert('transaction',$vehicle_expense);
     }
 
+    public function removeExpenseData($expense_id) {
+        $this->db->where('id', $expense_id);
+        return $this->db->delete('transaction');;
+    }
+
     public function getVehicleData() {
         $vehicle_data_view_query = $this->db->query('SELECT * FROM `vehicle` WHERE `is_service_out` = 0 AND `is_deleted` = 0');
         return $vehicle_data_view_query;

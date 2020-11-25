@@ -3,7 +3,7 @@
 
 class Vehicle_Model extends CI_Model
 {
-    public function insertVehicleData(){
+    public function insertVehicleData($image_path){
         $vehicle_data = array(
             'title' => $this->input->post('vehicleType', TRUE),
             'registered_number' => $this->input->post('vehicleRegisteredNumber', TRUE),
@@ -11,7 +11,7 @@ class Vehicle_Model extends CI_Model
             'fuel_type' => $this->input->post('vehicleFuelType', TRUE),
             'ac' => $this->input->post('radioAC', TRUE),
             'transmission' => $this->input->post('radioTransmission', TRUE),
-            'image' => $this->input->post('vehicleImage', TRUE),
+            'image' => $image_path,
             'price_per_day' => $this->input->post('vehiclePrice', TRUE),
             'additional_price_per_km' => $this->input->post('vehicleAddKM', TRUE),
             'additional_price_per_hour' => $this->input->post('vehicleAddHour', TRUE),
