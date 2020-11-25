@@ -3,28 +3,6 @@
 
 class Guarantor extends CI_Controller
 {
-    public function uploadFiles($file){
-        $image_data = null;
-
-        $config['upload_path'] = './assets/images/guarantor/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        /*$config['max_size'] = '1000000';
-        $config['max_width']  = '1024000';
-        $config['max_height']  = '768000';*/
-        $config['encrypt_name'] = TRUE;
-        $config['overwrite'] = FALSE;
-        $this->load->library('upload',$config);
-
-        if ($this->upload->do_upload($file)){
-            $image_data = $this->upload->data();
-        }
-        else{
-            $this->session->set_flashdata('guarantor_status', $this->upload->display_errors());
-        }
-
-        return $image_data;
-    }
-
     public function add_guarantor(){
         $this->form_validation->set_rules('reservedID', 'Reserved ID', 'required');
         $this->form_validation->set_rules('guarantorName', 'Guarantor Name', 'required|max_length[100]');

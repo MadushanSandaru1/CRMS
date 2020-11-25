@@ -130,7 +130,20 @@ class Home extends CI_Controller {
     //crms car reserved page
     public function crms_reserved()
     {
-        $this->load->view('crms_reserved');
+        $this->load->model("Reserved_Model");
+        $data['vehicle_data'] = $this->Reserved_Model->getVehicleData();
+        $data['customer_data'] = $this->Reserved_Model->getCustomerData();
+        $data['reserved_data'] = $this->Reserved_Model->getVehicleReservedData();
+        $this->load->view('crms_reserved', $data);
+    }
+
+    //crms car returned page
+    public function crms_returned()
+    {
+        $this->load->model("Returned_Model");
+        $data['reserved_data'] = $this->Returned_Model->getReservedData();
+        $data['returned_data'] = $this->Returned_Model->getVehicleReturnedData();
+        $this->load->view('crms_returned', $data);
     }
 
     //crms car booking page

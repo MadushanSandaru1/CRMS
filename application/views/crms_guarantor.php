@@ -108,7 +108,7 @@
                           <small class="text-danger"><?php echo form_error('nicImage'); ?></small>
                       </div>
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                      <button class="btn btn-light">Cancel</button>
+                      <button type="reset" class="btn btn-light">Cancel</button>
                       <?php echo form_close();  ?>
                       </div>
                   </div>

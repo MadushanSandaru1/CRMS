@@ -255,6 +255,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_returned'); ?>">
+                            <span class="menu-title">Car Returned</span>
+                            <i class="mdi mdi-keyboard-return menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('index.php/Home/crms_booking'); ?>">
                             <span class="menu-title">Car Booking</span>
                             <i class="mdi mdi-bookmark-plus menu-icon"></i>
