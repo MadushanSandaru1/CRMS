@@ -34,7 +34,9 @@ class Home extends CI_Controller {
     //crms car page
     public function car()
     {
-        $this->load->view('car');
+        $this->load->model("Vehicle_Model");
+        $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
+        $this->load->view('car', $data);
     }
 
     //crms contact page

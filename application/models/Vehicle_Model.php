@@ -25,7 +25,7 @@ class Vehicle_Model extends CI_Model
 
     public function getVehicleData() {
         //$userdata_view_query = $this->db->get('vehicle');
-        $userdata_view_query = $this->db->query('SELECT * FROM `vehicle` WHERE `is_deleted` = 0');
+        $userdata_view_query = $this->db->query('SELECT * FROM `vehicle` WHERE `is_service_out` = 0 AND `is_deleted` = 0');
         return $userdata_view_query;
     }
 

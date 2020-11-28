@@ -51,77 +51,55 @@
             </div>
         </div>
 
-		<div class="row item-container">
+		<div class="row item-container d-flex justify-content-center">
 			<!-- item model -->
-			<div class="row align-items-center single-model item mb-3 filter-ac">
+            <?php
+            if($vehicle_data->num_rows() > 0) {
+                foreach ($vehicle_data->result() as $data_row){
+            ?>
+			<div class="row align-items-center single-model item mb-3 <?php if($data_row->ac == 'A') echo "filter-ac"; else echo "filter-nonac"; ?> <?php if($data_row->fuel_type == 'P') echo "filter-petrol"; else echo "filter-diesel"; ?> <?php if($data_row->transmission == 'A') echo "filter-auto"; else echo "filter-manual"; ?>">
 				<div class="col-lg-6 model-left">
-					<h4>Audi 3000 msi</h4>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					</p>
-                    <table class="ml-4 mb-2">
+					<h4><?php echo $data_row->title; ?></h4>
+					<table class="ml-4 mb-2">
                         <tr>
                             <td>Seat</td>
-                            <td class="pl-3">: <strong><b>04</b></strong> <br></td>
+                            <td class="pl-3">: <strong><b><?php echo $data_row->seat; ?></b></strong> <br></td>
                         </tr>
                         <tr>
                             <td>Fuel</td>
-                            <td class="pl-3">: <strong><b>Petrol</b></strong> <br></td>
+                            <td class="pl-3">: <strong><b><?php if($data_row->fuel_type == 'P') echo "Petrol"; else echo "Diesel"; ?></b></strong> <br></td>
                         </tr>
                         <tr>
                             <td>Air Condition</td>
-                            <td class="pl-3">: <strong><b>Yes</b></strong> <br></td>
+                            <td class="pl-3">: <strong><b><?php if($data_row->ac == 'A') echo "AC"; else echo "Non A/C"; ?></b></strong> <br></td>
                         </tr>
                         <tr>
                             <td>Transmission</td>
-                            <td class="pl-3">: <strong><b>Auto</b></strong> <br></td>
+                            <td class="pl-3">: <strong><b><?php if($data_row->transmission == 'A') echo "Auto"; else echo "Manual"; ?></b></strong> <br></td>
                         </tr>
                     </table>
 					<div class="justify-content-between d-flex">
 						<button class="text-uppercase primary-btn">Book This Car</button>
-						<h2 class="car-price">LKR 10000<span>/day</span></h2>
+						<h2 class="car-price">LKR <?php echo number_format($data_row->price_per_day); ?><span>/day</span></h2>
 					</div>
 				</div>
 				<div class="col-lg-6 model-right">
-					<img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/vehicles/car.jpg'); ?>" alt="">
+					<img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/vehicles/'.$data_row->image); ?>" alt="">
 				</div>
 			</div>
 
-            <div class="row align-items-center single-model item mb-3 filter-ac">
-                <div class="col-lg-6 model-left">
-                    <h4>Audi 3000 msi</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                    <table class="ml-4 mb-2">
-                        <tr>
-                            <td>Seat</td>
-                            <td class="pl-3">: <strong><b>04</b></strong> <br></td>
-                        </tr>
-                        <tr>
-                            <td>Fuel</td>
-                            <td class="pl-3">: <strong><b>Petrol</b></strong> <br></td>
-                        </tr>
-                        <tr>
-                            <td>Air Condition</td>
-                            <td class="pl-3">: <strong><b>Yes</b></strong> <br></td>
-                        </tr>
-                        <tr>
-                            <td>Transmission</td>
-                            <td class="pl-3">: <strong><b>Auto</b></strong> <br></td>
-                        </tr>
-                    </table>
-                    <div class="justify-content-between d-flex">
-                        <button class="text-uppercase primary-btn">Book This Car</button>
-                        <h2 class="car-price">LKR 10000<span>/day</span></h2>
-                    </div>
-                </div>
-                <div class="col-lg-6 model-right">
-                    <img class="img-fluid mx-auto d-block" src="<?php echo base_url('assets/images/vehicles/car.jpg'); ?>" alt="">
-                </div>
+            <?php
+                }
+            } else {
+            ?>
+            <div class="row align-items-center">
+                <p class="lead">No Data Found</p>
             </div>
+            <?php
+            }
+            ?>
 
-		</div>
+        </div>
     </div>
 </section>
 <!-- End model Area -->

@@ -37,7 +37,62 @@
         </div>
 
         <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
 
+                        <?php
+                        if($this->session->flashdata('profile_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo $this->session->flashdata('profile_status'); ?>
+                            </div>
+                            <br>
+                            <?php
+                        }
+                        ?>
+
+                        <div id="addProfile">
+                            <?php echo form_open('Profile/update_profile');  ?>
+                            <div class="form-group">
+                                <label for="expenseAmount">Id</label>
+                                <input type="text" class="form-control" name="profileId" id="profileId" value="">
+                                <small class="text-danger"><?php echo form_error('profileId'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="expenseAmount">Name</label>
+                                <input type="text" class="form-control" name="profileName" id="profileName" value="">
+                                <small class="text-danger"><?php echo form_error('profileName'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="expenseAmount">NIC</label>
+                                <input type="text" class="form-control" name="profileNic" id="profileNic" value="">
+                                <small class="text-danger"><?php echo form_error('profileNic'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="expenseAmount">Email</label>
+                                <input type="text" class="form-control" name="profileEmail" id="profileEmail" value="">
+                                <small class="text-danger"><?php echo form_error('profileEmail'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="expenseAmount">Phone</label>
+                                <input type="text" class="form-control" name="profilePhone" id="profilePhone" value="">
+                                <small class="text-danger"><?php echo form_error('profilePhone'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="expenseAmount">Address</label>
+                                <input type="text" class="form-control" name="profileAddress" id="profileAddress" value="">
+                                <small class="text-danger"><?php echo form_error('profileAddress'); ?></small>
+                            </div>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button type="reset" class="btn btn-light">Cancel</button>
+                            <?php echo form_close();  ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
