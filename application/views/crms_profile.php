@@ -55,45 +55,65 @@
                         ?>
 
                         <div id="addProfile">
-                            <?php echo form_open('Profile/update_profile');  ?>
+                            <div>
+                                <img src="<?php echo base_url('assets/images/users/'.$this->session->userdata('user_image'));?>" class="rounded-circle" alt="Profile pic" width="20%">
+                            </div>
                             <div class="form-group">
-                                <label for="expenseAmount">Id</label>
-                                <input type="text" class="form-control" name="profileId" id="profileId" value="">
+                                <label for="profileId">Id</label>
+                                <input type="text" class="form-control" name="profileId" id="profileId" value="<?php echo $this->session->userdata('user_id'); ?>" readonly>
                                 <small class="text-danger"><?php echo form_error('profileId'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="expenseAmount">Name</label>
-                                <input type="text" class="form-control" name="profileName" id="profileName" value="">
+                                <label for="profileName">Name</label>
+                                <input type="text" class="form-control" name="profileName" id="profileName" value="<?php echo $this->session->userdata('user_name'); ?>" readonly>
                                 <small class="text-danger"><?php echo form_error('profileName'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="expenseAmount">NIC</label>
-                                <input type="text" class="form-control" name="profileNic" id="profileNic" value="">
+                                <label for="profileNic">NIC</label>
+                                <input type="text" class="form-control" name="profileNic" id="profileNic" value="<?php echo $this->session->userdata('user_nic'); ?>" readonly>
                                 <small class="text-danger"><?php echo form_error('profileNic'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="expenseAmount">Email</label>
-                                <input type="text" class="form-control" name="profileEmail" id="profileEmail" value="">
+                                <label for="profileEmail">Email</label>
+                                <input type="text" class="form-control" name="profileEmail" id="profileEmail" value="<?php echo $this->session->userdata('user_email'); ?>" readonly>
                                 <small class="text-danger"><?php echo form_error('profileEmail'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="expenseAmount">Phone</label>
-                                <input type="text" class="form-control" name="profilePhone" id="profilePhone" value="">
+                                <label for="profilePhone">Phone</label>
+                                <input type="text" class="form-control" name="profilePhone" id="profilePhone" value="<?php echo $this->session->userdata('user_phone'); ?>" readonly>
                                 <small class="text-danger"><?php echo form_error('profilePhone'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="expenseAmount">Address</label>
-                                <input type="text" class="form-control" name="profileAddress" id="profileAddress" value="">
+                                <label for="profileAddress">Address</label>
+                                <textarea class="form-control" id="profileAddress" name="guarantorAddress" rows="4" placeholder="address"> </textarea>
                                 <small class="text-danger"><?php echo form_error('profileAddress'); ?></small>
                             </div>
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                            <button type="reset" class="btn btn-light">Cancel</button>
-                            <?php echo form_close();  ?>
+                            <div class="border border-danger p-5">
+                                <?php echo form_open('User/change_profile_pwd');  ?>
+                                <div class="form-group">
+                                    <label for="new_password">New password</label>
+                                    <input type="text" class="form-control" name="new_password" id="new_password">
+                                    <small class="text-danger"><?php echo form_error('new_password'); ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm password</label>
+                                    <input type="text" class="form-control" name="confirm_password" id="confirm_password">
+                                    <small class="text-danger"><?php echo form_error('confirm_password'); ?></small>
+                                </div>
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                <button type="reset" class="btn btn-light">Cancel</button>
+                                <?php echo form_close();  ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+            let address=<?php echo json_encode($this->session->userdata('user_address')); ?>;
+            document.getElementById("profileAddress").value = address;
+        </script>
 
     </div>
     <!-- content-wrapper ends -->

@@ -140,6 +140,33 @@ class User extends CI_Controller
 
     }
 
+    public function change_profile_pwd() {
+        $this->form_validation->set_rules('new_password', 'New Password', 'required');
+        $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[new_password]');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->model("Customer_message");
+            $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
+            $this->load->view('crms_profile', $data);
+        }
+        else
+        {
+            $this->load->model('User_Model');
+            $response = $this->User_Model->changeProfilePwd();
+
+            if($response) {
+                $this->session->set_flashdata('profile_status', 'Password change successfully');
+                redirect('Home/crms_profile');
+            } else {
+                $this->session->set_flashdata('profile_status', 'Failed to change password');
+                redirect('Home/crms_profile');
+            }
+        }
+
+    }
+
     public function user_exist_check($email)
     {
         $this->db->where('email', $email);
