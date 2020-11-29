@@ -89,26 +89,34 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                             <h6 class="p-3 mb-0">Messages</h6>
 
+                            <?php
+                            if($message_data->num_rows() > 0) {
+                                foreach ($message_data->result() as $data_row) {
+                            ?>
                             <!-- message item -->
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-<!--                                    <img src="--><?php //echo base_url('assets/images/customers/customer2.jpg');?><!--" alt="image" class="profile-pic">-->
-                                    <div class="preview-icon bg-success"><i class="mdi mdi-message-alert"></i></div>
+                                    <i class="mdi mdi-account-circle mdi-48px text-danger"></i>
+<!--                                    <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">-->
                                 </div>
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <?php
-//                                        foreach($fetch_data->result() as $row){
-//                                    ?>
-                                            <h6 class="preview-subject ellipsis mb-1 font-weight-normal">See all Message<?php echo $this->session->userdata('user_name');?></h6>
-                                    <?php
-//                                        }
-                                    ?>
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->name; ?> send you a message</h6>
+                                    <p class="text-gray mb-0"> <?php echo $data_row->received_time; ?> </p>
                                 </div>
                             </a>
-                            <!-- ** message item -->
-
                             <div class="dropdown-divider"></div>
+                            <!-- ** message item -->
+                            <?php
+                                }
+                            } else {
+                            ?>
+                            <div class="dropdown-divider"></div>
+                                <h6 class="p-3 mb-0 text-center text-danger">No new messages</h6>
+                            <div class="dropdown-divider"></div>
+                            <?php
+                            }
+                            ?>
 
                             <!-- message link -->
                             <a href="<?php echo base_url('index.php/Home/crms_message'); ?>"><h6 class="p-3 mb-0 text-center">See all messages</h6></a>

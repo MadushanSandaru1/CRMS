@@ -84,8 +84,8 @@ class Home extends CI_Controller {
     //crms dashboard page
     public function crms_dash()
     {
-//        $this->load->model("Customer_message");
-//        $data["fetch_data"]=$this->Customer_message->getCustomMessage_header();
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
 
         $this->load->model("User_Model");
         $data['user_data'] = $this->User_Model->getSpecificUserDetails();
@@ -105,6 +105,10 @@ class Home extends CI_Controller {
     //crms car page
     public function crms_car()
     {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
+
         $this->load->model("Vehicle_Model");
         $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
         $this->load->view('crms_car', $data);
@@ -113,16 +117,20 @@ class Home extends CI_Controller {
     //crms customer page
     public function crms_customer()
     {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
 
         $this->load->model("Customer_Model");
         $data['customer_data']=$this->Customer_Model->getCustomers();
         $this->load->view('crms_customer',$data);
-        //$this->load->view('crms_customer');
     }
 
     //crms guarantor page
     public function crms_guarantor()
     {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
         $this->load->model("Guarantor_Model");
         $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
         $data['reserved_data'] = $this->Guarantor_Model->getReservedData();
@@ -132,6 +140,9 @@ class Home extends CI_Controller {
     //crms car reserved page
     public function crms_reserved()
     {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
         $this->load->model("Reserved_Model");
         $data['vehicle_data'] = $this->Reserved_Model->getVehicleData();
         $data['customer_data'] = $this->Reserved_Model->getCustomerData();
@@ -142,6 +153,9 @@ class Home extends CI_Controller {
     //crms car returned page
     public function crms_returned()
     {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
         $this->load->model("Returned_Model");
         $data['reserved_data'] = $this->Returned_Model->getReservedData();
         $data['returned_data'] = $this->Returned_Model->getVehicleReturnedData();
@@ -151,12 +165,18 @@ class Home extends CI_Controller {
     //crms car booking page
     public function crms_booking()
     {
-        $this->load->view('crms_booking');
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
+        $this->load->view('crms_booking', $data);
     }
 
     //crms car tracking page
     public function crms_tracking()
-    {   
+    {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
         $this->load->model('Tracker_Model');
         $data['vehicle_data']=$this->Tracker_Model->getVehicles();
         $this->load->view('crms_tracking',$data);
@@ -165,6 +185,7 @@ class Home extends CI_Controller {
     //crms car damage page
     public function crms_damage()
     {
+
         $this->load->model('DamageModel');
         $getDamageDetails = $this->DamageModel->getDamageDetails();
         $getVehicleID = $this->DamageModel->getVehicleID();
@@ -184,6 +205,9 @@ class Home extends CI_Controller {
     //crms car expenses page
     public function crms_expenses()
     {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
         $this->load->model("Expense_Model");
         $data['vehicle_data'] = $this->Expense_Model->getVehicleData();
         $data['vehicle_expense_data'] = $this->Expense_Model->getVehicleExpenseData();
@@ -232,6 +256,9 @@ class Home extends CI_Controller {
     //crms notification page
     public function crms_notification()
     {
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
         $this->load->model("notification");
         $data["fetch_data"]=$this->notification->vehiacal_notifi();
         $this->load->view('crms_notification',$data);
@@ -241,6 +268,9 @@ class Home extends CI_Controller {
     public function crms_message()
     {
         $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
+        $this->load->model("Customer_message");
         $this->Customer_message->deleteOldMsg(); // delete old msg
         $data["fetch_data"]=$this->Customer_message->getCustomMessage();
         $this->load->view('crms_message',$data);
@@ -248,7 +278,9 @@ class Home extends CI_Controller {
 
     public function view_msg()
     {
-//        $this->input->post('data');
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+
         $id=$_POST["id"];
         $this->load->model("Customer_message");
         $data["fetch_data"]=$this->Customer_message->getMsg($id);

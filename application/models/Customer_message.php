@@ -28,6 +28,12 @@ class Customer_message extends CI_Model {
         return $query1;
     }
 
+    function getCustomMessageForHeader(){
+        $message_view_query = $this->db->query("SELECT * FROM `customer_message` WHERE `is_replied` = 0 ORDER BY `received_time` DESC LIMIT 2");
+
+        return $message_view_query;
+    }
+
     function getMsg($id){
         $query2=$this->db->query("SELECt * FROM customer_message WHERE id='$id'");
         return $query2;
