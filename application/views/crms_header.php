@@ -139,7 +139,7 @@
                     <!-- notification icon -->
                     <li class="nav-item dropdown">
                         <?php
-                        if(($insurence_date->num_rows() > 0) || $revenue_license_date->num_row()>0){
+                        if(($insurence_date->num_rows() > 0) || ($revenue_license_date->num_rows()>0)){
                             $count_indicator="count-indicator dropdown-toggle";
                         }else{
                             $count_indicator="";
