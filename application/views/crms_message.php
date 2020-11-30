@@ -97,7 +97,7 @@
     <script>
         function getMsgId(id){
             $.ajax({
-                url:"<?php echo base_url('index.php/Home/view_msg')?>",
+                url:"<?php echo base_url('index.php/CustomerMessage/view_msg')?>",
                 method:"POST",
                 data: {id:id},
                 success:function (data){

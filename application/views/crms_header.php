@@ -80,7 +80,14 @@
 
                     <!-- message icon -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                        <?php
+                        if($message_data->num_rows()> 0){
+                            $count_indicator_msg="count-indicator dropdown-toggle";
+                        }else{
+                            $count_indicator_msg="";
+                        }
+                        ?>
+                        <a class="nav-link <?php echo $count_indicator_msg;?>" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-message-outline"></i>
                             <span class="count-symbol bg-warning"></span>
                         </a>
@@ -95,18 +102,19 @@
                             ?>
                             <!-- message item -->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
+                            <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_message');?>">
                                 <div class="preview-thumbnail">
-                                    <i class="mdi mdi-account-circle mdi-48px text-danger"></i>
-<!--                                    <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">-->
+                                    <i class="mdi mdi-account-circle mdi-48px   text-danger"></i>
                                 </div>
+
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+
                                     <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->name; ?> send you a message</h6>
                                     <p class="text-gray mb-0"> <?php echo $data_row->received_time; ?> </p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <!-- ** message item -->
+
                             <?php
                                 }
                             } else {
@@ -116,17 +124,28 @@
                             <div class="dropdown-divider"></div>
                             <?php
                             }
-                            ?>
+                            if($message_data->num_rows()> 0){
 
+                            ?>
                             <!-- message link -->
-                            <a href="<?php echo base_url('index.php/Home/crms_message'); ?>"><h6 class="p-3 mb-0 text-center">See all messages</h6></a>
+                            <h6 class="p-3 mb-0 text-center">See all messages</h6></a>
+                            <?php
+                                }
+                            ?>
                         </div>
                     </li>
                     <!-- ** message icon -->
 
                     <!-- notification icon -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                        <?php
+                        if(($insurence_date->num_rows() > 0) || $revenue_license_date->num_row()>0){
+                            $count_indicator="count-indicator dropdown-toggle";
+                        }else{
+                            $count_indicator="";
+                        }
+                        ?>
+                        <a class="nav-link <?php echo $count_indicator;?>" id="notificationDropdown" href="#" data-toggle="dropdown">
                             <i class="mdi mdi-bell-outline"></i>
                             <span class="count-symbol bg-danger"></span>
                         </a>
@@ -137,30 +156,43 @@
 
                             <!-- notification item -->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification')?>">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success"><i class="mdi mdi-bell-ring"></i></div>
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Show all Notification</h6>
-<!--                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>-->
-                                    <p class="text-gray ellipsis mb-0">
-                                            <?php
-                                        //foreach($fetch_data->result() as $row){
-//                                  ?>
-<!--                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">--><?php //echo $row->subject;?><!--</h6>-->
-                                    <?php
-//                                        }
+                            <?php
+                            $c=0;
+                            if($insurence_date->num_rows() > 0) {
+                                foreach ($insurence_date->result() as $data_row) {
+                                    if($c==3){
+                                        break;
+                                    }
+                                    $c++;
                                     ?>
-                                    </p>
+                                    <!-- notification item -->
+                                    <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification');?>">
+                                        <div class="preview-thumbnail">
+                                            <i class="mdi mdi-bell-ring mdi-36px text-danger"></i>
+                                        </div>
+
+                                        <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                            <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->registered_number; ?>  Insurence date is expire</h6>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+
+                                    <?php
+                                            }
+                                        }else{
+                                    ?>
+                                <div class="dropdown-item preview-item preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">No Notification.</h6>
                                 </div>
-                            </a>
-                            <!-- ** notification item -->
 
-                            <div class="dropdown-divider"></div>
-
-                            <!-- notification link -->
-<!--                            <a href="--><?php //echo base_url('index.php/Home/crms_notification'); ?><!--"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>-->
+                                <?php
+                                    }
+                                    if($insurence_date->num_rows()> 0){
+                                ?>
+                                    <a href="<?php echo base_url('index.php/Home/crms_notification'); ?>"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>
+                                <?php
+                                    }
+                                ?>
                         </div>
                     </li>
                     <!-- ** notification icon -->

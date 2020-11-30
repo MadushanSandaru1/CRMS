@@ -19,5 +19,17 @@ class notification extends CI_Model{
         $update_reve_date=$this->db->query("UPDATE vehicle SET insurence_date='$date' WHERE id='$id'");
         return $update_reve_date;
     }
+
+    function insurence_date(){
+        $after_one_year=date("Y-m-d",strtotime("-350 day"));
+        $insurence_date=$this->db->query("SELECT * FROM vehicle WHERE insurence_date<'$after_one_year';");
+        return $insurence_date;
+    }
+
+    function revenue_license_date(){
+        $after_one_year=date("Y-m-d",strtotime("-350 day"));
+        $insurence_date=$this->db->query("SELECT * FROM vehicle WHERE revenue_license_date<'$after_one_year';");
+        return $insurence_date;
+    }
 }
 ?>

@@ -59,15 +59,15 @@
 
 
                     // errors status
-                      $errors = explode("\n",strip_tags(validation_errors()));
-                      
-                      foreach ($errors as $error) {
-                        if(strcmp("", $error)){
-                          echo "<div class=\"alert alert-danger\">";
-                          echo $error;
-                          echo "</div>";
-                        }
-                      }
+//                      $errors = explode("\n",strip_tags(validation_errors()));
+//
+//                      foreach ($errors as $error) {
+//                        if(strcmp("", $error)){
+//                          echo "<div class=\"alert alert-danger\">";
+//                          echo $error;
+//                          echo "</div>";
+//                        }
+//                      }
                     ?>
                       <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addCustomer" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Customer Details</button>
 
@@ -92,6 +92,7 @@
                       <div class="form-group">
                         <label for="InputName">Name</label>
                         <input type="text" class="form-control" id="InputName" placeholder="Name" name="name">
+                          <small class="text-danger"><?php echo form_error('name'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="InputNIC">NIC</label>
@@ -332,7 +333,11 @@
               </div>
               <!-- model end -->
 
-
+            <?php if(validation_errors()) { ?>
+                <script>
+                    document.getElementById("addCustomer").classList.add("show");
+                </script>
+            <?php } ?>
 
               <!-- view customer table end-->
 

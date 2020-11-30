@@ -32,7 +32,7 @@
                     </div>
                     <div class="modal-body">
                         <!--<p class="card-description"> Add class <code>.table</code></p>-->
-                        <?php echo form_open('Home/mail'); ?>
+                        <?php echo form_open('CustomerMessage/reply_mail'); ?>
 
                         <form class="form-area" id="myForm" method="post" class="contact-form text-right">
                             <div class="row">
