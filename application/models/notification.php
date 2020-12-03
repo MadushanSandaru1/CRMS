@@ -33,8 +33,7 @@ class notification extends CI_Model{
     }
 
     function car_booking_notification(){
-
-        $car_booking_notification=$this->db->query("SELECT * FROM booking WHERE status='0';");
+        $car_booking_notification=$this->db->query("SELECT * FROM booking b, vehicle v WHERE v.id=b.vehicle_id AND status='0' ORDER BY posting_date DESC;");
         return $car_booking_notification;
     }
 }

@@ -155,7 +155,6 @@
                             <h6 class="p-3 mb-0">Notifications</h6>
 
                             <!-- notification item -->
-                            <div class="dropdown-divider"></div>
                             <?php
                             $c=0;
                             if(($insurence_date->num_rows() > 0) || ($revenue_license_date->num_rows()>0) || ($car_booking_notification->num_rows()>0)){
@@ -191,15 +190,20 @@
                                         </a>
                                     <?php
                                     }
+                                    $c=0;
                                     foreach($car_booking_notification->result() as $data_row) {
+                                        if($c==2){
+                                            break;
+                                        }
+                                        $c++;
                                     ?>
                                         <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification');?>">
                                             <div class="preview-thumbnail">
-                                                <i class="mdi mdi-bell-ring mdi-36px text-danger"></i>
+                                                <i class="mdi mdi-car-back mdi-36px text-danger"></i>
                                             </div>
 
                                             <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                                <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->customer_name;?> 's New Book Available </h6>
+                                                <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->customer_name;?> has Book the Car  </h6>
                                             </div>
                                         </a>
                                     <?php
@@ -212,7 +216,7 @@
 
                                 <?php
                                     }
-                                    if(($insurence_date->num_rows() > 0)||($revenue_license_date->num_rows()>0)){
+                                    if(($insurence_date->num_rows() > 0)||($revenue_license_date->num_rows()>0)|| ($car_booking_notification->num_rows()>0)){
                                 ?>
                                     <a href="<?php echo base_url('index.php/Home/crms_notification'); ?>"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>
                                 <?php

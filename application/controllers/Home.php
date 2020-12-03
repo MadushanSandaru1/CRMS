@@ -365,7 +365,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
-        
+
         $this->load->model("Customer_message");
         $this->Customer_message->deleteOldMsg(); // delete old msg
         $data["fetch_data"]=$this->Customer_message->getCustomMessage();

@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
-                    <a class="card-body ">
+                    <a class="card-body">
                         <?php
 
                             date_default_timezone_set('Asia/Colombo');
@@ -74,7 +74,6 @@
                             <label class="mr-10">The Revenue License of this vehicle  <b><?php echo $row->registered_number;?></b>, is about to <?php echo $exp;?> . The date of expire is  <b><?php echo $after_one_year;?></b></label>
                         </div>
                         <?php
-//                                }
                             }
                         ?>
                         <?php
@@ -88,7 +87,7 @@
                                     $exp="expire";
                                 }
                         ?>
-                        <div class="alert notification  text-black"  data-toggle="modal" data-target="#Insurance" style="color:<?php echo $bg_coloe;?>" onclick="Insurance(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
+                        <div class="alert notification text-black"  data-toggle="modal" data-target="#Insurance" style="color:<?php echo $bg_coloe;?>" onclick="Insurance(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
                             <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
                             <label class="mr-4">The Insurance of this vehicle <b><?php echo $row->registered_number;?></b> is about to  <?php echo $exp;?>. The date of expire is  <b><?php echo $after_one_year;?></b></label>
                         </div>
@@ -96,18 +95,21 @@
 //                                }
                             }
                         ?>
+                        <a  class="" href="<?php echo base_url('index.php/home/crms_booking')?>">
                         <?php
                         foreach($car_booking_notification->result() as $row){
                             ?>
-                            <a href="<?php echo base_url('index.php/home/crms_booking')?>">
-                            <div class="alert notification  text-black" >
-                                <i class="mdi mdi-account-circle mdi-48px   text-danger"></i>&nbsp;&nbsp;
-                                <label class="mr-4"><b><?php echo $row->customer_name;?></b> </label>
+
+                            <div class="alert notification text-black" style="width: 93%;margin-left: 45px;">
+                                <i class="mdi mdi-car-side mdi-48px text-danger"></i>
+
+                                <label class="mr-4"><b><?php echo $row->customer_name;?> has Book the Car <?php echo $row->title;?></b></label>
                             </div>
-                            </a>
+
                             <?php
                         }
                         ?>
+                        </a>
                     </div>
                 </div>
             </div>
