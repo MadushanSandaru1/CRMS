@@ -101,7 +101,7 @@
                             ?>
 
                             <div class="alert notification text-black" style="width: 93%;margin-left: 45px;">
-                                <i class="mdi mdi-car-side mdi-48px text-danger"></i>
+<!--                                <i class="mdi mdi-car-side mdi-48px text-danger"></i>-->
 
                                 <label class="mr-4"><b><?php echo $row->customer_name;?> has Book the Car <?php echo $row->title;?></b></label>
                             </div>

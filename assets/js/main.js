@@ -247,8 +247,7 @@ $(document).ready(function(){
 
         $(document).ready(function() {
             $('#mc_embed_signup').find('form').ajaxChimp();
-        });      
-
+        });
 
 
 
