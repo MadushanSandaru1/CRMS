@@ -94,8 +94,8 @@ class Home extends CI_Controller {
 
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model("User_Model");
         $data['user_data'] = $this->User_Model->getSpecificUserDetails();
@@ -125,8 +125,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model("Vehicle_Model");
         $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
@@ -141,8 +141,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model("Customer_Model");
         $data['customer_data']=$this->Customer_Model->getCustomers();
@@ -157,8 +157,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model("Guarantor_Model");
         $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
@@ -174,8 +174,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model("Reserved_Model");
         $data['vehicle_data'] = $this->Reserved_Model->getVehicleData();
@@ -192,8 +192,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model("Returned_Model");
         $data['reserved_data'] = $this->Returned_Model->getReservedData();
@@ -209,8 +209,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->view('crms_booking', $data);
     }
@@ -222,8 +222,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model('Tracker_Model');
         $data['vehicle_data']=$this->Tracker_Model->getVehicles();
@@ -238,8 +238,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model('DamageModel');
         $data["getDamageDetails"] = $this->DamageModel->getDamageDetails();
@@ -257,8 +257,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model("Expense_Model");
         $data['vehicle_data'] = $this->Expense_Model->getVehicleData();
@@ -274,8 +274,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model('OutsourceVehicleModel');
         $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
@@ -291,8 +291,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model('OutSourceSuplierModel');
         $data["supplier_details"] = $this->OutSourceSuplierModel->getSupplierDetails();
@@ -307,8 +307,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->model('Damage_Report_Model');
         $data["getDamageDetails"] = $this->Damage_Report_Model->getDamageDetails();
@@ -324,8 +324,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->view('crms_inc_exp_report', $data);
     }
@@ -337,8 +337,8 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->view('crms_profile', $data);
     }
@@ -351,9 +351,8 @@ class Home extends CI_Controller {
 
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 
         $this->load->view('crms_notification',$data);
     }
@@ -364,9 +363,9 @@ class Home extends CI_Controller {
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");
         $data["insurence_date"]=$this->notification->insurence_date();
-        $this->load->model("notification");
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
-
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        
         $this->load->model("Customer_message");
         $this->Customer_message->deleteOldMsg(); // delete old msg
         $data["fetch_data"]=$this->Customer_message->getCustomMessage();

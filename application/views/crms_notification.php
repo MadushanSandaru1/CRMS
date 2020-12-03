@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body ">
+                    <a class="card-body ">
                         <?php
 
                             date_default_timezone_set('Asia/Colombo');
@@ -95,6 +95,18 @@
                         <?php
 //                                }
                             }
+                        ?>
+                        <?php
+                        foreach($car_booking_notification->result() as $row){
+                            ?>
+                            <a href="<?php echo base_url('index.php/home/crms_booking')?>">
+                            <div class="alert notification  text-black" >
+                                <i class="mdi mdi-account-circle mdi-48px   text-danger"></i>&nbsp;&nbsp;
+                                <label class="mr-4"><b><?php echo $row->customer_name;?></b> </label>
+                            </div>
+                            </a>
+                            <?php
+                        }
                         ?>
                     </div>
                 </div>
@@ -187,6 +199,27 @@
                 </div>
             </div>
         </div>
+
+    <!--car booking notification-->
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body ">
+<!--                        --><?php
+//                            foreach($car_booking_notification->result() as $row){
+//                        ?>
+<!--                                <div class="alert notification  text-black" >-->
+<!--                                    <i class="mdi mdi-account-circle mdi-48px   text-danger"></i>&nbsp;&nbsp;-->
+<!--                                    <label class="mr-4"><b>--><?php //echo $row->customer_name;?><!--</b> </label>-->
+<!--                                </div>-->
+<!--                        --><?php
+//                            }
+//                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--end of car booking notification-->
     <!-- content-wrapper ends -->
 <?php require_once "crms_footer.php";?>
 <script>

@@ -31,5 +31,11 @@ class notification extends CI_Model{
         $insurence_date=$this->db->query("SELECT * FROM vehicle WHERE revenue_license_date<'$after_one_year';");
         return $insurence_date;
     }
+
+    function car_booking_notification(){
+
+        $car_booking_notification=$this->db->query("SELECT * FROM booking WHERE status='0';");
+        return $car_booking_notification;
+    }
 }
 ?>
