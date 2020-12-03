@@ -126,7 +126,7 @@
                             else {
                                 ?>
                                 <tr>
-                                    <td colspan="6">No Data Found</td>
+                                    <td colspan="6"  class="text-danger">No Data Found</td>
                                 </tr>
                                 <?php
                             }

@@ -197,8 +197,11 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach($customer_data->result() as $row){ ?>
-                              <tr>
+                            <?php 
+
+                              if ($customer_data->num_rows() > 0) { 
+                                  foreach($customer_data->result() as $row){ 
+                              ?>  <tr>
                                   <td><?php echo $row->name;?></td>
                                   <td><?php echo $row->nic;?></td>
                                   <td><?php echo $row->email;?></td>
@@ -212,7 +215,13 @@
                                       <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                   </td>
                               </tr>
-                            <?php } ?>
+                              <?php 
+                                  }
+                                }else{
+                              ?>
+                              <tr><td colspan="9" class="text-danger">No Data Found</td></tr>
+          
+                              <?php } ?>
 
                           </tbody>
                         </table>
