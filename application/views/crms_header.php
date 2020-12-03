@@ -119,19 +119,19 @@
                                 }
                             } else {
                             ?>
-                            <div class="dropdown-divider"></div>
                                 <h6 class="p-3 mb-0 text-center text-danger">No new messages</h6>
-                            <div class="dropdown-divider"></div>
                             <?php
                             }
                             if($message_data->num_rows()> 0){
 
                             ?>
                             <!-- message link -->
-                            <h6 class="p-3 mb-0 text-center">See all messages</h6></a>
+                            <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_message');?>">
+                            <h6 class="p-3 mb-0 text-center">See all messages</h6>
                             <?php
                                 }
                             ?>
+                            </a>
                         </div>
                     </li>
                     <!-- ** message icon -->
@@ -158,13 +158,13 @@
                             <div class="dropdown-divider"></div>
                             <?php
                             $c=0;
-                            if($insurence_date->num_rows() > 0) {
-                                foreach ($insurence_date->result() as $data_row) {
+                            if(($insurence_date->num_rows() > 0) || ($revenue_license_date->num_rows()>0)){
+                                foreach($insurence_date->result() as $data_row) {
                                     if($c==3){
                                         break;
                                     }
                                     $c++;
-                                    ?>
+                            ?>
                                     <!-- notification item -->
                                     <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification');?>">
                                         <div class="preview-thumbnail">
@@ -175,10 +175,22 @@
                                             <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->registered_number; ?>  Insurence date is expire</h6>
                                         </div>
                                     </a>
-                                    <div class="dropdown-divider"></div>
 
                                     <?php
                                             }
+                                    foreach($revenue_license_date->result() as $data_row) {
+                                        ?>
+                                        <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification');?>">
+                                            <div class="preview-thumbnail">
+                                                <i class="mdi mdi-bell-ring mdi-36px text-danger"></i>
+                                            </div>
+
+                                            <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                                <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->registered_number; ?>  Revenue license date is expire</h6>
+                                            </div>
+                                        </a>
+                                    <?php
+                                    }
                                         }else{
                                     ?>
                                 <div class="dropdown-item preview-item preview-item-content d-flex align-items-start flex-column justify-content-center">
@@ -187,7 +199,7 @@
 
                                 <?php
                                     }
-                                    if($insurence_date->num_rows()> 0){
+                                    if(($insurence_date->num_rows() > 0)||($revenue_license_date->num_rows()>0)){
                                 ?>
                                     <a href="<?php echo base_url('index.php/Home/crms_notification'); ?>"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>
                                 <?php
