@@ -33,7 +33,7 @@
                                 'is_deleted'=> 0,
                         );
 
-                        var_dump($values);
+                        //var_dump($values);
                         return $this->db->insert('customer', $values);
                 }
 

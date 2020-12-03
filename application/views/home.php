@@ -61,73 +61,100 @@
                 </div>
             </div>
         </div>
+
+        <a name="bookingform"></a>
         <div class="row">
             <div class="col-lg-5  col-md-6 header-right">
                 <h4 class="text-white pb-30">Book Your Car Today!</h4>
-                <form class="form" role="form" autocomplete="off">
+                <?php 
+
+                    if ($this->session->flashdata('status')) {
+                          echo " <div class=\"alert alert-success\">";
+                          echo $this->session->flashdata('status');
+                          echo "</div>";
+                    }
+
+
+                 ?>
+
+                <?php echo form_open('Booking/prepareToInsertBooking');?>
+
+                <form class="form" role="form" autocomplete="off" >
                     <div class="form-group">
                         <div class="default-select" id="default-select">
-                            <select>
-                                <option value="" disabled selected hidden>Select Your Car</option>
-                                <option value="1">BMW</option>
-                                <option value="1">Farrari</option>
-                                <option value="1">Toyota</option>
+                            <select name="vehicle">
+                                <option value="" disabled selected hidden>Select Your Vehicle</option>
+                                <?php 
+                                    if ($available_vehicle->num_rows() > 0) {
+                                        foreach($available_vehicle->result() as $row){
+                                            echo "<option value={$row->id}>{$row->title}</option>";
+                                        }
+                                    }else{
+                                            echo "<option class='text-danger'>No data found</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
+                        <small class="text-danger"><?php echo form_error('vehicle'); ?></small>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6 wrap-left">
                             <div class="default-select" id="default-select">
-                                <select>
-                                    <option value="" disabled selected hidden>Pickup</option>
-                                    <option value="1">Pickup One</option>
-                                    <option value="1">Pickup Two</option>
-                                    <option value="1">Pickup Three</option>
-                                    <option value="1">Pickup Four</option>
-                                </select>
+                                <div class="form-control txt-field" >Pickup</div>
                             </div>
                         </div>
                         <div class="col-md-6 wrap-right">
                             <div class="input-group dates-wrap">
-                                <input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text">
-                                <div class="input-group-prepend">
+
+                                 <input type="datetime-local" class="dates form-control" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>">
+                                
+                                <!--input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text"-->
+                                <!--div class="input-group-prepend">
                                     <span id="datepicker-icon" class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                </div>
+                                </div-->
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6 wrap-left">
                             <div class="default-select" id="default-select">
-                                <select>
-                                    <option value="" disabled selected hidden>Drop off</option>
-                                    <option value="1">Drop off One</option>
-                                    <option value="1">Drop off Two</option>
-                                    <option value="1">Drop off Three</option>
-                                    <option value="1">Drop off Four</option>
-                                </select>
+                                <div class="form-control txt-field" >Drop off</div>
                             </div>
                         </div>
                         <div class="col-md-6 wrap-right">
                             <div class="input-group dates-wrap">
-                                <input id="datepicker2" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text">
+                                <input type="datetime-local" class="dates form-control" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" >
+                                 
+                                <!--input id="datepicker2" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text">
                                 <div class="input-group-prepend">
                                     <span id="datepicker2-icon" class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                </div>
+                                </div-->
                             </div>
                         </div>
                     </div>
                     <div class="from-group">
-                        <input class="form-control txt-field" type="text" name="name" placeholder="Your name">
+
+                        <input class="form-control txt-field" type="text" id="name" name="name" placeholder="Your name">
+                        <small class="text-danger"><?php echo form_error('name'); ?></small>
+
+                        <input class="form-control txt-field" type="text" id="nic" name="nic" placeholder="NIC number">
+                        <small class="text-danger"><?php echo form_error('nic'); ?></small>
+
                         <input class="form-control txt-field" type="email" id="email" name="email" placeholder="Email address">
+                        <small class="text-danger"><?php echo form_error('email'); ?></small>
+
                         <input class="form-control txt-field" type="tel" id="phone" name="phone" placeholder="Phone number">
+                        <small class="text-danger"><?php echo form_error('phone'); ?></small>
+
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="reset" class="primary-btn btn-block text-center text-uppercase">Confirm Car Booking</button>
+                            <button type="submit" class="primary-btn btn-block text-center text-uppercase">Confirm Car Booking</button>
                         </div>
                     </div>
                 </form>
+                <?php echo form_close(); ?>
+                
             </div>
         </div>
     </div>
@@ -257,6 +284,25 @@
     </div>
 </section>
 <!-- End reviews Area -->
+
+<script type="text/javascript">
+    
+    document.getElementById("drop_off").disabled = true;
+
+
+    function set_dropoff_min(){
+        document.getElementById("drop_off").disabled = false;
+        min = document.getElementById("pickup").value;
+        document.getElementById("drop_off").value = null;
+
+        document.getElementById("drop_off").min  = min;
+    }
+
+    
+
+
+</script>
+
 
 <?php
 	require_once('footer.php');

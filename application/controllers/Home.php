@@ -22,7 +22,11 @@ class Home extends CI_Controller {
     //crms home page
 	public function index()
 	{
-		$this->load->view('home');
+		$this->load->model("Vehicle_Model");
+        $data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
+
+        $this->load->view('home',$data);
+
 	}
 
     //crms about page
