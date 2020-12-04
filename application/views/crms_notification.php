@@ -23,13 +23,13 @@
     }
 
     .alert{
-        box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.3), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 4px 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.2);
     }
 
     .alert:hover{
         transform: scale(1.01);
         transition: 0.5s;
-        box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.3), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         background-color:rgba(255,185,196,0.44);
     }
 </style>
@@ -103,7 +103,7 @@
                             <div class="alert notification text-black" style="width: 93%;margin-left: 45px;">
 <!--                                <i class="mdi mdi-car-side mdi-48px text-danger"></i>-->
 
-                                <label class="mr-4"><b><?php echo $row->customer_name;?> has Book the Car <?php echo $row->title;?></b></label>
+                                <label class="mr-4"><?php echo $row->customer_name;?> has Book the Car <?php echo $row->title;?></label>
                             </div>
 
                             <?php

@@ -89,6 +89,7 @@
                                 <small class="text-danger"><?php echo form_error('profileAddress'); ?></small>
                             </div>
                             <div class="border border-danger p-5">
+                                <a name="change_pwd_div"></a>
                                 <?php echo form_open('User/change_profile_pwd');  ?>
                                 <div class="form-group">
                                     <label for="new_password">New password</label>

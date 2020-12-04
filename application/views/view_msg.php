@@ -44,7 +44,7 @@
                                     <label class="col-form-label">Email : </label>
                                     <input value="<?php echo $row->email;?>" name="email" class="common-input mb-20 form-control"  readonly>
                                     <label class="col-form-label">Message : </label>
-                                    <textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
+                                    <textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required></textarea>
                                     <br><input type="submit" class="btn btn-primary" name="submit" value="Send">
                                 </div>
 
