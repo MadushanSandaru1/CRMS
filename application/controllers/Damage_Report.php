@@ -20,10 +20,18 @@
 
             if($this->form_validation->run() == FALSE)
             {
+                    $this->load->model("Customer_message");
+                    $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                    $this->load->model("notification");
+                    $data["insurence_date"]=$this->notification->insurence_date();
+                    $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                    $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        
                     $this->load->model('Damage_Report_Model');
-                    $getDamageDetails = $this->Damage_Report_Model->getDamageDetails();
-                    $getVehicleID = $this->Damage_Report_Model->getVehicleID();
-                    $this->load->view('crms_damage_report',['getVehicleID'=>$getVehicleID,'getDamageDetails'=>$getDamageDetails]);
+                    $data["getDamageDetails"] = $this->Damage_Report_Model->getDamageDetails();
+                    $data["getVehicleID"] = $this->Damage_Report_Model->getVehicleID();
+        
+                    $this->load->view('crms_damage_report', $data);
                     
             }
             else{

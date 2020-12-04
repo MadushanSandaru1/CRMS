@@ -24,16 +24,18 @@
 
             if($this->form_validation->run() == FALSE)
             {
+                $this->load->model("Customer_message");
+                $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                $this->load->model("notification");
+                $data["insurence_date"]=$this->notification->insurence_date();
+                $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                $data["car_booking_notification"]=$this->notification->car_booking_notification();
+
                 $this->load->model('OutsourceVehicleModel');
-                $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
-                $supplier = $this->OutsourceVehicleModel->getSupplier();
-                $this->load->view(
-                    'crms_outsourcing',
-                    [
-                        'outsourceVehicle'=>$outSourceDetails,
-                        'supplier'=>$supplier
-                    ]
-                );
+                $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
+                $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
+
+        $this->load->view('crms_outsourcing',$data);
             } 
             else{
                 $config['allowed_types'] = 'jpg|png|jpeg';
@@ -52,14 +54,20 @@
 
                     if ($response)
                     {
+                        $this->load->model("Customer_message");
+                        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                        $this->load->model("notification");
+                        $data["insurence_date"]=$this->notification->insurence_date();
+                        $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                        $data["car_booking_notification"]=$this->notification->car_booking_notification();
+
+                        $this->load->model('OutsourceVehicleModel');
+                        $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
+                        $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
+                        
                         $this->session->set_flashdata('outsource_status',"Data Recorded Successfully");
-                        $this->load->view(
-                            'crms_outsourcing',
-                            [
-                                'outsourceVehicle'=>$outSourceDetails,
-                                'supplier'=>$supplier
-                            ]
-                        );
+                        $this->load->view('crms_outsourcing',$data);
+                        
                     }
                     
                 }

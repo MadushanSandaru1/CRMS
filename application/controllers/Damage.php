@@ -12,13 +12,20 @@
                 $this->form_validation->set_rules('d_date','Damage Date','required');
 
                 if($this->form_validation->run() == FALSE)
-                 {    
+                 {
+                    $this->load->model("Customer_message");
+                    $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                    $this->load->model("notification");
+                    $data["insurence_date"]=$this->notification->insurence_date();
+                    $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                    $data["car_booking_notification"]=$this->notification->car_booking_notification();
+
                     $this->load->model('DamageModel');
-                    $getVehicleID = $this->DamageModel->getVehicleID();
-                    $getReservedID = $this->DamageModel->getReservedID();
-                    $getDamageDetails = $this->DamageModel->getDamageDetails();
-                    $getCustomerDetails = $this->DamageModel->getCustomerDetails();
-                    $this->load->view('crms_damage',['getVehicleID'=>$getVehicleID,'getReservedID'=>$getReservedID,'getDamageDetails'=>$getDamageDetails,'getCustomerDetails'=> $getCustomerDetails]);
+                    $data["getDamageDetails"] = $this->DamageModel->getDamageDetails();
+                    $data["getVehicleID"] = $this->DamageModel->getVehicleID();
+                    $data["getReservedID"] = $this->DamageModel->getReservedID();
+                    $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();    
+                    $this->load->view('crms_damage', $data);
                 }
                 else{
                    //echo "ok";
@@ -37,23 +44,21 @@
 
                         if($response)
                         {
+                            $this->load->model("Customer_message");
+                            $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                            $this->load->model("notification");
+                            $data["insurence_date"]=$this->notification->insurence_date();
+                            $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                            $data["car_booking_notification"]=$this->notification->car_booking_notification();
+
                             $this->load->model('DamageModel');
-                            $getVehicleID = $this->DamageModel->getVehicleID();
-                            $getReservedID = $this->DamageModel->getReservedID();
-                            $getDamageDetails = $this->DamageModel->getDamageDetails();
-                            $getCustomerDetails = $this->DamageModel->getCustomerDetails();
-                            $damageSearchDetails = $this->DamageModel->filterDamagesDetails();
+                            $data["getDamageDetails"] = $this->DamageModel->getDamageDetails();
+                            $data["getVehicleID"] = $this->DamageModel->getVehicleID();
+                            $data["getReservedID"] = $this->DamageModel->getReservedID();
+                            $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
+                           
                             $this->session->set_flashdata('damage_status', 'Data Recorded Successfully!');
-                            $this->load->view(
-                                'crms_damage',
-                                [
-                                    'getVehicleID'=>$getVehicleID,
-                                    'getReservedID'=>$getReservedID,
-                                    'getDamageDetails'=>$getDamageDetails,
-                                    'getCustomerDetails'=>$getCustomerDetails,
-                                    'getSearchDamages'=>$damageSearchDetails
-                                ]
-                            );
+                            $this->load->view('crms_damage', $data);
                         }
                         
                    }

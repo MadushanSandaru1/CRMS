@@ -105,7 +105,7 @@
                             </div>
                       
                       
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Generate</button>
+                            <a href="" target="_blank"><button type="submit" class="btn btn-gradient-primary mr-2">Generate</button></a>
                             <button class="btn btn-light">Cancel</button>
                         <?php echo form_close(); ?>   
                     </div>
