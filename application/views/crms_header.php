@@ -139,7 +139,7 @@
                     <!-- notification icon -->
                     <li class="nav-item dropdown">
                         <?php
-                        if(($insurence_date->num_rows() > 0) || ($revenue_license_date->num_rows()>0) || ($car_booking_notification->num_rows()>0)){
+                        if(($insurence_date->num_rows() > 0) || ($revenue_license_date->num_rows()>0) || ($car_booking_notification->num_rows()>0) || ($car_not_recive->num_rows()>0)){
                             $count_indicator="count-indicator dropdown-toggle";
                         }else{
                             $count_indicator="";
@@ -157,7 +157,7 @@
                             <!-- notification item -->
                             <?php
                             $c=0;
-                            if(($insurence_date->num_rows() > 0) || ($revenue_license_date->num_rows()>0) || ($car_booking_notification->num_rows()>0)){
+                            if(($insurence_date->num_rows() > 0) || ($revenue_license_date->num_rows()>0) || ($car_booking_notification->num_rows()>0) || ($car_not_recive->num_rows()>0)){
                                 foreach($insurence_date->result() as $data_row) {
                                     if($c==3){
                                         break;
@@ -208,6 +208,19 @@
                                         </a>
                                     <?php
                                     }
+                                    foreach($car_not_recive->result() as $data_row) {
+                                    ?>
+                                        <a class="dropdown-item preview-item" href="<?php echo base_url('index.php/Home/crms_notification');?>">
+                                            <div class="preview-thumbnail">
+                                                <i class="mdi mdi-alarm-off mdi-36px text-danger"></i>
+                                            </div>
+
+                                            <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                                <h6 class="preview-subject ellipsis mb-1 font-weight-normal"><?php echo $data_row->name;?> still not recived  </h6>
+                                            </div>
+                                        </a>
+                                    <?php
+                                    }
                                         }else{
                                     ?>
                                 <div class="dropdown-item preview-item preview-item-content d-flex align-items-start flex-column justify-content-center">
@@ -216,7 +229,7 @@
 
                                 <?php
                                     }
-                                    if(($insurence_date->num_rows() > 0)||($revenue_license_date->num_rows()>0)|| ($car_booking_notification->num_rows()>0)){
+                                    if(($insurence_date->num_rows() > 0)||($revenue_license_date->num_rows()>0)|| ($car_booking_notification->num_rows()>0)||($car_not_recive->num_rows()>0)){
                                 ?>
                                     <a href="<?php echo base_url('index.php/Home/crms_notification'); ?>"><h6 class="p-3 mb-0 text-center">See all notifications</h6></a>
                                 <?php

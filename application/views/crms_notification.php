@@ -101,9 +101,20 @@
                             ?>
 
                             <div class="alert notification text-black" style="width: 93%;margin-left: 45px;">
-<!--                                <i class="mdi mdi-car-side mdi-48px text-danger"></i>-->
-
                                 <label class="mr-4"><?php echo $row->customer_name;?> has Book the Car <?php echo $row->title;?></label>
+                            </div>
+
+                            <?php
+                        }
+                        ?>
+                        </a>
+                        <a  class="" href="<?php echo base_url('index.php/home/crms_returned')?>">
+                        <?php
+                        foreach($car_not_recive->result() as $row){
+                            ?>
+
+                            <div class="alert notification text-black" style="width: 93%;margin-left: 45px;">
+                                <label class="mr-4"><?php echo $row->name;?> was supposed to hand over the vehicle on <?php echo $row->to_date;?>. But, he hasn't yet</label>
                             </div>
 
                             <?php
@@ -141,7 +152,7 @@
                                         <label>New Date : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="date" name="revenueL_date" class="form-control" value="<?php echo $today;?>" style="width: 100%;">
+                                    <input type="date" name="revenueL_date" class="form-control" max="<?php echo $today;?>" value="<?php echo $today;?>" style="width: 100%;">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -184,7 +195,8 @@
                                         <label>New Date : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="date" name="insurance_date" class="form-control" value="<?php echo $today;?>" style="width: 100%;">
+                                    <input type="date" name="insurance_date" class="form-control" value="<?php echo $today;?>" max="<?php echo $today;?>" style="width: 100%;">
+                                    <small class="text-danger"><?php echo form_error('insurance_date'); ?></small>
                                 </div>
                             </div>
                             <div class="form-row">

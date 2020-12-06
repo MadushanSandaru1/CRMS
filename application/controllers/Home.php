@@ -85,7 +85,6 @@ class Home extends CI_Controller {
     {
         $this->load->view('crms_change_pwd');
     }
-
     //crms dashboard page
     public function crms_dash()
     {
@@ -96,6 +95,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("User_Model");
         $data['user_data'] = $this->User_Model->getSpecificUserDetails();
@@ -112,6 +112,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
 
         $this->load->model('StaffModel');
@@ -130,6 +131,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Vehicle_Model");
         $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
@@ -146,6 +148,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Customer_Model");
         $data['customer_data']=$this->Customer_Model->getCustomers();
@@ -162,6 +165,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Guarantor_Model");
         $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
@@ -179,6 +183,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Reserved_Model");
         $data['vehicle_data'] = $this->Reserved_Model->getVehicleData();
@@ -197,6 +202,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Returned_Model");
         $data['reserved_data'] = $this->Returned_Model->getReservedData();
@@ -214,6 +220,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->view('crms_booking', $data);
     }
@@ -227,6 +234,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model('Tracker_Model');
         $data['vehicle_data']=$this->Tracker_Model->getVehicles();
@@ -243,6 +251,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model('DamageModel');
         $data["getDamageDetails"] = $this->DamageModel->getDamageDetails();
@@ -262,6 +271,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Expense_Model");
         $data['vehicle_data'] = $this->Expense_Model->getVehicleData();
@@ -279,6 +289,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model('OutsourceVehicleModel');
         $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
@@ -296,6 +307,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model('OutSourceSuplierModel');
         $data["supplier_details"] = $this->OutSourceSuplierModel->getSupplierDetails();
@@ -312,6 +324,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model('Damage_Report_Model');
         $data["getDamageDetails"] = $this->Damage_Report_Model->getDamageDetails();
@@ -329,6 +342,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->view('crms_inc_exp_report', $data);
     }
@@ -342,6 +356,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->view('crms_profile', $data);
     }
@@ -356,6 +371,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->view('crms_notification',$data);
     }
@@ -368,6 +384,7 @@ class Home extends CI_Controller {
         $data["insurence_date"]=$this->notification->insurence_date();
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Customer_message");
         $this->Customer_message->deleteOldMsg(); // delete old msg
@@ -385,10 +402,20 @@ class Home extends CI_Controller {
     }
 
     public function update_Insurance_date(){
-        $vehi_id=$this->input->post('vehicle_id');
-        $date=$this->input->post('insurance_date');
-        $this->load->model("notification");
-        $this->notification->update_insurence_date($vehi_id,$date);
-        redirect('Home/crms_notification');
+        $date=date("Y-m-d");
+        $this->form_validation->set_rules('insurance_date','Insurance date','required');
+
+        if($this->form_validation->run()==true){
+            $this->load->model("notification");
+            $this->notification->update_insurence_date();
+            redirect('Home/crms_notification');
+        } else{
+            redirect('Home/crms_notification');
+        }
+//        $vehi_id=$this->input->post('vehicle_id');
+//        $date=$this->input->post('insurance_date');
+//        $this->load->model("notification");
+//        $this->notification->update_insurence_date($vehi_id,$date);
+//        redirect('Home/crms_notification');
     }
 }

@@ -61,7 +61,12 @@
                 </div>
             </div>
         </div>
-
+        <?php
+        if(validation_errors()){
+//            header("location:Home/index#bookingform");
+//            redirect('Home/index#bookingform');
+        }
+        ?>
         <a name="bookingform"></a>
         <div class="row">
             <div class="col-lg-5  col-md-6 header-right">
