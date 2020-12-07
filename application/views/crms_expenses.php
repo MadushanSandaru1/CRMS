@@ -54,7 +54,7 @@
                         }
                         ?>
 
-                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addExpense" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Expense Details</button>
+                        <button type="button" name="add_expenses_collapse" class="btn btn-primary mb-2" data-toggle="collapse" href="#addExpense" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Expense Details</button>
 
                         <div class="collapse" id="addExpense" aria-labelledby="customRadioInline2">
                             <?php echo form_open('Expense/add_expense');  ?>
@@ -83,7 +83,7 @@
                                     <input type="number" class="form-control" name="expenseAmount" id="expenseAmount" placeholder="1000.00" value="<?php if($this->session->tempdata('expenseAmount_fill')) echo $this->session->tempdata('expenseAmount_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('expenseAmount'); ?></small>
                                 </div>
-                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                <button type="submit" name="expenses_btn" class="btn btn-gradient-primary mr-2">Submit</button>
                                 <button type="reset" class="btn btn-light">Cancel</button>
                             <?php echo form_close();  ?>
                         </div>

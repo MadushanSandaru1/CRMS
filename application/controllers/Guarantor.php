@@ -19,6 +19,14 @@ class Guarantor extends CI_Controller
             $this->session->set_tempdata('guarantorAddress_fill', $this->input->post('guarantorAddress', TRUE), 5);
             $this->session->set_tempdata('nicImage_fill', $this->input->post('nicImage', TRUE), 5);
 
+            $this->load->model("Customer_message");
+            $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+            $this->load->model("notification");
+            $data["insurence_date"]=$this->notification->insurence_date();
+            $data["revenue_license_date"]=$this->notification->revenue_license_date();
+            $data["car_booking_notification"]=$this->notification->car_booking_notification();
+            $data["car_not_recive"]=$this->notification->car_not_recive();
+
             $this->load->model("Guarantor_Model");
             $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
             $data['reserved_data'] = $this->Guarantor_Model->getReservedData();

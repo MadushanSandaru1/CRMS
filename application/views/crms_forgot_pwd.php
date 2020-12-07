@@ -48,7 +48,7 @@
 
                                     <!-- recover button code -->
                                     <div class="mt-3">
-                                        <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">GET RESET CODE</button>
+                                        <button type="submit" name="recover_code_btn" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">GET RESET CODE</button>
                                     </div>
 
                                     <div class="my-2 d-flex justify-content-center align-items-center">

@@ -81,7 +81,7 @@
 						</div>
 						<div class="col-lg-6 form-group">
 							<textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-							<button type="submit" class="primary-btn mt-20" style="float: right;">Send Message</button>
+							<button type="submit" name="message_send_btn" class="primary-btn mt-20" style="float: right;">Send Message</button>
 						</div>
 
 					</div>
