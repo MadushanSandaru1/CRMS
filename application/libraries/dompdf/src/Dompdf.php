@@ -353,7 +353,7 @@ class Dompdf
         $this->saveLocale();
 
         if (!$this->protocol && !$this->baseHost && !$this->basePath) {
-            [$this->protocol, $this->baseHost, $this->basePath] = Helpers::explode_url($file);
+//            [$this->protocol, $this->baseHost, $this->basePath] = Helpers::explode_url($file);
         }
         $protocol = strtolower($this->protocol);
 
