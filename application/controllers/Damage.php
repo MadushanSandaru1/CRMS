@@ -51,6 +51,7 @@
                             $data["insurence_date"]=$this->notification->insurence_date();
                             $data["revenue_license_date"]=$this->notification->revenue_license_date();
                             $data["car_booking_notification"]=$this->notification->car_booking_notification();
+                            $data["car_not_recive"]=$this->notification->car_not_recive();
 
                             $this->load->model('DamageModel');
                             $data["getDamageDetails"] = $this->DamageModel->getDamageDetails();
