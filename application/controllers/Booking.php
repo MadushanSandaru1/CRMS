@@ -16,6 +16,15 @@ class Booking extends CI_Controller{
 
 		if ($this->form_validation->run() == FALSE) {
 
+			$this->session->set_tempdata('vehicle_fill', $this->input->post('vehicle', TRUE), 5);
+            $this->session->set_tempdata('pickup_fill', $this->input->post('pickup', TRUE), 5);
+            $this->session->set_tempdata('drop_off_fill', $this->input->post('drop_off', TRUE), 5);
+            $this->session->set_tempdata('name_fill', $this->input->post('name', TRUE), 5);
+            $this->session->set_tempdata('nic_fill', $this->input->post('nic', TRUE), 5);
+            $this->session->set_tempdata('email_fill', $this->input->post('email', TRUE), 5);
+            $this->session->set_tempdata('phone_fill', $this->input->post('phone', TRUE), 5);
+            
+
         	$this->load->model('Vehicle_Model');
         	$data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
         	$this->load->view('home',$data);

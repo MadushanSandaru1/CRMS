@@ -42,25 +42,54 @@
                     <div class="card-body">
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addBooking" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Booking Details</button>
 
-                        <div class="collapse " id="addBooking" aria-labelledby="customRadioInline2">
+                        <div class="collapse mt-5" id="addBooking" aria-labelledby="customRadioInline2">
+
                             <form class="forms-sample">
+                                
                                 <div class="form-group">
-                                    <label for="expenseVehicleID"><b>Vehicle ID</b></label>
+                                    <label for="expenseVehicleID"><b>Vehicle</b></label>
                                     <select class="custom-select" name="expenseVehicleID">
-                                        <option value="">Select Vehicle ID</option>
+                                        <option value="" disabled selected hidden>Select Vehicle</option>
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="expensedVehicleDate">Date</label>
-                                    <input type="date" class="form-control" id="expensedVehicleDate" placeholder="Date">
+                                    <input type="datetime-local" class="form-control" id="expensedVehicleDate" placeholder="Date">
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="expenseAmount">Amount</label>
-                                    <input type="number" class="form-control" id="expenseAmount" placeholder="1000.00">
+                                    <label for="expensedVehicleDate">Date</label>
+                                    <input type="datetime-local" class="form-control" id="expensedVehicleDate" placeholder="Date">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="expenseAmount">Name</label>
+                                    <input type="text" class="form-control" id="expenseAmount" placeholder="Customer's name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expenseAmount">NIC</label>
+                                    <input type="text" class="form-control" id="expenseAmount" placeholder="Customer's NIC">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expenseAmount">Email</label>
+                                    <input type="text" class="form-control" id="expenseAmount" placeholder="Customer's email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expenseAmount">Phone</label>
+                                    <input type="text" class="form-control" id="expenseAmount" placeholder="Customer's Phone">
+                                </div>
+
+                                <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"></textarea>
+                                <small class="text-danger"><?php echo form_error('msg'); ?></small>
+
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>
+
                         </div>
                     </div>
                 </div>

@@ -62,10 +62,10 @@
             </div>
         </div>
         <?php
-        if(validation_errors()){
+        /*if(validation_errors()){
 //            header("location:Home/index#bookingform");
 //            redirect('Home/index#bookingform');
-        }
+        }*/
         ?>
         <a name="bookingform"></a>
         <div class="row">
@@ -83,17 +83,26 @@
                  ?>
 
                 <?php echo form_open('Booking/prepareToInsertBooking');?>
-
                 <form class="form" role="form" autocomplete="off" >
                     <div class="form-group">
                         <div class="default-select" id="default-select">
-                            <select name="vehicle">
+                            <select name="vehicle" class="<?php if(form_error('vehicle')) echo 'border border-danger' ?>">
                                 <option value="" disabled selected hidden>Select Your Vehicle</option>
                                 <?php 
                                     if ($available_vehicle->num_rows() > 0) {
                                         foreach($available_vehicle->result() as $row){
-                                            echo "<option value={$row->id}>{$row->title}</option>";
-                                        }
+
+                                            if ($this->session->tempdata('vehicle_fill')) {
+                                                if ($this->session->tempdata('vehicle_fill')==$row->id) {
+                                                    echo "<option value={$row->id} selected>{$row->title}</option>";
+                                                }else{
+                                                    echo "<option value={$row->id} >{$row->title}</option>";
+                                                }
+                                                 
+                                            }else{
+                                                 echo "<option value={$row->id}>{$row->title}</option>";
+                                            }
+                                        }                                        
                                     }else{
                                             echo "<option class='text-danger'>No data found</option>";
                                     }
@@ -111,7 +120,7 @@
                         <div class="col-md-6 wrap-right">
                             <div class="input-group dates-wrap">
 
-                                 <input type="datetime-local" class="dates form-control" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>">
+                                 <input type="datetime-local" class="<?php if(form_error('pickup')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('pickup_fill')) echo $this->session->tempdata('pickup_fill'); ?>">
                                 
                                 <!--input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text"-->
                                 <!--div class="input-group-prepend">
@@ -128,7 +137,7 @@
                         </div>
                         <div class="col-md-6 wrap-right">
                             <div class="input-group dates-wrap">
-                                <input type="datetime-local" class="dates form-control" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" >
+                                <input type="datetime-local" class="<?php if(form_error('drop_off')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('drop_off_fill')) echo $this->session->tempdata('drop_off_fill'); ?>">
                                  
                                 <!--input id="datepicker2" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text">
                                 <div class="input-group-prepend">
@@ -139,18 +148,20 @@
                     </div>
                     <div class="from-group">
 
-                        <input class="form-control txt-field" type="text" id="name" name="name" placeholder="Your name">
+                        <input  class="<?php if(form_error('name')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>"  type="text" id="name" name="name" placeholder="Your name" value="<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('name'); ?></small>
 
-                        <input class="form-control txt-field" type="text" id="nic" name="nic" placeholder="NIC number">
+                        <input class="<?php if(form_error('nic')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="text" id="nic" name="nic" placeholder="NIC number" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>">
                         <small class="text-danger"><?php echo form_error('nic'); ?></small>
 
-                        <input class="form-control txt-field" type="email" id="email" name="email" placeholder="Email address">
+                        <input class="<?php if(form_error('email')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="email" id="email" name="email" placeholder="Email address" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('email'); ?></small>
 
-                        <input class="form-control txt-field" type="tel" id="phone" name="phone" placeholder="Phone number">
+                        <input class="<?php if(form_error('phone')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="tel" id="phone" name="phone" placeholder="Phone number" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>">
                         <small class="text-danger"><?php echo form_error('phone'); ?></small>
 
+                        <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"></textarea>
+                        <small class="text-danger"><?php echo form_error('msg'); ?></small>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -291,8 +302,12 @@
 <!-- End reviews Area -->
 
 <script type="text/javascript">
+
     
-    document.getElementById("drop_off").disabled = true;
+    
+   if(null==document.getElementById("pickup").value){
+        document.getElementById("drop_off").disabled = true;
+    }
 
 
     function set_dropoff_min(){

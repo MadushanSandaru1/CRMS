@@ -71,7 +71,7 @@
                     ?>
                       <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addCustomer" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Customer Details</button>
 
-                      <div class="collapse " id="addCustomer" aria-labelledby="customRadioInline2">
+                    <div class="collapse mt-5" id="addCustomer" aria-labelledby="customRadioInline2">
                     <?php echo form_open_multipart('Customer/prepareToInsertCustomer');?>
                     <form class="forms-sample">
                       <div class="form-group">
