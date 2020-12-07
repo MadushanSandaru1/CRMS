@@ -20,6 +20,15 @@ class Expense extends CI_Controller
             $this->load->model("Expense_Model");
             $data['vehicle_data'] = $this->Expense_Model->getVehicleData();
             $data['vehicle_expense_data'] = $this->Expense_Model->getVehicleExpenseData();
+
+            $this->load->model("Customer_message");
+            $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+            $this->load->model("notification");
+            $data["insurence_date"]=$this->notification->insurence_date();
+            $data["revenue_license_date"]=$this->notification->revenue_license_date();
+            $data["car_booking_notification"]=$this->notification->car_booking_notification();
+            $data["car_not_recive"]=$this->notification->car_not_recive();
+
             $this->load->view('crms_expenses', $data);
         }
         else {
