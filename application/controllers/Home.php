@@ -214,6 +214,9 @@ class Home extends CI_Controller {
     //crms car booking page
     public function crms_booking()
     {
+        $this->load->model("Vehicle_Model");
+        $data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
+
         $this->load->model("Customer_message");
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
         $this->load->model("notification");

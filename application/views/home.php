@@ -82,7 +82,7 @@
 
                  ?>
 
-                <?php echo form_open('Booking/prepareToInsertBooking');?>
+                <?php echo form_open('Booking/prepareToCustomerInsertBooking');?>
                 <form class="form" role="form" autocomplete="off" >
                     <div class="form-group">
                         <div class="default-select" id="default-select">
@@ -160,11 +160,14 @@
                         <input class="<?php if(form_error('phone')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="tel" id="phone" name="phone" placeholder="Phone number" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>">
                         <small class="text-danger"><?php echo form_error('phone'); ?></small>
 
-                        <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"></textarea>
+                        <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"> <?php if($this->session->tempdata('msg_fill')) echo $this->session->tempdata('msg_fill'); ?> </textarea>
                         <small class="text-danger"><?php echo form_error('msg'); ?></small>
+
+                        <input type="hidden" name="status" id="status" value="0">
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
+
                             <button type="submit" class="primary-btn btn-block text-center text-uppercase">Confirm Car Booking</button>
                         </div>
                     </div>

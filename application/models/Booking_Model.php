@@ -19,7 +19,7 @@ class Booking_Model extends CI_Model{
             'to_date' => $this->input->post('drop_off', TRUE),
             'posting_date'=> Date('Y-m-d\TH:i',time()),      
             'message'=> $this->input->post('msg',TRUE),
-            'status'=> 0,
+            'status'=> $this->input->post('status'),
             'is_deleted'=> 0,
         );
 
