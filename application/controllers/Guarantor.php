@@ -3,6 +3,7 @@
 
 class Guarantor extends CI_Controller
 {
+
     public function add_guarantor(){
         $this->form_validation->set_rules('reservedID', 'Reserved ID', 'required');
         $this->form_validation->set_rules('guarantorName', 'Guarantor Name', 'required|max_length[100]');
@@ -48,7 +49,13 @@ class Guarantor extends CI_Controller
 
                 if($response) {
                     $this->session->set_flashdata('guarantor_status', 'Guarantor registration successful');
-                    redirect('Home/crms_guarantor');
+                    //redirect('Home/crms_guarantor');
+                    $this->load->view("guarantor_report.php");
+                    $html = $this->output->get_output();
+                    $this->pdf->loadHtml($html);
+                    $this->pdf->set_paper("A4");
+                    $this->pdf->render();
+                    $this->pdf->stream(""."guarantor_report.pdf",array("Attachment" => 0));
                 } else{
                     $this->session->set_flashdata('guarantor_status', 'Guarantor registration not successful');
                     redirect('Home/crms_guarantor');
