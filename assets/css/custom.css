@@ -26,3 +26,20 @@
 }
 /*-----------*/
 
+
+/*booking*/
+
+.resize{
+	width:150px;
+	text-align: center;
+}
+
+.cursor-pointer{
+	cursor: pointer;
+}
+/*
+.booking-msg{
+	width: 300px;
+
+	word-break: break-all;
+}*/

@@ -43,6 +43,14 @@
         	//check validated
         	if($this->form_validation->run() == FALSE){
 
+                $this->load->model("Customer_message");
+                $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                $this->load->model("notification");
+                $data["insurence_date"]=$this->notification->insurence_date();
+                $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                $data["car_booking_notification"]=$this->notification->car_booking_notification();
+                $data["car_not_recive"]=$this->notification->car_not_recive();
+
         		$this->load->model("Customer_Model");
         		$data['customer_data']=$this->Customer_Model->getCustomers();
         		$this->load->view('crms_customer',$data);

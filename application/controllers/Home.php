@@ -225,6 +225,9 @@ class Home extends CI_Controller {
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
         $data["car_not_recive"]=$this->notification->car_not_recive();
 
+        $this->load->model("Booking_Model");
+        $data['booking_data']=$this->Booking_Model->getBooking();
+
         $this->load->view('crms_booking', $data);
     }
 

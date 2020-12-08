@@ -33,12 +33,12 @@ class Booking extends CI_Controller{
 		}else{
 
 			$this->load->model('Booking_Model');
-        		$response = $this->Booking_Model->insertBooking();
+			$response = $this->Booking_Model->insertBooking();
 
-        			if ($response) {
-        				$this->session->set_flashdata('status', 'Booking successful!');
-        				redirect('Home/index#bookingform');
-        			}
+			if ($response) {
+				$this->session->set_flashdata('status', 'Booking successful!');
+				redirect('Home/index#bookingform');
+			}
 
 		}
 
@@ -79,18 +79,102 @@ class Booking extends CI_Controller{
 	        $data["car_booking_notification"]=$this->notification->car_booking_notification();
 	        $data["car_not_recive"]=$this->notification->car_not_recive();
 
+	        $this->load->model("Booking_Model");
+        	$data['booking_data']=$this->Booking_Model->getBooking();
+
         	$this->load->view('crms_booking',$data);
 
 		}else{
 
 			$this->load->model('Booking_Model');
-        		$response = $this->Booking_Model->insertBooking();
+        	$response = $this->Booking_Model->insertBooking();
 
-        			if ($response) {
-        				$this->session->set_flashdata('status', 'Booking successful!');
-        				redirect('Home/crms_booking');
-        			}
+			if ($response) {
+				$this->session->set_flashdata('status', 'Booking successful!');
+				redirect('Home/crms_booking');
+			}
 
+		}
+
+	}
+
+
+	function changeBookingStatus(){
+
+		/*var_dump($this->input->post());
+		die();*/
+
+		// $this->form_validation->set_rules('bookingstatus','Booking status','required');
+		// $this->form_validation->set_rules('bookingmail','Customer email','required');
+		// $this->form_validation->set_rules('bookingid','Booking id','required');
+
+		// if ($this->form_validation->run() == FALSE) {
+			
+		// 	$this->load->model('Vehicle_Model');
+  //       	$data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
+
+  //       	$this->load->model("Customer_message");
+  //       	$data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+	 //        $this->load->model("notification");
+	 //        $data["insurence_date"]=$this->notification->insurence_date();
+	 //        $data["revenue_license_date"]=$this->notification->revenue_license_date();
+	 //        $data["car_booking_notification"]=$this->notification->car_booking_notification();
+	 //        $data["car_not_recive"]=$this->notification->car_not_recive();
+
+		//}else{
+
+			if (strcmp("accept", $this->input->post('bookingstatus'))==0) {
+				
+				$this->load->model('Booking_Model');
+	        	$response = $this->Booking_Model->acceptBooking();
+
+				if ($response) {
+
+					$this->load->model("Email_Model");
+
+					$email = $this->input->post('bookingmail'); // reciver mail
+			        $msg_sub = "Vehicle Booking";
+			        $msg = "Dear customer, <br>Your vehicle booking was accepted!";
+
+			        if($this->Email_Model->trigger_mail($email,$msg_sub,$msg,"")){
+			        	redirect('Home/crms_booking');
+			        }
+					
+				}
+
+			}else{
+
+				$this->load->model('Booking_Model');
+	        	$response = $this->Booking_Model->rejectBooking();
+
+				if ($response) {
+
+					$this->load->model("Email_Model");
+
+					$email = $this->input->post('bookingmail'); // reciver mail
+			        $msg_sub = "Vehicle Booking";
+			        $msg = "Dear customer, <br>Sorry, your vehicle booking was rejected!";
+
+			        if($this->Email_Model->trigger_mail($email,$msg_sub,$msg,"")){
+			        	redirect('Home/crms_booking');
+			        }
+					
+				}
+
+			}
+		
+		//}
+
+	}
+
+
+	function prepareToDeleteBooking(){
+
+		$this->load->model('Booking_Model');
+	    $response = $this->Booking_Model->deleteBooking();
+
+	    if ($response) {		
+			redirect('Home/crms_booking');			
 		}
 
 	}

@@ -142,26 +142,89 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Vehicle ID</th>
-                                    <th>Type</th>
-                                    <th>Date</th>
-                                    <th>Amount</th>
-                                    <th>Actions</th>
+                                    <th>Customer NIC</th>
+                                    <th>Customer Name</th>
+                                    <th>Customer Email</th>
+                                    <th>Customer Phone</th>
+                                    <th>Vehicle</th>
+                                    <th>Pickup date</th>
+                                    <th>Drop off date</th>
+                                    <th>Booked date</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
+
+                                <?php 
+
+                                  if ($booking_data->num_rows() > 0) { 
+                                      foreach($booking_data->result() as $row){ 
+                                  ?>  <tr>
+                                      <td><?php echo $row->customer_nic;?></td>
+                                      <td><?php echo $row->customer_name;?></td>
+                                      <td><?php echo $row->customer_email;?></td>
+                                      <td><?php echo $row->customer_phone;?></td>
+                                      <td><?php echo $row->title." - ".$row->registered_number; ?></td>
+                                      <td><?php echo $row->from_date;?></td>
+                                      <td><?php echo $row->to_date;?></td>
+                                      <td><?php echo $row->posting_date;?></td>
+                                      <td class="booking-msg"><?php echo $row->message;?></td>
+                                      <td>
+                                        <?php 
+                                            if(0==$row->status){
+
+                                                echo "<label class=\"cursor-pointer\" data-toggle=\"modal\" data-target=\"#statusModal\" onclick=\"update_status('accept','$row->id','$row->customer_email')\" ><span class=\"mdi mdi-checkbox-marked-outline text-success\"> Accept</span></label>";
+
+                                                echo "<label class=\"cursor-pointer\" data-toggle=\"modal\" data-target=\"#statusModal\" onclick=\"update_status('reject','$row->id','$row->customer_email')\" ><span class=\"mdi mdi mdi-close-box-outline text-danger ml-4\"> Reject</span></label>";
+
+                                            }else if (1==$row->status) {
+                                                echo "<label class=\"badge badge-gradient-success resize\">Accepted</label>";
+                                            }else{
+                                                echo "<label class=\"badge badge-gradient-danger resize\">Rejected</label>";
+                                            }
+
+                                        ?>
+                                          
+                                      </td>
+                                      <td>
+                                            <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                            <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_booking('<?php echo$row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
+                                      </td>
+                                      
+                                  </tr>
+
+                                  <?php 
+                                      }
+                                    }else{
+                                  ?>
+                                    <tr><td colspan="9" class="text-danger">No Data Found</td></tr>
+              
+                                  <?php } ?>
+
+
+                                <!--tr>
                                     <td>Jacob</td>
                                     <td>Photoshop</td>
                                     <td>Jacob</td>
                                     <td>Jacob</td>
                                     <td>Photoshop</td>
+                                    <td>Photoshop</td>
+                                    <td>Photoshop</td>
+                                    <td>Photoshop</td>
+                                    <td>
+                                        <a href=""><span class="mdi mdi-checkbox-marked-outline text-success"> Accept</span></a>
+                                        <a href=""><span class="mdi mdi mdi-close-box-outline text-danger ml-4"> Reject</span></a>
+                                    </td>
+                                    
                                     <td>
                                         <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
                                         <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                     </td>
-                                </tr>
+                                </tr-->
+
+                               
                                 </tbody>
                             </table>
                         </div>
@@ -173,8 +236,72 @@
     </div>
 
 
-<script type="text/javascript">
 
+<?php if(validation_errors()) { ?>
+    <script>
+        document.getElementById("addBooking").classList.add("show");
+    </script>
+<?php } ?>    
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <?php echo form_open('Booking/changeBookingStatus');?>
+      <form>
+      <div class="modal-body">
+                <div id="statusmsg"></div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="bookingid" id="bookingid" required>
+        <input type="hidden" name="bookingmail" id="bookingmail" required>
+        <input type="hidden" name="bookingstatus" id="bookingstatus" required>
+        <button type="submit" class="btn btn-primary">Yes</button>
+        <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+      </form>
+      <?php echo form_close(); ?>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <?php echo form_open('Booking/prepareToDeleteBooking');?>
+      <form>
+      <div class="modal-body">
+                Are you sure want to delete this recode.
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="delbookingid" id="delbookingid" required>
+        <button type="submit" class="btn btn-primary">Yes</button>
+        <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+      </form>
+      <?php echo form_close(); ?>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
     
     
    //if(null==document.getElementById("pickup").value){
@@ -188,6 +315,22 @@
         document.getElementById("drop_off").value = null;
 
         document.getElementById("drop_off").min  = min;
+    }
+
+
+
+    function update_status(changeto,booking_id,booking_mail){
+
+        document.getElementById("bookingid").value = booking_id;
+        document.getElementById("bookingmail").value = booking_mail;
+        document.getElementById("bookingstatus").value = changeto;
+        document.getElementById("statusmsg").innerHTML = "Are you sure want to " + changeto ;
+        
+    }
+
+
+    function delete_booking(del_booking_id){
+        document.getElementById("delbookingid").value = del_booking_id;
     }
 
     

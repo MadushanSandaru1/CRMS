@@ -26,7 +26,46 @@ class Booking_Model extends CI_Model{
         return $this->db->insert('booking', $values);
 
 	}
-	
+
+
+    function getBooking(){
+
+        /*$this->db->select('*');
+        $this->db->where('is_deleted', 0);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get('booking');*/
+        //$query=$this->db->query("SELECT * FROM booking WHERE is_deleted=0 ORDER BY id ASC ");
+        $query=$this->db->query("SELECT b.`id`,b.`customer_nic`,b.`customer_name`,b.`customer_email`,b.`customer_phone`,v.`title`,v.`registered_number`,b.`from_date`,b.`to_date`,b.`posting_date`,b.`message`,b.`status` FROM booking as b, vehicle as v WHERE v.`id`= b.vehicle_id AND b.is_deleted=0 ORDER BY b.id ASC");
+        return $query;
+
+    }
+
+
+    function acceptBooking(){
+        
+        $values = array( 'status' => '1');
+
+        $this->db->where('id', $this->input->post('bookingid'));
+        return $this->db->update('booking',$values);
+
+    }
+
+    function rejectBooking(){
+        
+        $values = array( 'status' => '-1');
+
+        $this->db->where('id', $this->input->post('bookingid'));
+        return $this->db->update('booking',$values);
+
+    }
+
+	function deleteBooking(){
+
+        $values = array( 'is_deleted' => '1');
+
+        $this->db->where('id', $this->input->post('delbookingid'));
+        return $this->db->update('booking',$values);
+    }
 }
 
  ?>
