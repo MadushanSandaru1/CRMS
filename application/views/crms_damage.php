@@ -305,7 +305,7 @@
                                                 <td>
                                                     <a id="view"  href="<?php echo base_url("index.php/Damage/DamageReport/$values->id");?>" target="_blank"><span class="mdi mdi-note "> Get Report</span></a>
                                                     <a href="" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
-                                                    <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                    <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_damage('<?php echo$values->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
                                                 </td>
 
                                             </tr>
@@ -325,6 +325,38 @@
         </script>
         <?php } ?>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php echo form_open('Damage/prepareToDeleteDamage');?>
+                <form>
+                    <div class="modal-body">
+                        Are you sure want to delete this recode.
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="deldamageid" id="deldamageid" required>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </form>
+                <?php echo form_close(); ?>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    function delete_damage(del_damage_id){
+        document.getElementById("deldamageid").value = del_damage_id;
+    }
+</script>
     
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>

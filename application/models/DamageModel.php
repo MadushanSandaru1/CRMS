@@ -90,6 +90,14 @@
                     $query = $this->db->get();
                     return $query->result();
                 }
+
+            public function deleteDamage(){
+
+                $values = array( 'is_deleted' => '1');
+
+                $this->db->where('id', $this->input->post('deldamageid'));
+                return $this->db->update('damage',$values);
+            }
         }
 
  ?>

@@ -107,5 +107,17 @@
             $this->pdf->render();
             $this->pdf->stream("$id"."Damage.pdf",array("Attachment" => 0));
         }
+
+        function prepareToDeleteDamage(){
+
+            $this->load->model('DamageModel');
+            $response = $this->DamageModel->deleteDamage();
+
+            if ($response) {
+                $this->session->set_flashdata('damage_status', 'Data Deleted Successfully!');
+                redirect('Home/crms_damage');
+            }
+
+        }
     }
 ?>
