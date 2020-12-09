@@ -47,5 +47,17 @@
                     }
                 }    
           }
+
+          public function prepareToDeleteOutsourceSupplier()
+          {
+              $this->load->model('OutSourceSuplierModel');
+              $response = $this->OutSourceSuplierModel->deleteOutSourceSupplier();
+
+              if ($response) {
+                  $this->session->set_flashdata('outsource_status', 'Data Deleted Successfully!');
+                  redirect('Home/crms_outsourcing_supplier');
+              }
+
+          }
       }
  ?>

@@ -40,7 +40,16 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        
+                        <?php
+                        if($this->session->flashdata('outsource_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success">
+                                <?php echo $this->session->flashdata('outsource_status'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addOutsourcingSupplier" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Outsourcing Supplier Details</button>
 
                         <div class="collapse " id="addOutsourcingSupplier" aria-labelledby="customRadioInline2">
@@ -109,7 +118,7 @@
                                         <td><?php echo $values->address;?></td>
                                         <td>
                                             <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                            <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                            <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_outsource_supplier('<?php echo $values->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
                                         </td>
                                     </tr>
                                 <?php endforeach;?>    
@@ -124,7 +133,37 @@
         <script>
             document.getElementById("addOutsourcingVehicle").classList.add("show");
         </script>
-        <?php } ?>                             
+        <?php } ?>
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php echo form_open('OutsourceSupplier/prepareToDeleteOutsourceSupplier');?>
+                    <form>
+                        <div class="modal-body">
+                            Are you sure want to delete this recode.
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="deloutsourcesid" id="deloutsourcesid" required>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </form>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function delete_outsource_supplier(del_outsources_s_id){
+                document.getElementById("deloutsourcesid").value = del_outsources_s_id;
+            }
+        </script>
     </div>
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>

@@ -24,5 +24,13 @@
 
                 return $this->db->insert('outsourcing_supplier', $values);
             }
+
+            public function deleteOutSourceSupplier()
+            {
+                $values = array( 'is_deleted' => '1');
+
+                $this->db->where('id', $this->input->post('deloutsourcesid'));
+                return $this->db->update('outsourcing_supplier',$values);
+            }
         }
  ?>
