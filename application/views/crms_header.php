@@ -42,18 +42,6 @@
                     <span class="mdi mdi-menu"></span>
                 </button>
 
-                <!-- search bar-->
-                <div class="search-field d-none d-md-block">
-                    <form class="d-flex align-items-center h-100" action="#">
-                        <div class="input-group">
-                            <div class="input-group-prepend bg-transparent">
-                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                            </div>
-                            <input type="text" class="form-control bg-transparent border-danger border-left-0 border-right-0 border-top-0" placeholder="Search projects">
-                        </div>
-                    </form>
-                </div>
-
                 <ul class="navbar-nav navbar-nav-right">
                     <!-- profile dropdown -->
                     <li class="nav-item nav-profile dropdown">
@@ -71,11 +59,6 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?php echo base_url('index.php/User/user_signout'); ?>"><i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
                         </div>
-                    </li>
-
-                    <!-- full screen icon -->
-                    <li class="nav-item d-none d-lg-block full-screen-link">
-                        <a class="nav-link"><i class="mdi mdi-fullscreen" id="fullscreen-button"></i></a>
                     </li>
 
                     <!-- message icon -->
@@ -241,19 +224,11 @@
 
                     <!-- logout icon -->
                     <li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="<?php echo base_url('index.php/User/user_signout'); ?>">
-                            <i class="mdi mdi-power"></i>
+                        <a class="nav-link" style="cursor: pointer;" data-toggle="modal" data-target="#signoutModal">
+                            <i class="mdi mdi-logout"></i>
                         </a>
                     </li>
                     <!-- ** logout icon -->
-
-                    <!-- settings icon -->
-                    <li class="nav-item nav-settings d-none d-lg-block">
-                        <a class="nav-link" href="#">
-                            <i class="mdi mdi-format-line-spacing"></i>
-                        </a>
-                    </li>
-                    <!-- ** settings icon -->
                 </ul>
 
                 <!-- mobile view toggle icon -->

@@ -68,9 +68,9 @@ class Guarantor extends CI_Controller
         }
     }
 
-    public function delete_guarantor($guarantor_id){
+    public function delete_guarantor(){
         $this->load->model('Guarantor_Model');
-        $response = $this->Guarantor_Model->removeGuarantorData($guarantor_id);
+        $response = $this->Guarantor_Model->removeGuarantorData();
 
         if($response) {
             $this->session->set_flashdata('guarantor_status', 'Guarantor details were successfully removed');

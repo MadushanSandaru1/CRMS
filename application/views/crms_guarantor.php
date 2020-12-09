@@ -28,11 +28,7 @@
                   <i class="mdi mdi-shield-half-full"></i>
                 </span> Guarantor </h3>
             <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span><i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
+                <span id="liveTime"></span>
             </nav>
         </div>
 
@@ -60,7 +56,7 @@
                           <?php
                       }
                       ?>
-
+                      <body onload=display_ct();>
                       <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
 
                       <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
@@ -103,7 +99,7 @@
                       </div>
                       <div class="form-group">
                         <label for="guarantorPhone">Phone</label>
-                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="0xxxxxxxxx" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
+                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="0xxxxxxxxx" pattern="0[0-9]{9}" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
                           <small class="text-danger"><?php echo form_error('guarantorPhone'); ?></small>
                       </div>
                       <div class="form-group">
@@ -132,9 +128,16 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-danger">Guarantor Details</h4>
+                        <div class="row d-flex justify-content-between">
+                            <h4 class="card-title text-danger">Guarantor Details</h4>
+
+                            <!-- search bar-->
+                            <div class="search-field d-none d-md-block">
+                                <input type="text" id="searchTxt" onkeyup="searchTable()" class="form-control bg-light text-danger form-control-sm border-danger border-left-0 border-right-0 border-top-0" placeholder="Search...">
+                            </div>
+                        </div>
                         <div style="overflow-x:auto;">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="guarantorTable">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -164,7 +167,7 @@
 
                                                 <a href="<?php echo base_url('index.php/Guarantor/report_guarantor/'.$data_row->reserved_id); ?>" target="_blank"><span class="mdi mdi-printer text-warning"> Report</span></a>
                                                 <a href=""><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
-                                                <a href="<?php echo base_url('index.php/Guarantor/delete_guarantor/'.$data_row->id); ?>" onclick="return confirm('Are you sure to delete this information?');"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_guarantor('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                             </td>
                                         </tr>
                                 <?php
@@ -186,6 +189,33 @@
             </div>
         </div>
 
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php echo form_open('Guarantor/delete_guarantor');?>
+                    <form>
+                        <div class="modal-body">
+                            Are you sure want to delete this recode.
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="delguarantorid" id="delguarantorid" required>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </form>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+        <!-- ** Delete Modal -->
+
         <?php if(validation_errors()) { ?>
             <script>
                 document.getElementById("addGuarantor").classList.add("show");
@@ -198,6 +228,37 @@
                 document.getElementById("guarantorAddress").value = address;
             </script>
         <?php } ?>
+
+        <script type="text/javascript">
+            // delete details
+            function delete_guarantor(del_guarantor_id){
+                document.getElementById("delguarantorid").value = del_guarantor_id;
+            }
+
+            // table search
+            function searchTable(){
+                var input, filter, table, tr, td, cell, i, j;
+                input = document.getElementById("searchTxt");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("guarantorTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 1; i < tr.length; i++) {
+                    // Hide the row initially.
+                    tr[i].style.display = "none";
+
+                    td = tr[i].getElementsByTagName("td");
+                    for (var j = 0; j < td.length; j++) {
+                        cell = tr[i].getElementsByTagName("td")[j];
+                        if (cell) {
+                            if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
 
     </div>
     <!-- content-wrapper ends -->

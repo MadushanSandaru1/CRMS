@@ -100,14 +100,14 @@
 
             <table>
                 <tr>
-                    <td align="center" style="width: 25%;">___________________</td>
+                    <td align="center" style="width: 30%;">________________________</td>
                     <td></td>
-                    <td align="center" style="width: 25%;">___________________</td>
+                    <td align="center" style="width: 30%;">________________________</td>
                 </tr>
                 <tr>
-                    <td align="center" style="width: 25%;">Date</td>
+                    <td align="center" style="width: 30%;">Date</td>
                     <td></td>
-                    <td align="center" style="width: 25%;">Signature</td>
+                    <td align="center" style="width: 30%;">Guarantor's Signature</td>
                 </tr>
             </table>
         </main>
