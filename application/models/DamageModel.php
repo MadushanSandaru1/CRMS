@@ -81,6 +81,15 @@
                         $query = $this->db->get();
                         return $query->result();
                 }
+
+                public  function getDamageDetail($d_id)
+                {
+                    $this->db->select('*');
+                    $this->db->where('id=',$d_id);
+                    $this->db->from('damage');
+                    $query = $this->db->get();
+                    return $query->result();
+                }
         }
 
  ?>

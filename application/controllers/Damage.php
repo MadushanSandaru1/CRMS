@@ -93,6 +93,19 @@
                 ]
             );
         }
-            
+
+        public function DamageReport()
+        {
+            $id = $this->uri->segment(3);
+            $this->load->model('DamageModel');
+            $data['damageDetails'] = $this->DamageModel->getDamageDetail($id);
+            $data["getVehicleID"] = $this->DamageModel->getVehicleID();
+            $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
+            $this->load->view('crms_damage_single_item.php',$data);
+            $html = $this->output->get_output();
+            $this->pdf->loadHtml($html);
+            $this->pdf->render();
+            $this->pdf->stream("$id"."Damage.pdf",array("Attachment" => 0));
+        }
     }
 ?>
