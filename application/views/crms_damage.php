@@ -44,6 +44,16 @@
                         <!-- <h4 class="card-title text-danger" >Registration of Vehicle Damage Details</h4><br><br> -->
                         <!--<p class="card-description"> Basic form elements </p>-->
                         <!--<div class="alert alert-danger">-->
+                        <?php
+                        if($this->session->flashdata('damage_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success">
+                                <?php echo $this->session->flashdata('damage_status'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
                         <div class="custom-control custom-radio custom-control-inline">
                                     
                                     <button  class="btn btn-primary mb-2" id="view" data-toggle="collapse" href="#viewDetails" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i>Add Damage Details </button>
@@ -242,16 +252,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <?php
-                        if($this->session->flashdata('damage_status'))
-                        {
-                            ?>
-                            <div class="alert alert-success">
-                                <?php echo $this->session->flashdata('damage_status'); ?>
-                            </div>
-                            <?php
-                        }
-                        ?>
+
                         <br>
                         <h4 class="card-title text-danger">Damage Details</h4>
                         <!--<p class="card-description"> Add class <code>.table</code></p>-->

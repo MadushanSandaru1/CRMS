@@ -40,6 +40,16 @@
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
+                            <?php
+                            if($this->session->flashdata('outsource_status'))
+                            {
+                                ?>
+                                <div class="alert alert-success">
+                                    <?php echo $this->session->flashdata('outsource_status'); ?>
+                                </div>
+                                <?php
+                            }
+                            ?>
                             <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addOutsourcingVehicle" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Outsourcing Vehicle Details</button>
 
                             <div class="collapse " id="addOutsourcingVehicle" aria-labelledby="customRadioInline2">
@@ -197,7 +207,7 @@
                                                 <td>
                                                     <a id="view"  href="<?php echo base_url("index.php/VehicleOutsource/outsourcingReport/$values->id");?>" target="_blank"><span class="mdi mdi-note "> Get Report</span></a>
                                                     <a id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success ml-3"> Edit</span></a>
-                                                    <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                    <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_outsource_vehicle('<?php echo $values->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
                                                 </td>
 
                                             </tr>
@@ -217,5 +227,35 @@
         </script>
         <?php } ?>                                                    
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php echo form_open('VehicleOutsource/prepareToDeleteOutsourceVehicle');?>
+                <form>
+                    <div class="modal-body">
+                        Are you sure want to delete this recode.
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="deloutsourcevid" id="deloutsourcevid" required>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </form>
+                <?php echo form_close(); ?>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function delete_outsource_vehicle(del_outsources_v_id){
+            document.getElementById("deloutsourcevid").value = del_outsources_v_id;
+        }
+    </script>
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>

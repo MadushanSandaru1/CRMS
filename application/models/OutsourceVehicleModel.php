@@ -46,5 +46,13 @@
                 return $query->result();
                         
             }
+
+            public function deleteOutSourceVehicle()
+            {
+                $values = array( 'is_deleted' => '1');
+
+                $this->db->where('id', $this->input->post('deloutsourcevid'));
+                return $this->db->update('outsourcing_vehicle',$values);
+            }
     }
 ?>

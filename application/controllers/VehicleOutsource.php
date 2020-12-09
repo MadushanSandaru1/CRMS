@@ -66,7 +66,7 @@
                         $this->load->model('OutsourceVehicleModel');
                         $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
                         $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
-                        
+
                         $this->session->set_flashdata('outsource_status',"Data Recorded Successfully");
                         $this->load->view('crms_outsourcing',$data);
                         
@@ -197,6 +197,18 @@
             $this->pdf->loadHtml($table);
             $this->pdf->render();
             $this->pdf->stream("Vehicle Outsourcing Details.pdf",array("Attachment" => 0));
+        }
+
+        public function prepareToDeleteOutsourceVehicle()
+        {
+            $this->load->model('OutsourceVehicleModel');
+            $response = $this->OutsourceVehicleModel->deleteOutSourceVehicle();
+
+            if ($response) {
+                $this->session->set_flashdata('outsource_status', 'Data Deleted Successfully!');
+                redirect('Home/crms_outsourcing');
+            }
+
         }
     }
 ?>
