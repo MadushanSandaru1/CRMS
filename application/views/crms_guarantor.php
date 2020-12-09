@@ -49,7 +49,12 @@
                           ?>
                           <div class="alert alert-success" role="alert">
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <?php echo $this->session->flashdata('guarantor_status'); ?>
+                              <?php
+                                echo $this->session->flashdata('guarantor_status');
+                                if ($this->session->tempdata('report_details'))
+                                    echo "<a href='".base_url('index.php/Guarantor/report_guarantor/'.$this->session->tempdata('report_details'))."' target='_blank'> print report</a>";
+
+                              ?>
                           </div>
                           <br>
                           <?php
@@ -61,12 +66,22 @@
                       <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
                       <?php echo form_open_multipart('Guarantor/add_guarantor');  ?>
                         <div class="form-group">
-                            <label for="guarantorID"><b>Reserved ID</b></label>
+                            <label for="reservedID"><b>Reserved ID</b></label>
                             <select class="custom-select" name="reservedID">
+                                <option value="" disabled selected hidden>Select Reserved ID</option>
                                 <?php
                                 if($reserved_data->num_rows() > 0) {
                                     foreach ($reserved_data->result() as $data_row) {
-                                        echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                        if ($this->session->tempdata('reservedID_fill')) {
+                                            if ($this->session->tempdata('reservedID_fill')==$data_row->id) {
+                                                echo "<option value='".$data_row->id."' selected>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                            }else{
+                                                echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                            }
+
+                                        }else{
+                                            echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                        }
                                     }
                                 } else {
                                     echo "<option>Data not found</option>";
@@ -83,12 +98,12 @@
                       </div>
                       <div class="form-group">
                           <label for="guarantorNIC">NIC</label>
-                          <input type="text" class="form-control" id="guarantorNIC" name="guarantorNIC" placeholder="NIC" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
+                          <input type="text" class="form-control" id="guarantorNIC" name="guarantorNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
                           <small class="text-danger"><?php echo form_error('guarantorNIC'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="guarantorPhone">Phone</label>
-                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="Phone" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
+                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="0xxxxxxxxx" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
                           <small class="text-danger"><?php echo form_error('guarantorPhone'); ?></small>
                       </div>
                       <div class="form-group">
@@ -146,7 +161,9 @@
                                             <td><?php echo $data_row->address; ?></td>
                                             <td><a href="<?php echo base_url('assets/images/guarantor/'.$data_row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                             <td>
-                                                <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+
+                                                <a href="<?php echo base_url('index.php/Guarantor/report_guarantor/'.$data_row->reserved_id); ?>" target="_blank"><span class="mdi mdi-printer text-warning"> Report</span></a>
+                                                <a href=""><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
                                                 <a href="<?php echo base_url('index.php/Guarantor/delete_guarantor/'.$data_row->id); ?>" onclick="return confirm('Are you sure to delete this information?');"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
                                             </td>
                                         </tr>

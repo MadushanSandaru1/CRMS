@@ -452,7 +452,7 @@
                        $table.="</table>";
                        $this->pdf->loadHtml($table);
                        $this->pdf->render();
-                       $this->pdf->stream(""."Damage.pdf",array("Attachment" => 0));
+                       $this->pdf->stream("Damage_report".date("Ymd_his").".pdf",array("Attachment" => 0));
                     }
 
                    // Genarate report has  time specification and  want image also all damages

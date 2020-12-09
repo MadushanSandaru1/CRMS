@@ -11,6 +11,10 @@ class Guarantor extends CI_Controller
         $this->form_validation->set_rules('guarantorPhone', 'Guarantor Phone number', 'required|min_length[10]|max_length[10]');
         $this->form_validation->set_rules('guarantorAddress', 'Guarantor Address', 'required|max_length[255]');
         //$this->form_validation->set_rules('nicImage', 'Guarantor NIC Image', 'required');
+        if (empty($_FILES['nicImage']['name']))
+        {
+            $this->form_validation->set_rules('nicImage', 'Guarantor NIC Image', 'required');
+        }
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_tempdata('reservedID_fill', $this->input->post('reservedID', TRUE), 5);
@@ -48,14 +52,11 @@ class Guarantor extends CI_Controller
                 $response = $this->Guarantor_Model->insertGuarantorData($image_path);
 
                 if($response) {
+
+                    $this->session->set_tempdata('report_details', $this->input->post('reservedID', TRUE), 5);
+
                     $this->session->set_flashdata('guarantor_status', 'Guarantor registration successful');
-                    //redirect('Home/crms_guarantor');
-                    $this->load->view("guarantor_report.php");
-                    $html = $this->output->get_output();
-                    $this->pdf->loadHtml($html);
-                    $this->pdf->set_paper("A4");
-                    $this->pdf->render();
-                    $this->pdf->stream(""."guarantor_report.pdf",array("Attachment" => 0));
+                    redirect('Home/crms_guarantor');
                 } else{
                     $this->session->set_flashdata('guarantor_status', 'Guarantor registration not successful');
                     redirect('Home/crms_guarantor');
@@ -75,6 +76,20 @@ class Guarantor extends CI_Controller
             $this->session->set_flashdata('guarantor_status', 'Guarantor details were successfully removed');
             redirect('Home/crms_guarantor');
         }
+    }
+
+    public function report_guarantor($reserved_id){
+        $this->load->model('Guarantor_Model');
+        $data['report_details'] = $this->Guarantor_Model->reportGuarantor($reserved_id);
+
+        $this->load->view("guarantor_report.php", $data);
+        $html = $this->output->get_output();
+        $this->pdf->loadHtml($html);
+        $this->pdf->setPaper('A4', 'portrait');
+        $this->pdf->render();
+        //$output = $this->pdf->output();
+        //file_put_contents("guarantor_report".date("Ymd_his").".pdf", $output);
+        $this->pdf->stream("guarantor_report".date("Ymd_his").".pdf",array("Attachment" => 0));
     }
 
 }
