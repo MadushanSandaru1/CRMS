@@ -424,4 +424,9 @@ class Home extends CI_Controller {
 //        $this->notification->update_insurence_date($vehi_id,$date);
 //        redirect('Home/crms_notification');
     }
+
+    public function loadmap(){
+        $this->load->view('map');
+    }
+
 }

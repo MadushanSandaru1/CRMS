@@ -56,16 +56,17 @@
                         
                         <div class="input-group col-xs-12">
                           
-                          <select class="form-control file-upload-info" >
+                          <select class="form-control file-upload-info" id="vehicleid" onchange="trackinmap()">
+                            <option value="" hidden disabled selected>Select a vehicle</option>
                             <?php 
                                 foreach ($vehicle_data->result() as $row) {
-                                    echo "<option value='".$row->id."''>".$row->title." - ".$row->registered_number."</option>";
+                                    echo "<option value='".$row->registered_number."''>".$row->title." - ".$row->registered_number."</option>";
                                 }
                              ?>
                          </select>
 
                           <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary ml-3" type="button">Track</button>
+                            <a href="<?php echo base_url('index.php/Home/loadmap'); ?>" target="imap" ><button class="file-upload-browse btn btn-gradient-primary ml-3" type="button">Track</button></a>
                           </span>
                         </div>
                       </div>
@@ -98,8 +99,9 @@
                         </style>
                     </div> -->
                    
-                    <iframe src="https://www.google.com/maps/embed?pb=24.197611,120.780512" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                    https://maps.google.com/maps?q=24.197611,120.780512
+                    <!-- <div id="map"></div>  -->
+                    <iframe name="imap" id="imap" width="100%" height="800px" scrolling="no" src="<?php echo base_url('index.php/Home/loadmap'); ?>"></iframe>
+                   
                   </div>
                 </div>
               </div>
@@ -109,7 +111,9 @@
         </div>
 
     </div>
-    <!-- content-wrapper ends -->
+
+
+<!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>
 
 
@@ -123,6 +127,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
 
 <script>
+
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -137,10 +142,107 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
- firebase.analytics();
+  firebase.analytics();
 
 
-  var x = document.getElementById('x');
-  var dbRef = firebase.database().ref().child('text');
+
+//track map
+
+function trackinmap(){
+
+
+    var vid = document.getElementById("vehicleid");
+    var strvid = vid.options[vid.selectedIndex].value;
+
+
+    var ref = firebase.database().ref().child('/vehicles/'+strvid);
+    
+    ref.on("value", function(snapshot) {
+
+        if (snapshot.val()!=null) {
+            localStorage.setItem('Latitude', snapshot.val().Latitude);
+            localStorage.setItem('Longitude', snapshot.val().Longitude);
+        }else{
+            localStorage.setItem('Latitude', null);
+            localStorage.setItem('Longitude', null);
+        }
+        
+    }, function (error) {
+        alert("sd");
+       console.log("Error: " + error.code);
+    });
+
+
+}
+
+
+
+
+$(document).ready(function() {
+        setInterval(function refreshDarkSky() {
+            $("#imap").attr("src", "<?php echo base_url('index.php/Home/loadmap'); ?>");
+        }, 10000);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+ /* var x = document.getElementById('x');
+  var dbRef = firebase.database().ref().child('vehicels');
   dbRef.on('value',snap => x.innerHTML = snap.val());
+*/
+
+  /*Fetch veihicels*/
+/*
+var ref = firebase.database().ref().child('/vehicles');
+
+ref.on("value", function(snapshot) {
+
+    snapshot.forEach(function(ChildSnapshot){
+        console.log(ChildSnapshot.key());
+    });
+
+    /*foreach(function(snapshot){
+        console.log(child.key+': '+child.val());
+    }
+
+   //console.log(Object.values(snapshot.val()) );
+   //console.log(snapshot.val());
+
+}, function (error) {
+   console.log("Error: " + error.code);
+});
+
+*/
+
+  // function initMap() { 
+
+  //       var uluru = {lat: 6.806635, lng: 79.97114630000002}; 
+  //       var map = new google.maps.Map(document.getElementById('map'), { 
+  //       zoom: 15, 
+  //       center: uluru 
+  //       }); 
+  //       var marker = new google.maps.Marker({ 
+  //       position: uluru, 
+  //       map: map 
+  //       }); 
+  //   } 
+
+
 </script>
+
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2bXKNDezDf6YNVc-SauobynNHPo4RJb8&callback=initMap"> </script> 
+
+ -->
+
+
+
+
