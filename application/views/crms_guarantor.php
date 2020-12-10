@@ -11,16 +11,8 @@
 ?>
 
 <?php require_once 'crms_header.php';?>
+
     <div class="content-wrapper">
-        <!--div class="row" id="proBanner">
-            <div class="col-12">
-                <span class="d-flex align-items-center purchase-popup">
-                  <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
-                  <a href="" class="btn download-button purchase-button ml-auto">Upgrade To Pro</a>
-                  <i class="mdi mdi-close" id="bannerClose"></i>
-                </span>
-            </div>
-        </div-->
 
         <div class="page-header">
             <h3 class="page-title">
@@ -39,10 +31,10 @@
                 <div class="card">
                   <div class="card-body">
 
-                      <?php
+                  <?php
                       if($this->session->flashdata('guarantor_status'))
                       {
-                          ?>
+                  ?>
                           <div class="alert alert-success" role="alert">
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                               <?php
@@ -53,10 +45,9 @@
                               ?>
                           </div>
                           <br>
-                          <?php
+                  <?php
                       }
-                      ?>
-                      <body onload=display_ct();>
+                  ?>
                       <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
 
                       <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
@@ -165,7 +156,7 @@
                                             <td><a href="<?php echo base_url('assets/images/guarantor/'.$data_row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                             <td>
 
-                                                <a href="<?php echo base_url('index.php/Guarantor/report_guarantor/'.$data_row->reserved_id); ?>" target="_blank"><span class="mdi mdi-printer text-warning"> Report</span></a>
+                                                <a href="<?php echo base_url('index.php/Guarantor/report_guarantor/'.$data_row->reserved_id); ?>" target="_blank"><span class="mdi mdi-printer"> Report</span></a>
                                                 <a href=""><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
                                                 <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_guarantor('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                             </td>
@@ -194,7 +185,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -202,7 +193,7 @@
                     <?php echo form_open('Guarantor/delete_guarantor');?>
                     <form>
                         <div class="modal-body">
-                            Are you sure want to delete this recode.
+                            Are you sure you want to delete this record.
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="delguarantorid" id="delguarantorid" required>

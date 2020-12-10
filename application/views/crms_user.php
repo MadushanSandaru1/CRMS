@@ -28,11 +28,7 @@
                   <i class="mdi mdi-account-box"></i>
                 </span> Staff User </h3>
             <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span><i class="mdi mdi-clock icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
+                <span id="liveTime"></span>
             </nav>
         </div>
 
@@ -71,7 +67,7 @@
                         <?php
                         }
                         ?>
-                        
+
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addStaffUser" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Staff User Details</button>
 
                         <div class="collapse mt-4" id="addStaffUser" aria-labelledby="customRadioInline2">
