@@ -42,5 +42,12 @@
 
                 return $this->db->insert('user', $values);
             }
+            public function deleteUser(){
+
+                $values = array( 'is_deleted' => '1');
+
+                $this->db->where('id', $this->input->post('deluserid'));
+                return $this->db->update('user',$values);
+            }
         }
  ?>
