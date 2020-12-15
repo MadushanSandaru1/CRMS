@@ -24,6 +24,10 @@
                 $this->form_validation->set_rules('email',' E-Mail ID','required');
                 $this->form_validation->set_rules('phone_no','Phone Number','required');
                 $this->form_validation->set_rules('address',' Address','required');
+                if (empty($_FILES['staff_picture']['name']))
+                {
+                    $this->form_validation->set_rules('staff_picture', 'Staff Image', 'required');
+                }
 
                 if($this->form_validation->run() == FALSE)
                 {

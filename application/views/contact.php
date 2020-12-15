@@ -11,7 +11,7 @@
 				<h1 class="text-white">
 					Contact Us				
 				</h1>	
-				<p class="text-white link-nav"><a href="<?php echo base_url('index.php/Home/index'); ?>">Home &nbsp;</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a href="<?php echo base_url('index.php/Home/contact'); ?>">&nbsp; Contact Us</a></p>
+<!--				<p class="text-white link-nav"><a href="--><?php //echo base_url('index.php/Home/index'); ?><!--">Home &nbsp;</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a href="--><?php //echo base_url('index.php/Home/contact'); ?><!--">&nbsp; Contact Us</a></p>-->
 			</div>											
 		</div>
 	</div>

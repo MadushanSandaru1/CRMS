@@ -20,7 +20,7 @@
                   <i class="mdi mdi-shield-half-full"></i>
                 </span> Guarantor </h3>
             <nav aria-label="breadcrumb">
-                <span id="liveTime"></span>
+<!--                <span id="liveTime"></span>-->
             </nav>
         </div>
 
@@ -119,7 +119,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row d-flex justify-content-between">
+                        <div class="d-flex justify-content-between">
                             <h4 class="card-title text-danger">Guarantor Details</h4>
 
                             <!-- search bar-->

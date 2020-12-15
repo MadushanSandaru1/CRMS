@@ -42,6 +42,10 @@
                     <span class="mdi mdi-menu"></span>
                 </button>
 
+                <div class=" align-self-center">
+                    <span id="liveTime"></span>
+                </div>
+
                 <ul class="navbar-nav navbar-nav-right">
                     <!-- profile dropdown -->
                     <li class="nav-item nav-profile dropdown">
