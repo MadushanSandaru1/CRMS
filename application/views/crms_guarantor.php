@@ -20,7 +20,7 @@
                   <i class="mdi mdi-shield-half-full"></i>
                 </span> Guarantor </h3>
             <nav aria-label="breadcrumb">
-                <span id="liveTime"></span>
+<!--                <span id="liveTime"></span>-->
             </nav>
         </div>
 

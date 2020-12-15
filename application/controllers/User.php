@@ -141,7 +141,8 @@ class User extends CI_Controller
     }
 
     public function change_profile_pwd() {
-        $this->form_validation->set_rules('new_password', 'New Password', 'required');
+        $this->form_validation->set_rules('current_password', 'Current Password', 'required');
+        $this->form_validation->set_rules('new_password', 'New Password', 'required|min_length[8]');
         $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[new_password]');
 
         if ($this->form_validation->run() == FALSE)
@@ -152,6 +153,7 @@ class User extends CI_Controller
             $data["insurence_date"]=$this->notification->insurence_date();
             $data["revenue_license_date"]=$this->notification->revenue_license_date();
             $data["car_booking_notification"]=$this->notification->car_booking_notification();
+            $data["car_not_recive"]=$this->notification->car_not_recive();
 
             $this->load->view('crms_profile', $data);
         }
@@ -162,10 +164,10 @@ class User extends CI_Controller
 
             if($response) {
                 $this->session->set_flashdata('profile_status', 'Password change successfully');
-                redirect('Home/crms_profile');
+                redirect('Home/crms_profile#passwordchangeform');
             } else {
                 $this->session->set_flashdata('profile_status', 'Failed to change password');
-                redirect('Home/crms_profile');
+                redirect('Home/crms_profile#passwordchangeform');
             }
         }
 
