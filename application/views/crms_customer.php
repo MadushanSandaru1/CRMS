@@ -81,34 +81,44 @@
                           <div class="col-12 photgraph-outer mt-2 mb-2">
                             <div>
                               <div class="inputCamera" ></div>
-                              <div class="shutterbtn"><button type="button" class="btn btn-gradient-primary " onclick="take_pictuer()" data-toggle="modal" data-target="#previewModal" ><span class="mdi mdi-camera "> Capture</span></button></div>
+                              <div class="shutterbtn"><button type="button" class="btn btn-gradient-primary" onclick="take_pictuer()" data-toggle="modal" data-target="#previewModal" ><span class="mdi mdi-camera "> Capture</span></button></div>
                               <div id="capturedFrame" ></div>
                             </div>
                           </div> 
 
                         </div>
-                        <input type="hidden" name="avatarReady" id="InputAvatar" value="">
+                        <input type="hidden" name="avatarReady" id="InputAvatar" value= "<?php if($this->session->tempdata('avatar_fill')) echo $this->session->tempdata('avatar_fill'); ?>" > 
                       </div>
+
+
                       <div class="form-group">
                         <label for="InputName">Name</label>
-                        <input type="text" class="form-control" id="InputName" placeholder="Name" name="name">
+                        <input type="text" class="form-control" id="InputName" placeholder="Name" name="name" value= "<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
                           <small class="text-danger"><?php echo form_error('name'); ?></small>
                       </div>
+
                       <div class="form-group">
                         <label for="InputNIC">NIC</label>
-                        <input type="text" class="form-control" id="InputNIC" placeholder="NIC" name="nic">
+                        <input type="text" class="form-control" id="InputNIC" placeholder="NIC" name="nic" value= "<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>" >
+                        <small class="text-danger"><?php echo form_error('nic'); ?></small>
                       </div>
+
                       <div class="form-group">
                         <label for="InputEmail">Email address</label>
-                        <input type="email" class="form-control" id="InputEmail" placeholder="Email address" name="email">
+                        <input type="email" class="form-control" id="InputEmail" placeholder="Email address" name="email" value= "<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
+                        <small class="text-danger"><?php echo form_error('email'); ?></small>
                       </div>
+
                       <div class="form-group">
                         <label for="InputPhone">Phone</label>
-                        <input type="text" class="form-control" id="InputPhone" placeholder="Phone" name="phone">
+                        <input type="text" class="form-control" id="InputPhone" placeholder="Phone" name="phone" value= "<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>" >
+                        <small class="text-danger"><?php echo form_error('phone'); ?></small>
                       </div>
+
                       <div class="form-group">
                         <label for="InputAddress">Address</label>
-                        <textarea class="form-control" id="InputAddress" rows="4" placeholder="Phone" name="address"> </textarea>
+                        <textarea class="form-control" id="InputAddress" rows="4" placeholder="Address" name="address"> <?php if($this->session->tempdata('address_fill')) echo $this->session->tempdata('address_fill'); ?> </textarea>
+                        <small class="text-danger"><?php echo form_error('address'); ?></small>
                       </div>
 
                       <div class="form-group">
@@ -120,7 +130,9 @@
                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                           </span>
                         </div>
+                        <small class="text-danger"><?php echo form_error('nic_copy'); ?></small>
                       </div>
+
                       <div class="form-group">
                         <label>License Copy</label>
                         <input type="file" name="license_copy" class="file-upload-default">
@@ -130,7 +142,9 @@
                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                           </span>
                         </div>
+                        <small class="text-danger"><?php echo form_error('license_copy'); ?></small>
                       </div>
+
                       <div class="form-group">
                         <label>Light Bill Copy</label>
                         <input type="file" name="light_bill_copy" class="file-upload-default">
@@ -140,7 +154,9 @@
                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                           </span>
                         </div>
+                        <small class="text-danger"><?php echo form_error('light_bill_copy'); ?></small>
                       </div>
+
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                       <button type="reset" class="btn btn-light">Cancel</button>
                     </form>
@@ -230,123 +246,31 @@
                 </div>
               </div>
 
-              <script type="text/javascript">
+             <!--  <script type="text/javascript">
                 
                 function loadCustomerData(id,name,nic,email,phone,address,nic_copy,license_copy,light_bill_copy){
-                  document.getElementById("EditID").value = id;
-                  document.getElementById("EditName").value = name;
-                  document.getElementById("EditNIC").value = nic;
-                  document.getElementById("EditEmail").value = email;
-                  document.getElementById("EditPhone").value = phone;
-                  document.getElementById("EditAddress").value = address;
-                  document.getElementById("EditNicCopy").value = nic_copy;
-                  document.getElementById("EditLicenseCopy").value = license_copy;
-                  document.getElementById("EditLightBillCopy").value = light_bill_copy;
+                  document.getElementById("update_ID").value = id;
+                  document.getElementById("update_Name").value = name;
+                  document.getElementById("update_NIC").value = nic;
+                  document.getElementById("update_Email").value = email;
+                  document.getElementById("update_Phone").value = phone;
+                  document.getElementById("update_Address").value = address;
+                  document.getElementById("update_NicCopy").value = nic_copy;
+                  document.getElementById("update_LicenseCopy").value = license_copy;
+                  document.getElementById("update_LightBillCopy").value = light_bill_copy;
 
                 }
-              </script>
+              </script> -->
 
 
-              <!-- Edit Modal -->
-              <div class="modal fade" id="editmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Edit Customer Details</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      
-                      <!-- edit start -->
-                      <div class="col-12 grid-margin stretch-card">
-                      <div class="card">
-                        <div class="card-body">
-                          <!--h4 class="card-title text-danger mb-5">Add new customer</h4-->
+             
 
-                          <?php echo form_open_multipart('Customer/prepareToUpdateCustomer');?>
-                          <form class="forms-sample">
-                            <div class="form-group">
-                              
-                              <input type="hidden" id="EditID" name="edit_id" >
+<?php if(validation_errors()) { ?>
+    <script>
+        document.getElementById("addCustomer").classList.add("show");
+    </script>
+<?php } ?>
 
-                              <label for="EditName">Name</label>
-                              <input type="text" class="form-control" id="EditName" placeholder="Name" name="edit_name">
-                            </div>
-                            <div class="form-group">
-                              <label for="EditNIC">NIC</label>
-                              <input type="text" class="form-control" id="EditNIC" placeholder="NIC" name="edit_nic">
-                            </div>
-                            <div class="form-group">
-                              <label for="EditEmail">Email address</label>
-                              <input type="email" class="form-control" id="EditEmail" placeholder="Email address" name="edit_email">
-                            </div>
-                            <div class="form-group">
-                              <label for="EditPhone">Phone</label>
-                              <input type="text" class="form-control" id="EditPhone" placeholder="Phone" name="edit_phone">
-                            </div>
-                            <div class="form-group">
-                              <label for="EditAddress">Address</label>
-                              <textarea class="form-control" id="EditAddress" rows="4" placeholder="Phone" name="edit_address"> </textarea>
-                            </div>
-
-                            <div class="form-group">
-                              <label>NIC Copy</label>
-                              <input type="file" name="edit_nic_copy" class="file-upload-default">
-                              <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" id="EditNicCopy" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                                  <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                                </span>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label>License Copy</label>
-                              <input type="file" name="edit_license_copy" class="file-upload-default">
-                              <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" id="EditLicenseCopy" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                                  <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                                </span>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label>Light Bill Copy</label>
-                              <input type="file" name="edit_light_bill_copy" class="file-upload-default">
-                              <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" id="EditLightBillCopy" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                                  <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                                </span>
-                              </div>
-                            </div>
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                            <button class="btn btn-light" data-dismiss="modal">Cancel</button>
-                          </form>
-                          <?php echo form_close(); ?>   
-                          
-                        </div>
-                      </div>
-                    </div>
-                     <!-- edit end -->
-
-
-                    </div>
-                    <!--div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div-->
-                  </div>
-                </div>
-              </div>
-              <!-- model end -->
-
-            <?php if(validation_errors()) { ?>
-                <script>
-                    document.getElementById("addCustomer").classList.add("show");
-                </script>
-            <?php } ?>
 
               <!-- view customer table end-->
 
@@ -392,8 +316,15 @@
             //console.log(text);
           });*/
       }
+
 </script>
 
+
+<!-- <?php /*if($this->session->tempdata('avatar_fill')) */{ ?> 
+<script>
+  document.getElementById("capturedFrame").innerHTML='<img id="avatar" class="imageCaptured" src="'+ $this->session->tempdata('avatar_fill')  +'"/>';
+</script> 
+<?php } ?> -->
 
 
 <?php require_once 'crms_footer.php';?>

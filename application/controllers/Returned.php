@@ -64,12 +64,23 @@ class Returned extends CI_Controller
 //    }
 
     public function returnVehicle(){
+        $id = $this->input->post('re_id');
         $this->load->model('VehicleReturnModel');
         $response = $this->VehicleReturnModel->returnVehicle();
+        $data['vehicle_data'] = $this->VehicleReturnModel->getVehicleData();
+        $data['customer_data'] = $this->VehicleReturnModel->getCustomerData();
+        $data['reserved_details'] = $this->VehicleReturnModel->getVehicleReserved($id);
+
 
         if($response) {
-            $this->session->set_flashdata('returned_status', 'successfully returned Vehicle');
-            redirect('Home/crms_returned');
+//            $this->session->set_flashdata('returned_status', 'successfully returned Vehicle');
+//            redirect('Home/crms_returned');
+            $this->load->view("crms_return_report",$data);
+            $html = $this->output->get_output();
+            $this->pdf->loadHtml($html);
+            $this->pdf->render();
+            $this->pdf->stream(""."Vehicle Return.pdf",array("Attachment" => 0));
+
         }
     }
     public function extendVehicle(){

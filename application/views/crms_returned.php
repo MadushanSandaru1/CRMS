@@ -21,8 +21,7 @@
                 </span>
             </div>
         </div-->
-
-        <div class="page-header">
+      <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-keyboard-return"></i>
@@ -77,7 +76,7 @@
                                             <td>
                                                 <?php if($data_row->is_returned == 0) { ?>
                                                     <a href="" class=" alert notification  text-black" data-toggle="modal" data-target="#extendVehicle" style="" onclick="extend_vehicle(<?php echo $data_row->id;?>,'<?php echo $data_row->name;?>','<?php echo $data_row->registered_number;?>','<?php echo $data_row->from_date;?>','<?php echo $data_row->to_date;?>')"><span class="edit_btn mdi mdi-calendar-clock text-success"> Extend Time</span></a>
-                                                    <a href="" class=" alert notification  text-black" data-toggle="modal" data-target="#returnVehicle" style="" onclick="return_vehicle(<?php echo $data_row->id;?>,'<?php echo $data_row->name;?>','<?php echo $data_row->registered_number;?>','<?php echo $data_row->start_meter_value;?>','<?php echo $data_row->stop_meter_value;?>')"><span class="edit_btn mdi mdi-keyboard-return text-danger ml-4"> Return</span></a>
+                                                    <a href="" target="_blank" class=" alert notification  text-black" data-toggle="modal" data-target="#returnVehicle" style="" onclick="return_vehicle(<?php echo $data_row->id;?>,'<?php echo $data_row->name;?>','<?php echo $data_row->registered_number;?>','<?php echo $data_row->start_meter_value;?>')"><span class="edit_btn mdi mdi-keyboard-return text-danger ml-4"> Return</span></a>
                                                 <?php } ?>
                                             </td>
                                             <td><?php echo $data_row->customer_id.' - '.$data_row->name; ?></td>
@@ -140,7 +139,7 @@
                                     <label>End Meter Value : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label id="meter_e_value"></label>
+                                    <input type="number" name="stop_meter_value" id="stop_meter" class="form-control" min="1">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -222,12 +221,13 @@
 
     </div>
     <script>
-        function return_vehicle(id,customer,reg_num,sm_value,em_value){
+        function return_vehicle(id,customer,reg_num,sm_value){
             document.getElementById("re_id").value=id;
             document.getElementById("customer").innerHTML=customer;
             document.getElementById("reg_num").innerHTML=reg_num;
             document.getElementById("meter_value").innerHTML=sm_value;
-            document.getElementById("meter_e_value").innerHTML=em_value;
+            document.getElementById("stop_meter").min=sm_value;
+
         }
         function extend_vehicle(id,customer_name,reg_num,r_date,ret_date){
             document.getElementById("ex_id").value=id;
