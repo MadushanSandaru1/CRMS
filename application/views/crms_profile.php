@@ -28,11 +28,7 @@
                   <i class="mdi mdi-account-circle"></i>
                 </span> Profile </h3>
             <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span><i class="mdi mdi-clock icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
+<!--                <span id="liveTime"></span>-->
             </nav>
         </div>
 
@@ -40,19 +36,6 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-
-                        <?php
-                        if($this->session->flashdata('profile_status'))
-                        {
-                            ?>
-                            <div class="alert alert-success" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <?php echo $this->session->flashdata('profile_status'); ?>
-                            </div>
-                            <br>
-                            <?php
-                        }
-                        ?>
 
                         <div id="addProfile">
                             <div>
@@ -83,22 +66,54 @@
                                 <input type="text" class="form-control" name="profilePhone" id="profilePhone" value="<?php echo $this->session->userdata('user_phone'); ?>" readonly>
                                 <small class="text-danger"><?php echo form_error('profilePhone'); ?></small>
                             </div>
+
+                            <a name="passwordchangeform"></a>
+
                             <div class="form-group">
                                 <label for="profileAddress">Address</label>
                                 <textarea class="form-control" id="profileAddress" name="guarantorAddress" rows="4" placeholder="address"> </textarea>
                                 <small class="text-danger"><?php echo form_error('profileAddress'); ?></small>
                             </div>
+
+                            <?php
+                            if($this->session->flashdata('profile_status'))
+                            {
+                                ?>
+                                <div class="alert alert-success" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <?php echo $this->session->flashdata('profile_status'); ?>
+                                </div>
+                                <br>
+                                <?php
+                            }
+                            ?>
+
                             <div class="border border-danger p-5">
-                                <a name="change_pwd_div"></a>
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" onclick="passwordShowHide()" name="show_hide_password" id="show_hide_password"> Show password </label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <?php echo form_open('User/change_profile_pwd');  ?>
                                 <div class="form-group">
+                                    <label for="current_password">Current password</label>
+                                    <input type="password" class="form-control" name="current_password" id="current_password">
+                                    <small class="text-danger"><?php echo form_error('current_password'); ?></small>
+                                    <small class="text-danger"><?php if($this->session->tempdata('current_password_fill')) echo $this->session->tempdata('current_password_fill'); ?></small>
+                                </div>
+                                <div class="form-group">
                                     <label for="new_password">New password</label>
-                                    <input type="text" class="form-control" name="new_password" id="new_password">
+                                    <input type="password" class="form-control" name="new_password" id="new_password">
                                     <small class="text-danger"><?php echo form_error('new_password'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="confirm_password">Confirm password</label>
-                                    <input type="text" class="form-control" name="confirm_password" id="confirm_password">
+                                    <input type="password" class="form-control" name="confirm_password" id="confirm_password">
                                     <small class="text-danger"><?php echo form_error('confirm_password'); ?></small>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
@@ -114,6 +129,23 @@
         <script>
             let address=<?php echo json_encode($this->session->userdata('user_address')); ?>;
             document.getElementById("profileAddress").value = address;
+
+            //password visibility
+            function passwordShowHide() {
+                let x = document.getElementById("current_password");
+                let y = document.getElementById("new_password");
+                let z = document.getElementById("confirm_password");
+                if (x.type === "password") {
+                    x.type = "text";
+                    y.type = "text";
+                    z.type = "text";
+                } else {
+                    x.type = "password";
+                    y.type = "password";
+                    z.type = "password";
+                }
+            }
+
         </script>
 
     </div>

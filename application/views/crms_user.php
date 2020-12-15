@@ -28,7 +28,7 @@
                   <i class="mdi mdi-account-box"></i>
                 </span> Staff User </h3>
             <nav aria-label="breadcrumb">
-                <span id="liveTime"></span>
+<!--                <span id="liveTime"></span>-->
             </nav>
         </div>
 
@@ -57,20 +57,23 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+
                         <?php
-                            if($this->session->flashdata('staff_status'))
-                            {
-                        ?>
-                        <div class="alert alert-success">
-                            <?php echo $this->session->flashdata('staff_status'); ?>
-                        </div>
-                        <?php
+                        if($this->session->flashdata('staff_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo $this->session->flashdata('staff_status'); ?>
+                            </div>
+                            <br>
+                            <?php
                         }
                         ?>
 <!--Scroll button to go up and down-->
 
 <!--collapse - when click the button display form to fill  -->
-                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addStaffUser" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Staff User Details</button>
+                        <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addStaffUser" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Staff User Details</button>
 
                         <div class="collapse mt-4" id="addStaffUser" aria-labelledby="customRadioInline2">
                             <?php echo form_open_multipart('Staff/StaffDetails'); ?>
@@ -96,41 +99,45 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="expensedVehicleDate"><b>Full Name</b></label>
-                                    <input type="text" class="form-control" name="full_name" id="expensedVehicleDate" placeholder="Staff Full Name" >
+                                    <label for="full_name"><b>Full Name</b></label>
+                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Staff Full Name" >
                                     <small class="text-danger"><?php echo form_error('full_name'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="expenseAmount"><b>NIC</b></label>
-                                    <input type="text" class="form-control" name="nic" id="expenseAmount" placeholder="Staff NIC Number" >
+                                    <label for="nic"><b>NIC</b></label>
+                                    <input type="text" class="form-control" name="nic" id="nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" >
                                     <small class="text-danger"><?php echo form_error('nic'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="expenseAmount"><b>Email</b></label>
-                                    <input type="email" class="form-control" name="email" id="expenseAmount" placeholder="Staff Email Address" >
+                                    <label for="email"><b>Email</b></label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Staff Email Address" >
                                     <small class="text-danger"><?php echo form_error('email'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="expenseAmount"><b>Phone No</b></label>
-                                    <input type="text" class="form-control" name="phone_no" id="expenseAmount" placeholder="Staff Phone Number" >
+                                    <label for="phone_no"><b>Phone No</b></label>
+                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="0xxxxxxxxx" pattern="0[0-9]{9}">
                                     <small class="text-danger"><?php echo form_error('phone_no'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="expenseAmount"><b>Address</b></label>
+                                    <label for="address"><b>Address</b></label>
                                     <textarea  id="" cols="30" rows="4" name="address" class="form-control" ></textarea>
                                     <small class="text-danger"><?php echo form_error('address'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="expenseAmount"><b>Upload Picture</b></label>
-                                    <input type="file" class="form-control file-upload-info" name="staff_picture"  placeholder="Staff Picture" >
+                                    <label for="staff_picture"><b>Upload Picture</b></label>
+                                    <input type="file" name="staff_picture" class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Staff Picture">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                        </span>
+                                    </div>
                                     <small class="text-danger"><?php echo form_error('staff_picture'); ?></small>
                                 </div>
                                 
                                 
                                 <div class="form-group mt-3">
-                                    <label for="expenseAmount"><b>Password</b></label>
-                                    <input type="password" class="form-control" name="password" id="expenseAmount" placeholder="Add new Password" >
-                                    <small class="text-danger"><?php echo form_error('password'); ?></small>
+                                    <label for="password"><i class="mdi mdi-star-circle text-danger"></i> <b>The password will be generated automatically and will be sent to the email you entered.</b></label>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
@@ -142,9 +149,17 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-danger">Staff User Details</h4>
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title text-danger">Staff User Details</h4>
+
+                            <!-- search bar-->
+                            <div class="search-field d-none d-md-block">
+                                <input type="text" id="searchTxt" onkeyup="searchTable()" class="form-control bg-light text-danger form-control-sm border-danger border-left-0 border-right-0 border-top-0" placeholder="Search...">
+                            </div>
+                        </div>
+
                         <div style="overflow-x:auto;">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="staffuserTable">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -152,7 +167,7 @@
                                     <th>NIC</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Role</th>
+                                    <th class="d-none">Role</th>
                                     <th>Address</th>
                                     <th>Actions</th>
                                 </tr>
@@ -165,11 +180,15 @@
                                             <td><?php echo $value->nic; ?></td>
                                             <td><?php echo $value->email; ?></td>
                                             <td><?php echo $value->phone; ?></td>
-                                            <td><?php echo $value->role; ?></td>
+                                            <td class="d-none"><?php echo $value->role; ?></td>
                                             <td><?php echo $value->address; ?></td>
                                             <td>
-                                                <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                            <?php if($value->role == "cashier"){ ?>
+                                                <label class="cursor-pointer"><span class="mdi mdi-eyedropper text-success"> Edit</span>
                                                 <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_user('<?php echo$value->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span>
+                                            <?php } else if(($value->role == "admin") or ($value->id == $this->session->userdata('user_id'))){ ?>
+                                                <label class="cursor-pointer"><span class="mdi mdi-eyedropper text-success"> Edit</span>
+                                            <?php } ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -209,9 +228,12 @@
 </div>
 
 <script type="text/javascript">
+    //admin id field hide when page load
     window.onload = function(){
         document.getElementById('usr_admin').style.display = 'none';
     }
+
+    //auto generate id by role type
     function roletype()
     {
         if(document.getElementById('cashier').checked)
@@ -225,15 +247,42 @@
             document.getElementById('usr_admin').style.display = 'block';
         }
     }
-</script>
-<?php if(validation_errors()) { ?>
-    <script>
-        document.getElementById("addStaffUser").classList.add("show");
-    </script>
-<?php } ?>
-<script type="text/javascript">
+
+    //delete staff user
     function delete_user(del_user_id){
         document.getElementById("deluserid").value = del_user_id;
     }
+
+    // table search
+    function searchTable(){
+        var input, filter, table, tr, td, cell, i, j;
+        input = document.getElementById("searchTxt");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("staffuserTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            // Hide the row initially.
+            tr[i].style.display = "none";
+
+            td = tr[i].getElementsByTagName("td");
+            for (var j = 0; j < td.length; j++) {
+                cell = tr[i].getElementsByTagName("td")[j];
+                if (cell) {
+                    if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
 </script>
+
+<?php if(validation_errors()) { ?>
+    <script type="text/javascript">
+        document.getElementById("addStaffUser").classList.add("show");
+    </script>
+<?php } ?>
+
 <?php require_once 'crms_footer.php';?>

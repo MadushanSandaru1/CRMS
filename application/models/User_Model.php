@@ -1,3 +1,5 @@
+<?php date_default_timezone_set("Asia/Colombo"); ?>
+
 <?php
 
 
@@ -54,6 +56,7 @@ class User_Model extends CI_Model
 
     }
 
+    //change password from password recovery option
     public function changeUserPwd(){
 
         $new_password = $this->input->post('new_password', TRUE);
@@ -76,25 +79,39 @@ class User_Model extends CI_Model
 
     }
 
+    //change password from profile section
     public function changeProfilePwd(){
 
-        $new_password = $this->input->post('new_password', TRUE);
+        $email = $this->session->userdata('user_email');
+        $current_password = sha1($this->input->post('current_password', TRUE));
 
-        $this->db->set('password', sha1($new_password));
-        $this->db->where('email', $this->session->userdata('user_email'));
+        $this->db->where('email', $email);
+        $this->db->where('password', $current_password);
         $this->db->where('is_deleted', 0);
-        $response = $this->db->update('user');
+        $userdata_check_query = $this->db->get('user');
 
-        if ($response) {
-            $email = $this->session->userdata('user_email');
-            $heading = "New Password";
-            $message = "<b>".$new_password."</b> is your new password of the Abhaya account.";
+        if ($userdata_check_query->num_rows() > 0) {
+            $new_password = $this->input->post('new_password', TRUE);
 
-            $this->load->model("Email_Model");
-            $this->Email_Model->trigger_mail($email, $heading, $message);
+            $this->db->set('password', sha1($new_password));
+            $this->db->where('email', $email);
+            $this->db->where('is_deleted', 0);
+            $response = $this->db->update('user');
+
+            if ($response) {
+                $email = $this->session->userdata('user_email');
+                $heading = "New Password";
+                $message = "Your password on the Abhaya account was changed on <b>".date("Y-m-d h:i:sa")."</b>";
+
+                $this->load->model("Email_Model");
+                $this->Email_Model->trigger_mail($email, $heading, $message);
+            }
+
+            return $response;
+        } else {
+            $this->session->set_tempdata('current_password_fill', "The current password does not match.", 2);
+            return false;
         }
-
-        return $response;
 
     }
 

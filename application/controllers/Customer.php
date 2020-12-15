@@ -6,7 +6,7 @@
     	public function uploadFiles($file){
 				$image_data = null;
 
-    			$config['upload_path'] = './assets/images/customers/img_documents/';
+    			$config['upload_path'] = './assets/images/customers/documentation/';
 			    $config['allowed_types'] = 'gif|jpg|png|jpeg';
 			    /*$config['max_size'] = '1000000';
 				$config['max_width']  = '1024000';
@@ -36,12 +36,30 @@
         	$this->form_validation->set_rules('email','Email','valid_email|is_unique[customer.email]');
         	$this->form_validation->set_rules('phone','Phone','required|regex_match[/^[0-9]{10}$/]');
         	$this->form_validation->set_rules('address','Address','required');
-        	//$this->form_validation->set_rules('nic_copy', 'NIC Copy', 'required');
-        	//$this->form_validation->set_rules('license_copy', 'License Copy', 'required');
+            if (empty($_FILES['nic_copy']['name']))
+            {
+                $this->form_validation->set_rules('nic_copy', 'NIC Copy', 'required');
+            }
+            if (empty($_FILES['license_copy']['name']))
+            {
+                $this->form_validation->set_rules('license_copy', 'License Copy', 'required');
+            }
 
 
         	//check validated
         	if($this->form_validation->run() == FALSE){
+
+                $this->session->set_tempdata('avatar_fill', $this->input->post('avatarReady', TRUE), 5);
+                $this->session->set_tempdata('name_fill', $this->input->post('name', TRUE), 5);
+                $this->session->set_tempdata('nic_fill', $this->input->post('nic', TRUE), 5);
+                $this->session->set_tempdata('email_fill', $this->input->post('email', TRUE), 5);
+                $this->session->set_tempdata('phone_fill', $this->input->post('phone', TRUE), 5);
+                $this->session->set_tempdata('address_fill', $this->input->post('address', TRUE), 5);
+                // $this->session->set_tempdata('email_fill', $this->input->post('email', TRUE), 5);
+                // $this->session->set_tempdata('phone_fill', $this->input->post('phone', TRUE), 5);
+                // $this->session->set_tempdata('msg_fill', $this->input->post('msg', TRUE), 5);
+            
+
 
                 $this->load->model("Customer_message");
                 $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
