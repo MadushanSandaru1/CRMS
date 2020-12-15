@@ -57,7 +57,7 @@
                         <div class="custom-control custom-radio custom-control-inline">
                                     
                                     <button  class="btn btn-primary mb-2" id="view" data-toggle="collapse" href="#viewDetails" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i>Add Damage Details </button>
-                                    <input type="button" value="Edit Damage Details" class="btn btn-primary mb-2 ml-2" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails">
+<!--                                    <input type="button" value="Edit Damage Details" class="btn btn-primary mb-2 ml-2" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails">-->
                                     
                         </div>
                         <br>
