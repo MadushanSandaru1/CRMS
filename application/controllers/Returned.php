@@ -53,13 +53,32 @@ class Returned extends CI_Controller
         }
     }
 
-    public function delete_reserved($reserved_id){
-        $this->load->model('Reserved_Model');
-        $response = $this->Reserved_Model->removeReservedData($reserved_id);
+//    public function delete_reserved($reserved_id){
+//        $this->load->model('Reserved_Model');
+//        $response = $this->Reserved_Model->removeReservedData($reserved_id);
+//
+//        if($response) {
+//            $this->session->set_flashdata('reserved_status', 'Reserved details were successfully removed');
+//            redirect('Home/crms_reserved');
+//        }
+//    }
+
+    public function returnVehicle(){
+        $this->load->model('VehicleReturnModel');
+        $response = $this->VehicleReturnModel->returnVehicle();
 
         if($response) {
-            $this->session->set_flashdata('reserved_status', 'Reserved details were successfully removed');
-            redirect('Home/crms_reserved');
+            $this->session->set_flashdata('returned_status', 'successfully returned Vehicle');
+            redirect('Home/crms_returned');
+        }
+    }
+    public function extendVehicle(){
+        $this->load->model('VehicleReturnModel');
+        $response = $this->VehicleReturnModel->extendVehicle();
+
+        if($response) {
+            $this->session->set_flashdata('returned_status', 'successfully extended Vehicle time');
+            redirect('Home/crms_returned');
         }
     }
 

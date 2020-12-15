@@ -9,7 +9,7 @@
     }
 
 ?>
-
+<!--include the Header part-->
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">
@@ -21,7 +21,7 @@
                 </span>
             </div>
         </div-->
-
+<!--icon display with Staff user-->
         <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -67,7 +67,9 @@
                         <?php
                         }
                         ?>
+<!--Scroll button to go up and down-->
 
+<!--collapse - when click the button display form to fill  -->
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addStaffUser" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Staff User Details</button>
 
                         <div class="collapse mt-4" id="addStaffUser" aria-labelledby="customRadioInline2">
@@ -95,33 +97,40 @@
                                 
                                 <div class="form-group">
                                     <label for="expensedVehicleDate"><b>Full Name</b></label>
-                                    <input type="text" class="form-control" name="full_name" id="expensedVehicleDate" placeholder="Staff Full Name" required>
+                                    <input type="text" class="form-control" name="full_name" id="expensedVehicleDate" placeholder="Staff Full Name" >
+                                    <small class="text-danger"><?php echo form_error('full_name'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount"><b>NIC</b></label>
-                                    <input type="text" class="form-control" name="nic" id="expenseAmount" placeholder="Staff NIC Number" required>
+                                    <input type="text" class="form-control" name="nic" id="expenseAmount" placeholder="Staff NIC Number" >
+                                    <small class="text-danger"><?php echo form_error('nic'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount"><b>Email</b></label>
-                                    <input type="email" class="form-control" name="email" id="expenseAmount" placeholder="Staff Email Address" required>
+                                    <input type="email" class="form-control" name="email" id="expenseAmount" placeholder="Staff Email Address" >
+                                    <small class="text-danger"><?php echo form_error('email'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount"><b>Phone No</b></label>
-                                    <input type="text" class="form-control" name="phone_no" id="expenseAmount" placeholder="Staff Phone Number" required>
+                                    <input type="text" class="form-control" name="phone_no" id="expenseAmount" placeholder="Staff Phone Number" >
+                                    <small class="text-danger"><?php echo form_error('phone_no'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount"><b>Address</b></label>
-                                    <textarea  id="" cols="30" rows="4" name="address" class="form-control" required></textarea>
+                                    <textarea  id="" cols="30" rows="4" name="address" class="form-control" ></textarea>
+                                    <small class="text-danger"><?php echo form_error('address'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseAmount"><b>Upload Picture</b></label>
-                                    <input type="file" class="form-control file-upload-info" name="staff_picture"  placeholder="Staff Picture" required>
+                                    <input type="file" class="form-control file-upload-info" name="staff_picture"  placeholder="Staff Picture" >
+                                    <small class="text-danger"><?php echo form_error('staff_picture'); ?></small>
                                 </div>
                                 
                                 
                                 <div class="form-group mt-3">
-                                    <label for="expenseAmount"><b>PasswordPassword</b></label>
-                                    <input type="password" class="form-control" name="password" id="expenseAmount" placeholder="Add new Password" required>
+                                    <label for="expenseAmount"><b>Password</b></label>
+                                    <input type="password" class="form-control" name="password" id="expenseAmount" placeholder="Add new Password" >
+                                    <small class="text-danger"><?php echo form_error('password'); ?></small>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
@@ -160,7 +169,7 @@
                                             <td><?php echo $value->address; ?></td>
                                             <td>
                                                 <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                                <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_user('<?php echo$value->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -174,6 +183,30 @@
 
     </div>
     <!-- content-wrapper ends -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php echo form_open('Staff/prepareToDeleteUser');?>
+            <form>
+                <div class="modal-body">
+                    Are you sure want to delete this recode.
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="deluserid" id="deluserid" required>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </form>
+            <?php echo form_close(); ?>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     window.onload = function(){
@@ -191,6 +224,16 @@
             document.getElementById('usr_cashier').style.display = 'none';
             document.getElementById('usr_admin').style.display = 'block';
         }
+    }
+</script>
+<?php if(validation_errors()) { ?>
+    <script>
+        document.getElementById("addStaffUser").classList.add("show");
+    </script>
+<?php } ?>
+<script type="text/javascript">
+    function delete_user(del_user_id){
+        document.getElementById("deluserid").value = del_user_id;
     }
 </script>
 <?php require_once 'crms_footer.php';?>

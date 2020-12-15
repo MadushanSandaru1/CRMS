@@ -45,4 +45,11 @@ class Reserved_Model extends CI_Model
         $vehicle_reserved_data_view_query = $this->db->query("SELECT r.*, v.`registered_number`, c.`name` FROM `reserved` r, `vehicle` v, `customer` c WHERE r.`vehicle_id` = v.`id` AND r.`customer_id` = c.`id` AND r.`is_returned` = 0 AND r.`is_deleted` = 0 ORDER BY r.`is_returned` ASC, r.`to_date` ASC");
         return $vehicle_reserved_data_view_query;
     }
+    public function returnVehicle(){
+
+        $values = array( 'is_deleted' => '1');
+
+        $this->db->where('id', $this->input->post('deluserid'));
+        return $this->db->update('user',$values);
+    }
 }
