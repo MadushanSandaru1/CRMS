@@ -307,9 +307,9 @@ With our extensive range of high end cars, classic cars and something more comfo
 
     
     
-   if(null==document.getElementById("pickup").value){
+   /*if(null==document.getElementById("pickup").value){
         document.getElementById("drop_off").disabled = true;
-    }
+    }*/
 
 
     function set_dropoff_min(){
