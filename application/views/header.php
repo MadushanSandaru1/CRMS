@@ -27,18 +27,19 @@
 		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">			
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.css'); ?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/main.css'); ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/custom.css'); ?>">
 		
 		
 	</head>
 	
 	<body>
-		<header id="header" id="home">
+		<header id="header" id="home" class="container-fluid header-dark">
 			<div class="container">
 				<div class="row align-items-center justify-content-between d-flex">
 					<div id="logo">
-						<a href="<?php echo base_url('index.php/Home/index'); ?>"><img src="<?php echo base_url('assets/images/logos/logo.png'); ?>" alt="logo.png" /></a>
+						<a href="<?php echo base_url('index.php/Home/index'); ?>"><img src="<?php echo base_url('assets/images/logos/logo.png'); ?>" alt="logo.png" class="header-logo" /></a>
 					</div>
-					<nav id="nav-menu-container">
+					<nav id="nav-menu-container ">
 						<ul class="nav-menu">
 							<li class="menu-active"><a href="<?php echo base_url('index.php/Home/index'); ?>">Home</a></li>
 							<li><a href="<?php echo base_url('index.php/Home/about'); ?>">About</a></li>

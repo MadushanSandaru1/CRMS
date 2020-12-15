@@ -1,3 +1,24 @@
+
+/*Client's css*/
+.header-dark{
+	background-color: #040910;
+	opacity: 0.95;
+}
+
+.header-logo{
+	opacity: 0.85;
+}
+
+.text-label{
+	color: #C70039;
+}
+
+
+.section-bg{
+	background: url('../../assets/images/elements/blog/blog-banner.jpg');
+	background-size: cover;
+}
+
 /*Web camera*/
 
 .inputCamera, .imageCaptured{

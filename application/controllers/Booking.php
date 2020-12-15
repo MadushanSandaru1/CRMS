@@ -66,6 +66,7 @@ class Booking extends CI_Controller{
             $this->session->set_tempdata('email_fill', $this->input->post('email', TRUE), 5);
             $this->session->set_tempdata('phone_fill', $this->input->post('phone', TRUE), 5);
             $this->session->set_tempdata('msg_fill', $this->input->post('msg', TRUE), 5);
+            $this->session->set_tempdata('form','add_form',5);
             
 
         	$this->load->model('Vehicle_Model');
@@ -96,6 +97,61 @@ class Booking extends CI_Controller{
 
 		}
 
+	}
+
+
+	function prepareToUpdateBooking(){
+
+		$this->form_validation->set_rules('update_vehicle','Vehicle','required');
+		$this->form_validation->set_rules('update_pickup','Pickup','required');
+		$this->form_validation->set_rules('update_drop_off','Drop off','required');
+		$this->form_validation->set_rules('update_name','Name','required');
+		$this->form_validation->set_rules('update_nic','Nic','required');
+		$this->form_validation->set_rules('update_email','Email','valid_email');
+		$this->form_validation->set_rules('update_phone','Phone','required|regex_match[/^[0-9]{10}$/]');
+	
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->session->set_tempdata('update_vehicle_fill', $this->input->post('update_vehicle', TRUE), 5);
+            $this->session->set_tempdata('update_pickup_fill', $this->input->post('update_pickup', TRUE), 5);
+            $this->session->set_tempdata('update_drop_off_fill', $this->input->post('update_drop_off', TRUE), 5);
+            $this->session->set_tempdata('update_name_fill', $this->input->post('update_name', TRUE), 5);
+            $this->session->set_tempdata('update_nic_fill', $this->input->post('update_nic', TRUE), 5);
+            $this->session->set_tempdata('update_email_fill', $this->input->post('update_email', TRUE), 5);
+            $this->session->set_tempdata('update_phone_fill', $this->input->post('update_phone', TRUE), 5);
+            $this->session->set_tempdata('update_msg_fill', $this->input->post('update_msg', TRUE), 5);
+            $this->session->set_tempdata('form','update_form',5);
+            
+
+        	$this->load->model('Vehicle_Model');
+        	$data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
+
+        	$this->load->model("Customer_message");
+        	$data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+	        $this->load->model("notification");
+	        $data["insurence_date"]=$this->notification->insurence_date();
+	        $data["revenue_license_date"]=$this->notification->revenue_license_date();
+	        $data["car_booking_notification"]=$this->notification->car_booking_notification();
+	        $data["car_not_recive"]=$this->notification->car_not_recive();
+
+	        $this->load->model("Booking_Model");
+        	$data['booking_data']=$this->Booking_Model->getBooking();
+
+        	$this->load->view('crms_booking',$data);
+
+		}else{
+
+			$this->load->model('Booking_Model');
+        	$response = $this->Booking_Model->updateBooking();
+
+			if ($response) {
+				$this->session->set_flashdata('status', 'Update successful!');
+				redirect('Home/crms_booking');
+			}
+
+		}
+		
 	}
 
 
