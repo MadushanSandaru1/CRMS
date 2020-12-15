@@ -29,13 +29,6 @@
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-account"></i>
                 </span> Customer </h3>
-            <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span><i class="mdi mdi-clock icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
-            </nav>
         </div>
 
         <div class="row">
@@ -69,7 +62,7 @@
 //                        }
 //                      }
                     ?>
-                      <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addCustomer" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Customer Details</button>
+                      <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addCustomer" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Customer Details</button>
 
                     <div class="collapse mt-5" id="addCustomer" aria-labelledby="customRadioInline2">
                     <?php echo form_open_multipart('Customer/prepareToInsertCustomer');?>
@@ -195,21 +188,32 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title text-danger">Customers Details</h4>
+                      <div class="d-flex justify-content-between">
+                          <h4 class="card-title text-danger">Customers Details</h4>
+
+                          <!-- search bar-->
+                          <div class="search-field d-none d-md-block">
+                              <input type="text" id="searchTxt" onkeyup="searchTable()" class="form-control bg-light text-danger form-control-sm border-danger border-left-0 border-right-0 border-top-0" placeholder="Search...">
+                          </div>
+                      </div>
                       <div style="overflow-x:auto;">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="customerTable">
                           <thead>
                             <tr>
-                              <th> Name </th>
+                                <th>#</th>
+                                <th> Name </th>
                               <th> NIC </th>
                               <th> Email </th>
                               <th> Phone </th>
                               <th> Address </th>
+                                <th> Image </th>
                               <th> NIC Copy </th>
                               <th> License Copy </th>
                               <th> Light Bill Copy </th>
+                            <?php if($this->session->userdata('user_role') == 'admin'){ ?>
+                                <th colspan="2"> Action </th>
+                            <?php } ?>
 
-                              <th colspan="2"> Action </th>
                             </tr>
                           </thead>
                           <tbody>
@@ -218,18 +222,23 @@
                               if ($customer_data->num_rows() > 0) { 
                                   foreach($customer_data->result() as $row){ 
                               ?>  <tr>
+                                  <td><?php echo $row->id;?></td>
                                   <td><?php echo $row->name;?></td>
                                   <td><?php echo $row->nic;?></td>
                                   <td><?php echo $row->email;?></td>
                                   <td><?php echo $row->phone;?></td>
                                   <td><?php echo $row->address;?></td>
+                                  <td><a href="<?php echo base_url('assets/images/customers/'.$data_row->image); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                   <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                   <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->license_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                   <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->light_bill_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                              <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                   <td>
                                       <a href="" data-toggle="modal" data-target="#editmodel" onclick="loadCustomerData(<?php echo $row->id.",'".$row->name."','".$row->nic."','".$row->email."','".$row->phone."','".$row->address."','".$row->nic_copy."','".$row->license_copy."','".$row->light_bill_copy."'" ?>)"><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                      <a href=""><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                      <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_customer('<?php echo$row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                   </td>
+                              <?php } ?>
+
                               </tr>
                               <?php 
                                   }
@@ -245,6 +254,33 @@
                   </div>
                 </div>
               </div>
+
+            <!-- Delete Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <?php echo form_open('Customer/delete_customer');?>
+                        <form>
+                            <div class="modal-body">
+                                Are you sure you want to delete this record.
+                            </div>
+                            <div class="modal-footer">
+                                <input type="hidden" name="delcustomerid" id="delcustomerid" required>
+                                <button type="submit" class="btn btn-primary">Yes</button>
+                                <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            </div>
+                        </form>
+                        <?php echo form_close(); ?>
+                    </div>
+                </div>
+            </div>
+            <!-- ** Delete Modal -->
 
              <!--  <script type="text/javascript">
                 
@@ -265,11 +301,42 @@
 
              
 
-<?php if(validation_errors()) { ?>
-    <script>
-        document.getElementById("addCustomer").classList.add("show");
-    </script>
-<?php } ?>
+        <?php if(validation_errors()) { ?>
+            <script>
+                document.getElementById("addCustomer").classList.add("show");
+            </script>
+        <?php } ?>
+
+            <script type="text/javascript">
+                // delete details
+                function delete_customer(del_customer_id){
+                    document.getElementById("delcustomerid").value = del_customer_id;
+                }
+
+                // table search
+                function searchTable(){
+                    var input, filter, table, tr, td, cell, i, j;
+                    input = document.getElementById("searchTxt");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("customerTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 1; i < tr.length; i++) {
+                        // Hide the row initially.
+                        tr[i].style.display = "none";
+
+                        td = tr[i].getElementsByTagName("td");
+                        for (var j = 0; j < td.length; j++) {
+                            cell = tr[i].getElementsByTagName("td")[j];
+                            if (cell) {
+                                if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            </script>
 
 
               <!-- view customer table end-->

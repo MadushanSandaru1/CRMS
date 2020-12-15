@@ -49,6 +49,16 @@
                         return $query;
                     
                 }
+
+            //delete customer data function
+            public function removeCustomerData() {
+                $this->db->set('is_deleted', 1);
+                $this->db->where('id', $this->input->post('delcustomerid'));
+                $this->db->where('is_deleted', 0);
+
+                return $this->db->update('customer');;
+            }
+            //** delete customer data function **
                 
                 
         }

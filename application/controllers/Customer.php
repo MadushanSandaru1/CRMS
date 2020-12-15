@@ -152,6 +152,19 @@
 
 	    }
 
+		//record delete function
+		public function delete_customer(){
+			//Call to model function to delete data
+			$this->load->model('Customer_Model');
+			$response = $this->Customer_Model->removeCustomerData();
+
+			if($response) {
+				$this->session->set_flashdata('status', 'Customer details were successfully removed');
+				redirect('Home/crms_customer');
+			}
+		}
+		//** record delete function **
+
 
 	    /*public function prepareToGetCustomers{
 
