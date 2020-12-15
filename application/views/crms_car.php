@@ -27,13 +27,6 @@
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-car"></i>
                 </span> Vehicle </h3>
-            <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span><i class="mdi mdi-clock icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
-            </nav>
         </div>
 
         <div class="row">
@@ -55,7 +48,7 @@
                         }
                         ?>
 
-                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addVehicle" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Details</button>
+                        <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addVehicle" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Details</button>
 
                         <div class="collapse " id="addVehicle" aria-labelledby="customRadioInline2">
                         <?php echo form_open_multipart('Vehicle/add_vehicle');  ?>
@@ -66,22 +59,32 @@
                             </div>
                             <div class="form-group">
                                 <label for="vehicleRegisteredNumber">Registered Number</label>
-                                <input type="text" class="form-control" id="vehicleRegisteredNumber" name="vehicleRegisteredNumber" placeholder="Registered Number" value="<?php if($this->session->tempdata('vehicleRegisteredNumber_fill')) echo $this->session->tempdata('vehicleRegisteredNumber_fill'); ?>">
+                                <input type="text" class="form-control" id="vehicleRegisteredNumber" name="vehicleRegisteredNumber" pattern="[A-Za-z]{2} [A-Za-z]{2,3}[0-9]{4}" placeholder="SP ABC1234" value="<?php if($this->session->tempdata('vehicleRegisteredNumber_fill')) echo $this->session->tempdata('vehicleRegisteredNumber_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleRegisteredNumber'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleSeat">Seat</label>
-                                <input type="number" class="form-control" min="1" id="vehicleSeat" name="vehicleSeat" placeholder="No of Seat" value="<?php if($this->session->tempdata('vehicleSeat_fill')) echo $this->session->tempdata('vehicleSeat_fill'); ?>">
+                                <input type="number" class="form-control" min="1" id="vehicleSeat" name="vehicleSeat" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="No of Seat" value="<?php if($this->session->tempdata('vehicleSeat_fill')) echo $this->session->tempdata('vehicleSeat_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleSeat'); ?></small>
                             </div>
-                            <div class="form-group">
-                                <label for="vehicleFuelType">Fuel Type</label>
-                                <select class="form-control" id="vehicleFuelType" name="vehicleFuelType">
-                                    <option>Petrol</option>
-                                    <option>Diesel</option>
-                                </select>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Fuel Type</label>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="vehicleFuelType" id="petrol" value="P" checked> Petrol </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="vehicleFuelType" id="diesel" value="D"> Diesel </label>
+                                    </div>
+                                </div>
                                 <small class="text-danger"><?php echo form_error('vehicleFuelType'); ?></small>
                             </div>
+
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">A/C or Non-A/C</label>
                                 <div class="col-sm-2">
@@ -132,9 +135,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="vehicleAddKM">Additional Price</label>
-                                <input type="number" class="form-control mb-2" id="vehicleAddKM" name="vehicleAddKM" placeholder="Per KM" value="<?php if($this->session->tempdata('vehicleAddKM_fill')) echo $this->session->tempdata('vehicleAddKM_fill'); ?>">
+                                <input type="number" class="form-control mb-2" id="vehicleAddKM" name="vehicleAddKM" placeholder="Rupees Per KM" value="<?php if($this->session->tempdata('vehicleAddKM_fill')) echo $this->session->tempdata('vehicleAddKM_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleAddKM'); ?></small>
-                                <input type="number" class="form-control" id="vehicleAddHour" name="vehicleAddHour" placeholder="Per Hour" value="<?php if($this->session->tempdata('vehicleAddHour_fill')) echo $this->session->tempdata('vehicleAddHour_fill'); ?>">
+                                <input type="number" class="form-control" id="vehicleAddHour" name="vehicleAddHour" placeholder="Rupees Per Hour" value="<?php if($this->session->tempdata('vehicleAddHour_fill')) echo $this->session->tempdata('vehicleAddHour_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleAddHour'); ?></small>
                             </div>
                             <div class="form-group">
@@ -160,9 +163,16 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-danger">Vehicle Details</h4>
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title text-danger">Vehicle Details</h4>
+
+                            <!-- search bar-->
+                            <div class="search-field d-none d-md-block">
+                                <input type="text" id="searchTxt" onkeyup="searchTable()" class="form-control bg-light text-danger form-control-sm border-danger border-left-0 border-right-0 border-top-0" placeholder="Search...">
+                            </div>
+                        </div>
                         <div style="overflow-x:auto;">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="vehicleTable">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -175,11 +185,13 @@
                                     <th>Rental Price per Day</th>
                                     <th>Additional Price per KM</th>
                                     <th>Additional Price per Hour</th>
+                                    <th>Image</th>
+                                <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                     <th>System Registered Date</th>
                                     <th>Insurance Date</th>
                                     <th>Revenue License Date</th>
-                                    <th>Image</th>
                                     <th>Actions</th>
+                                <?php } ?>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -195,17 +207,20 @@
                                             <td><?php if($data_row->fuel_type == 'P') echo "Petrol"; else echo "Diesel"; ?></td>
                                             <td><?php if($data_row->ac == 'A') echo "AC"; else echo "Non A/C"; ?></td>
                                             <td><?php if($data_row->transmission == 'A') echo "Auto"; else echo "Manual"; ?></td>
-                                            <td><?php echo $data_row->price_per_day; ?></td>
-                                            <td><?php echo $data_row->additional_price_per_km; ?></td>
-                                            <td><?php echo $data_row->additional_price_per_hour; ?></td>
+                                            <td><?php echo number_format($data_row->price_per_day,2); ?></td>
+                                            <td><?php echo number_format($data_row->additional_price_per_km,2); ?></td>
+                                            <td><?php echo number_format($data_row->additional_price_per_hour,2); ?></td>
+                                            <td><a href="<?php echo base_url('assets/images/vehicles/'.$data_row->image); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                        <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                             <td><?php echo $data_row->system_registered_date; ?></td>
                                             <td><?php echo $data_row->insurence_date; ?></td>
                                             <td><?php echo $data_row->revenue_license_date; ?></td>
-                                            <td><a href="<?php echo base_url('assets/images/vehicles/'.$data_row->image); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                             <td>
-                                                <a href="" data-id="1"><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                                <a href="<?php echo base_url('index.php/Vehicle/delete_vehicle/'.$data_row->id); ?>" onclick="return confirm('Are you sure to delete this information?');"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
+                                                <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_vehicle('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                             </td>
+                                        <?php } ?>
+
                                         </tr>
                                         <?php
                                     }
@@ -223,34 +238,71 @@
                     </div>
                 </div>
             </div>
-            
         </div>
 
-        <!-- Delete Confirmation Modal -->
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog modal-confirm">
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header flex-column">
-                        <button type="button" class="close text-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title w-100 text-danger">Are you sure?</h4>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="modal-body">
-                        <p>Do you really want to delete these record? This process cannot be undone.</p>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
+                    <?php echo form_open('Vehicle/delete_vehicle');?>
+                    <form>
+                        <div class="modal-body">
+                            Are you sure you want to delete this record.
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="delvehicleid" id="delvehicleid" required>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </form>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>
-        <!-- Delete Confirmation Modal -->
+        <!-- ** Delete Modal -->
 
         <?php if(validation_errors()) { ?>
             <script>
                 document.getElementById("addVehicle").classList.add("show");
             </script>
         <?php } ?>
+
+        <script type="text/javascript">
+            // delete details
+            function delete_vehicle(del_vehicle_id){
+                document.getElementById("delvehicleid").value = del_vehicle_id;
+            }
+
+            // table search
+            function searchTable(){
+                var input, filter, table, tr, td, cell, i, j;
+                input = document.getElementById("searchTxt");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("vehicleTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 1; i < tr.length; i++) {
+                    // Hide the row initially.
+                    tr[i].style.display = "none";
+
+                    td = tr[i].getElementsByTagName("td");
+                    for (var j = 0; j < td.length; j++) {
+                        cell = tr[i].getElementsByTagName("td")[j];
+                        if (cell) {
+                            if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
 
     </div>
     <!-- content-wrapper ends -->

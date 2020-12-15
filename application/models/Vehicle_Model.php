@@ -5,8 +5,8 @@ class Vehicle_Model extends CI_Model
 {
     public function insertVehicleData($image_path){
         $vehicle_data = array(
-            'title' => $this->input->post('vehicleType', TRUE),
-            'registered_number' => $this->input->post('vehicleRegisteredNumber', TRUE),
+            'title' => ucwords($this->input->post('vehicleType', TRUE)),
+            'registered_number' => strtoupper($this->input->post('vehicleRegisteredNumber', TRUE)),
             'seat' => $this->input->post('vehicleSeat', TRUE),
             'fuel_type' => $this->input->post('vehicleFuelType', TRUE),
             'ac' => $this->input->post('radioAC', TRUE),
@@ -23,19 +23,22 @@ class Vehicle_Model extends CI_Model
         return $this->db->insert('vehicle',$vehicle_data);
     }
 
+    //get guarantor data function
     public function getVehicleData() {
-        //$userdata_view_query = $this->db->get('vehicle');
-        $userdata_view_query = $this->db->query('SELECT * FROM `vehicle` WHERE `is_service_out` = 0 AND `is_deleted` = 0');
-        return $userdata_view_query;
+        $this->db->where('is_deleted', 0);
+        $this->db->order_by('id', 'ASC');
+
+        return $this->db->get('vehicle');
     }
+    //** get guarantor data function **
 
     public function updateVehicleData(){
         $conditions_data = array(
             'id' => $this->input->post('vehicleId', TRUE)
         );
         $update_data = array(
-            'title' => $this->input->post('vehicleType', TRUE),
-            'registered_number' => $this->input->post('vehicleRegisteredNumber', TRUE),
+            'title' => ucwords($this->input->post('vehicleType', TRUE)),
+            'registered_number' => strtoupper($this->input->post('vehicleRegisteredNumber', TRUE)),
             'seat' => $this->input->post('vehicleSeat', TRUE),
             'fuel_type' => $this->input->post('vehicleFuelType', TRUE),
             'ac' => $this->input->post('radioAC', TRUE),
@@ -52,11 +55,13 @@ class Vehicle_Model extends CI_Model
         return $this->db->update('vehicle', $update_data, $conditions_data);
     }
 
-    public function removeVehicleData($vehicle_id) {
+    //delete guarantor data function
+    public function removeVehicleData() {
         $this->db->set('is_deleted', 1);
-        $this->db->where('id', $vehicle_id);
+        $this->db->where('id', $this->input->post('delvehicleid'));
         $this->db->where('is_deleted', 0);
 
         return $this->db->update('vehicle');;
     }
+    //** delete guarantor data function **
 }
