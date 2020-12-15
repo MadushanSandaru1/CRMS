@@ -11,7 +11,7 @@
 				<h1 class="text-white">
 					About Us				
 				</h1>	
-				<p class="text-white link-nav"><a href="<?php echo base_url('index.php/Home/index'); ?>">Home &nbsp;</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a href="<?php echo base_url('index.php/Home/about'); ?>">&nbsp; About Us</a></p>
+<!--				<p class="text-white link-nav"><a href="--><?php //echo base_url('index.php/Home/index'); ?><!--">Home &nbsp;</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a href="--><?php //echo base_url('index.php/Home/about'); ?><!--">&nbsp; About Us</a></p>-->
 			</div>											
 		</div>
 	</div>
@@ -34,7 +34,7 @@
                 <div class="single-feature">
                     <h4><span class="lnr lnr-user"></span>Expert Technicians</h4>
                     <p>
-                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                        We have Expert Technicians then if something happened to vehicle no need lot much wary about.
                     </p>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="single-feature">
                     <h4><span class="lnr lnr-license"></span>Professional Service</h4>
                     <p>
-                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                        We are providing professional services to our valuable customers
                     </p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 <div class="single-feature">
                     <h4><span class="lnr lnr-phone"></span>Great Support</h4>
                     <p>
-                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                        If you have have any kind of issues then conduct us, we are always try to help you and resolve problems.
                     </p>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="single-feature">
                     <h4><span class="lnr lnr-rocket"></span>Technical Skills</h4>
                     <p>
-                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                        We are providing professional services to our valuable customers also we have great people with technical skills.
                     </p>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <div class="single-feature">
                     <h4><span class="lnr lnr-diamond"></span>Highly Recomended</h4>
                     <p>
-                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                        We are highly recommended our vehicles are best than other vehicles.
                     </p>
                 </div>
             </div>
@@ -88,25 +88,22 @@
     <div class="container">
         <div class="row">
             <div class="col single-fact">
-                <h1 class="counter">2536</h1>
-                <p>Projects Completed</p>
+                <h1 class="counter text-white">1436</h1>
+                <p class="text-white">Registered Customres</p>
             </div>
             <div class="col single-fact">
-                <h1 class="counter">6784</h1>
-                <p>Really Happy Clients</p>
+                <h1 class="counter text-white">1784</h1>
+                <p class="text-white">Vehicle Reserved</p>
             </div>
             <div class="col single-fact">
-                <h1 class="counter">1059</h1>
-                <p>Total Tasks Completed</p>
+                <h1 class="counter text-white">23</h1>
+                <p class="text-white">Total Vehicles</p>
             </div>
             <div class="col single-fact">
-                <h1 class="counter">2239</h1>
-                <p>Cups of Coffee Taken</p>
+                <h1 class="counter text-white">2239</h1>
+                <p class="text-white">Number of Vehicle Booking</p>
             </div>
-            <div class="col single-fact">
-                <h1 class="counter">435</h1>
-                <p>In House Professionals</p>
-            </div>
+
         </div>
     </div>
 </section>
@@ -119,7 +116,7 @@
 			<div class="menu-content pb-70 col-lg-8">
 				<div class="title text-center">
 					<h1 class="mb-10">Latest From Our Blog</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+					<p>In here you can see our vehicles and you can choose what ever you like vehicle and join with us.</p>
 				</div>
 			</div>
 		</div>					

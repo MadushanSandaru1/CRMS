@@ -203,16 +203,31 @@ With our extensive range of high end cars, classic cars and something more comfo
             <div class="col-md-8 pb-40 header-text text-center">
                 <h1>Some Features that Made us Unique</h1>
                 <p class="mb-10 text-center">
-                    Who are in extremely love with eco friendly system.
+                    Who are in extremely love with eco friendly also user friendly system.
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="single-review">
-                    <h4>Cody Hines</h4>
+                    <h4><span class="lnr lnr-user"></span> Professional Service</h4>
                     <p>
-                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                        We are providing services to our valuable customers to do there activities easily.
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4><span class="lnr lnr-phone"></span> Great Support</h4>
+                    <p>
+                        We are always ready to support your vehicle problem easily.
                     </p>
                     <div class="star">
                         <span class="fa fa-star checked"></span>
@@ -225,9 +240,9 @@ With our extensive range of high end cars, classic cars and something more comfo
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="single-review">
-                    <h4>Chad Herrera</h4>
+                    <h4><span class="lnr lnr-diamond"></span> Highly Recommended</h4>
                     <p>
-                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                        We are highly recommended our vehicles are best than other vehicles.
                     </p>
                     <div class="star">
                         <span class="fa fa-star checked"></span>
@@ -240,9 +255,9 @@ With our extensive range of high end cars, classic cars and something more comfo
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="single-review">
-                    <h4>Andre Gonzalez</h4>
+                    <h4><span class="lnr lnr-bubble"></span> Positive Reviews</h4>
                     <p>
-                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                        Usage of the Internet is becoming more common due to rapid advancement of technology and power.
                     </p>
                     <div class="star">
                         <span class="fa fa-star checked"></span>
@@ -255,45 +270,30 @@ With our extensive range of high end cars, classic cars and something more comfo
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="single-review">
-                    <h4>Jon Banks</h4>
+                    <h4><span class="lnr lnr-rocket"></span> 24 X 7  Availability</h4>
                     <p>
-                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                        We are available at any time also anyone can access  this website in around the world.
                     </p>
                     <div class="star">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="single-review">
-                    <h4>Landon Houston</h4>
+                    <h4><span class="lnr lnr-license"></span> Reduce Overhead Documentation</h4>
                     <p>
-                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                        We are scheduling, conduction also doing task on automatically then we no need to keep kind of overhead documentation.
                     </p>
                     <div class="star">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-review">
-                    <h4>Nelle Wade</h4>
-                    <p>
-                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                    </p>
-                    <div class="star">
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
                 </div>
