@@ -34,7 +34,7 @@ With our extensive range of high end cars, classic cars and something more comfo
 	<div class="container-fluid">				
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-6 no-padding home-about-left d-none d-lg-block d-xl-block">
-				<img class="img-fluid" src="<?php echo base_url('assets/images/Guarantee1.jpg'); ?>" alt="">
+				<img class="img-fluid" src="<?php echo base_url('assets/images/benz.jpg'); ?>" alt="">
 			</div>
 			<div class="col-lg-6 no-padding home-about-right">
 				<h1>We Guarantee</h1>
@@ -307,9 +307,9 @@ With our extensive range of high end cars, classic cars and something more comfo
 
     
     
-   /*if(null==document.getElementById("pickup").value){
+   if(null==document.getElementById("pickup").value){
         document.getElementById("drop_off").disabled = true;
-    }*/
+    }
 
 
     function set_dropoff_min(){
