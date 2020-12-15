@@ -48,7 +48,7 @@
                   <?php
                       }
                   ?>
-                      <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
+                      <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
 
                       <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
                       <?php echo form_open_multipart('Guarantor/add_guarantor');  ?>
@@ -138,7 +138,9 @@
                                     <th>Phone</th>
                                     <th>Address</th>
                                     <th>NIC Copy</th>
+                                <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                     <th>Actions</th>
+                                <?php } ?>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -154,12 +156,14 @@
                                             <td><?php echo $data_row->phone; ?></td>
                                             <td><?php echo $data_row->address; ?></td>
                                             <td><a href="<?php echo base_url('assets/images/guarantor/'.$data_row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                        <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                             <td>
-
                                                 <a href="<?php echo base_url('index.php/Guarantor/report_guarantor/'.$data_row->reserved_id); ?>" target="_blank"><span class="mdi mdi-printer"> Report</span></a>
                                                 <a href=""><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
                                                 <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_guarantor('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                             </td>
+                                        <?php } ?>
+
                                         </tr>
                                 <?php
                                     }
