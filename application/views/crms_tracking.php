@@ -178,11 +178,11 @@ function trackinmap(){
 
 
 
-$(document).ready(function() {
-        setInterval(function refreshDarkSky() {
-            $("#imap").attr("src", "<?php echo base_url('index.php/Home/loadmap'); ?>");
-        }, 10000);
-});
+// $(document).ready(function() {
+//         setInterval(function refreshDarkSky() {
+//             $("#imap").attr("src", "<?php echo base_url('index.php/Home/loadmap'); ?>");
+//         }, 10000);
+// });
 
 
 

@@ -2269,6 +2269,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .banner-area {
   background: url('../../assets/images/header-bg.jpg') center;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -2645,6 +2646,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .callaction-area {
   background: url('../../assets/images/website/callaction-bg.jpg') center;
+  background-attachment: fixed;
   background-size: cover;
   text-align: center;
   color: #fff;
@@ -2678,7 +2680,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .blog-area {
-  background-color: #f9f9ff;
+  /*background-color: #f9f9ff;*/
+  background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0.4)),url('../../assets/images/Front-Spoiler-11.jpg');
+  background-size: cover;
 }
 
 .single-blog .thumb {

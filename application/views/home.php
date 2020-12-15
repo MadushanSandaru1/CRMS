@@ -11,14 +11,16 @@
                 <h6 class="text-white ">the Royal Essence of Journey</h6>
                 <h1 class="text-white text-uppercase">Relaxed Journey Ever</h1>
                 <p class="pt-20 pb-20 text-white">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					Here at  Abhaya rent a car. we guarantee you will get the drive of a lifetime.
+With our extensive range of high end cars, classic cars and something more comfortable for all your car rental needs.
 				</p>
 				<a href="#header-right" class="primary-btn text-uppercase text-light">Book Car Now</a>
             </div>
             <div class="col-lg-5  col-md-6">
 				<div class="d-block d-sm-block d-md-none">
                     <p class="pt-20 pb-20 text-white text-center">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Here at  Abhaya rent a car. we guarantee you will get the drive of a lifetime.
+With our extensive range of high end cars, classic cars and something more comfortable for all your car rental needs.
                     </p>
                 </div>
 			</div>
@@ -32,19 +34,17 @@
 	<div class="container-fluid">				
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-6 no-padding home-about-left d-none d-lg-block d-xl-block">
-				<img class="img-fluid" src="<?php echo base_url('assets/images/about-img.jpg'); ?>" alt="">
+				<img class="img-fluid" src="<?php echo base_url('assets/images/Guarantee1.jpg'); ?>" alt="">
 			</div>
 			<div class="col-lg-6 no-padding home-about-right">
-				<h1>Globally Connected <br>
-				by Large Network</h1>
+				<h1>We Guarantee</h1>
 				<p>
-					<span>We are here to listen from you deliver exellence</span>
+					<span>We provide a reasonable service for the value you pay</span>
 				</p>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+					That once you have confirmed your car transporter hire booking we will NEVER cancel simply to make way for a longer, more lucrative booking. There are rare instances due to circumstances beyond our control such as mechanical defect or accident we need to postpone your booking. 
 				</p>
-				<a class="text-uppercase primary-btn" href="#">get details</a>
+				<a class="text-uppercase primary-btn" href="<?php echo base_url('index.php/Home/car'); ?>">View vehicles</a>
 			</div>
 		</div>
 	</div>	
@@ -56,8 +56,8 @@
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center"  id="header-right">
-                    <h1 class="mb-10">Latest From Our Blog</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+                    <h1 class="mb-10">Let's book your car for an enjoyable journey</h1>
+                    <p>Safety comfort and more with <span class="text-label">Abaya rent a car cab services</span></p>
                 </div>
             </div>
         </div>
@@ -187,10 +187,9 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
 				<h1 class="text-white">Experience Great Support</h1>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+				<p>We can provide transport for business meetings, partners or maybe travel for clients on a regular basis or if you have an upcoming meeting with an important investor Abhaya rental car company  can offer anything from one-off corporate car hire to an ongoing luxury chauffeur service.
 				</p>
-				<a class="callaction-btn text-uppercase" href="#">Reach Our Support Team</a>	
+				<a class="callaction-btn text-uppercase" href="<?php echo base_url('index.php/Home/contact'); ?>">Reach Our Support Team</a>	
 			</div>
 		</div>
 	</div>	

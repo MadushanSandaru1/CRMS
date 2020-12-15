@@ -14,25 +14,41 @@
     </style>
     <script>
       // Initialize and add the map
-      function initMap() {
+      //function initMap() {
 
         var longitude = parseFloat(localStorage.getItem("Longitude"));
         var Latitude = parseFloat(localStorage.getItem("Latitude"));
-        //alert(localStorage.getItem("Longitude"));
-        //alert(localStorage.getItem("Latitude"));
-        // The location of Uluru
-        const uluru = { lat: Latitude, lng: longitude };
+
+        var uluru = { lat: Latitude, lng: longitude };
         // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
+        var map = new google.maps.Map(document.getElementById("map"), {
           zoom: 14,
           center: uluru,
         });
-        // The marker, positioned at Uluru
-        const marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-        });
-      }
+        
+
+         setInterval(function initMap(){
+
+          var longitude = parseFloat(localStorage.getItem("Longitude"));
+          var Latitude = parseFloat(localStorage.getItem("Latitude"));
+          //alert(localStorage.getItem("Longitude"));
+          //alert(localStorage.getItem("Latitude"));
+          // The location of Uluru
+          //var uluru = { lat: Latitude, lng: longitude };
+          // The map, centered at Uluru
+          // var map = new google.maps.Map(document.getElementById("map"), {
+          //   zoom: 14,
+          //   center: uluru,
+          // });
+          // The marker, positioned at Uluru
+          var marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+          });
+
+         },3000);
+
+      //}
     </script>
   </head>
   <body>

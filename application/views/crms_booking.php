@@ -37,22 +37,27 @@
         </div>
 
         <div class="row">
-            <div class="col-12 grid-margin stretch-card">
+
+            <div class="col-12 grid-margin stretch-card" id="add_div">
                 <div class="card">
+                 
                     <div class="card-body">
+
+
+                    <?php 
+                     if ($this->session->flashdata('status')) {
+                          echo "<div>";
+                          echo " <div class=\"alert alert-success\">";
+                          echo $this->session->flashdata('status');
+                          echo "</div>";
+                          echo "</div>";
+                      }
+                    ?>
+
+
                         <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addBooking" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Booking Details</button>
 
                         <div class="collapse mt-5" id="addBooking" aria-labelledby="customRadioInline2">
-                            <?php 
-
-                                if ($this->session->flashdata('status')) {
-                                      echo " <div class=\"alert alert-success\">";
-                                      echo $this->session->flashdata('status');
-                                      echo "</div>";
-                                }
-
-
-                            ?>
                             <?php echo form_open('Booking/prepareToStaffInsertBooking');?>
                             <form class="forms-sample">
 
@@ -121,8 +126,11 @@
 
                                 </div>
 
-                                <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"> <?php if($this->session->tempdata('msg_fill')) echo $this->session->tempdata('msg_fill'); ?> </textarea>
-                                <small class="text-danger"><?php echo form_error('msg'); ?></small>
+                                <div class="form-group">
+                                    <label for="msg">Message</label>
+                                    <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"> <?php if($this->session->tempdata('msg_fill')) echo $this->session->tempdata('msg_fill'); ?> </textarea>
+                                    <small class="text-danger"><?php echo form_error('msg'); ?></small>
+                                </div>
 
                                 <input type="hidden" name="status" id="status" value="1">
                                 <button type="submit" class="btn btn-gradient-primary mr-2 mt-3">Submit</button>
@@ -134,6 +142,102 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-12 grid-margin stretch-card" id="update_div">
+                <div class="card">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#updateBooking" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Update Vehicle Booking Details</button>
+
+                        <div class="collapse mt-5" id="updateBooking" aria-labelledby="customRadioInline2">
+                    
+                            <?php echo form_open('Booking/prepareToUpdateBooking');?>
+                            <form class="forms-sample">
+
+                                <div class="form-group">
+                                    <label for="update_vehicle"><b>Vehicle</b></label>
+                                    <select name="update_vehicle" id="update_vehicle" class="custom-select">
+                                        <option value="" disabled selected hidden>Select Vehicle</option>
+                                        <?php 
+                                            if ($available_vehicle->num_rows() > 0) {
+                                                foreach($available_vehicle->result() as $row){
+
+                                                    if ($this->session->tempdata('update_vehicle_fill')) {
+                                                        if ($this->session->tempdata('update_vehicle_fill')==$row->id) {
+                                                            echo "<option value={$row->id} selected>{$row->title}</option>";
+                                                        }else{
+                                                            echo "<option value={$row->id} >{$row->title}</option>";
+                                                        }
+                                                         
+                                                    }else{
+                                                         echo "<option value={$row->id}>{$row->title}</option>";
+                                                    }
+                                                }                                        
+                                            }else{
+                                                    echo "<option class='text-danger'>No data found</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <small class="text-danger"><?php echo form_error('update_vehicle'); ?></small>
+
+                                <div class="form-group">
+                                    <label for="update_pickup">Pickup</label>
+                                    <input type="datetime-local" class="form-control" name="update_pickup" id="update_pickup" placeholder="Date and Time" onchange="set_update_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('update_pickup_fill')) echo $this->session->tempdata('update_pickup_fill'); ?>">
+                                    <small class="text-danger"><?php echo form_error('update_pickup'); ?></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="update_drop_off">Drop off</label>
+                                    <input type="datetime-local" class="form-control" name="update_drop_off" id="update_drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('update_drop_off_fill')) echo $this->session->tempdata('update_drop_off_fill'); ?>">
+                                    <small class="text-danger"><?php echo form_error('update_drop_off'); ?></small>
+                                    
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="update_name">Name</label>
+                                    <input  class="form-control"  type="text" id="update_name" name="update_name" placeholder="Customer's name" value="<?php if($this->session->tempdata('update_name_fill')) echo $this->session->tempdata('update_name_fill'); ?>" >
+                                    <small class="text-danger"><?php echo form_error('update_name'); ?></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="update_nic">NIC</label>
+                                    <input class="form-control" type="text" id="update_nic" name="update_nic" placeholder="Customer's NIC" value="<?php if($this->session->tempdata('update_nic_fill')) echo $this->session->tempdata('update_nic_fill'); ?>">
+                                    <small class="text-danger"><?php echo form_error('update_nic'); ?></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="update_email">Email</label>
+                                    <input class="form-control" type="email" id="update_email" name="update_email" placeholder="Customer's email" value="<?php if($this->session->tempdata('update_email_fill')) echo $this->session->tempdata('update_email_fill'); ?>" >
+                                    <small class="text-danger"><?php echo form_error('update_email'); ?></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="update_phone">Phone</label>
+                                    <input class="form-control" type="tel" id="update_phone" name="update_phone" placeholder="Customer's Phone" value="<?php if($this->session->tempdata('update_phone_fill')) echo $this->session->tempdata('update_phone_fill'); ?>">
+                                    <small class="text-danger"><?php echo form_error('update_phone'); ?></small>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="update_msg">Message</label>
+                                    <textarea class="form-control txt-field" placeholder="Message" name="update_msg" id="update_msg"> <?php if($this->session->tempdata('update_msg_fill')) echo $this->session->tempdata('update_msg_fill'); ?> </textarea>
+                                    <small class="text-danger"><?php echo form_error('update_msg'); ?></small>
+                                </div>
+
+                                <input type="hidden" name="booking_id" id="booking_id">
+                                <button type="submit" class="btn btn-gradient-primary mr-2 mt-3">Submit</button>
+                                <button class="btn btn-light mt-3">Cancel</button>
+                            </form>
+                            <?php echo form_close(); ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -189,8 +293,21 @@
                                           
                                       </td>
                                       <td>
-                                            <a href=""><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                            <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_booking('<?php echo$row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
+                                       
+                                            <label class="cursor-pointer" onclick="update_booking(<?php 
+                                                echo $row->id.','.
+                                                $row->vehicle_id.',\''.
+                                                $row->from_date.'\',\''.
+                                                $row->to_date.'\',\''.
+                                                $row->customer_name.'\',\''.
+                                                $row->customer_nic.'\',\''.
+                                                $row->customer_email.'\',\''.
+                                                $row->customer_phone.'\',\''.
+                                                $row->message.'\'';
+                                               ?>)">
+                                            <span class="mdi mdi-eyedropper text-success"> Edit</span> </label>
+
+                                            <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_booking('<?php echo $row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
                                       </td>
                                       
                                   </tr>
@@ -234,14 +351,7 @@
         </div>
 
     </div>
-
-
-
-<?php if(validation_errors()) { ?>
-    <script>
-        document.getElementById("addBooking").classList.add("show");
-    </script>
-<?php } ?>    
+  
 
 
 
@@ -301,12 +411,40 @@
 </div>
 
 
+
+<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+<script>
+        document.getElementById("add_div").style.display = "block";
+        document.getElementById("update_div").style.display = "none";
+        document.getElementById("addBooking").classList.add("show");
+</script>
+<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+<script>
+        document.getElementById("update_div").style.display = "block";
+        document.getElementById("add_div").style.display = "none";
+        document.getElementById("updateBooking").classList.add("show");
+</script>    
+<?php }else{ ?>
+<script>
+        document.getElementById("add_div").style.display = "block";
+        document.getElementById("update_div").style.display = "none";
+</script> 
+<?php } ?>
+
+
+
+
+
+<script type="text/javascript" src="https://momentjs.com/downloads/moment.min.js">
+  //include date fomatter I used bellow
+</script>
+
+
 <script type="text/javascript">
-    
-    
-   //if(null==document.getElementById("pickup").value){
-        document.getElementById("drop_off").disabled = true;
-    //}
+
+//set disabled dorp pff panel when page loading
+document.getElementById("drop_off").disabled = true;
+
 
 
     function set_dropoff_min(){
@@ -317,6 +455,12 @@
         document.getElementById("drop_off").min  = min;
     }
 
+    function set_update_dropoff_min(){
+        min = document.getElementById("update_pickup").value;
+        document.getElementById("update_drop_off").value = null;
+
+        document.getElementById("update_drop_off").min  = min;
+    }
 
 
     function update_status(changeto,booking_id,booking_mail){
@@ -334,6 +478,30 @@
     }
 
     
+    function update_booking(id,vehicle_id,pickup,drop_off,name,nic,email,phone,msg){
+
+      //display form if clickd edit in view table
+      document.getElementById("add_div").style.display = "none";
+      document.getElementById("update_div").style.display = "block";
+
+      //load data into form
+      document.getElementById("booking_id").value = id;
+      document.getElementById("update_vehicle").value = vehicle_id;
+      document.getElementById("update_pickup").value = moment(pickup, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DDTHH:mm:ss'); //change date format for put database
+      document.getElementById("update_drop_off").value = moment(drop_off, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DDTHH:mm:ss');
+      document.getElementById("update_name").value = name;
+      document.getElementById("update_nic").value = nic;
+      document.getElementById("update_email").value = email;
+      document.getElementById("update_phone").value = phone;
+      document.getElementById("update_msg").value = msg;
+
+      //set minimum date for drop off 
+      document.getElementById("update_drop_off").min = moment(pickup, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DDTHH:mm:ss');
+
+      //update form collaps if loaded data into that form
+      document.getElementById("updateBooking").classList.add("show");
+
+    }
 
 </script>
 
