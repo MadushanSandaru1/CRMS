@@ -12,27 +12,12 @@
 
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
-        <!--div class="row" id="proBanner">
-            <div class="col-12">
-                <span class="d-flex align-items-center purchase-popup">
-                  <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
-                  <a href="" class="btn download-button purchase-button ml-auto">Upgrade To Pro</a>
-                  <i class="mdi mdi-close" id="bannerClose"></i>
-                </span>
-            </div>
-        </div-->
-      <div class="page-header">
+
+        <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-keyboard-return"></i>
                 </span> Car Returned </h3>
-            <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span><i class="mdi mdi-clock icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
-            </nav>
         </div>
 
         <div class="row">
@@ -50,9 +35,17 @@
                             <?php
                         }
                         ?>
-                        <h4 class="card-title text-danger">Returned Vehicle Details</h4>
+
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title text-danger">Returned Vehicle Details</h4>
+
+                            <!-- search bar-->
+                            <div class="search-field d-none d-md-block">
+                                <input type="text" id="searchTxt" onkeyup="searchTable()" class="form-control bg-light text-danger form-control-sm border-danger border-left-0 border-right-0 border-top-0" placeholder="Search...">
+                            </div>
+                        </div>
                         <div style="overflow-x:auto;">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="returnedTable">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -71,12 +64,12 @@
                                 if($returned_data->num_rows() > 0) {
                                     foreach ($returned_data->result() as $data_row){
                                         ?>
-                                        <tr>
+                                        <tr class="<?php if($data_row->is_late == 1) echo "table-danger"; ?>">
                                             <td class="nr"><?php echo $data_row->id; ?></td>
                                             <td>
                                                 <?php if($data_row->is_returned == 0) { ?>
                                                     <a href="" class=" alert notification  text-black" data-toggle="modal" data-target="#extendVehicle" style="" onclick="extend_vehicle(<?php echo $data_row->id;?>,'<?php echo $data_row->name;?>','<?php echo $data_row->registered_number;?>','<?php echo $data_row->from_date;?>','<?php echo $data_row->to_date;?>')"><span class="edit_btn mdi mdi-calendar-clock text-success"> Extend Time</span></a>
-                                                    <a href="" target="_blank" class=" alert notification  text-black" data-toggle="modal" data-target="#returnVehicle" style="" onclick="return_vehicle(<?php echo $data_row->id;?>,'<?php echo $data_row->name;?>','<?php echo $data_row->registered_number;?>','<?php echo $data_row->start_meter_value;?>')"><span class="edit_btn mdi mdi-keyboard-return text-danger ml-4"> Return</span></a>
+                                                    <a href="" target="_blank" class=" alert notification  text-black" data-toggle="modal" data-target="#returnVehicle" style="" onclick="return_vehicle(<?php echo $data_row->id;?>,'<?php echo $data_row->name;?>','<?php echo $data_row->registered_number;?>','<?php echo $data_row->start_meter_value;?>')"><span class="edit_btn mdi mdi-keyboard-return text-danger ml-1"> Return</span></a>
                                                 <?php } ?>
                                             </td>
                                             <td><?php echo $data_row->customer_id.' - '.$data_row->name; ?></td>
@@ -220,7 +213,32 @@
         <?php } ?>
 
     </div>
-    <script>
+
+    <script type="text/javascript">
+        // table search
+        function searchTable(){
+            var input, filter, table, tr, td, cell, i, j;
+            input = document.getElementById("searchTxt");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("returnedTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                // Hide the row initially.
+                tr[i].style.display = "none";
+
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    cell = tr[i].getElementsByTagName("td")[j];
+                    if (cell) {
+                        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         function return_vehicle(id,customer,reg_num,sm_value){
             document.getElementById("re_id").value=id;
             document.getElementById("customer").innerHTML=customer;

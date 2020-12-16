@@ -26,14 +26,13 @@ class Reserved_Model extends CI_Model
 
     public function getCustomerData() {
         $this->db->where('is_deleted', 0);
+        $this->db->order_by('id', 'DESC');
         $customerdata_view_query = $this->db->get('customer');
         return $customerdata_view_query;
     }
 
     public function getVehicleData() {
-        $this->db->where('is_service_out', 0);
-        $this->db->where('is_deleted', 0);
-        $vehicledata_view_query = $this->db->get('vehicle');
+        $vehicledata_view_query = $this->db->query("SELECT * FROM `vehicle` WHERE `is_service_out` = 0 AND `is_deleted` = 0 AND `id` NOT IN (SELECT DISTINCT `vehicle_id` FROM `reserved` WHERE `is_returned` = 0 AND `is_deleted` = 0) ");
         return $vehicledata_view_query;
     }
 
@@ -42,7 +41,7 @@ class Reserved_Model extends CI_Model
 //        $this->db->order_by('is_returned', 'ASC');
 //        $this->db->order_by('to_date', 'ASC');
 //        $vehicle_reserved_data_view_query = $this->db->get('reserved');
-        $vehicle_reserved_data_view_query = $this->db->query("SELECT r.*, v.`registered_number`, c.`name` FROM `reserved` r, `vehicle` v, `customer` c WHERE r.`vehicle_id` = v.`id` AND r.`customer_id` = c.`id` AND r.`is_returned` = 0 AND r.`is_deleted` = 0 ORDER BY r.`to_date` ASC");
+        $vehicle_reserved_data_view_query = $this->db->query("SELECT r.*, v.`registered_number`, c.`name` FROM `reserved` r, `vehicle` v, `customer` c WHERE r.`vehicle_id` = v.`id` AND r.`customer_id` = c.`id` AND r.`is_returned` = 0 AND r.`is_deleted` = 0 ORDER BY r.`from_date` DESC");
         return $vehicle_reserved_data_view_query;
     }
     public function returnVehicle(){

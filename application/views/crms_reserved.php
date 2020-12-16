@@ -45,7 +45,7 @@
                                 <?php
                                     echo $this->session->flashdata('reserved_status');
                                     if ($this->session->tempdata('report_details'))
-                                        echo "<a href='".base_url('index.php/Reserved/report_reserved/'.$this->session->tempdata('report_details'))."' target='_blank'> print report</a>";
+                                        echo "<a href='".base_url('index.php/Reserved/report_reserved/'.$this->session->tempdata('report_details'))."' target='_blank'> print bill</a>";
                                 ?>
                             </div>
                             <br>
