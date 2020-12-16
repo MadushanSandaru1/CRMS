@@ -14,7 +14,7 @@
     </style>
     <script>
       // Initialize and add the map
-      //function initMap() {
+      function initMap() {
 
         var longitude = parseFloat(localStorage.getItem("Longitude"));
         var Latitude = parseFloat(localStorage.getItem("Latitude"));
@@ -26,11 +26,15 @@
           center: uluru,
         });
         
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+        });
 
-         setInterval(function initMap(){
+         // setInterval(function initMap(){
 
-          var longitude = parseFloat(localStorage.getItem("Longitude"));
-          var Latitude = parseFloat(localStorage.getItem("Latitude"));
+         //  var longitude = parseFloat(localStorage.getItem("Longitude"));
+         //  var Latitude = parseFloat(localStorage.getItem("Latitude"));
           //alert(localStorage.getItem("Longitude"));
           //alert(localStorage.getItem("Latitude"));
           // The location of Uluru
@@ -41,14 +45,14 @@
           //   center: uluru,
           // });
           // The marker, positioned at Uluru
-          var marker = new google.maps.Marker({
-            position: uluru,
-            map: map,
-          });
+         //  var marker = new google.maps.Marker({
+         //    position: uluru,
+         //    map: map,
+         //  });
 
-         },3000);
+         // },3000);
 
-      //}
+      }
     </script>
   </head>
   <body>
@@ -59,7 +63,8 @@
 
 
 <script type="text/javascript"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2bXKNDezDf6YNVc-SauobynNHPo4RJb8&callback=initMap"> </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxrMJZbOnpAbPctXwashBp_dmlC-g0UTs&callback=initMap"> </script>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2bXKNDezDf6YNVc-SauobynNHPo4RJb8&callback=initMap"> </script> -->
 
 
 <!-- <script
