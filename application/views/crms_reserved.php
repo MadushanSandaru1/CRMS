@@ -27,13 +27,6 @@
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-car"></i>
                 </span> Car Reserved </h3>
-            <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span><i class="mdi mdi-clock icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
-            </nav>
         </div>
 
         <div class="row">
@@ -49,14 +42,18 @@
                             ?>
                             <div class="alert alert-success" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <?php echo $this->session->flashdata('reserved_status'); ?>
+                                <?php
+                                    echo $this->session->flashdata('reserved_status');
+                                    if ($this->session->tempdata('report_details'))
+                                        echo "<a href='".base_url('index.php/Reserved/report_reserved/'.$this->session->tempdata('report_details'))."' target='_blank'> print report</a>";
+                                ?>
                             </div>
                             <br>
                             <?php
                         }
                         ?>
 
-                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addReservedVehicle" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Reserved Vehicle Details</button>
+                        <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addReservedVehicle" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Reserved Vehicle Details</button>
 
                         <div class="collapse " id="addReservedVehicle" aria-labelledby="customRadioInline2">
                             <?php echo form_open('Reserved/add_reserved');  ?>
@@ -64,6 +61,7 @@
                                 <div class="form-group">
                                     <label for="reservedCustomerID"><b>Customer ID</b></label>
                                     <select class="custom-select" name="reservedCustomerID">
+                                        <option value="" disabled selected hidden>Select Customer ID</option>
                                         <?php
                                         if($customer_data->num_rows() > 0) {
                                             foreach ($customer_data->result() as $data_row) {
@@ -80,6 +78,7 @@
                                 <div class="form-group">
                                     <label for="reservedVehicleID"><b>Vehicle ID</b></label>
                                     <select class="custom-select" name="reservedVehicleID">
+                                        <option value="" disabled selected hidden>Select Vehicle ID</option>
                                         <?php
                                         if($vehicle_data->num_rows() > 0) {
                                             foreach ($vehicle_data->result() as $data_row) {
@@ -124,9 +123,16 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-danger">Reserved Vehicle Details</h4>
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title text-danger">Reserved Vehicle Details</h4>
+
+                            <!-- search bar-->
+                            <div class="search-field d-none d-md-block">
+                                <input type="text" id="searchTxt" onkeyup="searchTable()" class="form-control bg-light text-danger form-control-sm border-danger border-left-0 border-right-0 border-top-0" placeholder="Search...">
+                            </div>
+                        </div>
                         <div style="overflow-x:auto;">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="reservedTable">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -153,8 +159,11 @@
                                             <td><?php echo $data_row->start_meter_value; ?></td>
                                             <td class="text-right"><?php echo number_format($data_row->advance_payment,2); ?></td>
                                             <td>
-                                                <a href=""><span class="edit_btn mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
-                                                <a href="<?php echo base_url('index.php/Reserved/delete_reserved/'.$data_row->id); ?>" onclick="return confirm('Are you sure to delete this information?');"><span class="mdi mdi-close-circle text-danger ml-4"> Remove</span></a>
+                                                <a href="<?php echo base_url('index.php/Reserved/report_reserved/'.$data_row->vehicle_id); ?>" target="_blank"><span class="mdi mdi-printer"> Bill</span></a>
+                                        <?php if($this->session->userdata('user_role') == 'admin'){ ?>
+                                                <a href=""><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
+                                                <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_reserved('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
+                                        <?php } ?>
                                             </td>
                                         </tr>
                                         <?php
@@ -176,11 +185,69 @@
             </div>
         </div>
 
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php echo form_open('Reserved/delete_reserved');?>
+                    <form>
+                        <div class="modal-body">
+                            Are you sure you want to delete this record.
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="delreservedid" id="delreservedid" required>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </form>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+        <!-- ** Delete Modal -->
+
         <?php if(validation_errors()) { ?>
             <script>
                 document.getElementById("addReservedVehicle").classList.add("show");
             </script>
         <?php } ?>
+
+        <script type="text/javascript">
+            // delete details
+            function delete_reserved(del_reserved_id){
+                document.getElementById("delreservedid").value = del_reserved_id;
+            }
+
+            // table search
+            function searchTable(){
+                var input, filter, table, tr, td, cell, i, j;
+                input = document.getElementById("searchTxt");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("reservedTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 1; i < tr.length; i++) {
+                    // Hide the row initially.
+                    tr[i].style.display = "none";
+
+                    td = tr[i].getElementsByTagName("td");
+                    for (var j = 0; j < td.length; j++) {
+                        cell = tr[i].getElementsByTagName("td")[j];
+                        if (cell) {
+                            if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
 
     </div>
     <!-- content-wrapper ends -->

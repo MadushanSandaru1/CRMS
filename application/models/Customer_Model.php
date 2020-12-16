@@ -40,7 +40,7 @@
             //get guarantor data function
             public function getCustomers() {
                 $this->db->where('is_deleted', 0);
-                $this->db->order_by('id', 'ASC');
+                $this->db->order_by('id', 'DESC');
 
                 return $this->db->get('customer');
             }

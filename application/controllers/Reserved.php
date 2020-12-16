@@ -44,6 +44,9 @@ class Reserved extends CI_Controller
                     $this->Expense_Model->insertVehicleIncome($vehicle_id, $advanced_payment);
                 }
 
+                //Store recerved id in tempary data to generate report
+                $this->session->set_tempdata('report_details', $this->input->post('reservedVehicleID', TRUE), 5);
+
                 $this->session->set_flashdata('reserved_status', 'Vehicle reserved details added successfully');
                 redirect('Home/crms_reserved');
             } else {
@@ -53,14 +56,35 @@ class Reserved extends CI_Controller
         }
     }
 
-    public function delete_reserved($reserved_id){
+    //record delete function
+    public function delete_reserved(){
+        //Call to model function to delete data
         $this->load->model('Reserved_Model');
-        $response = $this->Reserved_Model->removeReservedData($reserved_id);
+        $response = $this->Reserved_Model->removeReservedData();
 
         if($response) {
             $this->session->set_flashdata('reserved_status', 'Reserved details were successfully removed');
             redirect('Home/crms_reserved');
         }
     }
+    //** record delete function **
+
+    //report generator function
+    public function report_reserved($vehicle_id){
+        //Call to model function to generate report
+        $this->load->model('Reserved_Model');
+        $data['report_details'] = $this->Reserved_Model->reportReserved($vehicle_id);
+
+        //view report design
+        $this->load->view("reserved_bill_report.php", $data);
+        $html = $this->output->get_output();
+        $this->pdf->loadHtml($html);
+        $this->pdf->setPaper('A5', 'portrait');
+        $this->pdf->render();
+        //$output = $this->pdf->output();
+        //file_put_contents("guarantor_report".date("Ymd_his").".pdf", $output);
+        $this->pdf->stream("guarantor_report".date("Ymd_his").".pdf",array("Attachment" => 0));
+    }
+    //** report generator function **
 
 }
