@@ -264,7 +264,7 @@ class Home extends CI_Controller {
         $data["getVehicleID"] = $this->DamageModel->getVehicleID();
         $data["getReservedID"] = $this->DamageModel->getReservedID();
         $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
-
+        $this->session->set_tempdata('form','add_form',5);
         $this->load->view('crms_damage', $data);
     }
 

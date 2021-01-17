@@ -98,6 +98,70 @@
                 $this->db->where('id', $this->input->post('deldamageid'));
                 return $this->db->update('damage',$values);
             }
+
+            public function updateDamage($path)
+            {
+                echo "ok";
+                $reserved_id=0;
+                $vehicleReserved_id =(int)$this->input->post('c_vehicle_id',TRUE);
+                $customerReserved_id =(int)$this->input->post('c',TRUE);
+                $is_solved =(int)$this->input->post('is_solved', TRUE);
+                $is_deleted =0;
+
+                if($vehicleReserved_id == $customerReserved_id && $vehicleReserved_id >0 && $path!="") {
+                    $reserved_id = $vehicleReserved_id;
+                    $values = array(
+                        'vehicle_id' => $this->input->post('u_vehicle_id', TRUE),
+                        'description' => $this->input->post('u_description', TRUE),
+                        'd_date' => $this->input->post('u_reported_date', TRUE),
+                        'image'=> $path,
+                        'reserved_id'=> $reserved_id,
+                        'fix_amount'=> $this->input->post('u_fix_amount', TRUE),
+                        'is_solved'=> $is_solved,
+                        'is_deleted'=> $is_deleted,
+                    );
+
+                }
+                else if($vehicleReserved_id >0 && $path!="") {
+                    $reserved_id = $vehicleReserved_id;
+                    $values = array(
+                        'vehicle_id' => $this->input->post('u_vehicle_id', TRUE),
+                        'description' => $this->input->post('u_description', TRUE),
+                        'd_date' => $this->input->post('u_reported_date', TRUE),
+                        'image'=> $path,
+                        'reserved_id'=> $reserved_id,
+                        'fix_amount'=> $this->input->post('u_fix_amount', TRUE),
+                        'is_solved'=> $is_solved,
+                        'is_deleted'=> $is_deleted,
+                    );
+                }
+                else if($customerReserved_id >0 && $path!="") {
+                    $reserved_id = $customerReserved_id;
+                    $values = array(
+                        'vehicle_id' => $this->input->post('u_vehicle_id', TRUE),
+                        'description' => $this->input->post('u_description', TRUE),
+                        'd_date' => $this->input->post('u_reported_date', TRUE),
+                        'image'=> $path,
+                        'reserved_id'=> $reserved_id,
+                        'fix_amount'=> $this->input->post('u_fix_amount', TRUE),
+                        'is_solved'=> $is_solved,
+                        'is_deleted'=> $is_deleted,
+                    );
+                }
+                else
+                {
+                    $values = array(
+                        'vehicle_id' => $this->input->post('u_vehicle_id', TRUE),
+                        'description' => $this->input->post('u_description', TRUE),
+                        'd_date' => $this->input->post('u_reported_date', TRUE),
+                        'fix_amount'=> $this->input->post('u_fix_amount', TRUE),
+                        'is_solved'=> $is_solved,
+                        'is_deleted'=> $is_deleted,
+                    );
+                }
+                $this->db->where('id', $this->input->post('damage_id'));
+                return $this->db->update('damage', $values);
+            }
         }
 
  ?>
