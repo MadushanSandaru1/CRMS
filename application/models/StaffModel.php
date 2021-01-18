@@ -66,5 +66,31 @@
                 $this->db->where('id', $this->input->post('deluserid'));
                 return $this->db->update('user',$values);
             }
+
+            public function updateStaff($img_path){
+
+                $id = $this->input->post('staff_user_id',TRUE);
+                $email = $this->input->post('update_email',TRUE);
+                $phone_no = $this->input->post('update_phone_no',TRUE);
+//                $address = ucwords($this->input->post('address',TRUE));
+
+                if($img_path==""){
+
+                    $values = array(
+                        'email'=> $email,
+                        'phone'=> $phone_no
+                    );
+                    $this->db->where('id',$id);
+                    return $this->db->update('user', $values);
+                }else{
+                    $values = array(
+                        'email'=> $email,
+                        'phone'=> $phone_no,
+                        'image'=>$img_path
+                    );
+                    $this->db->where('id',$id);
+                    return $this->db->update('user', $values);
+                }
+            }
         }
  ?>

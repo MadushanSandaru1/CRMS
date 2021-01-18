@@ -69,7 +69,7 @@ class User_Model extends CI_Model
         if ($response) {
             $email = $this->session->tempdata('recover_email_fill');
             $heading = "New Password";
-            $message = "<b>".$new_password."</b> is your new password of the Abhaya account.";
+            $message = "Your password on the Abhaya account was changed on <b>".date("Y-m-d h:i:sa")."</b>";
 
             $this->load->model("Email_Model");
             $this->Email_Model->trigger_mail($email, $heading, $message);

@@ -152,7 +152,7 @@ class Home extends CI_Controller {
 
         $this->load->model("Customer_Model");
         $data['customer_data']=$this->Customer_Model->getCustomers();
-
+        $this->session->set_tempdata('form','update_form',5);
         $this->load->view('crms_customer',$data);
     }
 

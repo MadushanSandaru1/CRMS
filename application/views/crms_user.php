@@ -54,7 +54,8 @@
                         }
                     }
             ?>
-            <div class="col-12 grid-margin stretch-card">
+<!--            add user-->
+            <div class="col-12 grid-margin stretch-card" id="add_user">
                 <div class="card">
                     <div class="card-body">
 
@@ -146,6 +147,98 @@
                     </div>
                 </div>
             </div>
+
+<!--            update-->
+            <div class="col-12 grid-margin stretch-card" id="update_user">
+                <div class="card">
+                    <div class="card-body">
+
+                        <?php
+                        if($this->session->flashdata('staff_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo $this->session->flashdata('staff_status'); ?>
+                            </div>
+                            <br>
+                            <?php
+                        }
+                        ?>
+<!--Scroll button to go up and down-->
+
+<!--collapse - when click the button display form to fill  -->
+                        <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#updateStaffUser" aria-expanded="false" aria-controls="viewDetails">Update Staff User Details</button>
+
+                        <div class="collapse mt-4" id="updateStaffUser" aria-labelledby="customRadioInline2">
+                            <?php echo form_open_multipart('Staff/updateStaffDetails'); ?>
+<!--                                <div class="form-group row mt-2">-->
+<!--                                    <label class="col-sm-3 col-form-label"><b>Role Type</b></label>-->
+<!--                                    <div class="col-sm-2">-->
+<!--                                        <div class="form-check">-->
+<!--                                            <label class="form-check-label">-->
+<!--                                            <input type="radio" class="form-check-input" onclick="roletype();" name="role_staff" id="cashier" value="cashier" checked> Cashier </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-sm-2">-->
+<!--                                        <div class="form-check">-->
+<!--                                            <label class="form-check-label">-->
+<!--                                            <input type="radio" class="form-check-input" onclick="roletype();" name="role_staff" id="admin" value="admin"> Admin </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <div class="form-group">
+                                    <label for="expenseVehicleID"><b><b>Staff ID</b></b></label>
+                                    <input type="text" name="staff_user_id" id="update_usr_id" class="form-control" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="full_name"><b>Full Name</b></label>
+                                    <input type="text" class="form-control" name="update_full_name" id="update_full_name" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nic"><b>NIC</b></label>
+                                    <input type="text" class="form-control" name="update_nic" id="update_nic" readonly>
+                                    <small class="text-danger"><?php echo form_error('nic'); ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><b>Email</b></label>
+                                    <input type="email" class="form-control" name="update_email" id="update_email" placeholder="Staff Email Address" >
+                                    <small class="text-danger"><?php echo form_error('email'); ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone_no"><b>Phone No</b></label>
+                                    <input type="text" class="form-control" name="update_phone_no" id="update_phone_no" placeholder="0xxxxxxxxx" pattern="0[0-9]{9}">
+                                    <small class="text-danger"><?php echo form_error('phone_no'); ?></small>
+                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label for="address"><b>Address</b></label>-->
+<!--                                    <textarea  id="" cols="30" rows="4" name="update_address" id="update_address" class="form-control" ></textarea>-->
+<!--                                    <small class="text-danger">--><?php //echo form_error('address'); ?><!--</small>-->
+<!--                                </div>-->
+                                <div class="form-group">
+                                    <label for="staff_picture"><b>Upload Picture</b></label>
+                                    <input type="file" name="update_staff_picture" class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Staff Picture">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                        </span>
+                                    </div>
+                                    <small class="text-danger"><?php echo form_error('staff_picture'); ?></small>
+                                </div>
+
+
+                                <div class="form-group mt-3">
+                                    <label for="password"><i class="mdi mdi-star-circle text-danger"></i> <b>The password will be generated automatically and will be sent to the email you entered.</b></label>
+                                </div>
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
+                                <button class="btn btn-light">Cancel</button>
+                            <?php echo form_close(); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -184,10 +277,10 @@
                                             <td><?php echo $value->address; ?></td>
                                             <td>
                                             <?php if($value->role == "cashier"){ ?>
-                                                <label class="cursor-pointer"><span class="mdi mdi-eyedropper text-success"> Edit</span>
+                                                <a  id="view" data-toggle="collapse" href="#updateStaffUser" aria-expanded="false" aria-controls="updateStaffUser"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_staff_user('<?php echo $value->id;?>','<?php echo $value->email;?>','<?php echo $value->phone;?>','<?php echo $value->name;?>','<?php echo $value->nic;?>','<?php echo $value->address;?>')">Edit </span></a>
                                                 <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_user('<?php echo$value->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span>
                                             <?php } else if(($value->role == "admin") or ($value->id == $this->session->userdata('user_id'))){ ?>
-                                                <label class="cursor-pointer"><span class="mdi mdi-eyedropper text-success"> Edit</span>
+                                                <a  id="view" data-toggle="collapse" href="#updateStaffUser" aria-expanded="false" aria-controls="updateStaffUser"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_staff_user('<?php echo $value->id;?>','<?php echo $value->email;?>','<?php echo $value->phone;?>','<?php echo $value->name;?>','<?php echo $value->nic;?>','<?php echo $value->address;?>')">Edit </span></a>
                                             <?php } ?>
                                             </td>
                                         </tr>
@@ -277,6 +370,22 @@
         }
     }
 
+    function update_staff_user(id,email,phone,name,nic,address){
+
+        //display form if clickd edit in view table
+        document.getElementById("add_user").style.display = "none";
+        document.getElementById("update_user").style.display = "block";
+
+        //load data into form
+        document.getElementById("update_usr_id").value = id;
+        document.getElementById("update_full_name").value = name;
+        document.getElementById("update_nic").value = nic;
+        document.getElementById("update_email").value = email;
+        document.getElementById("update_phone_no").value = phone;
+        document.getElementById("update_address").value = address;
+
+    }
+
 </script>
 
 <?php if(validation_errors()) { ?>
@@ -286,3 +395,20 @@
 <?php } ?>
 
 <?php require_once 'crms_footer.php';?>
+
+<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+    <script>
+        document.getElementById("add_user").style.display = "block";
+        document.getElementById("update_user").style.display = "none";
+    </script>
+<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+    <script>
+        document.getElementById("update_user").style.display = "block";
+        document.getElementById("add_user").style.display = "none";
+    </script>
+<?php }else{ ?>
+    <script>
+        document.getElementById("add_user").style.display = "block";
+        document.getElementById("update_user").style.display = "none";
+    </script>
+<?php } ?>
