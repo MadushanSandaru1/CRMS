@@ -9,7 +9,7 @@
     }
 
 ?>
-
+<?php $vehicle_reg=""; ?>
 <?php require_once 'crms_header.php';?>
     
     <div class="content-wrapper">
@@ -37,7 +37,7 @@
             </nav>
         </div>
 
-        <div class="row">
+        <div class="row" id="add_damage">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -55,10 +55,8 @@
                         }
                         ?>
                         <div class="custom-control custom-radio custom-control-inline">
-                                    
-                                    <button  class="btn btn-primary mb-2" id="view" data-toggle="collapse" href="#viewDetails" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i>Add Damage Details </button>
-<!--                                    <input type="button" value="Edit Damage Details" class="btn btn-primary mb-2 ml-2" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails">-->
-                                    
+                            <button  class="btn btn-primary mb-2" id="view" data-toggle="collapse" href="#viewDetails" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i>Add Damage Details </button>
+
                         </div>
                         <br>
                         <div class="collapse " id="viewDetails" aria-labelledby="customRadioInline2">
@@ -96,7 +94,7 @@
                                     <!-- <small class="text-danger"><?php echo form_error('image_file'); ?></small>   -->
                                     <!--
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                        <input type="file" class="form-control name="image_file" file-upload-info" disabled placeholder="Upload Image">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                         </span>
@@ -105,10 +103,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputCity1"><b>Reserved From</b></label><br><br>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <!-- <input type="radio" id="customRadioInline1" name="chooser" class="custom-control-input" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample " checked>
-                                        <label class="mdi mdi-swap-vertical" for="customRadioInline1">Reserved ID</label> -->
-                                    </div>
+
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom " >
                                         <label class="mdi mdi-swap-vertical " for="customRadioInline2">Custom Choose </label>
@@ -184,69 +179,158 @@
                                                                 
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Add</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <input type="reset" class="btn btn-light" value="Cancel">
                             <?php echo form_close(); ?>   
                         </div>
                         
-                        <div class="collapse row" id="EditDetails" aria-labelledby="customRadioInline2">
-                            <br><br>
-                            <div class="col-md-6">
-                                <br><br>
-                                <hr>
-                                <!--<?php echo form_open('Damage/SearchDamageVehicle'); ?>-->
-                                <?php echo form_open_multipart('Damage/SearchDamageVehicle'); ?>
-                                <div class="form-group">
-                                    <label for="exampleInputName1"><b>Search By Vehicle </b></label><br><br>
-                                    <select name="vehicle_id" id="" class="custom-select mr-sm-2" required>
-                                        <option value="">Select Vehicle ID</option>
-                                        <?php if(count($getReservedID) && count($getVehicleID)): ?>
-                                            <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
-                                                <?php if($getReservedID->vehicle_id == $getVehicleID->id):?>
-                                                    <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getVehicleID[$i]->registered_number;?></option>
-                                                <?php endif; ?>
-                                            <?php endfor;?>
-                                        <?php endif; ?>
-                                    </select><br><br>
-                                    <button class="btn btn-gradient-primary mdi mdi-car-wash mt-2"> Search</button>
-                                </div> 
-                                <center><img src="<?php echo base_url('assets/images/damage_default.png');?>" alt="" width="40%" height="230px"></center>
-                                <?php echo form_close(); ?>                            
-                            </div>
-                            <div class="col-md-6">
-                                <hr>
-                                <!--<?php echo form_open('Damage/DamageVehicle'); ?>-->
-                                <?php echo form_open_multipart('Damage/DamageVehicle'); ?>
-                                
-                                <font color='green'> You can see bellow Search Result..</font>
-                                <div class="form-group">
-                                    <label for="exampleSelectGender" class="mt-3"><b>Vehicle ID</b></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelectGender" class="mt-0"><b>Nature of Damage</b></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelectGender" class="mt-0"><b>Reported Date</b></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelectGender" class="mt-0"><b>Reserved From</b></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelectGender" class="mt-0"><b>Is Solved</b></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <button type="submit" class="btn btn-gradient-primary mr-2">Edit</button>
-                                <?php echo form_close(); ?>
-                            </div>   
-                        </div>    
-                        <!--</div>-->
+
                        
                     </div>
                 </div>
-              </div>
+            </div>
+        </div>
+        <div class="row" id="update_damage">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <?php
+                        if($this->session->flashdata('damage_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success">
+                                <?php echo $this->session->flashdata('damage_status'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="button" value="Update Damage Details" class="btn btn-primary mb-2 ml-0" id="update_damage" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="EditDetails">
+                        </div>
+
+                        <div class="collapse row" id="EditDetails" aria-labelledby="customRadioInline2">
+                            <br><br>
+                            <div class="col-md-12">
+                                <hr>
+                                <?php echo form_open_multipart('Damage/updateDamageVehicle'); ?>
+                                <div class="form-group">
+                                    <input type="hidden" name="damage_id" id="damage_id">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-3"><b>Vehicle ID</b></label>
+                                    <select name="u_vehicle_id" id="u_vehicle_id" class="custom-select mr-sm-2" >
+                                        <option value="" >Select Vehicle ID</option>
+                                        <?php if(count($getVehicleID)): ?>
+                                            <?php foreach($getVehicleID as $value):?>
+                                                <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
+                                            <?php endforeach;?>
+                                        <?php endif; ?>
+                                    </select>
+                                    <small class="text-danger"><?php echo form_error('vehicle_id'); ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-0"><b>Nature of Damage</b></label>
+                                    <select class="custom-select mr-sm-2" id="u_description" name="u_description" >
+                                        <option value="">Select Nature of Damage</option>
+                                        <option values="left or Right Signal light">left or Right Signal light</option>
+                                        <option values="Door damage">Door damage</option>
+                                        <option value="Left and Right Side mirror damages">Left and Right Side mirror damages</option>
+                                    </select>
+                                    <small class="text-danger"><?php echo form_error('description'); ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender" class="mt-0"><b>Reported Date</b></label>
+                                    <input type="date" class="form-control" name="u_reported_date" id="reported_date">
+                                    <small class="text-danger"><?php echo form_error('reported_date'); ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label><b>Upload Damage Vehicle Picture</b></label>
+                                    <input type="file"  class="form-control" name="u_image_file" >
+                                    <!-- <small class="text-danger"><?php echo form_error('image_file'); ?></small>   -->
+                                    <!--
+                                    <div class="input-group col-xs-12">
+                                        <input type="file" class="form-control name="image_file" file-upload-info" disabled placeholder="Upload Image">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                        </span>
+                                    </div>
+                                -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputCity1"><b>Reserved From</b></label><br><br>
+
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom " >
+                                        <label class="mdi mdi-swap-vertical " for="customRadioInline2">Custom Choose </label>
+
+                                    </div>
+                                    <small class="text-danger"><?php echo form_error('chooser'); ?></small>
+                                    <!-- <div class="collapse " id="collapseExample" aria-labelledby="customRadioInline1">
+                                    <br>
+                                        <select name="cr_vehicle_id" id="showReservedId" class="custom-select"  >
+                                            <option value="">Select Reserved ID</option>
+                                            <?php if(count($getReservedID)): ?>
+                                                <?php foreach($getReservedID as $value):?>
+                                                    <option value=<?php echo $value->id;?>><?php echo "".$value->id;?></option>
+                                                <?php endforeach;?>
+                                            <?php endif; ?>
+                                        </select>
+                                    </div> -->
+                                    <div class="collapse " id="custome" aria-labelledby="customRadioInline2">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  >
+                                                    <option value="">Select Vehicle ID</option>
+                                                    <?php if(count($getReservedID) && count($getVehicleID)): ?>
+                                                        <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
+                                                            <?php if($getReservedID->vehicle_id == $getVehicleID->registered_number):?>
+                                                                <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getVehicleID[$i]->registered_number;?></option>
+                                                            <?php endif; ?>
+                                                        <?php endfor;?>
+                                                    <?php endif; ?>
+                                                </select>
+                                                <!-- <small class="text-danger"><?php echo form_error('c_vehicle_id'); ?></small> -->
+                                            </div>
+                                            <div class="col">
+                                                <select name="c" id="showReservedId" class="custom-select" >
+                                                    <option value="">Select Customer</option>
+                                                    <?php if(count($getReservedID) && count($getCustomerDetails)): ?>
+                                                        <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
+                                                            <?php if($getReservedID->customer_id == $getCustomerDetails->id):?>
+                                                                <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getCustomerDetails[$i]->nic;?></option>
+                                                            <?php endif; ?>
+                                                        <?php endfor;?>
+                                                    <?php endif; ?>
+                                                </select>
+                                                <!-- <small class="text-danger"><?php echo form_error('c'); ?></small>       -->
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputCity1"><b>Fix Amount</b></label><br><br>
+                                    <input type="text" name="u_fix_amount" id="u_fix_amount" class="form-control">
+                                    <small class="text-danger"><?php echo form_error('fix_amount'); ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender"><b>Is damage solved</b></label><br><br>
+                                    <input type="checkbox" name="u_is_solved" id="damage_solved" value="1" class="">
+                                    <label for="exampleInputCity1 "> Yes</label>
+
+                                </div>
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
+                                <input type="reset" class="btn btn-light" value="Cancel">
+                                <?php echo form_close(); ?>
+                            </div>
+                        </div>
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -278,7 +362,10 @@
                                                 <td>
                                                     <?php for($i=0;$i < sizeof($getVehicleID);$i++): ?>
                                                         <?php if($values->vehicle_id == $getVehicleID[$i]->id):?>
-                                                            <?php echo $getVehicleID[$i]->registered_number; ?>
+                                                            <?php
+                                                                echo $getVehicleID[$i]->registered_number;
+                                                                $vehicle_reg = $getVehicleID[$i]->registered_number;
+                                                            ?>
                                                         <?php endif;?>
                                                     <?php endfor; ?>
                                                 </td>
@@ -305,7 +392,7 @@
                                                 </td>
                                                 <td>
                                                     <a id="view"  href="<?php echo base_url("index.php/Damage/DamageReport/$values->id");?>" target="_blank"><span class="mdi mdi-note "> Get Report</span></a>
-                                                    <a href="" id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
+                                                    <a  id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="EditDetails"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_damage('<?php echo $values->id;?>','<?php echo $values->vehicle_id;?>','<?php echo $values->description;?>','<?php echo $values->d_date;?>','<?php echo $values->fix_amount;?>','<?php echo $values->reserved_id;?>')"> Edit</span></a>
                                                     <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_damage('<?php echo$values->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
                                                 </td>
 
@@ -357,7 +444,40 @@
     function delete_damage(del_damage_id){
         document.getElementById("deldamageid").value = del_damage_id;
     }
+    function update_damage(id,update_vehicle_id,update_description,d_date,update_fix_amount,res_id){
+
+        //display form if clickd edit in view table
+        document.getElementById("add_damage").style.display = "none";
+        document.getElementById("update_damage").style.display = "block";
+
+        //load data into form
+        document.getElementById("damage_id").value = id;
+        document.getElementById("u_vehicle_id").value = update_vehicle_id;
+        document.getElementById("u_description").value = update_description;
+        document.getElementById("reported_date").value = d_date;
+        document.getElementById("u_fix_amount").value = update_fix_amount;
+        document.getElementById("c_vehicle_id").className = res_id;
+
+    }
 </script>
     
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>
+<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+    <script>
+        document.getElementById("add_damage").style.display = "block";
+        document.getElementById("update_damage").style.display = "none";
+
+    </script>
+<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+    <script>
+        document.getElementById("update_damage").style.display = "block";
+        document.getElementById("add_damage").style.display = "none";
+
+    </script>
+<?php }else{ ?>
+    <script>
+        document.getElementById("add_damage").style.display = "block";
+        document.getElementById("update_damage").style.display = "none";
+    </script>
+<?php } ?>

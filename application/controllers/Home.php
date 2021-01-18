@@ -152,7 +152,7 @@ class Home extends CI_Controller {
 
         $this->load->model("Customer_Model");
         $data['customer_data']=$this->Customer_Model->getCustomers();
-
+        $this->session->set_tempdata('form','update_form',5);
         $this->load->view('crms_customer',$data);
     }
 
@@ -268,7 +268,7 @@ class Home extends CI_Controller {
         $data["getVehicleID"] = $this->DamageModel->getVehicleID();
         $data["getReservedID"] = $this->DamageModel->getReservedID();
         $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
-
+        $this->session->set_tempdata('form','add_form',5);
         $this->load->view('crms_damage', $data);
     }
 
