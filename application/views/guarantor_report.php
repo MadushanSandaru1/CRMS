@@ -92,7 +92,7 @@
                 <tr>
                     <td colspan="2" style="padding: 30px 10px 30px 10px;">
                         <p align="justify">
-                            I know Mr. / Mrs. <b><?php echo $data_row->customer_name; ?></b> very well who received the car / motorcycle bearing number <b><?php echo $data_row->vehicle_no; ?></b> from Abhaya rent a car on <b><?php echo $data_row->from_date; ?></b> and I will represent those who took over the vehicle in case of breach of terms and conditions of the company. I hereby certify that I am liable on behalf of the person who took over this vehicle, if necessary, for any legal purpose.
+                            I know Mr. / Mrs. <b><?php echo $data_row->customer_name; ?> (<?php echo $data_row->customer_nic; ?>)</b> very well who received the car / motorcycle bearing number <b><?php echo $data_row->vehicle_no; ?></b> from Abhaya rent a car on <b><?php echo $data_row->from_date; ?></b> and I will represent those who took over the vehicle in case of breach of terms and conditions of the company. I hereby certify that I am liable on behalf of the person who took over this vehicle, if necessary, for any legal purpose.
                         </p>
                     </td>
                 </tr>

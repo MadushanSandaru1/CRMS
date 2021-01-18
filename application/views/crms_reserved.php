@@ -77,12 +77,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="reservedVehicleID"><b>Vehicle ID</b></label>
-                                    <select class="custom-select" name="reservedVehicleID">
+                                    <select class="custom-select" name="reservedVehicleID" id="reservedVehicleID" onchange="set_payment()">
                                         <option value="" disabled selected hidden>Select Vehicle ID</option>
                                         <?php
                                         if($vehicle_data->num_rows() > 0) {
                                             foreach ($vehicle_data->result() as $data_row) {
-                                                echo "<option value='".$data_row->id."'>".$data_row->registered_number." - ".$data_row->title."</option>";
+                                                echo "<option value='".$data_row->id."'>".$data_row->registered_number." - ".$data_row->title." (".$data_row->price_per_day.")</option>";
                                             }
                                         } else {
                                             echo "<option>Data not found</option>";
@@ -94,12 +94,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="reservedVehicleDate">Reserved Date</label>
-                                    <input type="datetime-local" class="form-control" name="reservedVehicleFromDate" id="reservedVehicleFromDate" placeholder="Reserved Date" max="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('reservedVehicleFromDate_fill')) echo $this->session->tempdata('reservedVehicleFromDate_fill'); else echo Date('Y-m-d\TH:i',time()); ?>">
+                                    <input type="datetime-local" class="form-control" name="reservedVehicleFromDate" id="reservedVehicleFromDate" onchange="set_dropoff_min()" placeholder="Reserved Date" min="<?php echo Date('Y-m-d\TH:i',time()) ?>"  value="<?php if($this->session->tempdata('reservedVehicleFromDate_fill')) echo $this->session->tempdata('reservedVehicleFromDate_fill'); else echo Date('Y-m-d\TH:i',time()); ?>">
                                     <small class="text-danger"><?php echo form_error('reservedVehicleFromDate'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="reservedVehicleDate">Returned Date</label>
-                                    <input type="datetime-local" class="form-control" name="reservedVehicleToDate" id="reservedVehicleToDate" placeholder="Returned Date" value="<?php if($this->session->tempdata('reservedVehicleToDate_fill')) echo $this->session->tempdata('reservedVehicleToDate_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="reservedVehicleToDate" id="reservedVehicleToDate" onchange="set_payment()" placeholder="Returned Date" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('reservedVehicleToDate_fill')) echo $this->session->tempdata('reservedVehicleToDate_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('reservedVehicleToDate'); ?></small>
                                 </div>
                                 <div class="form-group">
@@ -110,6 +110,7 @@
                                 <div class="form-group">
                                     <label for="reservedVehicleAdvancedPayment">Advanced Payment</label>
                                     <input type="number" class="form-control" name="reservedVehicleAdvancedPayment" id="reservedVehicleAdvancedPayment" placeholder="1000.00" value="<?php if($this->session->tempdata('reservedVehicleAdvancedPayment_fill')) echo $this->session->tempdata('reservedVehicleAdvancedPayment_fill'); ?>">
+                                    <small id="payment_value" class="text-success"></small>
                                     <small class="text-danger"><?php echo form_error('reservedVehicleAdvancedPayment'); ?></small>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
@@ -219,6 +220,34 @@
         <?php } ?>
 
         <script type="text/javascript">
+            function set_dropoff_min(){
+                min = document.getElementById("reservedVehicleFromDate").value;
+                document.getElementById("reservedVehicleToDate").value = null;
+
+                document.getElementById("reservedVehicleToDate").min  = min;
+            }
+
+            function set_payment(){
+
+                from_val = Date.parse(document.getElementById("reservedVehicleFromDate").value);
+                to_val = Date.parse(document.getElementById("reservedVehicleToDate").value);
+                e = document.getElementById("reservedVehicleID");
+                title = e.options[e.selectedIndex].text;
+
+                if(to_val && title!="Select Vehicle ID") {
+
+                    days = Math.ceil((to_val-from_val) / 1000 / 60 / 60 / 24);
+                    price  = title.substring(title.lastIndexOf("(") + 1, title.lastIndexOf(")"));
+
+                    payment = parseInt(days)*parseInt(price);
+
+                    document.getElementById("reservedVehicleAdvancedPayment").value = null;
+                    document.getElementById("payment_value").innerHTML  = "Estimated Total Amount : Rs."+payment;
+                } else {
+                    document.getElementById("payment_value").innerHTML  = "";
+                }
+            }
+
             // delete details
             function delete_reserved(del_reserved_id){
                 document.getElementById("delreservedid").value = del_reserved_id;

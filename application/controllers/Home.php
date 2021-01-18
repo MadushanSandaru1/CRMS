@@ -100,6 +100,21 @@ class Home extends CI_Controller {
         $this->load->model("User_Model");
         $data['user_data'] = $this->User_Model->getSpecificUserDetails();
 
+        $this->load->model("Dashboard_Model");
+        $data['new_booking_data']=$this->Dashboard_Model->getNewBookingCount();
+        $data['accepted_booking_data']=$this->Dashboard_Model->getAcceptedBookingCount();
+
+        $data['weekly_income_data']=$this->Dashboard_Model->getWeeklyIncome();
+        $data['weekly_expense_data']=$this->Dashboard_Model->getWeeklyExpense();
+        $data['weekly_date_data']=$this->Dashboard_Model->getWeeklyDate();
+
+        $data['monthly_income_data']=$this->Dashboard_Model->getMonthlyIncome();
+        $data['monthly_expense_data']=$this->Dashboard_Model->getMonthlyExpense();
+        $data['monthly_date_data']=$this->Dashboard_Model->getMonthlyDate();
+
+        $data['damage_vehicles_data']=$this->Dashboard_Model->getDamageVehicleCount();
+        $data['monthly_damage_data']=$this->Dashboard_Model->getDamageInMonth();
+
         $this->load->view('crms_dashboard',$data);
     }
 

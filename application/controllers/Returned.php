@@ -83,6 +83,7 @@ class Returned extends CI_Controller
 
         }
     }
+
     public function extendVehicle(){
         $this->load->model('VehicleReturnModel');
         $response = $this->VehicleReturnModel->extendVehicle();
