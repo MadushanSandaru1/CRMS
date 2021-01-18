@@ -68,6 +68,8 @@ class Booking extends CI_Controller{
             $this->session->set_tempdata('msg_fill', $this->input->post('msg', TRUE), 5);
             $this->session->set_tempdata('form','add_form',5);
             
+            $this->load->model("Customer_Model");
+        	$data["regular_customers"] = $this->Customer_Model->getCustomers();
 
         	$this->load->model('Vehicle_Model');
         	$data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
@@ -123,6 +125,9 @@ class Booking extends CI_Controller{
             $this->session->set_tempdata('update_msg_fill', $this->input->post('update_msg', TRUE), 5);
             $this->session->set_tempdata('form','update_form',5);
             
+
+            $this->load->model("Customer_Model");
+       		$data["regular_customers"] = $this->Customer_Model->getCustomers();
 
         	$this->load->model('Vehicle_Model');
         	$data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
@@ -234,6 +239,58 @@ class Booking extends CI_Controller{
 		}
 
 	}
+
+
+
+	 public function init_new_customer($nic,$name,$email,$phone){
+
+        $this->session->set_tempdata('nic_fill', rawurldecode($nic), 5);
+        $this->session->set_tempdata('name_fill', rawurldecode($name) , 5);
+        $this->session->set_tempdata('email_fill', rawurldecode($email), 5);
+        $this->session->set_tempdata('phone_fill', rawurldecode($phone), 5);
+        $this->session->set_tempdata('form','add_form',5);
+
+
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+        $this->load->model("notification");
+        $data["insurence_date"]=$this->notification->insurence_date();
+        $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
+
+        $this->load->model("Customer_Model");
+        $data['customer_data']=$this->Customer_Model->getCustomers();
+        $this->load->view('crms_customer',$data);
+    }
+
+
+
+    public function init_for_reserve($nic,$name,$email,$phone){
+        
+        $this->session->set_tempdata('nic_fill', rawurldecode($nic), 5);
+        $this->session->set_tempdata('name_fill', rawurldecode($name) , 5);
+        $this->session->set_tempdata('email_fill', rawurldecode($email), 5);
+        $this->session->set_tempdata('phone_fill', rawurldecode($phone), 5);
+        $this->session->set_tempdata('form','add_form',5);
+
+
+        $this->load->model("Customer_message");
+        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+        $this->load->model("notification");
+        $data["insurence_date"]=$this->notification->insurence_date();
+        $data["revenue_license_date"]=$this->notification->revenue_license_date();
+        $data["car_booking_notification"]=$this->notification->car_booking_notification();
+        $data["car_not_recive"]=$this->notification->car_not_recive();
+
+        $this->load->model("Reserved_Model");
+        $data['vehicle_data'] = $this->Reserved_Model->getVehicleData();
+        $data['customer_data'] = $this->Reserved_Model->getCustomerData();
+        $data['reserved_data'] = $this->Reserved_Model->getVehicleReservedData();
+
+        $this->load->view('crms_reserved', $data);
+    }
+
 
 }
  ?>

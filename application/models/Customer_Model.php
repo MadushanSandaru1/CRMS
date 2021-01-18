@@ -55,6 +55,38 @@
                 return $this->db->update('customer');;
             }
             //** delete customer data function **
+
+
+
+
+
+            public function updateCustomer($nic_copy_data,$license_copy_data,$light_bill_copy_data){
+
+                 $values = array(
+                    'name' => $this->input->post('update_name', TRUE),
+                    'nic' => $this->input->post('update_nic', TRUE),
+                    'email' => $this->input->post('update_email', TRUE),
+                    'phone'=> $this->input->post('update_phone', TRUE),
+                    'address'=> $this->input->post('update_address', TRUE)
+                );
+
+
+                if ($nic_copy_data!=null) {
+                    $values['nic_copy'] = $nic_copy_data['file_name'];
+                 }
+                if ($license_copy_data!=null) {
+                    $values['license_copy'] = $license_copy_data['file_name'];
+                 }
+                if ($light_bill_copy_data!=null) {
+                    $values['light_bill_copy'] = $light_bill_copy_data['file_name'];
+                 }
+                 
+
+                $this->db->where('id', $this->input->post('customer_id'));
+                return $this->db->update('customer', $values);
+
+
+            }
                 
                 
         }

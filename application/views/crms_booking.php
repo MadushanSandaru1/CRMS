@@ -38,6 +38,8 @@
 
         <div class="row">
 
+            <!-- Add booking  -->
+
             <div class="col-12 grid-margin stretch-card" id="add_div">
                 <div class="card">
                  
@@ -55,7 +57,7 @@
                     ?>
 
 
-                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addBooking" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Vehicle Booking Details</button>
+                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#addBooking" aria-expanded="false" aria-controls="addBooking"><i class="mdi mdi-plus"></i> Add Vehicle Booking Details</button>
 
                         <div class="collapse mt-5" id="addBooking" aria-labelledby="customRadioInline2">
                             <?php echo form_open('Booking/prepareToStaffInsertBooking');?>
@@ -143,11 +145,15 @@
                 </div>
             </div>
 
+            <!-- Add booking end -->
+
+
+            <!-- Update booking -->
 
             <div class="col-12 grid-margin stretch-card" id="update_div">
                 <div class="card">
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#updateBooking" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Update Vehicle Booking Details</button>
+                        <button type="button" class="btn btn-primary mb-2" data-toggle="collapse" href="#updateBooking" aria-expanded="false" aria-controls="addBooking"><i class="mdi mdi-plus"></i> Update Vehicle Booking Details</button>
 
                         <div class="collapse mt-5" id="updateBooking" aria-labelledby="customRadioInline2">
                     
@@ -236,6 +242,8 @@
                 </div>
             </div>
 
+            <!-- Update booking end -->
+
 
 
             <div class="col-lg-12 grid-margin stretch-card">
@@ -293,7 +301,6 @@
                                           
                                       </td>
                                       <td>
-                                       
                                             <label class="cursor-pointer" onclick="update_booking(<?php 
                                                 echo $row->id.','.
                                                 $row->vehicle_id.',\''.
@@ -308,6 +315,33 @@
                                             <span class="mdi mdi-eyedropper text-success"> Edit</span> </label>
 
                                             <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_booking('<?php echo $row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
+
+                                            <?php if (1==$row->status) { ?>
+                                            
+                                                    <?php 
+                                                        $is_regular = false;
+                                                        foreach ($regular_customers->result() as $row2) {
+                                                            if (strcmp($row->customer_nic, $row2->nic)==0) {
+                                                                $is_regular = true;
+                                                                break;
+                                                            }
+                                                        }
+                                                    ?>
+
+                                                    <!-- New customer redirect to add regular cutomer -->
+                                                    <?php if ($is_regular) { ?>
+
+                                                        <a href="../Booking/init_for_reserve/<?php echo rawurlencode($row->customer_nic) ?>/<?php echo rawurlencode($row->customer_name) ?>/<?php echo rawurlencode($row->customer_email) ?>/<?php echo rawurlencode($row->customer_phone) ?>"  style="text-decoration: blink"><span class="mdi mdi-car text-secondary ml-4"> Reserve</span> </a>
+
+                                                    <!--  Regular customer redirect to reserved -->
+                                                    <?php }else{ ?>
+
+                                                       <!--  <a href="../Booking/init_new_customer/<?php echo rawurlencode($row->customer_nic) ?>/<?php echo rawurlencode($row->customer_name) ?>/<?php echo rawurlencode($row->customer_email) ?>/<?php echo rawurlencode($row->customer_phone) ?>" style="text-decoration: blink"><span class="mdi mdi-car text-secondary ml-4"> Reserve</span> </a>
+ -->
+                                                    <?php } ?>
+
+                                            <?php } ?>
+
                                       </td>
                                       
                                   </tr>

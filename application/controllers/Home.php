@@ -214,8 +214,12 @@ class Home extends CI_Controller {
     //crms car booking page
     public function crms_booking()
     {
+
+        $this->load->model("Customer_Model");
+        $data["regular_customers"] = $this->Customer_Model->getCustomers();
+
         $this->load->model("Vehicle_Model");
-        $data['available_vehicle'] = $this->Vehicle_Model->getVehicleData();
+        $data["available_vehicle"] = $this->Vehicle_Model->getVehicleData();
 
         $this->load->model("Customer_message");
         $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
@@ -226,7 +230,7 @@ class Home extends CI_Controller {
         $data["car_not_recive"]=$this->notification->car_not_recive();
 
         $this->load->model("Booking_Model");
-        $data['booking_data']=$this->Booking_Model->getBooking();
+        $data["booking_data"]=$this->Booking_Model->getBooking();
 
         $this->load->view('crms_booking', $data);
     }
@@ -428,5 +432,7 @@ class Home extends CI_Controller {
     public function loadmap(){
         $this->load->view('map');
     }
+
+
 
 }

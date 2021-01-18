@@ -37,7 +37,7 @@
 
 
 
-                <div class="col-12 grid-margin stretch-card">
+                <div class="col-12 grid-margin stretch-card" id="add_div">
                 <div class="card">
                   <div class="card-body">
 
@@ -62,7 +62,7 @@
 //                        }
 //                      }
                     ?>
-                      <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addCustomer" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Customer Details</button>
+                      <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addCustomer" aria-expanded="false" aria-controls="addCustomer"><i class="mdi mdi-plus"></i> Add Customer Details</button>
 
                     <div class="collapse mt-5" id="addCustomer" aria-labelledby="customRadioInline2">
                     <?php echo form_open_multipart('Customer/prepareToInsertCustomer');?>
@@ -183,6 +183,136 @@
               </div>
 
 
+
+
+
+              <!-- update customer form start-->
+
+                <div class="col-12 grid-margin stretch-card" id="update_div">
+                <div class="card">
+                  <div class="card-body">
+                    
+                  
+                      <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#updateCustomer" aria-expanded="false" aria-controls="updateCustomer"><i class="mdi mdi-plus"></i> Update Customer Details</button>
+
+                    <div class="collapse mt-5" id="updateCustomer" aria-labelledby="customRadioInline2">
+                    <?php echo form_open_multipart('Customer/prepareToUpdateCustomer');?>
+                    <form class="forms-sample">
+
+
+                      <div class="form-group">
+                        <label for="update_InputName">Name</label>
+                        <input type="text" class="form-control" id="update_InputName" placeholder="Name" name="update_name" value= "<?php if($this->session->tempdata('update_name_fill')) echo $this->session->tempdata('update_name_fill'); ?>" >
+                          <small class="text-danger"><?php echo form_error('update_name'); ?></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="update_InputNIC">NIC</label>
+                        <input type="text" class="form-control" id="update_InputNIC" placeholder="NIC" name="update_nic" value= "<?php if($this->session->tempdata('update_nic_fill')) echo $this->session->tempdata('update_nic_fill'); ?>" >
+                        <small class="text-danger"><?php echo form_error('update_nic'); ?></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="update_InputEmail">Email address</label>
+                        <input type="email" class="form-control" id="update_InputEmail" placeholder="Email address" name="update_email" value= "<?php if($this->session->tempdata('update_email_fill')) echo $this->session->tempdata('update_email_fill'); ?>" >
+                        <small class="text-danger"><?php echo form_error('update_email'); ?></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="update_InputPhone">Phone</label>
+                        <input type="text" class="form-control" id="update_InputPhone" placeholder="Phone" name="update_phone" value= "<?php if($this->session->tempdata('update_phone_fill')) echo $this->session->tempdata('update_phone_fill'); ?>" >
+                        <small class="text-danger"><?php echo form_error('update_phone'); ?></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="update_InputAddress">Address</label>
+                        <textarea class="form-control" id="update_InputAddress" rows="4" placeholder="Address" name="update_address"> <?php if($this->session->tempdata('update_address_fill')) echo $this->session->tempdata('update_address_fill'); ?> </textarea>
+                        <small class="text-danger"><?php echo form_error('update_address'); ?></small>
+                      </div>
+
+
+
+
+                          <div class="form-group row">
+            
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" name="nic_copy_proofment" id="nic_copy_proofment"  onclick="collaps_proofments('nic_copy')"> NIC Copy </label>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" name="license_copy_proofment" id="license_copy_proofment" onclick="collaps_proofments('license_copy')"> License Copy </label>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" name="light_bill_copy_proofment" id="light_bill_copy_proofment" onclick="collaps_proofments('light_bill_copy')"> Light Bill Copy </label>
+                              </div>
+                            </div>
+
+                          </div>
+                       
+
+
+                      <div class="form-group" id="nic_copyDiv">
+                        <label>NIC Copy</label>
+                        <input type="file" name="update_nic_copy" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                        <small class="text-danger"><?php echo form_error('update_nic_copy'); ?></small>
+                      </div>
+
+                      <div class="form-group" id="license_copyDiv">
+                        <label>License Copy</label>
+                        <input type="file" name="update_license_copy" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                        <small class="text-danger"><?php echo form_error('update_license_copy'); ?></small>
+                      </div>
+
+                      <div class="form-group" id="light_bill_copyDiv">
+                        <label>Light Bill Copy</label>
+                        <input type="file" name="update_light_bill_copy" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                        <small class="text-danger"><?php echo form_error('update_light_bill_copy'); ?></small>
+                      </div>
+
+                      <input type="hidden" id="update_ID" name="customer_id">
+
+                      <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                      <button type="reset" class="btn btn-light">Cancel</button>
+                    </form>
+                    <?php echo form_close(); ?>
+                      </div>
+                    
+                  </div>
+                </div>
+              </div>
+            <!-- update customer form end-->
+
+
+
+
+
+
+
             <!-- view customer table start-->
 
             <div class="col-lg-12 grid-margin stretch-card">
@@ -234,8 +364,17 @@
                                   <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->light_bill_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                               <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                   <td>
-                                      <a href="" data-toggle="modal" data-target="#editmodel" onclick="loadCustomerData(<?php echo $row->id.",'".$row->name."','".$row->nic."','".$row->email."','".$row->phone."','".$row->address."','".$row->nic_copy."','".$row->license_copy."','".$row->light_bill_copy."'" ?>)"><span class="mdi mdi-eyedropper text-success"> Edit</span></a>
-                                      <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_customer('<?php echo$row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
+                                      <label class="cursor-pointer" onclick="update_customer(<?php 
+                                        echo $row->id.",'".
+                                        $row->name."','".
+                                        $row->nic."','".
+                                        $row->email."','".
+                                        $row->phone."','".
+                                        $row->address."'"
+                                        ?>)">
+                                      <span class="mdi mdi-eyedropper text-success"> Edit</span></label> 
+                          
+                                      <label class="cursor-pointer" style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_customer('<?php echo$row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
                                   </td>
                               <?php } ?>
 
@@ -307,36 +446,36 @@
             </script>
         <?php } ?>
 
-            <script type="text/javascript">
-                // delete details
-                function delete_customer(del_customer_id){
-                    document.getElementById("delcustomerid").value = del_customer_id;
-                }
+        <script type="text/javascript">
+            // delete details
+            function delete_customer(del_customer_id){
+                document.getElementById("delcustomerid").value = del_customer_id;
+            }
 
-                // table search
-                function searchTable(){
-                    var input, filter, table, tr, td, cell, i, j;
-                    input = document.getElementById("searchTxt");
-                    filter = input.value.toUpperCase();
-                    table = document.getElementById("customerTable");
-                    tr = table.getElementsByTagName("tr");
-                    for (i = 1; i < tr.length; i++) {
-                        // Hide the row initially.
-                        tr[i].style.display = "none";
+            // table search
+            function searchTable(){
+                var input, filter, table, tr, td, cell, i, j;
+                input = document.getElementById("searchTxt");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("customerTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 1; i < tr.length; i++) {
+                    // Hide the row initially.
+                    tr[i].style.display = "none";
 
-                        td = tr[i].getElementsByTagName("td");
-                        for (var j = 0; j < td.length; j++) {
-                            cell = tr[i].getElementsByTagName("td")[j];
-                            if (cell) {
-                                if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                                    tr[i].style.display = "";
-                                    break;
-                                }
+                    td = tr[i].getElementsByTagName("td");
+                    for (var j = 0; j < td.length; j++) {
+                        cell = tr[i].getElementsByTagName("td")[j];
+                        if (cell) {
+                            if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                                break;
                             }
                         }
                     }
                 }
-            </script>
+            }
+        </script>
 
 
               <!-- view customer table end-->
@@ -345,6 +484,115 @@
 
     </div>
     <!-- content-wrapper ends -->
+
+
+
+
+<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+<script>
+        document.getElementById("add_div").style.display = "block";
+        document.getElementById("update_div").style.display = "none";
+        document.getElementById("addCustomer").classList.add("show");
+</script>
+<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+<script>
+        document.getElementById("update_div").style.display = "block";
+        document.getElementById("add_div").style.display = "none";
+        document.getElementById("updateCustomer").classList.add("show");
+</script>    
+<?php }else{ ?>
+<script>
+        document.getElementById("add_div").style.display = "block";
+        document.getElementById("update_div").style.display = "none";
+</script> 
+<?php } ?>
+
+
+
+
+
+<script type="text/javascript">
+  
+  function update_customer(id,name,nic,email,phone,address){
+
+      //display form if clickd edit in view table
+      document.getElementById("add_div").style.display = "none";
+      document.getElementById("update_div").style.display = "block";
+
+      document.getElementById("update_ID").value = id;
+      document.getElementById("update_InputName").value = name;
+      document.getElementById("update_InputNIC").value = nic;
+      document.getElementById("update_InputEmail").value = email;
+      document.getElementById("update_InputPhone").value = phone;
+      document.getElementById("update_InputAddress").value = address;
+
+      //update form collaps if loaded data into that form
+      document.getElementById("updateCustomer").classList.add("show");
+  }
+
+
+
+  //hide all when load the page
+  document.getElementById("nic_copyDiv").style.display = "none";
+  document.getElementById("license_copyDiv").style.display = "none";
+  document.getElementById("light_bill_copyDiv").style.display = "none";
+
+  function collaps_proofments(proofment){
+
+      if (proofment=="nic_copy") {
+
+            if (document.getElementById("nic_copy_proofment").checked) {
+                document.getElementById("nic_copyDiv").style.display = "block";
+            }else{
+                document.getElementById("nic_copyDiv").style.display = "none";
+            }
+
+      }else if(proofment=="license_copy"){
+
+            if (document.getElementById("license_copy_proofment").checked) {
+                document.getElementById("license_copyDiv").style.display = "block";
+            }else{
+                document.getElementById("license_copyDiv").style.display = "none";
+            }
+
+      }else if(proofment=="light_bill_copy"){
+
+            if (document.getElementById("light_bill_copy_proofment").checked) {
+                document.getElementById("light_bill_copyDiv").style.display = "block";
+            }else{
+                document.getElementById("light_bill_copyDiv").style.display = "none";
+            }
+
+      }
+  }
+
+</script>
+
+
+<?php if ($this->session->tempdata("nic_copy_proofment_fill")=="on") { ?>
+  <script>
+      document.getElementById("nic_copy_proofment").checked = true;
+      document.getElementById("nic_copyDiv").style.display = "block";
+  </script>
+<?php } ?>
+
+<?php if ($this->session->tempdata("license_copy_proofment_fill")=="on") { ?>
+  <script>
+      document.getElementById("license_copy_proofment").checked = true;
+      document.getElementById("license_copyDiv").style.display = "block";
+  </script>
+<?php } ?>
+
+<?php if ($this->session->tempdata("light_bill_copy_proofment_fill")=="on") { ?>
+  <script>
+      document.getElementById("light_bill_copy_proofment").checked = true;
+      document.getElementById("light_bill_copyDiv").style.display = "block";
+  </script>
+<?php } ?>
+
+
+
+
 
 <audio id="sound">
       <source src="<?php echo base_url('assets/audio/shutter-click.mp3'); ?>" type="audio/mpeg" >
