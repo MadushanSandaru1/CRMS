@@ -336,8 +336,8 @@
                                                     <!--  Regular customer redirect to reserved -->
                                                     <?php }else{ ?>
 
-                                                       <!--  <a href="../Booking/init_new_customer/<?php echo rawurlencode($row->customer_nic) ?>/<?php echo rawurlencode($row->customer_name) ?>/<?php echo rawurlencode($row->customer_email) ?>/<?php echo rawurlencode($row->customer_phone) ?>" style="text-decoration: blink"><span class="mdi mdi-car text-secondary ml-4"> Reserve</span> </a>
- -->
+                                                       <a href="../Booking/init_new_customer/<?php echo rawurlencode($row->customer_nic) ?>/<?php echo rawurlencode($row->customer_name) ?>/<?php echo rawurlencode($row->customer_email) ?>/<?php echo rawurlencode($row->customer_phone) ?>" style="text-decoration: blink"><span class="mdi mdi-car text-secondary ml-4"> Reserve</span> </a>
+ 
                                                     <?php } ?>
 
                                             <?php } ?>
