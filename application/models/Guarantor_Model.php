@@ -39,14 +39,14 @@ class Guarantor_Model extends CI_Model
 
     //get reserved data function
     public function getReservedData() {
-        $reserveddata_view_query = $this->db->query('SELECT r.`id`, v.`registered_number` FROM `reserved` r, `vehicle` v WHERE v.`id` = r.`id` AND r.`is_returned` = 0 AND r.`is_deleted` = 0 AND r.`id` NOT IN (SELECT `reserved_id` FROM `guarantor` WHERE `is_deleted` = 0) ORDER BY `from_date` DESC');
+        $reserveddata_view_query = $this->db->query('SELECT r.`id`, v.`registered_number`, c.`nic` FROM `reserved` r, `vehicle` v, `customer` c WHERE v.`id` = r.`vehicle_id` AND r.`customer_id` = c.`id` AND r.`is_returned` = 0 AND r.`is_deleted` = 0 AND r.`id` NOT IN (SELECT `reserved_id` FROM `guarantor` WHERE `is_deleted` = 0) ORDER BY `from_date` DESC');
         return $reserveddata_view_query;
     }
     //** get reserved data function **
 
     //guarantor report generate function
     public function reportGuarantor($reserved_id) {
-        $this->db->select('g.*, c.name AS customer_name, v.registered_number AS vehicle_no, r.from_date');
+        $this->db->select('g.*, c.name AS customer_name, c.nic AS customer_nic, v.registered_number AS vehicle_no, r.from_date');
         $this->db->from('guarantor g, reserved r, customer c, vehicle v');
         $this->db->where('g.reserved_id', $reserved_id);
         $this->db->where('g.reserved_id = r.id');

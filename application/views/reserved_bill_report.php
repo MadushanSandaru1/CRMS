@@ -75,7 +75,7 @@
                 </tr>
                 <tr>
                     <td style="padding: 5px;"><small>Customer Name</small></td>
-                    <td><small>: <b><?php echo $data_row->name; ?></b></small></td>
+                    <td><small>: <b><?php echo $data_row->name; ?> (<?php echo $data_row->nic; ?>)</b></small></td>
                 </tr>
                 <tr>
                     <td style="padding: 5px;"><small>Reserved Date</small></td>
@@ -96,6 +96,10 @@
                 <tr>
                     <td style="padding: 5px;"><small>Estimated Total Amount</small></td>
                     <td><small>: <b>Rs. <?php echo number_format(($data_row->price_per_day)*($data_row->no_of_days),2); ?></b></small></td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px;"><small>Balance Amount</small></td>
+                    <td><small>: <b>Rs. <?php if((($data_row->price_per_day)*($data_row->no_of_days))-$data_row->advance_payment < 0) echo number_format(0,2); else echo number_format((($data_row->price_per_day)*($data_row->no_of_days))-$data_row->advance_payment,2); ?></b></small></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding: 20px 0px 0px 10px;">

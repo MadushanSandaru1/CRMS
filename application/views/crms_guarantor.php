@@ -54,20 +54,20 @@
                       <?php echo form_open_multipart('Guarantor/add_guarantor');  ?>
                         <div class="form-group">
                             <label for="reservedID"><b>Reserved ID</b></label>
-                            <select class="custom-select" name="reservedID">
+                            <select class="custom-select" name="reservedID" id="reservedID" onchange="check_guarantor()">
                                 <option value="" disabled selected hidden>Select Reserved ID</option>
                                 <?php
                                 if($reserved_data->num_rows() > 0) {
                                     foreach ($reserved_data->result() as $data_row) {
                                         if ($this->session->tempdata('reservedID_fill')) {
                                             if ($this->session->tempdata('reservedID_fill')==$data_row->id) {
-                                                echo "<option value='".$data_row->id."' selected>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                                echo "<option value='".$data_row->id."' selected>".$data_row->id." - ".$data_row->registered_number." (".$data_row->nic.")</option>";
                                             }else{
-                                                echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                                echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number." (".$data_row->nic.")</option>";
                                             }
 
                                         }else{
-                                            echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                            echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number." (".$data_row->nic.")</option>";
                                         }
                                     }
                                 } else {
@@ -85,7 +85,8 @@
                       </div>
                       <div class="form-group">
                           <label for="guarantorNIC">NIC</label>
-                          <input type="text" class="form-control" id="guarantorNIC" name="guarantorNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
+                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="guarantorNIC" name="guarantorNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
+                          <small class="text-warning" id="nic_warning"></small>
                           <small class="text-danger"><?php echo form_error('guarantorNIC'); ?></small>
                       </div>
                       <div class="form-group">
@@ -109,7 +110,7 @@
                         </div>
                           <small class="text-danger"><?php echo form_error('nicImage'); ?></small>
                       </div>
-                      <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                      <button type="submit" class="btn btn-gradient-primary mr-2" id="submit">Submit</button>
                       <button type="reset" class="btn btn-light">Cancel</button>
                       <?php echo form_close();  ?>
                       </div>
@@ -225,6 +226,21 @@
         <?php } ?>
 
         <script type="text/javascript">
+            // guarantor not equal to reserver
+            function check_guarantor(){
+                e = document.getElementById("reservedID");
+                title = e.options[e.selectedIndex].text;
+                reserver_nic  = title.substring(title.lastIndexOf("(") + 1, title.lastIndexOf(")"));
+                guarantor_nic = document.getElementById("guarantorNIC").value;
+                if(reserver_nic.toUpperCase()==guarantor_nic.toUpperCase()) {
+                    document.getElementById("nic_warning").innerHTML  = "NIC cannot be equal";
+                    document.getElementById("submit").disabled = true;
+                } else {
+                    document.getElementById("nic_warning").innerHTML  = "";
+                    document.getElementById("submit").disabled = false;
+                }
+            }
+
             // delete details
             function delete_guarantor(del_guarantor_id){
                 document.getElementById("delguarantorid").value = del_guarantor_id;

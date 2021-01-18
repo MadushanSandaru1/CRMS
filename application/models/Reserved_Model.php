@@ -55,7 +55,7 @@ class Reserved_Model extends CI_Model
     //guarantor report generate function
     public function reportReserved($vehicle_id) {
 
-        $this->db->select('r.*, c.`name`, v.`registered_number`, v.`price_per_day`, v.`additional_price_per_hour`, v.`additional_price_per_km`, DATEDIFF(`to_date`,`from_date`) AS \'no_of_days\'');
+        $this->db->select('r.*, c.`name`, c.`nic`, v.`registered_number`, v.`price_per_day`, v.`additional_price_per_hour`, v.`additional_price_per_km`, DATEDIFF(`to_date`,`from_date`) AS \'no_of_days\'');
         $this->db->from('reserved r, customer c, vehicle v');
         $this->db->where('r.vehicle_id', $vehicle_id);
         $this->db->where('r.`customer_id` = c.`id`');
