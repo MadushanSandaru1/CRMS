@@ -150,7 +150,7 @@ class Home extends CI_Controller {
 
         $this->load->model("Vehicle_Model");
         $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
-
+        $this->session->set_tempdata('form','add_form',5);
         $this->load->view('crms_car', $data);
     }
 

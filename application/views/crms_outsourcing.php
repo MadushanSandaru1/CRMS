@@ -120,15 +120,17 @@ if (!$this->session->userdata('user_id')) {
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label>Vehicle Image</label>
-                                <!--<input type="file" name="img[]" class="">-->
+                                <input type="file" name="outsource_pic" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                    <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="outsource_pic" >
-                                    <!--<span class="input-group-append">-->
-                                    <!--<button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>-->
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                     </span>
                                 </div>
+                                <small class="text-danger"><?php echo form_error('outsource_pic'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehiclePrice">Rental Price per Day</label>
@@ -247,15 +249,17 @@ if (!$this->session->userdata('user_id')) {
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label>Vehicle Image</label>
-                                <!--<input type="file" name="img[]" class="">-->
+                                <input type="file" name="u_outsource_pic" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                    <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="u_outsource_pic" >
-                                    <!--<span class="input-group-append">-->
-                                    <!--<button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>-->
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                     </span>
                                 </div>
+                                <small class="text-danger"><?php echo form_error('u_outsource_pic'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehiclePrice">Rental Price per Day</label>
