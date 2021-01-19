@@ -12,6 +12,8 @@ class Reserved extends CI_Controller
         //$this->form_validation->set_rules('reservedVehicleAdvancedPayment', 'Advanced Payment', 'required');
 
         if($this->form_validation->run() == FALSE){
+            $this->session->set_tempdata('reservedCustomerID_fill' , $this->input->post('reservedCustomerID',TRUE), 5); 
+            $this->session->set_tempdata('reservedVehicleID_fill' , $this->input->post('reservedVehicleID',TRUE), 5); 
             $this->session->set_tempdata('reservedVehicleFromDate_fill', $this->input->post('reservedVehicleFromDate', TRUE), 5);
             $this->session->set_tempdata('reservedVehicleToDate_fill', $this->input->post('reservedVehicleToDate', TRUE), 5);
             $this->session->set_tempdata('reservedVehicleStartValue_fill', $this->input->post('reservedVehicleStartValue', TRUE), 5);

@@ -266,12 +266,13 @@ class Booking extends CI_Controller{
 
 
 
-    public function init_for_reserve($nic,$name,$email,$phone){
+    public function init_for_reserve($customerID,$vehicleID,$from,$to){
         
-        $this->session->set_tempdata('nic_fill', rawurldecode($nic), 5);
-        $this->session->set_tempdata('name_fill', rawurldecode($name) , 5);
-        $this->session->set_tempdata('email_fill', rawurldecode($email), 5);
-        $this->session->set_tempdata('phone_fill', rawurldecode($phone), 5);
+        $this->session->set_tempdata('reservedCustomerID_fill' , rawurldecode($customerID), 5); 
+        $this->session->set_tempdata('reservedVehicleID_fill' , rawurldecode($vehicleID), 5); 
+        $this->session->set_tempdata('reservedVehicleFromDate_fill', rawurldecode($from), 5);
+        $this->session->set_tempdata('reservedVehicleToDate_fill', rawurldecode($to), 5);
+
         $this->session->set_tempdata('form','add_form',5);
 
 

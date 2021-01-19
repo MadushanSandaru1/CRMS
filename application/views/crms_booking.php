@@ -319,10 +319,12 @@
                                             <?php if (1==$row->status) { ?>
                                             
                                                     <?php 
+                                                    
                                                         $is_regular = false;
                                                         foreach ($regular_customers->result() as $row2) {
                                                             if (strcmp($row->customer_nic, $row2->nic)==0) {
                                                                 $is_regular = true;
+                                                                $cust_id = $row2->id;
                                                                 break;
                                                             }
                                                         }
@@ -331,12 +333,14 @@
                                                     <!-- New customer redirect to add regular cutomer -->
                                                     <?php if ($is_regular) { ?>
 
-                                                        <a href="../Booking/init_for_reserve/<?php echo rawurlencode($row->customer_nic) ?>/<?php echo rawurlencode($row->customer_name) ?>/<?php echo rawurlencode($row->customer_email) ?>/<?php echo rawurlencode($row->customer_phone) ?>"  style="text-decoration: blink"><span class="mdi mdi-car text-secondary ml-4"> Reserve</span> </a>
+                                                        <a href="../Booking/init_for_reserve/<?php echo rawurlencode($cust_id) ?>/<?php echo rawurlencode($row->vehicle_id) ?>/<?php echo rawurlencode($row->from_date) ?>/<?php echo rawurlencode($row->to_date) ?>" style="text-decoration: blink"><span class="mdi mdi-car text-secondary ml-4"> Reserve</span> </a>
 
+                                                        
                                                     <!--  Regular customer redirect to reserved -->
                                                     <?php }else{ ?>
 
-                                                       <a href="../Booking/init_new_customer/<?php echo rawurlencode($row->customer_nic) ?>/<?php echo rawurlencode($row->customer_name) ?>/<?php echo rawurlencode($row->customer_email) ?>/<?php echo rawurlencode($row->customer_phone) ?>" style="text-decoration: blink"><span class="mdi mdi-car text-secondary ml-4"> Reserve</span> </a>
+                                                       <a href="../Booking/init_new_customer/<?php echo rawurlencode($row->customer_nic) ?>/<?php echo rawurlencode($row->customer_name) ?>/<?php echo rawurlencode($row->customer_email) ?>/<?php echo rawurlencode($row->customer_phone) ?>"  style="text-decoration: blink"><span class="mdi mdi-car text-dark ml-4"> Reserve</span> </a>
+                                                       
  
                                                     <?php } ?>
 
