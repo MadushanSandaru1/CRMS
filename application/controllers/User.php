@@ -4,12 +4,12 @@
 class User extends CI_Controller
 {
     public function user_signin() {
-        $this->form_validation->set_rules('signin_email', 'Email', 'required|valid_email|callback_user_exist_check');
-        $this->form_validation->set_rules('signin_password', 'Password', 'required');
+        $this->form_validation->set_rules('signin_email', 'Email', 'trim|required|valid_email|callback_user_exist_check');
+        $this->form_validation->set_rules('signin_password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {
-            $this->session->set_tempdata('signin_email_fill', $this->input->post('signin_email', TRUE), 10);
+            $this->session->set_tempdata('signin_email_fill', trim($this->input->post('signin_email', TRUE)), 10);
             $this->load->view('crms_signin');
         }
         else
@@ -19,13 +19,13 @@ class User extends CI_Controller
 
             if ($response) {
                 $session_data = array(
-                    'user_email' => $this->input->post('signin_email', TRUE)
+                    'user_email' => trim($this->input->post('signin_email', TRUE))
                 );
                 $this->session->set_userdata($session_data);
 
                 //cookies setting
                 if($this->input->post('keep_signin', TRUE)) {
-                    $this->input->set_cookie('keep_signin', $this->input->post('signin_email', TRUE), time()+3600);
+                    $this->input->set_cookie('keep_signin', trim($this->input->post('signin_email', TRUE)), time()+3600);
                 } else {
                     delete_cookie('keep_signin');
                 }
