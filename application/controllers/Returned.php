@@ -73,25 +73,43 @@ class Returned extends CI_Controller
 
 
         if($response) {
-//            $this->session->set_flashdata('returned_status', 'successfully returned Vehicle');
-//            redirect('Home/crms_returned');
-            $this->load->view("crms_return_report",$data);
-            $html = $this->output->get_output();
-            $this->pdf->loadHtml($html);
-            $this->pdf->render();
-            $this->pdf->stream(""."Vehicle Return.pdf",array("Attachment" => 0));
+
+            $this->session->set_flashdata('returned_status', 'successfully returned Vehicle time');
+
+            redirect('Home/crms_returned');
+//            $this->load->view("crms_return_report",$data);
+//            $html = $this->output->get_output();
+//            $this->pdf->loadHtml($html);
+//            $this->pdf->setPaper('A5', 'portrait');
+//            $this->pdf->render();
+//            $this->pdf->stream(""."Vehicle Return.pdf",array("Attachment" => 0));
 
         }
     }
-
     public function extendVehicle(){
         $this->load->model('VehicleReturnModel');
         $response = $this->VehicleReturnModel->extendVehicle();
 
         if($response) {
-            $this->session->set_flashdata('returned_status', 'successfully extended Vehicle time');
+            $this->session->set_flashdata('extend_status', 'successfully extended Vehicle time');
             redirect('Home/crms_returned');
         }
+    }
+    public function report_returned($re_id){
+        //Call to model function to generate report
+        $this->load->model('VehicleReturnModel');
+        $data['reserved_details'] = $this->VehicleReturnModel->reportReturned($re_id);
+        $data['vehicle_data'] = $this->VehicleReturnModel->getVehicleData();
+        $data['customer_data'] = $this->VehicleReturnModel->getCustomerData();
+
+        //view report design
+        $this->load->view("crms_return_report.php", $data);
+        $html = $this->output->get_output();
+        $this->pdf->loadHtml($html);
+        $this->pdf->setPaper('A5', 'portrait');
+        $this->pdf->render();
+
+        $this->pdf->stream("vehicle_return_report".date("Ymd_his").".pdf",array("Attachment" => 0));
     }
 
 }
