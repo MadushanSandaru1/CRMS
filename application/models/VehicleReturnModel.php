@@ -11,6 +11,7 @@ class VehicleReturnModel extends CI_Model
         );
 
         $this->db->where('id', $this->input->post('re_id'));
+        $this->session->set_tempdata('report_reserved_id',$this->input->post('re_id'),10);
         return $this->db->update('reserved',$values);
     }
     public function extendVehicle(){
@@ -41,5 +42,15 @@ class VehicleReturnModel extends CI_Model
         $this->db->where('is_deleted', 0);
         $vehicledata_view_query = $this->db->get('vehicle');
         return $vehicledata_view_query->result();
+    }
+
+    public function reportReturned($id)
+    {
+        $this->db->select('*');
+        $this->db->where('is_deleted=',0);
+        $this->db->where('id=',$id);
+        $this->db->from('reserved');
+        $query = $this->db->get();
+        return $query->result();
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-    //session timeout error
-    if (!$this->session->userdata('user_id')) {
-        $this->session->set_flashdata('user_status', 'Session timeout');
+//session timeout error
+if (!$this->session->userdata('user_id')) {
+    $this->session->set_flashdata('user_status', 'Session timeout');
 
-        //redirect to sign in page
-        redirect('Home/crms_signin');
-    }
+    //redirect to sign in page
+    redirect('Home/crms_signin');
+}
 
 ?>
 
@@ -31,6 +31,15 @@
                             ?>
                             <div class="alert alert-success">
                                 <?php echo $this->session->flashdata('returned_status'); ?>
+                                <?php echo "<a href='".base_url('index.php/Returned/report_returned/'.$this->session->tempdata('report_reserved_id'))."' target='_blank'> print bill</a>";?>
+                            </div>
+                            <?php
+                        }
+                        if($this->session->flashdata('extend_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success">
+                                <?php echo $this->session->flashdata('extend_status'); ?>
                             </div>
                             <?php
                         }
@@ -148,7 +157,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal fade" id="extendVehicle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
