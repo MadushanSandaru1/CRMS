@@ -71,7 +71,7 @@
 
                             <div class="form-group">
                                 <label for="profileAddress">Address</label>
-                                <textarea class="form-control" id="profileAddress" name="guarantorAddress" rows="4" placeholder="address"> </textarea>
+                                <textarea class="form-control" id="profileAddress" name="guarantorAddress" rows="4" placeholder="address" readonly> </textarea>
                                 <small class="text-danger"><?php echo form_error('profileAddress'); ?></small>
                             </div>
 

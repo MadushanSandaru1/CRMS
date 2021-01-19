@@ -13,6 +13,16 @@ class Dashboard_Model extends CI_Model {
         return $query;
     }
 
+    function getDailyExpense(){
+        $query = $this->db->query("SELECT SUM(`amount`) AS 'daily_expense' FROM `transaction` WHERE `type` = 'E' AND DATE(`date`) = CURDATE()");
+        return $query;
+    }
+
+    function getDailyIncome(){
+        $query = $this->db->query("SELECT SUM(`amount`) AS 'daily_income' FROM `transaction` WHERE `type` = 'I' AND DATE(`date`) = CURDATE()");
+        return $query;
+    }
+
     function getWeeklyExpense(){
         $query = $this->db->query("SELECT SUM(`amount`) AS 'weekly_expense' FROM `transaction` WHERE `type` = 'E' AND YEARWEEK(`date`) = YEARWEEK(NOW())");
         return $query;
@@ -49,7 +59,17 @@ class Dashboard_Model extends CI_Model {
     }
 
     function getDamageInMonth(){
-        $query = $this->db->query("SELECT COUNT(*) AS 'monthly_damage' FROM `transaction` WHERE YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())");
+        $query = $this->db->query("SELECT COUNT(*) AS 'monthly_damage' FROM `damage` WHERE YEAR(`d_date`) = YEAR(CURRENT_DATE()) AND MONTH(`d_date`) = MONTH(CURRENT_DATE()) AND `is_deleted` = 0");
+        return $query;
+    }
+
+    function getReserved(){
+        $query = $this->db->query("SELECT COUNT(*) AS 'reserved_count' FROM `reserved` WHERE `is_returned` = 0 AND `is_deleted` = 0");
+        return $query;
+    }
+
+    function getReservedDelay(){
+        $query = $this->db->query("SELECT COUNT(*) AS 'reserved_delay_count' FROM `reserved` WHERE `to_date` < NOW() AND `is_returned` = 0 AND `is_deleted` = 0");
         return $query;
     }
 

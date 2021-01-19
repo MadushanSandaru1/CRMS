@@ -63,9 +63,15 @@
                                     <select class="custom-select" name="reservedCustomerID">
                                         <option value="" disabled selected hidden>Select Customer ID</option>
                                         <?php
+
                                         if($customer_data->num_rows() > 0) {
                                             foreach ($customer_data->result() as $data_row) {
-                                                echo "<option value='".$data_row->id."'>".$data_row->nic." - ".$data_row->name."</option>";
+
+                                                if ( $this->session->tempdata('reservedCustomerID_fill')==$data_row->id ) {
+                                                    echo "<option selected value='".$data_row->id."'>".$data_row->nic." - ".$data_row->name."</option>";
+                                                }else{
+                                                    echo "<option value='".$data_row->id."'>".$data_row->nic." - ".$data_row->name."</option>";
+                                                }
                                             }
                                         } else {
                                             echo "<option>Data not found</option>";
@@ -82,7 +88,13 @@
                                         <?php
                                         if($vehicle_data->num_rows() > 0) {
                                             foreach ($vehicle_data->result() as $data_row) {
-                                                echo "<option value='".$data_row->id."'>".$data_row->registered_number." - ".$data_row->title." (".$data_row->price_per_day.")</option>";
+                                               
+                                                if ( $this->session->tempdata('reservedVehicleID_fill')==$data_row->id ) {
+                                                    echo "<option selected value='".$data_row->id."'>".$data_row->registered_number." - ".$data_row->title." (".$data_row->price_per_day.")</option>";
+                                                }else{
+                                                     echo "<option value='".$data_row->id."'>".$data_row->registered_number." - ".$data_row->title." (".$data_row->price_per_day.")</option>";
+                                                }
+
                                             }
                                         } else {
                                             echo "<option>Data not found</option>";
