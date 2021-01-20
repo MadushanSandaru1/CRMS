@@ -38,9 +38,11 @@
                     <div class="card-body">
 
                         <div id="addProfile">
+                            <center>
                             <div>
                                 <img src="<?php echo base_url('assets/images/users/'.$this->session->userdata('user_image'));?>" class="rounded-circle" alt="Profile pic" width="20%">
                             </div>
+                            </center>
                             <div class="form-group">
                                 <label for="profileId">Id</label>
                                 <input type="text" class="form-control" name="profileId" id="profileId" value="<?php echo $this->session->userdata('user_id'); ?>" readonly>

@@ -66,12 +66,12 @@
                                     $exp = "expired";
                                 }else{
                                     $txt_coloe="";
-                                    $exp="expire";
+                                    $exp="will expire on";
                                 }
                         ?>
                         <div class="alert notification  text-black" data-toggle="modal" data-target="#revenueL" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
                             <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
-                            <label class="mr-10">The Revenue License of this vehicle  <b><?php echo $row->registered_number;?></b>, is about to <?php echo $exp;?> . The date of expire is  <b><?php echo $after_one_year;?></b></label>
+                            <label class="mr-10">Revenue License <b><?php echo $row->registered_number;?></b> vehicle <?php echo $exp;?> <b><?php echo $after_one_year;?>.</b></label>
                         </div>
                         <?php
                             }
@@ -89,7 +89,7 @@
                         ?>
                         <div class="alert notification text-black"  data-toggle="modal" data-target="#Insurance" style="color:<?php echo $bg_coloe;?>" onclick="Insurance(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
                             <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
-                            <label class="mr-4">The Insurance of this vehicle <b><?php echo $row->registered_number;?></b> is about to  <?php echo $exp;?>. The date of expire is  <b><?php echo $after_one_year;?></b></label>
+                            <label class="mr-4">Insurance Licence <b><?php echo $row->registered_number;?></b>   <?php echo $exp;?> on <b><?php echo $after_one_year;?></b></label>
                         </div>
                         <?php
 //                                }
@@ -101,7 +101,8 @@
                             ?>
 
                             <div class="alert notification text-black" style="width: 93%;margin-left: 45px;">
-                                <label class="mr-4"><?php echo $row->customer_name;?> has Book the Car <?php echo $row->title;?></label>
+                                    <i class="mdi mdi-car-back mdi-36px text-danger"></i>
+                                <label class="mr-4"><?php echo $row->customer_name;?> booked <b><?php echo $row->title;?></b></label>
                             </div>
 
                             <?php
@@ -114,7 +115,8 @@
                             ?>
 
                             <div class="alert notification text-black" style="width: 93%;margin-left: 45px;">
-                                <label class="mr-4"><?php echo $row->name;?> was supposed to hand over the vehicle on <?php echo $row->to_date;?>. But, he hasn't yet</label>
+                                <i class="mdi mdi-car-off mdi-36px text-danger"></i>
+                                <label class="mr-4"><?php echo $row->name;?>  didn't return the specified  return date <b><?php echo $row->to_date;?></b>.</label>
                             </div>
 
                             <?php

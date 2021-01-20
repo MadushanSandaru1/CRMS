@@ -50,7 +50,7 @@
                   ?>
                       <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#addGuarantor" aria-expanded="false" aria-controls="viewDetails"><i class="mdi mdi-plus"></i> Add Guarantor Details</button>
 
-                      <div class="collapse " id="addGuarantor" aria-labelledby="customRadioInline2">
+                      <div class="collapse" id="addGuarantor" aria-labelledby="customRadioInline2">
                       <?php echo form_open_multipart('Guarantor/add_guarantor');  ?>
                         <div class="form-group">
                             <label for="reservedID"><b>Reserved ID</b></label>
@@ -142,34 +142,34 @@
                   ?>
                       <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#updateguarantor" aria-expanded="false" aria-controls="viewDetails"> Update Guarantor Details</button>
 
-                      <div class="collapse " id="updateguarantor" aria-labelledby="customRadioInline2">
+                      <div class="collapse" id="updateguarantor" aria-labelledby="customRadioInline2">
                       <?php echo form_open_multipart('Guarantor/update_guarantor');  ?>
                           <input type="hidden" id="update_guarantorID" name="update_guarantorID">
                         <div class="form-group">
                             <label for="reservedID"><b>Reserved ID</b></label>
-                            <input type="text" class="form-control" name="update_reserved_guarantorID" id="update_reserved_guarantorID" readonly>
-                            <small class="text-danger"><?php echo form_error('reservedID'); ?></small>
+                            <input type="text" class="form-control" name="update_reserved_guarantorID" id="update_reserved_guarantorID" value="<?php if($this->session->tempdata('update_reserved_guarantorID_fill')) echo $this->session->tempdata('update_reserved_guarantorID_fill'); ?>" readonly>
+                            <small class="text-danger"><?php echo form_error('update_reserved_guarantorID'); ?></small>
                         </div>
                       <div class="form-group">
                           <label for="guarantorName">Name</label>
-                          <input type="text" class="form-control" name="update_guarantorName" id="update_guarantorName" readonly>
-                          <small class="text-danger"><?php //echo form_error('guarantorName'); ?></small>
+                          <input type="text" class="form-control" name="update_guarantorName" id="update_guarantorName" value="<?php if($this->session->tempdata('update_guarantorName_fill')) echo $this->session->tempdata('update_guarantorName_fill'); ?>">
+                          <small class="text-danger"><?php echo form_error('update_guarantorName'); ?></small>
                       </div>
                       <div class="form-group">
                           <label for="guarantorNIC">NIC</label>
-                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="update_guarantorNIC" name="guarantorNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>" readonly>
+                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="update_guarantorNIC" name="update_guarantorNIC" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" title="Please enter a according to correct pattern." value="<?php if($this->session->tempdata('update_guarantorNIC_fill')) echo $this->session->tempdata('update_guarantorNIC_fill'); ?>">
                           <small class="text-warning" id="nic_war ning"></small>
-                          <small class="text-danger"><?php echo form_error('guarantorNIC'); ?></small>
+                          <small class="text-danger"><?php echo form_error('update_guarantorNIC'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="guarantorPhone">Phone</label>
-                        <input type="text" class="form-control" id="update_guarantorPhone" name="update_guarantorPhone" placeholder="0711234567" pattern="0[0-9]{9}" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
-                          <small class="text-danger"><?php echo form_error('guarantorPhone'); ?></small>
+                        <input type="text" class="form-control" id="update_guarantorPhone" name="update_guarantorPhone" placeholder="0711234567" pattern="0[0-9]{9}" value="<?php if($this->session->tempdata('update_guarantorPhone_fill')) echo $this->session->tempdata('update_guarantorPhone_fill'); ?>">
+                          <small class="text-danger"><?php echo form_error('update_guarantorPhone'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="guarantorAddress">Address</label>
-                        <textarea class="form-control" id="update_guarantorAddress" name="update_guarantorAddress" rows="4" placeholder="address"> </textarea>
-                          <small class="text-danger"><?php echo form_error('guarantorAddress'); ?></small>
+                        <textarea class="form-control" id="update_guarantorAddress" name="update_guarantorAddress" rows="4" placeholder="address" value="<?php if($this->session->tempdata('update_guarantorAddress_fill')) echo $this->session->tempdata('update_guarantorAddress_fill'); ?>"> </textarea>
+                          <small class="text-danger"><?php echo form_error('update_guarantorAddress'); ?></small>
                       </div>
 <!--                      <div class="form-group">-->
 <!--                        <label>NIC Copy</label>-->
@@ -359,6 +359,12 @@
     </div>
     <!-- content-wrapper ends -->
 
+<!--when coming error in an update from show the update form-->
+<?php if(validation_errors()) { ?>
+    <script type="text/javascript">
+        document.getElementById("updateguarantor").classList.add("show");
+    </script>
+<?php } ?>
 <?php require_once 'crms_footer.php';?>
 
 <?php  if ($this->session->tempdata('form')=='add_form') { ?>

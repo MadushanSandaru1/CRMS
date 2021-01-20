@@ -111,8 +111,18 @@ class Guarantor extends CI_Controller
 
     public function update_guarantor(){
         $this->form_validation->set_rules('update_guarantorPhone','Phone Number','required');
+        $this->form_validation->set_rules('update_guarantorName','Name','required');
+        $this->form_validation->set_rules('update_guarantorNIC','NIC','required');
+        $this->form_validation->set_rules('update_guarantorAddress','Address','required');
         if($this->form_validation->run() == FALSE){
             $this->session->set_tempdata('form','update_form',5);
+
+            //store value to the temporary session already filled
+            $this->session->set_tempdata('update_reserved_guarantorID_fill', $this->input->post('update_reserved_guarantorID', TRUE), 5);
+            $this->session->set_tempdata('update_guarantorPhone_fill', $this->input->post('update_guarantorPhone', TRUE), 5);
+            $this->session->set_tempdata('update_guarantorName_fill', $this->input->post('update_guarantorName', TRUE), 5);
+            $this->session->set_tempdata('update_guarantorNIC_fill', $this->input->post('update_guarantorNIC', TRUE), 5);
+            $this->session->set_tempdata('update_guarantorAddress_fill', $this->input->post('update_guarantorAddress', TRUE), 5);
 
             $this->load->model("Customer_message");
             $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
