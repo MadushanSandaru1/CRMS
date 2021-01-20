@@ -156,5 +156,52 @@
                     }
                 }
             }
+
+            public function update_profil_pic(){
+                if (empty($_FILES['update_profile_Image']['name']))
+                {
+                    $this->form_validation->set_rules('update_profile_Image', 'Staff Image', 'required');
+                }else{
+                    $config['allowed_types'] = 'jpg|png|jpeg';
+                    $config['upload_path'] = './assets/images/users/';
+                    $this->load->library('upload', $config);
+                    if ($this->upload->do_upload('update_profile_Image')) {
+                        $data = $this->input->post();
+                        $info = $this->upload->data();
+                        $image_path = $info['raw_name'] . $info['file_ext'];
+
+                        $this->load->model('StaffModel');
+                        $response = $this->StaffModel->updateStaffprofile_pic($image_path);
+                        if($response){
+                            $this->load->model("Customer_message");
+                            $data["message_data"] = $this->Customer_message->getCustomMessageForHeader();
+                            $this->load->model("notification");
+                            $data["insurence_date"] = $this->notification->insurence_date();
+                            $data["revenue_license_date"] = $this->notification->revenue_license_date();
+                            $data["car_booking_notification"] = $this->notification->car_booking_notification();
+                            $data["car_not_recive"] = $this->notification->car_not_recive();
+
+                            $this->load->model('StaffModel');
+                            $data["staff_details"] = $this->StaffModel->getStaffDetails();
+                            $this->session->set_flashdata('profile_status', 'Profile Updated Successfully!');
+                            $this->session->set_userdata('user_image',$image_path);
+                            $this->load->view('crms_profile', $data);
+                        }else{
+                            $this->load->model("Customer_message");
+                            $data["message_data"] = $this->Customer_message->getCustomMessageForHeader();
+                            $this->load->model("notification");
+                            $data["insurence_date"] = $this->notification->insurence_date();
+                            $data["revenue_license_date"] = $this->notification->revenue_license_date();
+                            $data["car_booking_notification"] = $this->notification->car_booking_notification();
+                            $data["car_not_recive"] = $this->notification->car_not_recive();
+
+                            $this->load->model('StaffModel');
+                            $data["staff_details"] = $this->StaffModel->getStaffDetails();
+                            $this->session->set_flashdata('profile_status', 'Profile Updated ansuccessfully!');
+                            $this->load->view('crms_profile', $data);
+                        }
+                    }
+                }
+            }
         }
  ?>

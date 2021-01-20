@@ -96,5 +96,14 @@
                 $this->db->where('is_deleted', 0);
                 return $this->db->update('user', $values);
             }
+
+            public function updateStaffprofile_pic($image_path){
+                $id = $this->session->userdata('user_id');
+                $value=array(
+                    'image'=>$image_path
+                );
+                $this->db->where('id',$id);
+                return $this->db->update('user', $value);
+            }
         }
  ?>

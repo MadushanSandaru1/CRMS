@@ -60,6 +60,7 @@
                             $today=date("Y-m-d");
                             foreach($revenue_license_date->result() as $row){
                                 $after_one_year=date("Y-m-d",strtotime($row->revenue_license_date."+365 day"));
+                                $min_date_revenue_license=date("Y-m-d",strtotime($after_one_year."-30 day"));
                                 $today=date("Y-m-d");
                                 if( $today> $after_one_year) {
                                     $txt_coloe = "#ff0000";
@@ -69,7 +70,8 @@
                                     $exp="will expire on";
                                 }
                         ?>
-                        <div class="alert notification  text-black" data-toggle="modal" data-target="#revenueL" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
+                        <div class="alert notification  text-black" data-toggle="modal" data-target="#
+" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
                             <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
                             <label class="mr-10">Revenue License <b><?php echo $row->registered_number;?></b> vehicle <?php echo $exp;?> <b><?php echo $after_one_year;?>.</b></label>
                         </div>
@@ -79,6 +81,7 @@
                         <?php
                             foreach($insurence_date->result() as $row){
                                 $after_one_year=date("Y-m-d",strtotime($row->insurence_date."+365 day"));
+                                $min_date_insurence=date("Y-m-d",strtotime($after_one_year."-30 day"));
                                 if( $today> $after_one_year) {
                                     $bg_coloe = "#ff0000";
                                     $exp = "expired";
@@ -154,7 +157,7 @@
                                         <label>New Date : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="date" name="revenueL_date" class="form-control" max="<?php echo $today;?>" value="<?php echo $today;?>" style="width: 100%;">
+                                    <input type="date" name="revenueL_date" class="form-control" min="<?php echo $min_date_revenue_license;?>" max="<?php echo $today;?>" value="<?php echo $today;?>" style="width: 100%;">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -197,7 +200,7 @@
                                         <label>New Date : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="date" name="insurance_date" class="form-control" value="<?php echo $today;?>" max="<?php echo $today;?>" style="width: 100%;">
+                                    <input type="date" name="insurance_date" class="form-control" value="<?php echo $today;?>" min="<?php echo $min_date_insurence;?>" max="<?php echo $today;?>" style="width: 100%;">
                                     <small class="text-danger"><?php echo form_error('insurance_date'); ?></small>
                                 </div>
                             </div>
