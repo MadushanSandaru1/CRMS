@@ -109,4 +109,43 @@ class Guarantor extends CI_Controller
     }
     //** report generator function **
 
+    public function update_guarantor(){
+        $this->form_validation->set_rules('update_guarantorPhone','Phone Number','required');
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_tempdata('form','update_form',5);
+
+            $this->load->model("Customer_message");
+            $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+            $this->load->model("notification");
+            $data["insurence_date"]=$this->notification->insurence_date();
+            $data["revenue_license_date"]=$this->notification->revenue_license_date();
+            $data["car_booking_notification"]=$this->notification->car_booking_notification();
+            $data["car_not_recive"]=$this->notification->car_not_recive();
+
+            $this->load->model("Guarantor_Model");
+            $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
+            $data['reserved_data'] = $this->Guarantor_Model->getReservedData();
+            $this->load->view('crms_guarantor', $data);
+        }else {
+            $this->load->model('Guarantor_Model');
+            $response = $this->Guarantor_Model->update_guarantor();
+
+            if($response){
+                $this->session->set_tempdata('form','add_form',5);
+                $this->load->model("Customer_message");
+                $data["message_data"] = $this->Customer_message->getCustomMessageForHeader();
+                $this->load->model("notification");
+                $data["insurence_date"] = $this->notification->insurence_date();
+                $data["revenue_license_date"] = $this->notification->revenue_license_date();
+                $data["car_booking_notification"] = $this->notification->car_booking_notification();
+                $data["car_not_recive"] = $this->notification->car_not_recive();
+
+                $this->load->model("Guarantor_Model");
+                $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
+                $data['reserved_data'] = $this->Guarantor_Model->getReservedData();
+                $this->session->set_flashdata('guarantor_status', 'Data Updated Successfully!');
+                $this->load->view('crms_guarantor', $data);
+            }
+        }
+    }
 }

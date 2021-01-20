@@ -227,11 +227,6 @@
                                     </div>
                                     <small class="text-danger"><?php echo form_error('staff_picture'); ?></small>
                                 </div>
-
-
-                                <div class="form-group mt-3">
-                                    <label for="password"><i class="mdi mdi-star-circle text-danger"></i> <b>The password will be generated automatically and will be sent to the email you entered.</b></label>
-                                </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
                                 <button class="btn btn-light">Cancel</button>
                             <?php echo form_close(); ?>

@@ -53,4 +53,15 @@ class VehicleReturnModel extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    //meka daddi advance payment dila tynw nm adu karnn
+    public function insertVehicleIncome($vehicle_id, $advanced_payment){
+        $vehicle_expense = array(
+            'vehicle_id' => $vehicle_id,
+            'type' => "I",
+            'date' => Date('Y-m-d\TH:i',time()),
+            'amount' => $advanced_payment
+        );
+
+        return $this->db->insert('transaction',$vehicle_expense);
+    }
 }

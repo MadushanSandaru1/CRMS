@@ -27,7 +27,7 @@
         <div class="row">
 
             <!-- add guarantor form start-->
-            <div class="col-12 grid-margin stretch-card">
+            <div class="col-12 grid-margin stretch-card" id="add_guarantor">
                 <div class="card">
                   <div class="card-body">
 
@@ -117,6 +117,78 @@
                   </div>
                 </div>
             </div>
+
+            <!--update guarantor-->
+            <div class="col-12 grid-margin stretch-card" id="update_guarantor">
+                <div class="card">
+                  <div class="card-body">
+
+                  <?php
+                      if($this->session->flashdata('guarantor_status'))
+                      {
+                  ?>
+                          <div class="alert alert-success" role="alert">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <?php
+                                echo $this->session->flashdata('guarantor_status');
+                                if ($this->session->tempdata('report_details'))
+                                    echo "<a href='".base_url('index.php/Guarantor/report_guarantor/'.$this->session->tempdata('report_details'))."' target='_blank'> print report</a>";
+
+                              ?>
+                          </div>
+                          <br>
+                  <?php
+                      }
+                  ?>
+                      <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#updateguarantor" aria-expanded="false" aria-controls="viewDetails"> Update Guarantor Details</button>
+
+                      <div class="collapse " id="updateguarantor" aria-labelledby="customRadioInline2">
+                      <?php echo form_open_multipart('Guarantor/update_guarantor');  ?>
+                          <input type="hidden" id="update_guarantorID" name="update_guarantorID">
+                        <div class="form-group">
+                            <label for="reservedID"><b>Reserved ID</b></label>
+                            <input type="text" class="form-control" name="update_reserved_guarantorID" id="update_reserved_guarantorID" readonly>
+                            <small class="text-danger"><?php echo form_error('reservedID'); ?></small>
+                        </div>
+                      <div class="form-group">
+                          <label for="guarantorName">Name</label>
+                          <input type="text" class="form-control" name="update_guarantorName" id="update_guarantorName" readonly>
+                          <small class="text-danger"><?php //echo form_error('guarantorName'); ?></small>
+                      </div>
+                      <div class="form-group">
+                          <label for="guarantorNIC">NIC</label>
+                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="update_guarantorNIC" name="guarantorNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>" readonly>
+                          <small class="text-warning" id="nic_war ning"></small>
+                          <small class="text-danger"><?php echo form_error('guarantorNIC'); ?></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="guarantorPhone">Phone</label>
+                        <input type="text" class="form-control" id="update_guarantorPhone" name="update_guarantorPhone" placeholder="0711234567" pattern="0[0-9]{9}" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
+                          <small class="text-danger"><?php echo form_error('guarantorPhone'); ?></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="guarantorAddress">Address</label>
+                        <textarea class="form-control" id="update_guarantorAddress" name="update_guarantorAddress" rows="4" placeholder="address"> </textarea>
+                          <small class="text-danger"><?php echo form_error('guarantorAddress'); ?></small>
+                      </div>
+<!--                      <div class="form-group">-->
+<!--                        <label>NIC Copy</label>-->
+<!--                        <input type="file" name="nicImage" class="file-upload-default">-->
+<!--                          <div class="input-group col-xs-12">-->
+<!--                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">-->
+<!--                          <span class="input-group-append">-->
+<!--                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>-->
+<!--                          </span>-->
+<!--                        </div>-->
+<!--                          <small class="text-danger">--><?php //echo form_error('nicImage'); ?><!--</small>-->
+<!--                      </div>-->
+                      <button type="submit" class="btn btn-gradient-primary mr-2" id="submit">Submit</button>
+                      <button type="reset" class="btn btn-light">Cancel</button>
+                      <?php echo form_close();  ?>
+                      </div>
+                  </div>
+                </div>
+            </div>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -151,7 +223,7 @@
                                 ?>
                                         <tr>
                                             <td><?php echo $data_row->id; ?></td>
-                                            <td> <?php echo $data_row->reserved_id; ?> </td>
+                                            <td><?php echo $data_row->reserved_id;?> </td>
                                             <td><?php echo $data_row->name; ?></td>
                                             <td><?php echo $data_row->nic; ?></td>
                                             <td><?php echo $data_row->phone; ?></td>
@@ -160,7 +232,7 @@
                                         <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                             <td>
                                                 <a href="<?php echo base_url('index.php/Guarantor/report_guarantor/'.$data_row->reserved_id); ?>" target="_blank"><span class="mdi mdi-printer"> Report</span></a>
-                                                <a href=""><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
+                                                <a  id="view" data-toggle="collapse" href="#updateguarantor" aria-expanded="false" aria-controls="updateguarantor"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_guarantor('<?php echo $data_row->id;?>','<?php echo $data_row->reserved_id;?>','<?php echo $data_row->name;?>','<?php echo $data_row->nic;?>','<?php echo $data_row->phone;?>','<?php echo $data_row->address;?>')">Edit </span></a>
                                                 <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_guarantor('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                             </td>
                                         <?php } ?>
@@ -269,9 +341,39 @@
                     }
                 }
             }
+
+            function update_guarantor(id,resrved_id,name,nic,phone,add){
+                document.getElementById("add_guarantor").style.display = "none";
+                document.getElementById("update_guarantor").style.display = "block";
+
+                document.getElementById("update_guarantorID").value = id;
+                document.getElementById("update_reserved_guarantorID").value = resrved_id;
+                document.getElementById("update_guarantorName").value = name;
+                document.getElementById("update_guarantorNIC").value = nic;
+                document.getElementById("update_guarantorPhone").value = phone;
+                document.getElementById("update_guarantorAddress").value = add;
+                // document.getElementById("update_guarantorAddress").value = address;
+            }
         </script>
 
     </div>
     <!-- content-wrapper ends -->
 
 <?php require_once 'crms_footer.php';?>
+
+<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+    <script>
+        document.getElementById("add_guarantor").style.display = "block";
+        document.getElementById("update_guarantor").style.display = "none";
+    </script>
+<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+    <script>
+        document.getElementById("update_guarantor").style.display = "block";
+        document.getElementById("add_guarantor").style.display = "none";
+    </script>
+<?php }else{ ?>
+    <script>
+        document.getElementById("add_guarantor").style.display = "block";
+        document.getElementById("update_guarantor").style.display = "none";
+    </script>
+<?php } ?>
