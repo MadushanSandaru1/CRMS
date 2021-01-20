@@ -148,22 +148,25 @@ With our extensive range of high end cars, classic cars and something more comfo
                     </div>
                     <div class="from-group">
 
-                        <input  class="<?php if(form_error('name')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>"  type="text" id="name" name="name" placeholder="Your name" value="<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
+                        <input  class="<?php if(form_error('name')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>"  type="text" id="name" name="name" placeholder="Your name" maxlength="100" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed" value="<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('name'); ?></small>
 
-                        <input class="<?php if(form_error('nic')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="text" id="nic" name="nic" placeholder="NIC number" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>">
+                        <input class="<?php if(form_error('nic')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="text" id="nic" name="nic" placeholder="NIC number" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" maxlength="12" title="Please enter a according to correct pattern" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>">
                         <small class="text-danger"><?php echo form_error('nic'); ?></small>
 
-                        <input class="<?php if(form_error('email')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="email" id="email" name="email" placeholder="Email address" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
+                        <input class="<?php if(form_error('email')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="email" id="email" name="email" placeholder="Email address" placeholder="example@domain.com" maxlength="100" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('email'); ?></small>
 
-                        <input class="<?php if(form_error('phone')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="tel" id="phone" name="phone" placeholder="Phone number" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>">
-                        <small class="text-danger"><?php echo form_error('phone'); ?></small>
+                        <input class="<?php if(form_error('phone')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" type="tel" id="phone" name="phone" placeholder="Phone number" placeholder="0xxxxxxxxx" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>"><small class="text-danger"><?php echo form_error('phone'); ?></small>
 
-                        <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"> <?php if($this->session->tempdata('msg_fill')) echo $this->session->tempdata('msg_fill'); ?> </textarea>
+                        <textarea class="form-control txt-field" placeholder="Message" maxlength="255" name="msg" id="msg"><?php if($this->session->tempdata('msg_fill')) echo $this->session->tempdata('msg_fill'); ?></textarea>
                         <small class="text-danger"><?php echo form_error('msg'); ?></small>
 
                         <input type="hidden" name="status" id="status" value="0">
+
+                        <!-- fouces if error ocurred -->
+                        <div id="error_focus_point" tabindex="1"></div>
+
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -320,10 +323,17 @@ With our extensive range of high end cars, classic cars and something more comfo
         document.getElementById("drop_off").min  = min;
     }
 
-    
+
+
+    <?php if(validation_errors()) { ?>
+            document.getElementById('error_focus_point').focus();
+    <?php  } ?>
 
 
 </script>
+
+
+
 
 
 <?php
