@@ -80,13 +80,13 @@
                           </div> 
 
                         </div>
-                        <input type="hidden" name="avatarReady" id="InputAvatar" value= "<?php if($this->session->tempdata('avatar_fill')) echo $this->session->tempdata('avatar_fill'); ?>" > 
+                        <input type="hidden" name="avatarReady" id="InputAvatar" value= "<?php if($this->session->tempdata('avatar_fill')) echo $this->session->tempdata('avatar_fill'); ?>"> 
                       </div>
 
 
                       <div class="form-group">
                         <label for="InputName">Name</label>
-                        <input type="text" class="form-control" id="InputName" placeholder="Name" name="name" value= "<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
+                        <input type="text" class="form-control" id="InputName" placeholder="Name" name="name" maxlength="100" value= "<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
                           <small class="text-danger"><?php echo form_error('name'); ?></small>
                       </div>
 
@@ -98,7 +98,7 @@
 
                       <div class="form-group">
                         <label for="InputEmail">Email address</label>
-                        <input type="email" class="form-control" id="InputEmail" placeholder="Email address" name="email" value= "<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
+                        <input type="email" class="form-control" id="InputEmail" placeholder="Email address" name="email"  maxlength="100" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('email'); ?></small>
                       </div>
 
@@ -110,7 +110,7 @@
 
                       <div class="form-group">
                         <label for="InputAddress">Address</label>
-                        <textarea class="form-control" id="InputAddress" rows="4" placeholder="Address" name="address"> <?php if($this->session->tempdata('address_fill')) echo $this->session->tempdata('address_fill'); ?> </textarea>
+                        <textarea class="form-control" id="InputAddress" rows="4" placeholder="Address" name="address" maxlength="255"> <?php if($this->session->tempdata('address_fill')) echo $this->session->tempdata('address_fill'); ?> </textarea>
                         <small class="text-danger"><?php echo form_error('address'); ?></small>
                       </div>
 
@@ -159,7 +159,7 @@
                   </div>
                 </div>
               </div>
-            <!-- add customer form end-->
+            <!-- update customer form end-->
 
 
             
@@ -358,10 +358,16 @@
                                   <td><?php echo $row->email;?></td>
                                   <td><?php echo $row->phone;?></td>
                                   <td><?php echo $row->address;?></td>
-                                  <td><a href="<?php echo base_url('assets/images/customers/'.$data_row->image); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                  <td><a href="<?php echo base_url('assets/images/customers/'.$row->image); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                   <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->nic_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
                                   <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->license_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
-                                  <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->light_bill_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+
+                                  <?php if($row->light_bill_copy!=null){ ?>
+                                    <td><a href="<?php echo base_url('assets/images/customers/documentation/'.$row->light_bill_copy); ?>" target="_blank"><span class="mdi mdi-content-copy"> View</span></a></td>
+                                  <?php }else{ ?>
+                                    <td><span class="mdi mdi-content-copy text-muted"> View</span></td>
+                                  <?php } ?>
+
                               <?php if($this->session->userdata('user_role') == 'admin'){ ?>
                                   <td>
                                       <label class="cursor-pointer" onclick="update_customer(<?php 
@@ -438,13 +444,7 @@
               </script> -->
 
 
-             
-
-        <?php if(validation_errors()) { ?>
-            <script>
-                document.getElementById("addCustomer").classList.add("show");
-            </script>
-        <?php } ?>
+            
 
         <script type="text/javascript">
             // delete details
@@ -486,15 +486,20 @@
     <!-- content-wrapper ends -->
 
 
+<?php if(validation_errors()) { ?>
+    <script>
+        document.getElementById("addCustomer").classList.add("show");
+    </script>
+<?php } ?>
 
 
-<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+<?php  if ($this->session->tempdata('form')=='customer_add_form') { ?>
 <script>
         document.getElementById("add_div").style.display = "block";
         document.getElementById("update_div").style.display = "none";
         document.getElementById("addCustomer").classList.add("show");
 </script>
-<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+<?php }else if($this->session->tempdata('form')=='customer_update_form'){ ?>
 <script>
         document.getElementById("update_div").style.display = "block";
         document.getElementById("add_div").style.display = "none";

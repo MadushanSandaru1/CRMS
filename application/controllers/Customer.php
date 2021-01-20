@@ -58,7 +58,7 @@
                 // $this->session->set_tempdata('email_fill', $this->input->post('email', TRUE), 5);
                 // $this->session->set_tempdata('phone_fill', $this->input->post('phone', TRUE), 5);
                 // $this->session->set_tempdata('msg_fill', $this->input->post('msg', TRUE), 5);
-                $this->session->set_tempdata('form','add_form',5);
+                $this->session->set_tempdata('form','customer_add_form',5);
             
 
 
@@ -146,7 +146,7 @@
                 $this->session->set_tempdata('update_email_fill', $this->input->post('update_email', TRUE), 5);
                 $this->session->set_tempdata('update_phone_fill', $this->input->post('update_phone', TRUE), 5);
                 $this->session->set_tempdata('update_address_fill', $this->input->post('update_address', TRUE), 5);
-                $this->session->set_tempdata('form','update_form',5);
+                $this->session->set_tempdata('form','customer_update_form',5);
 
 
                 if(!empty($this->input->post('nic_copy_proofment'))){

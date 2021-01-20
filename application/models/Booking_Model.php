@@ -74,6 +74,7 @@ class Booking_Model extends CI_Model{
         $values = array(
         'customer_nic' => $this->input->post('update_nic',TRUE),
         'customer_name' => $this->input->post('update_name',TRUE),
+        'customer_email' => $this->input->post('update_email',TRUE),
         'customer_phone' => $this->input->post('update_phone',TRUE),
         'vehicle_id' => $this->input->post('update_vehicle',TRUE),
         'from_date' => $this->input->post('update_pickup',TRUE),

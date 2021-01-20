@@ -19,15 +19,15 @@
         var longitude = parseFloat(localStorage.getItem("Longitude"));
         var Latitude = parseFloat(localStorage.getItem("Latitude"));
 
-        var uluru = { lat: Latitude, lng: longitude };
+        var current_location = { lat: Latitude, lng: longitude };
         // The map, centered at Uluru
         var map = new google.maps.Map(document.getElementById("map"), {
           zoom: 14,
-          center: uluru,
+          center: current_location,
         });
         
         var marker = new google.maps.Marker({
-            position: uluru,
+            position: current_location,
             map: map,
         });
 
@@ -64,6 +64,7 @@
 
 <script type="text/javascript"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxrMJZbOnpAbPctXwashBp_dmlC-g0UTs&callback=initMap"> </script>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAscBgnAtS8S0ItouY5wokjOlZmQlFrGRIk=initMap"> </script> -->
 <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2bXKNDezDf6YNVc-SauobynNHPo4RJb8&callback=initMap"> </script> -->
 
 

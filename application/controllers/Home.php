@@ -190,7 +190,7 @@ class Home extends CI_Controller {
         $this->load->model("Guarantor_Model");
         $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
         $data['reserved_data'] = $this->Guarantor_Model->getReservedData();
-
+        $this->session->set_tempdata('form','add_form',5);
         $this->load->view('crms_guarantor', $data);
     }
 
@@ -373,6 +373,10 @@ class Home extends CI_Controller {
         $data["revenue_license_date"]=$this->notification->revenue_license_date();
         $data["car_booking_notification"]=$this->notification->car_booking_notification();
         $data["car_not_recive"]=$this->notification->car_not_recive();
+
+
+        $this->load->model("Expense_Model");
+        $data['vehicle_data'] = $this->Expense_Model->getVehicleData();
 
         $this->load->view('crms_inc_exp_report', $data);
     }
