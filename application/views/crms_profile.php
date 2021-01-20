@@ -108,6 +108,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="new_password">New password</label>
+                                    <div id="error_focus_point" tabindex="1"></div>
                                     <input type="password" class="form-control" name="new_password" id="new_password">
                                     <small class="text-danger"><?php echo form_error('new_password'); ?></small>
                                 </div>
@@ -129,6 +130,14 @@
         <script>
             let address=<?php echo json_encode($this->session->userdata('user_address')); ?>;
             document.getElementById("profileAddress").value = address;
+
+            <?php
+                if(validation_errors()) {
+            ?>
+            document.getElementById('error_focus_point').focus();
+            <?php
+                }
+            ?>
 
             //password visibility
             function passwordShowHide() {
