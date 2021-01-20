@@ -57,4 +57,17 @@ class Guarantor_Model extends CI_Model
         return $this->db->get();;
     }
     //** guarantor report generate function **
+
+    public function update_guarantor(){
+        $id = $this->input->post('update_guarantorID',TRUE);
+        $phone_no = $this->input->post('update_guarantorPhone',TRUE);
+        $address = $this->input->post('update_guarantorAddress',TRUE);
+
+        $values=array(
+            'phone'=>$phone_no,
+            'address'=>$address
+        );
+        $this->db->where('id',$id);
+        return $this->db->update('guarantor', $values);
+    }
 }

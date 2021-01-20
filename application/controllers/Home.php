@@ -184,7 +184,7 @@ class Home extends CI_Controller {
         $this->load->model("Guarantor_Model");
         $data['guarantor_data'] = $this->Guarantor_Model->getGuarantorData();
         $data['reserved_data'] = $this->Guarantor_Model->getReservedData();
-
+        $this->session->set_tempdata('form','add_form',5);
         $this->load->view('crms_guarantor', $data);
     }
 

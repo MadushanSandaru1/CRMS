@@ -90,6 +90,7 @@
             public function updateStaffDetails(){
                 $this->form_validation->set_rules('update_email',' E-Mail ID','required');
                 $this->form_validation->set_rules('update_phone_no','Phone Number','required');
+                $this->form_validation->set_rules('update_guarantorAddress','Address','required');
 
                 if($this->form_validation->run() == FALSE){
                     $this->session->set_tempdata('form','update_form',5);
