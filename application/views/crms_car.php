@@ -52,6 +52,7 @@
 
                         <div class="collapse " id="addVehicle" aria-labelledby="customRadioInline2">
                         <?php echo form_open_multipart('Vehicle/add_vehicle');  ?>
+                            <br>
                             <div class="form-group">
                                 <label for="vehicleType">Type</label>
                                 <input type="text" class="form-control" id="vehicleType" name="vehicleType" placeholder="Type" value="<?php if($this->session->tempdata('vehicleType_fill')) echo $this->session->tempdata('vehicleType_fill'); ?>">
@@ -64,7 +65,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="vehicleSeat">Seat</label>
-                                <input type="number" class="form-control" min="1" id="vehicleSeat" name="vehicleSeat" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="No of Seat" value="<?php if($this->session->tempdata('vehicleSeat_fill')) echo $this->session->tempdata('vehicleSeat_fill'); ?>">
+                                <input type="number" class="form-control" min="4" id="vehicleSeat" name="vehicleSeat" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="No of Seat" value="<?php if($this->session->tempdata('vehicleSeat_fill')) echo $this->session->tempdata('vehicleSeat_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleSeat'); ?></small>
                             </div>
 
@@ -130,24 +131,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="vehiclePrice">Rental Price per Day</label>
-                                <input type="number" class="form-control" id="vehiclePrice" name="vehiclePrice" placeholder="1000.00" value="<?php if($this->session->tempdata('vehiclePrice_fill')) echo $this->session->tempdata('vehiclePrice_fill'); ?>">
+                                <input type="number" class="form-control" min="0" id="vehiclePrice" name="vehiclePrice" placeholder="1000.00" value="<?php if($this->session->tempdata('vehiclePrice_fill')) echo $this->session->tempdata('vehiclePrice_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehiclePrice'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleAddKM">Additional Price</label>
-                                <input type="number" class="form-control mb-2" id="vehicleAddKM" name="vehicleAddKM" placeholder="Rupees Per KM" value="<?php if($this->session->tempdata('vehicleAddKM_fill')) echo $this->session->tempdata('vehicleAddKM_fill'); ?>">
+                                <input type="number" class="form-control mb-2" min="0" id="vehicleAddKM" name="vehicleAddKM" placeholder="Rupees Per KM" value="<?php if($this->session->tempdata('vehicleAddKM_fill')) echo $this->session->tempdata('vehicleAddKM_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleAddKM'); ?></small>
-                                <input type="number" class="form-control" id="vehicleAddHour" name="vehicleAddHour" placeholder="Rupees Per Hour" value="<?php if($this->session->tempdata('vehicleAddHour_fill')) echo $this->session->tempdata('vehicleAddHour_fill'); ?>">
+                                <input type="number" class="form-control" min="0" id="vehicleAddHour" name="vehicleAddHour" placeholder="Rupees Per Hour" value="<?php if($this->session->tempdata('vehicleAddHour_fill')) echo $this->session->tempdata('vehicleAddHour_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleAddHour'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleInsurance">Insurance Date</label>
-                                <input type="date" class="form-control" id="vehicleInsurance" name="vehicleInsurance" placeholder="Insurance Date" value="<?php if($this->session->tempdata('vehicleInsurance_fill')) echo $this->session->tempdata('vehicleInsurance_fill'); ?>">
+                                <input type="date" class="form-control"  id="vehicleInsurance" name="vehicleInsurance" placeholder="Insurance Date" max="<?php echo Date('Y-m-d',time()) ?>" value="<?php if($this->session->tempdata('vehicleInsurance_fill')) echo $this->session->tempdata('vehicleInsurance_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleInsurance'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleLicense">Revenue License Date</label>
-                                <input type="date" class="form-control" id="vehicleLicense" name="vehicleLicense" placeholder="Revenue License Date" value="<?php if($this->session->tempdata('vehicleLicense_fill')) echo $this->session->tempdata('vehicleLicense_fill'); ?>">
+                                <input type="date" class="form-control"  id="vehicleLicense" name="vehicleLicense" placeholder="Revenue License Date" max="<?php echo Date('Y-m-d',time()) ?>" value="<?php if($this->session->tempdata('vehicleLicense_fill')) echo $this->session->tempdata('vehicleLicense_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleLicense'); ?></small>
                             </div>
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
@@ -194,7 +195,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="vehicleSeat">Seat</label>
-                                <input type="number" class="form-control" min="1" id="u_vehicleSeat" name="u_vehicleSeat" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="No of Seat" value="<?php if($this->session->tempdata('vehicleSeat_fill')) echo $this->session->tempdata('vehicleSeat_fill'); ?>">
+                                <input type="number" class="form-control" min="4" id="u_vehicleSeat" name="u_vehicleSeat" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="No of Seat" value="<?php if($this->session->tempdata('vehicleSeat_fill')) echo $this->session->tempdata('vehicleSeat_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleSeat'); ?></small>
                             </div>
 
@@ -262,12 +263,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="vehicleInsurance">Insurance Date</label>
-                                <input type="date" class="form-control" id="u_vehicleInsurance" name="u_vehicleInsurance" placeholder="Insurance Date" value="<?php if($this->session->tempdata('vehicleInsurance_fill')) echo $this->session->tempdata('vehicleInsurance_fill'); ?>">
+                                <input type="date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" id="u_vehicleInsurance" name="u_vehicleInsurance" placeholder="Insurance Date" value="<?php if($this->session->tempdata('u_insurence_date_fill')) echo $this->session->tempdata('vehicleInsurance_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleInsurance'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleLicense">Revenue License Date</label>
-                                <input type="date" class="form-control" id="u_vehicleLicense" name="u_vehicleLicense" placeholder="Revenue License Date" value="<?php if($this->session->tempdata('vehicleLicense_fill')) echo $this->session->tempdata('vehicleLicense_fill'); ?>">
+                                <input type="date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" id="u_vehicleLicense" name="u_vehicleLicense" placeholder="Revenue License Date" value="<?php if($this->session->tempdata('u_revenue_date_fill')) echo $this->session->tempdata('vehicleLicense_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleLicense'); ?></small>
                             </div>
                             <div class="form-group row">
@@ -343,7 +344,7 @@
                                             <td><?php echo $data_row->registered_number; ?></td>
                                             <td><?php echo $data_row->seat; ?></td>
                                             <td><?php if($data_row->fuel_type == 'P') echo "Petrol"; else echo "Diesel"; ?></td>
-                                            <td><?php if($data_row->ac == 'A') echo "AC"; else echo "Non A/C"; ?></td>
+                                            <td><?php if($data_row->ac == 1) echo "AC"; else echo "Non A/C"; ?></td>
                                             <td><?php if($data_row->transmission == 'A') echo "Auto"; else echo "Manual"; ?></td>
                                             <td><?php echo number_format($data_row->price_per_day,2); ?></td>
                                             <td><?php echo number_format($data_row->additional_price_per_km,2); ?></td>
@@ -353,6 +354,7 @@
                                             <td><?php echo $data_row->system_registered_date; ?></td>
                                             <td><?php echo $data_row->insurence_date; ?></td>
                                             <td><?php echo $data_row->revenue_license_date; ?></td>
+
                                             <td>
                                                 <a  id="view" data-toggle="collapse" href="#updateVehicle" aria-expanded="false" aria-controls="updateVehicle">
                                                     <span class="mdi mdi-eyedropper text-success ml-4"
@@ -432,7 +434,9 @@
             function delete_vehicle(del_vehicle_id){
                 document.getElementById("delvehicleid").value = del_vehicle_id;
             }
+
             function update_car(id,title,reg_no,seat,fuel,ac,transmission,img,day_price,per_km,per_hour,insurunce,revenue_licence){
+
 
                 //display form if clickd edit in view table
                 document.getElementById("add_vehicle").style.display = "none";
@@ -440,10 +444,10 @@
 
                 //load data into form
                 document.getElementById("u_vehicle_id").value = id;
-                document.getElementById("u_vehicleType").value = title;
+                document.getElementById("u_vehicleType").value = insurunce;
                 document.getElementById("u_vehicleRegisteredNumber").value = reg_no;
                 document.getElementById("u_vehicleSeat").value = seat;
-                // document.getElementById("u_vehicleFuelType").className = fuel;
+                //document.getElementById('u_vehicleFuelType').className=fuel;
                 // document.getElementById("u_radioAC").className = ac;
                 // document.getElementById("u_radioTransmission").className = transmission;
                 //document.getElementById("u_vehicleImage").value = img;

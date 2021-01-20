@@ -87,8 +87,9 @@ class Vehicle extends CI_Controller
 
     public function update_vehicle()
     {
+
         $this->form_validation->set_rules('u_vehicleType', 'Vehicle Type', 'required|max_length[255]');
-        $this->form_validation->set_rules('u_vehicleRegisteredNumber', 'Vehicle Registered Number', 'required|is_unique[vehicle.registered_number]|max_length[15]');
+        $this->form_validation->set_rules('u_vehicleRegisteredNumber', 'Vehicle Registered Number', 'required|max_length[15]');
         $this->form_validation->set_rules('u_vehicleSeat', 'Vehicle Seat', 'required');
         $this->form_validation->set_rules('u_vehicleFuelType', 'Vehicle Fuel Type', 'required');
         $this->form_validation->set_rules('u_vehiclePrice', 'Vehicle Price', 'required');
@@ -162,4 +163,38 @@ class Vehicle extends CI_Controller
         }
     }
 
+    public function setLocalDateTime($insuarance,$revenue_d)
+    {
+        $insurance_Time = new DateTime($insuarance);
+        $insurance_Time_local_time = $insurance_Time->format("Y-m-d\TH:i:s");
+
+        $revenueTime = new DateTime($revenue_d);
+        $revenue_Time_local_time = $revenueTime->format("Y-m-d\TH:i:s");
+
+        $this->session->set_tempdata('u_insurence_date_fill',$insurance_Time_local_time,10);
+        $this->session->set_tempdata('u_revenue_date_fill',$revenue_Time_local_time,10);
+    }
+
+    public function uploadFiles($file){
+        $image_data = null;
+
+        $config['upload_path'] = './assets/images/vehicles/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        /*$config['max_size'] = '1000000';
+        $config['max_width']  = '1024000';
+        $config['max_height']  = '768000';*/
+        $config['encrypt_name'] = TRUE;
+        $config['overwrite'] = FALSE;
+        $this->load->library('upload',$config);
+
+        if ($this->upload->do_upload($file)){
+            $image_data = $this->upload->data();
+
+        }
+        else{
+            echo $this->upload->display_errors();
+        }
+
+        return $image_data;
+    }
 }
