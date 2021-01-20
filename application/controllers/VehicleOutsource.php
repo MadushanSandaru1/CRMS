@@ -24,6 +24,16 @@ class VehicleOutsource extends CI_Controller
 
         if($this->form_validation->run() == FALSE)
         {
+            $this->session->set_tempdata('title_fill',$this->input->post('vehicle_title',TRUE),5);
+            $this->session->set_tempdata('registered_no_fill',$this->input->post('registered_no',TRUE),5);
+            $this->session->set_tempdata('no_of_seat_fill',$this->input->post('no_of_seat',TRUE),5);
+            $this->session->set_tempdata('fuel_type_fill',$this->input->post('fuel_type',TRUE),5);
+            $this->session->set_tempdata('price_per_day_fill',$this->input->post('price_per_day',TRUE),5);
+            $this->session->set_tempdata('per_km_fill',$this->input->post('per_km',TRUE),5);
+            $this->session->set_tempdata('per_hour_fill',$this->input->post('per_hour',TRUE),5);
+            $this->session->set_tempdata('insurence_date_fill',$this->input->post('insurence_date',TRUE),5);
+            $this->session->set_tempdata('revenue_license_date_date_fill',$this->input->post('revenue_license_date',TRUE),5);
+
             $this->load->model("Customer_message");
             $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
             $this->load->model("notification");
@@ -227,6 +237,16 @@ class VehicleOutsource extends CI_Controller
 
         if($this->form_validation->run() == FALSE)
         {
+            $this->session->set_tempdata('u_title_fill',$this->input->post('u_vehicleTitle',TRUE),5);
+            $this->session->set_tempdata('u_registered_no_fill',$this->input->post('u_vehicleRegisteredNumber',TRUE),5);
+            $this->session->set_tempdata('u_no_of_seat_fill',$this->input->post('u_vehicleSeat',TRUE),5);
+            $this->session->set_tempdata('u_fuel_type_fill',$this->input->post('u_vehicleFuelType',TRUE),5);
+            $this->session->set_tempdata('u_price_per_day_fill',$this->input->post('u_vehiclePrice',TRUE),5);
+            $this->session->set_tempdata('u_per_km_fill',$this->input->post('u_vehicleAddKM',TRUE),5);
+            $this->session->set_tempdata('u_per_hour_fill',$this->input->post('u_vehicleAddHour',TRUE),5);
+            $this->session->set_tempdata('u_insurence_date_fill',$this->input->post('u_vehicleInsurance',TRUE),5);
+            $this->session->set_tempdata('u_revenue_license_date_date_fill',$this->input->post('u_vehicleLicense',TRUE),5);
+
             $this->load->model("Customer_message");
             $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
             $this->load->model("notification");
