@@ -23,6 +23,8 @@ class Vehicle extends CI_Controller
             $this->session->set_tempdata('vehicleRegisteredNumber_fill', $this->input->post('vehicleRegisteredNumber', TRUE), 5);
             $this->session->set_tempdata('vehicleSeat_fill', $this->input->post('vehicleSeat', TRUE), 5);
             $this->session->set_tempdata('vehicleFuelType_fill', $this->input->post('vehicleFuelType', TRUE), 5);
+            $this->session->set_tempdata('radioAC_fill', $this->input->post('radioAC', TRUE), 5);
+            $this->session->set_tempdata('radioTransmission_fill', $this->input->post('radioTransmission', TRUE), 5);
             $this->session->set_tempdata('vehicleImage_fill', $this->input->post('vehicleImage', TRUE), 5);
             $this->session->set_tempdata('vehiclePrice_fill', $this->input->post('vehiclePrice', TRUE), 5);
             $this->session->set_tempdata('vehicleAddKM_fill', $this->input->post('vehicleAddKM', TRUE), 5);
@@ -107,18 +109,20 @@ class Vehicle extends CI_Controller
         }
 
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_tempdata('vehicleType_fill', $this->input->post('u_vehicleType', TRUE), 5);
-            $this->session->set_tempdata('vehicleRegisteredNumber_fill', $this->input->post('u_vehicleRegisteredNumber', TRUE), 5);
-            $this->session->set_tempdata('vehicleSeat_fill', $this->input->post('u_vehicleSeat', TRUE), 5);
-            $this->session->set_tempdata('vehicleFuelType_fill', $this->input->post('u_vehicleFuelType', TRUE), 5);
-            //$this->session->set_tempdata('vehicleImage_fill', $this->input->post('update_vehicle_copy', TRUE), 5);
-            $this->session->set_tempdata('vehiclePrice_fill', $this->input->post('u_vehiclePrice', TRUE), 5);
-            $this->session->set_tempdata('vehicleAddKM_fill', $this->input->post('u_vehicleAddKM', TRUE), 5);
-            $this->session->set_tempdata('vehicleAddHour_fill', $this->input->post('u_vehicleAddHour', TRUE), 5);
-            $this->session->set_tempdata('vehicleInsurance_fill', $this->input->post('u_vehicleInsurance', TRUE), 5);
-            $this->session->set_tempdata('vehicleLicense_fill', $this->input->post('u_vehicleLicense', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleType_fill', $this->input->post('u_vehicleType', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleRegisteredNumber_fill', $this->input->post('u_vehicleRegisteredNumber', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleSeat_fill', $this->input->post('u_vehicleSeat', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleFuelType_fill', $this->input->post('u_vehicleFuelType', TRUE), 5);
+            $this->session->set_tempdata('u_radioAC_fill', $this->input->post('u_radioAC', TRUE), 5);
+            $this->session->set_tempdata('u_radioTransmission_fill', $this->input->post('u_radioTransmission', TRUE), 5);
+            //$this->session->set_tempdata('u_vehicleImage_fill', $this->input->post('update_vehicle_copy', TRUE), 5);
+            $this->session->set_tempdata('u_vehiclePrice_fill', $this->input->post('u_vehiclePrice', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleAddKM_fill', $this->input->post('u_vehicleAddKM', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleAddHour_fill', $this->input->post('u_vehicleAddHour', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleInsurance_fill', $this->input->post('u_vehicleInsurance', TRUE), 5);
+            $this->session->set_tempdata('u_vehicleLicense_fill', $this->input->post('u_vehicleLicense', TRUE), 5);
 
-            if(!empty($this->input->post('vehicle_proofment'))){
+            if(!empty($this->input->post())){
                 $this->session->set_tempdata('vehicleImage_fill', $this->input->post('vehicle_proofment', TRUE), 5);
             }
 
@@ -132,6 +136,7 @@ class Vehicle extends CI_Controller
             $data["revenue_license_date"]=$this->notification->revenue_license_date();
             $data["car_booking_notification"]=$this->notification->car_booking_notification();
             $data["car_not_recive"]=$this->notification->car_not_recive();
+
             $this->session->set_flashdata('vehicle_status', 'Unable Vehicle Update');
             $this->session->set_tempdata('form','update_form',5);
             $this->load->view('crms_car', $data);

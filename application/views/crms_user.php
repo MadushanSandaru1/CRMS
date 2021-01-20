@@ -36,20 +36,20 @@
             <?php 
                     $cashier_id="";
                     $admin_id="";
-                    for($i=0;$i<sizeof($staff_details);$i++)
+                    for($i=0;$i<sizeof($staff_details_for_id);$i++)
                     {
-                        if($staff_details[$i]->role == "cashier")
+                        if($staff_details_for_id[$i]->role == "cashier")
                         {
-                            $cashier_id = $staff_details[$i]->id;
+                            $cashier_id = $staff_details_for_id[$i]->id;
                             $cashier_id[5] = $cashier_id[5]+1;
                         }
                     }
 
-                    for($i=0;$i<sizeof($staff_details);$i++)
+                    for($i=0;$i<sizeof($staff_details_for_id);$i++)
                     {
-                        if($staff_details[$i]->role == "admin")
+                        if($staff_details_for_id[$i]->role == "admin")
                         {
-                            $admin_id = $staff_details[$i]->id;
+                            $admin_id = $staff_details_for_id[$i]->id;
                             $admin_id[5] = $admin_id[5]+1;
                         }
                     }
@@ -179,12 +179,12 @@
 
                                 <div class="form-group">
                                     <label for="full_name"><b>Full Name</b></label>
-                                    <input type="text" class="form-control" name="update_full_name" id="update_full_name" placeholder="A. B. Abhaya Car" value="<?php if($this->session->tempdata('ufull_name_fill')) echo $this->session->tempdata('ufull_name_fill'); ?>" maxlength="50" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed." readonly>
+                                    <input type="text" class="form-control" name="update_full_name" id="update_full_name" placeholder="A. B. Abhaya Car" value="<?php if($this->session->tempdata('ufull_name_fill')) echo $this->session->tempdata('ufull_name_fill'); ?>" maxlength="50" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed.">
                                     <small class="text-danger"><?php echo form_error('update_full_name'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="nic"><b>NIC</b></label>
-                                    <input type="text" class="form-control" name="update_nic" id="update_nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('unic_fill')) echo $this->session->tempdata('unic_fill'); ?>" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" title="Please enter a according to correct pattern." readonly>
+                                    <input type="text" class="form-control" name="update_nic" id="update_nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('unic_fill')) echo $this->session->tempdata('unic_fill'); ?>" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" title="Please enter a according to correct pattern.">
                                     <small class="text-danger"><?php echo form_error('update_nic'); ?></small>
                                 </div>
                                 <div class="form-group">
@@ -198,18 +198,12 @@
                                     <small class="text-danger"><?php echo form_error('update_phone_no'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="staff_picture"><b>Upload Picture</b></label>
-                                    <input type="file" name="update_staff_picture" class="file-upload-default">
-                                    <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder=".jpg | .png | .jpeg">
-                                        <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Browse</button>
-                                        </span>
-                                    </div>
-                                    <small class="text-danger"><?php echo form_error('update_staff_picture'); ?></small>
+                                    <label for="address"><b>Address</b></label>
+                                    <textarea  id="update_address" cols="30" rows="4" name="update_address" class="form-control" maxlength="255" placeholder="Beliatta, Matara."></textarea>
+                                    <small class="text-danger"><?php echo form_error('update_address'); ?></small>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <button type="reset" class="btn btn-light">Cancel</button>
                             <?php echo form_close(); ?>
                         </div>
                     </div>
@@ -363,7 +357,6 @@
         document.getElementById("update_email").value = email;
         document.getElementById("update_phone_no").value = phone;
         document.getElementById("update_address").value = address;
-
     }
 
 </script>
@@ -378,6 +371,13 @@
     <script>
         let address=<?php echo json_encode($this->session->tempdata('address_fill')); ?>;
         document.getElementById("address").value = address;
+    </script>
+<?php } ?>
+
+<?php if($this->session->tempdata('uaddress_fill')) { ?>
+    <script>
+        let address=<?php echo json_encode($this->session->tempdata('uaddress_fill')); ?>;
+        document.getElementById("update_address").value = address;
     </script>
 <?php } ?>
 

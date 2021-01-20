@@ -71,7 +71,7 @@
                                         }
                                     }
                                 } else {
-                                    echo "<option>Data not found</option>";
+                                    echo "<option disabled selected hidden>Data not found</option>";
                                 }
                                 ?>
 
@@ -80,23 +80,23 @@
                         </div>
                       <div class="form-group">
                           <label for="guarantorName">Name</label>
-                          <input type="text" class="form-control" id="guarantorName" name="guarantorName" placeholder="Name" value="<?php if($this->session->tempdata('guarantorName_fill')) echo $this->session->tempdata('guarantorName_fill'); ?>">
+                          <input type="text" class="form-control" id="guarantorName" name="guarantorName" placeholder="A. B. Abhaya Car" value="<?php if($this->session->tempdata('guarantorName_fill')) echo $this->session->tempdata('guarantorName_fill'); ?>" maxlength="100" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed.">
                           <small class="text-danger"><?php echo form_error('guarantorName'); ?></small>
                       </div>
                       <div class="form-group">
                           <label for="guarantorNIC">NIC</label>
-                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="guarantorNIC" name="guarantorNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
+                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="guarantorNIC" name="guarantorNIC" maxlength="12" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
                           <small class="text-warning" id="nic_warning"></small>
                           <small class="text-danger"><?php echo form_error('guarantorNIC'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="guarantorPhone">Phone</label>
-                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="0xxxxxxxxx" pattern="0[0-9]{9}" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>">
+                        <input type="text" class="form-control" id="guarantorPhone" name="guarantorPhone" placeholder="0xxxxxxxxx" value="<?php if($this->session->tempdata('guarantorPhone_fill')) echo $this->session->tempdata('guarantorPhone_fill'); ?>" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern">
                           <small class="text-danger"><?php echo form_error('guarantorPhone'); ?></small>
                       </div>
                       <div class="form-group">
-                        <label for="guarantorAddress">Address</label>
-                        <textarea class="form-control" id="guarantorAddress" name="guarantorAddress" rows="4" placeholder="address"> </textarea>
+                          <label for="guarantorAddress"><b>Address</b></label>
+                          <textarea  id="guarantorAddress" name="guarantorAddress" class="form-control" cols="30" rows="4" maxlength="255" placeholder="Beliatta, Matara."></textarea>
                           <small class="text-danger"><?php echo form_error('guarantorAddress'); ?></small>
                       </div>
                       <div class="form-group">
@@ -152,7 +152,7 @@
                         </div>
                       <div class="form-group">
                           <label for="guarantorName">Name</label>
-                          <input type="text" class="form-control" name="update_guarantorName" id="update_guarantorName" value="<?php if($this->session->tempdata('update_guarantorName_fill')) echo $this->session->tempdata('update_guarantorName_fill'); ?>">
+                          <input type="text" class="form-control" name="update_guarantorName" id="update_guarantorName" placeholder="A. B. Abhaya Car" value="<?php if($this->session->tempdata('update_guarantorName_fill')) echo $this->session->tempdata('update_guarantorName_fill'); ?>" maxlength="100" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed.">
                           <small class="text-danger"><?php echo form_error('update_guarantorName'); ?></small>
                       </div>
                       <div class="form-group">
@@ -163,12 +163,12 @@
                       </div>
                       <div class="form-group">
                         <label for="guarantorPhone">Phone</label>
-                        <input type="text" class="form-control" id="update_guarantorPhone" name="update_guarantorPhone" placeholder="0711234567" pattern="0[0-9]{9}" value="<?php if($this->session->tempdata('update_guarantorPhone_fill')) echo $this->session->tempdata('update_guarantorPhone_fill'); ?>">
+                        <input type="text" class="form-control" id="update_guarantorPhone" name="update_guarantorPhone" placeholder="0xxxxxxxxx" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern" value="<?php if($this->session->tempdata('update_guarantorPhone_fill')) echo $this->session->tempdata('update_guarantorPhone_fill'); ?>">
                           <small class="text-danger"><?php echo form_error('update_guarantorPhone'); ?></small>
                       </div>
                       <div class="form-group">
                         <label for="guarantorAddress">Address</label>
-                        <textarea class="form-control" id="update_guarantorAddress" name="update_guarantorAddress" rows="4" placeholder="address" value="<?php if($this->session->tempdata('update_guarantorAddress_fill')) echo $this->session->tempdata('update_guarantorAddress_fill'); ?>"> </textarea>
+                        <textarea class="form-control" id="update_guarantorAddress" name="update_guarantorAddress" cols="30" rows="4" maxlength="255" placeholder="Beliatta, Matara." value="<?php if($this->session->tempdata('update_guarantorAddress_fill')) echo $this->session->tempdata('update_guarantorAddress_fill'); ?>"> </textarea>
                           <small class="text-danger"><?php echo form_error('update_guarantorAddress'); ?></small>
                       </div>
 <!--                      <div class="form-group">-->
@@ -294,6 +294,13 @@
             <script>
                 let address=<?php echo json_encode($this->session->tempdata('guarantorAddress_fill')); ?>;
                 document.getElementById("guarantorAddress").value = address;
+            </script>
+        <?php } ?>
+
+        <?php if($this->session->tempdata('update_guarantorAddress_fill')) { ?>
+            <script>
+                let address=<?php echo json_encode($this->session->tempdata('update_guarantorAddress_fill')); ?>;
+                document.getElementById("update_guarantorAddress").value = address;
             </script>
         <?php } ?>
 

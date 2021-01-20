@@ -11,6 +11,10 @@ class Guarantor extends CI_Controller
         $this->form_validation->set_rules('guarantorNIC', 'Guarantor NIC number', 'required|min_length[9]|max_length[12]');
         $this->form_validation->set_rules('guarantorPhone', 'Guarantor Phone number', 'required|min_length[10]|max_length[10]');
         $this->form_validation->set_rules('guarantorAddress', 'Guarantor Address', 'required|max_length[255]');
+        if (empty($_FILES['nicImage']['name']))
+        {
+            $this->form_validation->set_rules('nicImage', 'NIC Copy', 'required');
+        }
         
 
         //When there are validation errors

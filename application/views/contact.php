@@ -71,21 +71,22 @@
 				<form class="form-area " id="myForm" method="post" class="contact-form text-right">
 					<div class="row">
 						<div class="col-lg-6 form-group">
-							<input name="message_name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" type="text">
+							<input name="message_name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" type="text" value="<?php if($this->session->tempdata('message_name')) echo $this->session->tempdata('message_name');?>">
                             <small class="text-danger"><?php echo form_error('message_name'); ?></small>
 
-							<input name="message_email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" type="email">
+							<input name="message_email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" type="email" value="<?php if($this->session->tempdata('message_email')) echo $this->session->tempdata('message_email');?>">
                             <small class="text-danger"><?php echo form_error('message_email'); ?></small>
 
                             <!-- fouces if error ocurred -->
                             <div id="error_focus_point" tabindex="1"></div>
 
-							<input name="message_subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" type="text">
+							<input name="message_subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" type="text" value="<?php if($this->session->tempdata('message_subject')) echo $this->session->tempdata('message_subject');?>">
 							<div class="mt-20 alert-msg" style="text-align: left;"></div>
                             <small class="text-danger"><?php echo form_error('message_subject'); ?></small>
 						</div>
 						<div class="col-lg-6 form-group">
-							<textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
+							<textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" value="<?php if($this->session->tempdata('message_content')) echo $this->session->tempdata('message_content');?>"></textarea>
+                            <small class="text-danger"><?php echo form_error('message_content'); ?></small>
 							<button type="submit" name="message_send_btn" class="primary-btn mt-20" style="float: right;">Send Message</button>
 						</div>
 
