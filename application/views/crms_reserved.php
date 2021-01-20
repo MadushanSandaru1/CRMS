@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <label for="reservedCustomerID"><b>Customer ID</b></label>
                                     <select class="custom-select" name="reservedCustomerID">
-                                        <option value="" disabled selected hidden>Select Customer ID</option>
+                                        <option disabled selected hidden>Select Customer ID</option>
                                         <?php
 
                                         if($customer_data->num_rows() > 0) {
@@ -74,7 +74,7 @@
                                                 }
                                             }
                                         } else {
-                                            echo "<option>Data not found</option>";
+                                            echo "<option disabled selected hidden>Data not found</option>";
                                         }
                                         ?>
 
@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <label for="reservedVehicleID"><b>Vehicle ID</b></label>
                                     <select class="custom-select" name="reservedVehicleID" id="reservedVehicleID" onchange="set_payment()">
-                                        <option value="" disabled selected hidden>Select Vehicle ID</option>
+                                        <option disabled selected hidden>Select Vehicle ID</option>
                                         <?php
                                         if($vehicle_data->num_rows() > 0) {
                                             foreach ($vehicle_data->result() as $data_row) {
@@ -97,7 +97,7 @@
 
                                             }
                                         } else {
-                                            echo "<option>Data not found</option>";
+                                            echo "<option disabled selected hidden>Data not found</option>";
                                         }
                                         ?>
 
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="reservedVehicleDate">Reserved Date </label>
-                                    <input type="datetime-local" class="form-control" name="reservedVehicleFromDate" id="reservedVehicleFromDate" onchange="set_dropoff_min()" placeholder="Reserved Date" min="<?php echo Date('Y-m-d\TH:i',time()) ?>"  value="<?php if($this->session->tempdata('reservedVehicleFromDate_fill')) echo $this->session->tempdata('reservedVehicleFromDate_fill'); else echo Date('Y-m-d\TH:i',time()); ?>">
+                                    <input type="datetime-local" class="form-control" name="reservedVehicleFromDate" id="reservedVehicleFromDate" onchange="set_dropoff_min()" placeholder="Reserved Date" min="<?php echo Date('Y-m-d\TH:i',time()) ?>"  value="<?php echo Date('Y-m-d\TH:i',time()); ?>" readonly>
                                     <small class="text-danger"><?php echo form_error('reservedVehicleFromDate'); ?></small>
                                 </div>
                                 <div class="form-group">
@@ -116,12 +116,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="reservedVehicleStartValue">Start Meter Value</label>
-                                    <input type="number" class="form-control" name="reservedVehicleStartValue" id="reservedVehicleStartValue" placeholder="In meters" value="<?php if($this->session->tempdata('reservedVehicleStartValue_fill')) echo $this->session->tempdata('reservedVehicleStartValue_fill'); ?>">
+                                    <input type="number" class="form-control" name="reservedVehicleStartValue" step="0.01" id="reservedVehicleStartValue" placeholder="In meters" value="<?php if($this->session->tempdata('reservedVehicleStartValue_fill')) echo $this->session->tempdata('reservedVehicleStartValue_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('reservedVehicleStartValue'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="reservedVehicleAdvancedPayment">Advanced Payment</label>
-                                    <input type="number" class="form-control" name="reservedVehicleAdvancedPayment" id="reservedVehicleAdvancedPayment" placeholder="1000.00" value="<?php if($this->session->tempdata('reservedVehicleAdvancedPayment_fill')) echo $this->session->tempdata('reservedVehicleAdvancedPayment_fill'); ?>">
+                                    <input type="number" class="form-control" name="reservedVehicleAdvancedPayment" step="0.01" id="reservedVehicleAdvancedPayment" placeholder="1000.00" value="<?php if($this->session->tempdata('reservedVehicleAdvancedPayment_fill')) echo $this->session->tempdata('reservedVehicleAdvancedPayment_fill'); ?>">
                                     <small id="payment_value" class="text-success"></small>
                                     <small class="text-danger"><?php echo form_error('reservedVehicleAdvancedPayment'); ?></small>
                                 </div>
@@ -174,7 +174,6 @@
                                             <td>
                                                 <a href="<?php echo base_url('index.php/Reserved/report_reserved/'.$data_row->vehicle_id); ?>" target="_blank"><span class="mdi mdi-printer"> Bill</span></a>
                                         <?php if($this->session->userdata('user_role') == 'admin'){ ?>
-                                                <a href=""><span class="mdi mdi-eyedropper text-success ml-4"> Edit</span></a>
                                                 <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_reserved('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                         <?php } ?>
                                             </td>
@@ -224,19 +223,6 @@
             </div>
         </div>
         <!-- ** Delete Modal -->
-
-        <?php if(validation_errors()) { ?>
-            <script>
-                document.getElementById("addReservedVehicle").classList.add("show");
-            </script>
-        <?php } ?>
-
-        <?php if($this->session->tempdata('form')=='add_form') { ?>
-            <script>
-                document.getElementById("addReservedVehicle").classList.add("show");
-            </script>
-        <?php } ?>
-        
 
         <script type="text/javascript">
             function set_dropoff_min(){
@@ -296,6 +282,19 @@
                 }
             }
         </script>
+
+        <?php if(validation_errors()) { ?>
+            <script>
+                set_payment();
+                document.getElementById("addReservedVehicle").classList.add("show");
+            </script>
+        <?php } ?>
+
+        <?php if($this->session->tempdata('form')=='add_form') { ?>
+            <script>
+                document.getElementById("addReservedVehicle").classList.add("show");
+            </script>
+        <?php } ?>
 
     </div>
     <!-- content-wrapper ends -->

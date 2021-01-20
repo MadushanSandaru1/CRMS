@@ -238,7 +238,9 @@
                                     <th>Phone</th>
                                     <th class="d-none">Role</th>
                                     <th>Address</th>
-                                    <th>Actions</th>
+                                    <?php if($this->session->userdata('user_role') == 'admin'){ ?>
+                                        <th>Actions</th>
+                                    <?php } ?>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -251,14 +253,16 @@
                                             <td><?php echo $value->phone; ?></td>
                                             <td class="d-none"><?php echo $value->role; ?></td>
                                             <td><?php echo $value->address; ?></td>
-                                            <td>
-                                            <?php if($value->role == "cashier"){ ?>
-                                                <a  id="view" data-toggle="collapse" href="#updateStaffUser" aria-expanded="false" aria-controls="updateStaffUser"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_staff_user('<?php echo $value->id;?>','<?php echo $value->email;?>','<?php echo $value->phone;?>','<?php echo $value->name;?>','<?php echo $value->nic;?>','<?php echo $value->address;?>')">Edit </span></a>
-                                                <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_user('<?php echo$value->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span>
-                                            <?php } else if(($value->role == "admin") or ($value->id == $this->session->userdata('user_id'))){ ?>
-                                                <a  id="view" data-toggle="collapse" href="#updateStaffUser" aria-expanded="false" aria-controls="updateStaffUser"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_staff_user('<?php echo $value->id;?>','<?php echo $value->email;?>','<?php echo $value->phone;?>','<?php echo $value->name;?>','<?php echo $value->nic;?>','<?php echo $value->address;?>')">Edit </span></a>
+                                            <?php if($this->session->userdata('user_role') == 'admin'){ ?>
+                                                <td>
+                                                <?php if($value->role == "cashier"){ ?>
+                                                    <a  id="view" data-toggle="collapse" href="#updateStaffUser" aria-expanded="false" aria-controls="updateStaffUser"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_staff_user('<?php echo $value->id;?>','<?php echo $value->email;?>','<?php echo $value->phone;?>','<?php echo $value->name;?>','<?php echo $value->nic;?>','<?php echo $value->address;?>')">Edit </span></a>
+                                                    <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_user('<?php echo$value->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span>
+                                                <?php } else if(($value->role == "admin") and ($value->id == $this->session->userdata('user_id'))){ ?>
+                                                    <a  id="view" data-toggle="collapse" href="#updateStaffUser" aria-expanded="false" aria-controls="updateStaffUser"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_staff_user('<?php echo $value->id;?>','<?php echo $value->email;?>','<?php echo $value->phone;?>','<?php echo $value->name;?>','<?php echo $value->nic;?>','<?php echo $value->address;?>')">Edit </span></a>
+                                                <?php } ?>
+                                                </td>
                                             <?php } ?>
-                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

@@ -72,7 +72,6 @@
                 $id = $this->input->post('staff_user_id',TRUE);
                 $email = $this->input->post('update_email',TRUE);
                 $phone_no = $this->input->post('update_phone_no',TRUE);
-//                $address = ucwords($this->input->post('address',TRUE));
 
                 if($img_path==""){
 
