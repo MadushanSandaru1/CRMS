@@ -60,10 +60,10 @@
             }
 
             public function deleteUser(){
-
                 $values = array( 'is_deleted' => '1');
 
                 $this->db->where('id', $this->input->post('deluserid'));
+                $this->db->where('is_deleted', 0);
                 return $this->db->update('user',$values);
             }
 
@@ -89,6 +89,7 @@
                         'image'=>$img_path
                     );
                     $this->db->where('id',$id);
+                    $this->db->where('is_deleted', 0);
                     return $this->db->update('user', $values);
                 }
             }

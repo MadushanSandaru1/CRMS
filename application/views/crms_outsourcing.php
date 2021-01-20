@@ -58,7 +58,7 @@ if (!$this->session->userdata('user_id')) {
                         <div class="forms-sample">
                             <div class="form-group">
                                 <label for="vehicleTitle">Supplier</label>
-                                <select name="supplier_id" id="" class="form-control ">
+                                <select name="supplier_id" id="" class="custom-select">
                                     <option value="">Select Supplier..</option>
                                     <?php for($i=0;$i < sizeof($supplier);$i++): ?>
                                         <option value=<?php echo $supplier[$i]->id;?>><?php echo $supplier[$i]->name;?></option>
@@ -68,22 +68,22 @@ if (!$this->session->userdata('user_id')) {
                             </div>
                             <div class="form-group">
                                 <label for="vehicleTitle">Title</label>
-                                <input type="text" class="form-control" id="vehicleTitle" placeholder="Vehicle Title" name="vehicle_title" >
+                                <input type="text" class="form-control" id="vehicleTitle" placeholder="Vehicle Title" name="vehicle_title" value="<?php if($this->session->tempdata('title_fill')) echo $this->session->tempdata('title_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicle_title'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleRegisteredNumber">Registered Number</label>
-                                <input type="text" class="form-control" id="vehicleRegisteredNumber" placeholder="Registered Number" name="registered_no" >
+                                <input type="text" class="form-control" id="vehicleRegisteredNumber" placeholder="SP ABC1234" name="registered_no" value="<?php if($this->session->tempdata('registered_no_fill')) echo $this->session->tempdata('registered_no_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('registered_no'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleSeat">Seat</label>
-                                <input type="number" class="form-control" id="vehicleSeat" placeholder="No of Seat" name="no_of_seat" >
+                                <input type="number" class="form-control" id="vehicleSeat" placeholder="No of Seat" name="no_of_seat" value="<?php if($this->session->tempdata('no_of_seat_fill')) echo $this->session->tempdata('no_of_seat_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('no_of_seat'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleFuelType">Fuel Type</label>
-                                <select class="form-control" id="vehicleFuelType" name="fuel_type" >
+                                <select class="custom-select" id="vehicleFuelType" name="fuel_type" value="<?php if($this->session->tempdata('fuel_type_fill')) echo $this->session->tempdata('fuel_type_fill'); ?>">
                                     <option value="">Select Fuel Type</option>
                                     <option value="P">Petrol</option>
                                     <option value="D">Diesel</option>
@@ -134,24 +134,24 @@ if (!$this->session->userdata('user_id')) {
                             </div>
                             <div class="form-group">
                                 <label for="vehiclePrice">Rental Price per Day</label>
-                                <input type="number" class="form-control" id="vehiclePrice" placeholder="1000.00" name="price_per_day" >
+                                <input type="number" class="form-control" id="vehiclePrice" placeholder="1000.00" name="price_per_day" value="<?php if($this->session->tempdata('price_per_day_fill')) echo $this->session->tempdata('price_per_day_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('price_per_day'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleAddKM">Additional Price</label>
-                                <input type="number" class="form-control mb-2" id="vehicleAddKM" placeholder="Per KM" name="per_km" >
+                                <input type="number" class="form-control mb-2" id="vehicleAddKM" placeholder="Per KM" name="per_km" value="<?php if($this->session->tempdata('per_km_fill')) echo $this->session->tempdata('per_km_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('per_km'); ?></small>
-                                <input type="number" class="form-control" id="vehicleAddHour" placeholder="Per Hour" name="per_hour" >
+                                <input type="number" class="form-control" id="vehicleAddHour" placeholder="Per Hour" name="per_hour" value="<?php if($this->session->tempdata('per_hour_fill')) echo $this->session->tempdata('per_hour_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('per_hour'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleInsurance">Insurance Date</label>
-                                <input type="date" class="form-control" id="vehicleInsurance" placeholder="Insurance Date" name="insurence_date" >
+                                <input type="date" class="form-control" id="vehicleInsurance" placeholder="Insurance Date" name="insurence_date" value="<?php if($this->session->tempdata('insurence_date_fill')) echo $this->session->tempdata('insurence_date_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('insurence_date'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleLicense">Revenue License Date</label>
-                                <input type="date" class="form-control" id="vehicleLicense" placeholder="Revenue License Date" name="revenue_license_date">
+                                <input type="date" class="form-control" id="vehicleLicense" placeholder="Revenue License Date" name="revenue_license_date" value="<?php if($this->session->tempdata('revenue_license_date_date_fill')) echo $this->session->tempdata('revenue_license_date_date_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('revenue_license_date'); ?></small>
                             </div>
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
@@ -197,22 +197,22 @@ if (!$this->session->userdata('user_id')) {
                             </div>
                             <div class="form-group">
                                 <label for="vehicleTitle">Title</label>
-                                <input type="text" class="form-control" id="u_vehicleTitle" placeholder="Vehicle Title" name="u_vehicleTitle" >
+                                <input type="text" class="form-control" id="u_vehicleTitle" placeholder="Vehicle Title" name="u_vehicleTitle" value="<?php if($this->session->tempdata('u_title_fill')) echo $this->session->tempdata('u_title_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicle_title'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleRegisteredNumber">Registered Number</label>
-                                <input type="text" class="form-control" id="u_vehicleRegisteredNumber" placeholder="Registered Number" name="u_vehicleRegisteredNumber" >
+                                <input type="text" class="form-control" id="u_vehicleRegisteredNumber" placeholder="SP ABC1234" name="u_vehicleRegisteredNumber" value="<?php if($this->session->tempdata('u_registered_no_fill')) echo $this->session->tempdata('u_registered_no_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('registered_no'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleSeat">Seat</label>
-                                <input type="number" class="form-control" id="u_vehicleSeat" placeholder="No of Seat" name="u_vehicleSeat" >
+                                <input type="number" class="form-control" id="u_vehicleSeat" placeholder="No of Seat" name="u_vehicleSeat" value="<?php if($this->session->tempdata('u_no_of_seat_fill')) echo $this->session->tempdata('u_no_of_seat_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('no_of_seat'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleFuelType">Fuel Type</label>
-                                <select class="form-control" id="u_vehicleFuelType" name="u_vehicleFuelType" >
+                                <select class="form-control" id="u_vehicleFuelType" name="u_vehicleFuelType" value="<?php if($this->session->tempdata('u_fuel_type_fill')) echo $this->session->tempdata('u_fuel_type_fill'); ?>">
                                     <option value="">Select Fuel Type</option>
                                     <option value="P">Petrol</option>
                                     <option value="D">Diesel</option>
@@ -263,24 +263,24 @@ if (!$this->session->userdata('user_id')) {
                             </div>
                             <div class="form-group">
                                 <label for="vehiclePrice">Rental Price per Day</label>
-                                <input type="number" class="form-control" id="u_vehiclePrice" placeholder="1000.00" name="u_vehiclePrice" >
+                                <input type="number" class="form-control" id="u_vehiclePrice" placeholder="1000.00" name="u_vehiclePrice" value="<?php if($this->session->tempdata('u_price_per_day_fill')) echo $this->session->tempdata('u_price_per_day_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('price_per_day'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleAddKM">Additional Price</label>
-                                <input type="number" class="form-control mb-2" id="u_vehicleAddKM" placeholder="Per KM" name="u_vehicleAddKM" >
+                                <input type="number" class="form-control mb-2" id="u_vehicleAddKM" placeholder="Per KM" name="u_vehicleAddKM" value="<?php if($this->session->tempdata('u_per_km_fill')) echo $this->session->tempdata('u_per_km_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('per_km'); ?></small>
-                                <input type="number" class="form-control" id="u_vehicleAddHour" placeholder="Per Hour" name="u_vehicleAddHour" >
+                                <input type="number" class="form-control" id="u_vehicleAddHour" placeholder="Per Hour" name="u_vehicleAddHour" value="<?php if($this->session->tempdata('u_per_hour_fill')) echo $this->session->tempdata('u_per_hour_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('per_hour'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleInsurance">Insurance Date</label>
-                                <input type="date" class="form-control" id="u_vehicleInsurance" placeholder="Insurance Date" name="u_vehicleInsurance" >
+                                <input type="date" class="form-control" id="u_vehicleInsurance" placeholder="Insurance Date" name="u_vehicleInsurance" value="<?php if($this->session->tempdata('u_insurence_date_fill')) echo $this->session->tempdata('u_insurence_date_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('insurence_date'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleLicense">Revenue License Date</label>
-                                <input type="date" class="form-control" id="u_vehicleLicense" placeholder="Revenue License Date" name="u_vehicleLicense">
+                                <input type="date" class="form-control" id="u_vehicleLicense" placeholder="Revenue License Date" name="u_vehicleLicense" value="<?php if($this->session->tempdata('u_revenue_license_date_date_fill')) echo $this->session->tempdata('u_revenue_license_date_date_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('revenue_license_date'); ?></small>
                             </div>
                             <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
