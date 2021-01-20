@@ -43,7 +43,7 @@
                                 <div class="pt-3">
                                     <!-- username -->
                                     <div class="form-group">
-                                        <input type="text" value="<?php if($this->session->tempdata('signin_email_fill')) echo $this->session->tempdata('signin_email_fill'); else echo get_cookie('keep_signin'); ?>" name="signin_email" class="form-control form-control-lg" id="signin_email" placeholder="Email">
+                                        <input type="email" value="<?php if($this->session->tempdata('signin_email_fill')) echo $this->session->tempdata('signin_email_fill'); else echo get_cookie('keep_signin'); ?>" name="signin_email" class="form-control form-control-lg" id="signin_email" placeholder="Email">
                                         <small class="text-danger"><?php echo form_error('signin_email'); ?></small>
                                     </div>
 
