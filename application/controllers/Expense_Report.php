@@ -65,10 +65,11 @@
          //report generator function
          public function report_expense(){
              //Call to model function to generate report
-             $this->load->model('Reserved_Model');
+             $this->load->model("Expense_Report_Model");
+             $data['report_vehicle'] = $this->Expense_Report_Model->getVehicleData();
 
              //view report design
-             $this->load->view("income_expense_report.php");
+             $this->load->view("income_expense_report.php",$data);
              $html = $this->output->get_output();
              $this->pdf->loadHtml($html);
              $this->pdf->setPaper('A4', 'portrait');

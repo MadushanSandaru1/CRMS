@@ -25,8 +25,15 @@ class Expense_Report_Model extends CI_Model
             $query.=" AND `date` BETWEEN '".$start."' AND DATE_ADD('".$end."', INTERVAL 1 DAY)";
         }
 
+        $query.=" ORDER BY `date` DESC";
+
         $query = $this->db->query($query);
         return $query;
     }
     //** guarantor report generate function **
+
+    public function getVehicleData() {
+        $vehicledata_view_query = $this->db->query("SELECT * FROM `vehicle` WHERE `is_service_out` = 0 AND `is_deleted` = 0 AND `id` = '".$this->session->tempdata('expense_report_vehicleId')."'");
+        return $vehicledata_view_query;
+    }
 }
