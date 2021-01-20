@@ -101,7 +101,7 @@
                                 
                                 <div class="form-group">
                                     <label for="full_name"><b>Full Name</b></label>
-                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="A. B. Abhaya Car" maxlength="50" pattern="[A-Za-z .]" title="Numbers and special characters are not allowed.">
+                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="A. B. Abhaya Car" maxlength="50" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed.">
                                     <small class="text-danger"><?php echo form_error('full_name'); ?></small>
                                 </div>
                                 <div class="form-group">
