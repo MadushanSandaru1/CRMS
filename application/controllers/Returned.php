@@ -112,4 +112,9 @@ class Returned extends CI_Controller
         $this->pdf->stream("vehicle_return_report".date("Ymd_his").".pdf",array("Attachment" => 0));
     }
 
+    public function vehicleReturnIncome($amount)
+    {
+
+    }
+
 }

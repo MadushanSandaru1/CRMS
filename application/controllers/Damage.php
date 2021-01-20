@@ -13,6 +13,7 @@
 
                 if($this->form_validation->run() == FALSE)
                  {
+                    $this->session->set_tempdata('fix_amount_fill', $this->input->post('fix_amount', TRUE), 5);
                     $this->load->model("Customer_message");
                     $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
                     $this->load->model("notification");

@@ -95,42 +95,42 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseVehicleID"><b><b>Staff ID</b></b></label>
-                                    <input type="text" name="staff_cashier_id" id="usr_cashier" class="form-control" readonly value=<?php echo $cashier_id;?> >
+                                    <input type="text" name="staff_cashier_id" id="usr_cashier" class="form-control" readonly value=<?php echo $cashier_id;?>>
                                     <input type="text" name="staff_admin_id" id="usr_admin" class="form-control" readonly value=<?php echo $admin_id;?> >
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="full_name"><b>Full Name</b></label>
-                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Staff Full Name" >
+                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="A. B. Abhaya Car" maxlength="50" pattern="[A-Za-z .]" title="Numbers and special characters are not allowed.">
                                     <small class="text-danger"><?php echo form_error('full_name'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="nic"><b>NIC</b></label>
-                                    <input type="text" class="form-control" name="nic" id="nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" >
+                                    <input type="text" class="form-control" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}"  name="nic" id="nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" maxlength="12" title="Please enter a according to correct pattern.">
                                     <small class="text-danger"><?php echo form_error('nic'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="email"><b>Email</b></label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Staff Email Address" >
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="example@abhaya.com" maxlength="100">
                                     <small class="text-danger"><?php echo form_error('email'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone_no"><b>Phone No</b></label>
-                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="0xxxxxxxxx" pattern="0[0-9]{9}">
+                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="0xxxxxxxxx" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern">
                                     <small class="text-danger"><?php echo form_error('phone_no'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="address"><b>Address</b></label>
-                                    <textarea  id="" cols="30" rows="4" name="address" class="form-control" ></textarea>
+                                    <textarea  id="address" cols="30" rows="4" name="address" class="form-control" maxlength="255" placeholder="Beliatta, Matara."></textarea>
                                     <small class="text-danger"><?php echo form_error('address'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="staff_picture"><b>Upload Picture</b></label>
                                     <input type="file" name="staff_picture" class="file-upload-default">
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Staff Picture">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder=".jpg | .png | .jpeg">
                                         <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Browse</button>
                                         </span>
                                     </div>
                                     <small class="text-danger"><?php echo form_error('staff_picture'); ?></small>
@@ -141,7 +141,7 @@
                                     <label for="password"><i class="mdi mdi-star-circle text-danger"></i> <b>The password will be generated automatically and will be sent to the email you entered.</b></label>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <button type="reset" class="btn btn-light">Cancel</button>
                             <?php echo form_close(); ?>
                         </div>
                     </div>
@@ -226,11 +226,6 @@
                                         </span>
                                     </div>
                                     <small class="text-danger"><?php echo form_error('staff_picture'); ?></small>
-                                </div>
-
-
-                                <div class="form-group mt-3">
-                                    <label for="password"><i class="mdi mdi-star-circle text-danger"></i> <b>The password will be generated automatically and will be sent to the email you entered.</b></label>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
                                 <button class="btn btn-light">Cancel</button>

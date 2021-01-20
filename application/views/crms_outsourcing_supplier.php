@@ -80,9 +80,16 @@ if (!$this->session->userdata('user_id')) {
                             <input type="text" name="address" class="form-control" id="expenseAmount" placeholder="Supplier Address" >
                             <small class="text-danger"><?php echo form_error('address'); ?></small>
                         </div>
+
                         <div class="form-group">
                             <label for="expenseAmount">Upload NIC Picture</label>
-                            <input type="file" name="nic_copy" class="form-control" id="expenseAmount" placeholder="Supplier NIC Picture" >
+                            <input type="file" name="nic_copy" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                    </span>
+                            </div>
                             <small class="text-danger"><?php echo form_error('nic_copy'); ?></small>
                         </div>
                         <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
@@ -138,10 +145,17 @@ if (!$this->session->userdata('user_id')) {
                             <input type="text" name="sup_address" class="form-control" id="sup_address" placeholder="Supplier Address" >
                             <small class="text-danger"><?php echo form_error('address'); ?></small>
                         </div>
+
                         <div class="form-group">
                             <label for="expenseAmount">Upload NIC Picture</label>
-                            <input type="file" name="sup_nic_copy" class="form-control" id="expenseAmount" placeholder="Supplier NIC Picture" >
-                            <small class="text-danger"><?php echo form_error('nic_copy'); ?></small>
+                            <input type="file" name="sup_nic_copy" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                    </span>
+                            </div>
+                            <small class="text-danger"><?php echo form_error('sup_nic_copy'); ?></small>
                         </div>
                         <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
                         <button class="btn btn-light">Cancel</button>

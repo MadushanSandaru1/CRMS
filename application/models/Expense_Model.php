@@ -38,7 +38,7 @@ class Expense_Model extends CI_Model
     }
 
     public function getVehicleExpenseData() {
-        $vehicle_expense_data_view_query = $this->db->query("SELECT t.*, v.`registered_number` FROM `transaction` t, `vehicle` v WHERE t.`vehicle_id` = v.`id` AND t.`type` = 'E' ORDER BY t.`date` DESC");
+        $vehicle_expense_data_view_query = $this->db->query("SELECT t.*, v.`registered_number` FROM `transaction` t, `vehicle` v WHERE t.`vehicle_id` = v.`id` ORDER BY t.`date` DESC");
         return $vehicle_expense_data_view_query;
     }
 

@@ -159,7 +159,7 @@
                   </div>
                 </div>
               </div>
-            <!-- add customer form end-->
+            <!-- update customer form end-->
 
 
             
