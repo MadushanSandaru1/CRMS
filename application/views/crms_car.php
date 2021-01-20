@@ -55,12 +55,12 @@
                             <br>
                             <div class="form-group">
                                 <label for="vehicleType">Type</label>
-                                <input type="text" class="form-control" id="vehicleType" name="vehicleType" placeholder="Type" value="<?php if($this->session->tempdata('vehicleType_fill')) echo $this->session->tempdata('vehicleType_fill'); ?>">
+                                <input type="text" class="form-control" id="vehicleType" name="vehicleType" maxlength="255" placeholder="Type" value="<?php if($this->session->tempdata('vehicleType_fill')) echo $this->session->tempdata('vehicleType_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleType'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleRegisteredNumber">Registered Number</label>
-                                <input type="text" class="form-control" id="vehicleRegisteredNumber" name="vehicleRegisteredNumber" pattern="[A-Za-z]{2} [A-Za-z]{2,3}[0-9]{4}" placeholder="SP ABC1234" value="<?php if($this->session->tempdata('vehicleRegisteredNumber_fill')) echo $this->session->tempdata('vehicleRegisteredNumber_fill'); ?>">
+                                <input type="text" class="form-control" id="vehicleRegisteredNumber" name="vehicleRegisteredNumber" maxlength="15" pattern="[A-Za-z]{2} [A-Za-z]{2,3}[0-9]{4}" placeholder="SP ABC1234" value="<?php if($this->session->tempdata('vehicleRegisteredNumber_fill')) echo $this->session->tempdata('vehicleRegisteredNumber_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleRegisteredNumber'); ?></small>
                             </div>
                             <div class="form-group">
@@ -74,13 +74,13 @@
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="vehicleFuelType" id="petrol" value="P" checked> Petrol </label>
+                                            <input type="radio" class="form-check-input" name="vehicleFuelType" id="petrol" value="P" <?php if(!$this->session->tempdata('vehicleFuelType_fill')) echo "checked"; ?> <?php if($this->session->tempdata('vehicleFuelType_fill')=="P") echo "checked"; ?>> Petrol </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="vehicleFuelType" id="diesel" value="D"> Diesel </label>
+                                            <input type="radio" class="form-check-input" name="vehicleFuelType" id="diesel" value="D" <?php if($this->session->tempdata('vehicleFuelType_fill')=="D") echo "checked"; ?>> Diesel </label>
                                     </div>
                                 </div>
                                 <small class="text-danger"><?php echo form_error('vehicleFuelType'); ?></small>
@@ -91,13 +91,13 @@
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="radioAC" id="ac" value="1" checked> A/C </label>
+                                            <input type="radio" class="form-check-input" name="radioAC" id="ac" value="1" <?php if(!$this->session->tempdata('radioAC_fill')) echo "checked"; ?> <?php if($this->session->tempdata('radioAC_fill')=="1") echo "checked"; ?>> A/C </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="radioAC" id="non_ac" value="0"> Non A/C </label>
+                                            <input type="radio" class="form-check-input" name="radioAC" id="non_ac" value="0" <?php if($this->session->tempdata('radioAC_fill')=="0") echo "checked"; ?>> Non A/C </label>
                                     </div>
                                 </div>
                                 <small class="text-danger"><?php echo form_error('radioAC'); ?></small>
@@ -107,13 +107,13 @@
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="radioTransmission" id="auto" value="A" checked> Auto </label>
+                                            <input type="radio" class="form-check-input" name="radioTransmission" id="auto" value="A" <?php if(!$this->session->tempdata('radioTransmission_fill')) echo "checked"; ?> <?php if($this->session->tempdata('radioTransmission_fill')=="A") echo "checked"; ?>> Auto </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="radioTransmission" id="manual" value="M"> Manual </label>
+                                            <input type="radio" class="form-check-input" name="radioTransmission" id="manual" value="M" <?php if($this->session->tempdata('radioTransmission_fill')=="M") echo "checked"; ?>> Manual </label>
                                     </div>
                                 </div>
                                 <small class="text-danger"><?php echo form_error('radioTransmission'); ?></small>
@@ -124,21 +124,21 @@
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                     <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Browse</button>
                                     </span>
                                 </div>
                                 <small class="text-danger"><?php echo form_error('vehicleImage'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehiclePrice">Rental Price per Day</label>
-                                <input type="number" class="form-control" min="0" id="vehiclePrice" name="vehiclePrice" placeholder="1000.00" value="<?php if($this->session->tempdata('vehiclePrice_fill')) echo $this->session->tempdata('vehiclePrice_fill'); ?>">
+                                <input type="number" class="form-control" min="0" id="vehiclePrice" step="0.01" name="vehiclePrice" placeholder="1000.00" value="<?php if($this->session->tempdata('vehiclePrice_fill')) echo $this->session->tempdata('vehiclePrice_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehiclePrice'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleAddKM">Additional Price</label>
-                                <input type="number" class="form-control mb-2" min="0" id="vehicleAddKM" name="vehicleAddKM" placeholder="Rupees Per KM" value="<?php if($this->session->tempdata('vehicleAddKM_fill')) echo $this->session->tempdata('vehicleAddKM_fill'); ?>">
+                                <input type="number" class="form-control mb-2" min="0" step="0.01" id="vehicleAddKM" name="vehicleAddKM" placeholder="Rupees Per KM" value="<?php if($this->session->tempdata('vehicleAddKM_fill')) echo $this->session->tempdata('vehicleAddKM_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleAddKM'); ?></small>
-                                <input type="number" class="form-control" min="0" id="vehicleAddHour" name="vehicleAddHour" placeholder="Rupees Per Hour" value="<?php if($this->session->tempdata('vehicleAddHour_fill')) echo $this->session->tempdata('vehicleAddHour_fill'); ?>">
+                                <input type="number" class="form-control" min="0" step="0.01" id="vehicleAddHour" name="vehicleAddHour" placeholder="Rupees Per Hour" value="<?php if($this->session->tempdata('vehicleAddHour_fill')) echo $this->session->tempdata('vehicleAddHour_fill'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleAddHour'); ?></small>
                             </div>
                             <div class="form-group">
@@ -185,18 +185,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="vehicleType">Type</label>
-                                <input type="text" class="form-control" id="u_vehicleType" name="u_vehicleType" placeholder="Type" value="<?php if($this->session->tempdata('vehicleType_fill')) echo $this->session->tempdata('vehicleType_fill'); ?>">
-                                <small class="text-danger"><?php echo form_error('vehicleType'); ?></small>
+                                <input type="text" class="form-control" id="u_vehicleType" maxlength="255" name="u_vehicleType" placeholder="Type" value="<?php if($this->session->tempdata('u_vehicleType_fill')) echo $this->session->tempdata('u_vehicleType_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('u_vehicleType'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleRegisteredNumber">Registered Number</label>
-                                <input type="text" class="form-control" id="u_vehicleRegisteredNumber" name="u_vehicleRegisteredNumber" pattern="[A-Za-z]{2} [A-Za-z]{2,3}[0-9]{4}" placeholder="SP ABC1234" value="<?php if($this->session->tempdata('vehicleRegisteredNumber_fill')) echo $this->session->tempdata('vehicleRegisteredNumber_fill'); ?>">
-                                <small class="text-danger"><?php echo form_error('vehicleRegisteredNumber'); ?></small>
+                                <input type="text" class="form-control" id="u_vehicleRegisteredNumber" maxlength="15" name="u_vehicleRegisteredNumber" pattern="[A-Za-z]{2} [A-Za-z]{2,3}[0-9]{4}" placeholder="SP ABC1234" value="<?php if($this->session->tempdata('u_vehicleRegisteredNumber_fill')) echo $this->session->tempdata('u_vehicleRegisteredNumber_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('u_vehicleRegisteredNumber'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleSeat">Seat</label>
-                                <input type="number" class="form-control" min="4" id="u_vehicleSeat" name="u_vehicleSeat" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="No of Seat" value="<?php if($this->session->tempdata('vehicleSeat_fill')) echo $this->session->tempdata('vehicleSeat_fill'); ?>">
-                                <small class="text-danger"><?php echo form_error('vehicleSeat'); ?></small>
+                                <input type="number" class="form-control" min="4" id="u_vehicleSeat" name="u_vehicleSeat" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="No of Seat" value="<?php if($this->session->tempdata('u_vehicleSeat_fill')) echo $this->session->tempdata('u_vehicleSeat_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('u_vehicleSeat'); ?></small>
                             </div>
 
                             <div class="form-group row">
@@ -204,16 +204,16 @@
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="u_vehicleFuelType" id="petrol" value="P" checked> Petrol </label>
+                                            <input type="radio" class="form-check-input" name="u_vehicleFuelType" id="u_petrol" value="P" <?php if(!$this->session->tempdata('u_vehicleFuelType_fill')) echo "checked"; ?> <?php if($this->session->tempdata('u_vehicleFuelType_fill')=="P") echo "checked"; ?>> Petrol </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="u_vehicleFuelType" id="diesel" value="D"> Diesel </label>
+                                            <input type="radio" class="form-check-input" name="u_vehicleFuelType" id="u_diesel" value="D"> Diesel </label>
                                     </div>
                                 </div>
-                                <small class="text-danger"><?php echo form_error('vehicleFuelType'); ?></small>
+                                <small class="text-danger"><?php echo form_error('u_vehicleFuelType'); ?></small>
                             </div>
 
                             <div class="form-group row">
@@ -221,54 +221,54 @@
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="u_radioAC" id="ac" value="1" checked> A/C </label>
+                                            <input type="radio" class="form-check-input" name="u_radioAC" id="u_ac" value="1" <?php if(!$this->session->tempdata('u_radioAC_fill')) echo "checked"; ?> <?php if($this->session->tempdata('u_radioAC_fill')=="1") echo "checked"; ?>> A/C </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="u_radioAC" id="non_ac" value="0"> Non A/C </label>
+                                            <input type="radio" class="form-check-input" name="u_radioAC" id="u_non_ac" value="0" <?php if($this->session->tempdata('u_radioAC_fill')=="0") echo "checked"; ?>> Non A/C </label>
                                     </div>
                                 </div>
-                                <small class="text-danger"><?php echo form_error('radioAC'); ?></small>
+                                <small class="text-danger"><?php echo form_error('u_radioAC'); ?></small>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Transmission Type</label>
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="u_radioTransmission" id="auto" value="A" checked> Auto </label>
+                                            <input type="radio" class="form-check-input" name="u_radioTransmission" id="u_auto" value="A" <?php if(!$this->session->tempdata('u_radioTransmission_fill')) echo "checked"; ?> <?php if($this->session->tempdata('u_radioTransmission_fill')=="A") echo "checked"; ?>> Auto </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="u_radioTransmission" id="manual" value="M"> Manual </label>
+                                            <input type="radio" class="form-check-input" name="u_radioTransmission" id="u_manual" value="M" <?php if($this->session->tempdata('u_radioTransmission_fill')=="M") echo "checked"; ?>> Manual </label>
                                     </div>
                                 </div>
-                                <small class="text-danger"><?php echo form_error('radioTransmission'); ?></small>
+                                <small class="text-danger"><?php echo form_error('u_radioTransmission'); ?></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="vehiclePrice">Rental Price per Day</label>
-                                <input type="number" class="form-control" id="u_vehiclePrice" name="u_vehiclePrice" placeholder="1000.00" value="<?php if($this->session->tempdata('vehiclePrice_fill')) echo $this->session->tempdata('vehiclePrice_fill'); ?>">
-                                <small class="text-danger"><?php echo form_error('vehiclePrice'); ?></small>
+                                <input type="number" class="form-control" id="u_vehiclePrice" name="u_vehiclePrice" min="0" step="0.01" placeholder="1000.00" value="<?php if($this->session->tempdata('u_vehiclePrice_fill')) echo $this->session->tempdata('u_vehiclePrice_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('u_vehiclePrice'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleAddKM">Additional Price</label>
-                                <input type="number" class="form-control mb-2" id="u_vehicleAddKM" name="u_vehicleAddKM" placeholder="Rupees Per KM" value="<?php if($this->session->tempdata('vehicleAddKM_fill')) echo $this->session->tempdata('vehicleAddKM_fill'); ?>">
-                                <small class="text-danger"><?php echo form_error('vehicleAddKM'); ?></small>
-                                <input type="number" class="form-control" id="u_vehicleAddHour" name="u_vehicleAddHour" placeholder="Rupees Per Hour" value="<?php if($this->session->tempdata('vehicleAddHour_fill')) echo $this->session->tempdata('vehicleAddHour_fill'); ?>">
-                                <small class="text-danger"><?php echo form_error('vehicleAddHour'); ?></small>
+                                <input type="number" class="form-control mb-2" id="u_vehicleAddKM" name="u_vehicleAddKM" min="0" step="0.01" placeholder="1000.00" value="<?php if($this->session->tempdata('u_vehicleAddKM_fill')) echo $this->session->tempdata('u_vehicleAddKM_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('u_vehicleAddKM'); ?></small>
+                                <input type="number" class="form-control" id="u_vehicleAddHour" name="u_vehicleAddHour" min="0" step="0.01" placeholder="1000.00" value="<?php if($this->session->tempdata('u_vehicleAddHour_fill')) echo $this->session->tempdata('u_vehicleAddHour_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('u_vehicleAddHour'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleInsurance">Insurance Date</label>
-                                <input type="date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" id="u_vehicleInsurance" name="u_vehicleInsurance" placeholder="Insurance Date" value="<?php if($this->session->tempdata('u_insurence_date_fill')) echo $this->session->tempdata('vehicleInsurance_fill'); ?>">
-                                <small class="text-danger"><?php echo form_error('vehicleInsurance'); ?></small>
+                                <input type="date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" id="u_vehicleInsurance" name="u_vehicleInsurance" placeholder="Insurance Date" value="<?php if($this->session->tempdata('u_vehicleInsurance_fill')) echo $this->session->tempdata('u_vehicleInsurance_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('u_vehicleInsurance'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="vehicleLicense">Revenue License Date</label>
-                                <input type="date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" id="u_vehicleLicense" name="u_vehicleLicense" placeholder="Revenue License Date" value="<?php if($this->session->tempdata('u_revenue_date_fill')) echo $this->session->tempdata('vehicleLicense_fill'); ?>">
+                                <input type="date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" id="u_vehicleLicense" name="u_vehicleLicense" placeholder="Revenue License Date" value="<?php if($this->session->tempdata('u_vehicleLicense')) echo $this->session->tempdata('u_vehicleLicense'); ?>">
                                 <small class="text-danger"><?php echo form_error('vehicleLicense'); ?></small>
                             </div>
                             <div class="form-group row">
@@ -285,7 +285,7 @@
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                     <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Browse</button>
                                     </span>
                                 </div>
                                 <small class="text-danger"><?php echo form_error('update_vehicle_copy'); ?></small>
@@ -447,10 +447,21 @@
                 document.getElementById("u_vehicleType").value = insurunce;
                 document.getElementById("u_vehicleRegisteredNumber").value = reg_no;
                 document.getElementById("u_vehicleSeat").value = seat;
-                //document.getElementById('u_vehicleFuelType').className=fuel;
-                // document.getElementById("u_radioAC").className = ac;
-                // document.getElementById("u_radioTransmission").className = transmission;
-                //document.getElementById("u_vehicleImage").value = img;
+                if (fuel=='P')
+                    document.getElementById("u_petrol").checked = true;
+                else
+                    document.getElementById("u_diesel").checked = true;
+
+                if (ac=='1')
+                    document.getElementById("u_ac").checked = true;
+                else
+                    document.getElementById("u_non_ac").checked = true;
+
+                if (transmission=='A')
+                    document.getElementById("u_auto").checked = true;
+                else
+                    document.getElementById("u_manual").checked = true;
+
                 document.getElementById("u_vehiclePrice").value = day_price;
                 document.getElementById("u_vehicleAddKM").value = per_km;
                 document.getElementById("u_vehicleAddHour").value = per_hour;
