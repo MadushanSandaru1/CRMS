@@ -86,31 +86,31 @@
 
                       <div class="form-group">
                         <label for="InputName">Name</label>
-                        <input type="text" class="form-control" id="InputName" placeholder="Name" name="name" maxlength="100" value= "<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
+                        <input type="text" class="form-control" id="InputName" placeholder="A. B. Abhaya Car" name="name" maxlength="100" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed" value="<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
                           <small class="text-danger"><?php echo form_error('name'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="InputNIC">NIC</label>
-                        <input type="text" class="form-control" id="InputNIC" placeholder="NIC" name="nic" value= "<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>" >
+                        <input type="text" class="form-control" id="InputNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" name="nic" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" maxlength="12" title="Please enter a according to correct pattern" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('nic'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="InputEmail">Email address</label>
-                        <input type="email" class="form-control" id="InputEmail" placeholder="Email address" name="email"  maxlength="100" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
+                        <input type="email" class="form-control" id="InputEmail" placeholder="example@abhaya.com" name="email"  maxlength="100" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('email'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="InputPhone">Phone</label>
-                        <input type="text" class="form-control" id="InputPhone" placeholder="Phone" name="phone" value= "<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>" >
+                        <input type="text" class="form-control" id="InputPhone" placeholder="0xxxxxxxxx" name="phone" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern" value= "<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('phone'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="InputAddress">Address</label>
-                        <textarea class="form-control" id="InputAddress" rows="4" placeholder="Address" name="address" maxlength="255"> <?php if($this->session->tempdata('address_fill')) echo $this->session->tempdata('address_fill'); ?> </textarea>
+                        <textarea class="form-control" id="InputAddress" rows="4" placeholder="Beliatta, Matara." name="address" maxlength="255"><?php if($this->session->tempdata('address_fill')) echo $this->session->tempdata('address_fill'); ?></textarea>
                         <small class="text-danger"><?php echo form_error('address'); ?></small>
                       </div>
 
@@ -202,31 +202,31 @@
 
                       <div class="form-group">
                         <label for="update_InputName">Name</label>
-                        <input type="text" class="form-control" id="update_InputName" placeholder="Name" name="update_name" value= "<?php if($this->session->tempdata('update_name_fill')) echo $this->session->tempdata('update_name_fill'); ?>" >
+                        <input type="text" class="form-control" id="update_InputName" placeholder="A. B. Abhaya Car" name="update_name" maxlength="100" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed" value= "<?php if($this->session->tempdata('update_name_fill')) echo $this->session->tempdata('update_name_fill'); ?>" >
                           <small class="text-danger"><?php echo form_error('update_name'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="update_InputNIC">NIC</label>
-                        <input type="text" class="form-control" id="update_InputNIC" placeholder="NIC" name="update_nic" value= "<?php if($this->session->tempdata('update_nic_fill')) echo $this->session->tempdata('update_nic_fill'); ?>" >
+                        <input type="text" class="form-control" id="update_InputNIC" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" name="update_nic" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" maxlength="12" title="Please enter a according to correct pattern" value= "<?php if($this->session->tempdata('update_nic_fill')) echo $this->session->tempdata('update_nic_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('update_nic'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="update_InputEmail">Email address</label>
-                        <input type="email" class="form-control" id="update_InputEmail" placeholder="Email address" name="update_email" value= "<?php if($this->session->tempdata('update_email_fill')) echo $this->session->tempdata('update_email_fill'); ?>" >
+                        <input type="email" class="form-control" id="update_InputEmail" placeholder="example@abhaya.com" name="update_email" maxlength="100" value= "<?php if($this->session->tempdata('update_email_fill')) echo $this->session->tempdata('update_email_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('update_email'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="update_InputPhone">Phone</label>
-                        <input type="text" class="form-control" id="update_InputPhone" placeholder="Phone" name="update_phone" value= "<?php if($this->session->tempdata('update_phone_fill')) echo $this->session->tempdata('update_phone_fill'); ?>" >
+                        <input type="text" class="form-control" id="update_InputPhone" placeholder="0xxxxxxxxx" name="update_phone" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern" value= "<?php if($this->session->tempdata('update_phone_fill')) echo $this->session->tempdata('update_phone_fill'); ?>" >
                         <small class="text-danger"><?php echo form_error('update_phone'); ?></small>
                       </div>
 
                       <div class="form-group">
                         <label for="update_InputAddress">Address</label>
-                        <textarea class="form-control" id="update_InputAddress" rows="4" placeholder="Address" name="update_address"> <?php if($this->session->tempdata('update_address_fill')) echo $this->session->tempdata('update_address_fill'); ?> </textarea>
+                        <textarea class="form-control" id="update_InputAddress" rows="4" placeholder="Beliatta, Matara." name="update_address" maxlength="255"><?php if($this->session->tempdata('update_address_fill')) echo $this->session->tempdata('update_address_fill'); ?></textarea>
                         <small class="text-danger"><?php echo form_error('update_address'); ?></small>
                       </div>
 
@@ -640,11 +640,11 @@
 </script>
 
 
-<!-- <?php /*if($this->session->tempdata('avatar_fill')) */{ ?> 
-<script>
+<?php if($this->session->tempdata('avatar_fill')) { ?> 
+<!-- <script>
   document.getElementById("capturedFrame").innerHTML='<img id="avatar" class="imageCaptured" src="'+ $this->session->tempdata('avatar_fill')  +'"/>';
-</script> 
-<?php } ?> -->
+</script>  -->
+<?php } ?>
 
 
 <?php require_once 'crms_footer.php';?>

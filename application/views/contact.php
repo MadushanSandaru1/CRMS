@@ -66,18 +66,23 @@
 				</div>														
 			</div>
 			<div class="col-lg-8">
-
-				<?php echo form_open('Contact/customer_message'); ?>
+                <?php echo form_open('Contact/customer_message'); ?>
 
 				<form class="form-area " id="myForm" method="post" class="contact-form text-right">
 					<div class="row">
 						<div class="col-lg-6 form-group">
 							<input name="message_name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" type="text">
-						
+                            <small class="text-danger"><?php echo form_error('message_name'); ?></small>
+
 							<input name="message_email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" type="email">
+                            <small class="text-danger"><?php echo form_error('message_email'); ?></small>
+
+                            <!-- fouces if error ocurred -->
+                            <div id="error_focus_point" tabindex="1"></div>
 
 							<input name="message_subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" type="text">
 							<div class="mt-20 alert-msg" style="text-align: left;"></div>
+                            <small class="text-danger"><?php echo form_error('message_subject'); ?></small>
 						</div>
 						<div class="col-lg-6 form-group">
 							<textarea class="common-textarea form-control" name="message_content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
@@ -89,12 +94,20 @@
 
 				<?php echo form_close(); ?>
                 <div class="text-danger">
-                    <?php echo validation_errors(); ?>
+                    <!--printed all error under the form-->
+                    <?php //echo validation_errors(); ?>
                 </div>
 
             </div>
 		</div>
-	</div>	
+	</div>
+
+    <script type="text/javascript">
+        <?php if(validation_errors()) { ?>
+            document.getElementById('error_focus_point').focus();
+        <?php  } ?>
+    </script>
+
 </section>
 <!-- End contact-page Area -->
 

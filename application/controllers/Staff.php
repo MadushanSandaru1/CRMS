@@ -31,6 +31,16 @@
 
                 if($this->form_validation->run() == FALSE)
                 {
+                    //store value to the temporary session already filled
+                    $this->session->set_tempdata('role_staff_fill', $this->input->post('role_staff', TRUE), 5);
+                    $this->session->set_tempdata('role_staff_fill', $this->input->post('role_staff', TRUE), 5);
+                    $this->session->set_tempdata('full_name_fill', $this->input->post('full_name', TRUE), 5);
+                    $this->session->set_tempdata('nic_fill', $this->input->post('nic', TRUE), 5);
+                    $this->session->set_tempdata('email_fill', $this->input->post('email', TRUE), 5);
+                    $this->session->set_tempdata('phone_no_fill', $this->input->post('phone_no', TRUE), 5);
+                    $this->session->set_tempdata('address_fill', $this->input->post('address', TRUE), 5);
+
+                    //Required data retrieval module
                     $this->load->model("Customer_message");
                     $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
                     $this->load->model("notification");
@@ -88,13 +98,28 @@
             }
 
             public function updateStaffDetails(){
-                $this->form_validation->set_rules('update_email',' E-Mail ID','required');
+
+                $this->form_validation->set_rules('update_full_name','Name','required');
+                $this->form_validation->set_rules('update_email','Email','required');
+                $this->form_validation->set_rules('update_nic','NIC','required');
                 $this->form_validation->set_rules('update_phone_no','Phone Number','required');
-                $this->form_validation->set_rules('update_guarantorAddress','Address','required');
+                if (empty($_FILES['update_staff_picture']['name']))
+                {
+                    $this->form_validation->set_rules('update_staff_picture', 'Staff Image', 'required');
+                }
 
                 if($this->form_validation->run() == FALSE){
                     $this->session->set_tempdata('form','update_form',5);
 
+                    //store value to the temporary session already filled
+                    $this->session->set_tempdata('ustaff_user_id_fill', $this->input->post('staff_user_id', TRUE), 5);
+                    $this->session->set_tempdata('ufull_name_fill', $this->input->post('update_full_name', TRUE), 5);
+                    $this->session->set_tempdata('unic_fill', $this->input->post('update_nic', TRUE), 5);
+                    $this->session->set_tempdata('uemail_fill', $this->input->post('update_email', TRUE), 5);
+                    $this->session->set_tempdata('uphone_no_fill', $this->input->post('update_phone_no', TRUE), 5);
+                    $this->session->set_tempdata('uaddress_fill', $this->input->post('address', TRUE), 5);
+
+                    //Required data retrieval module
                     $this->load->model("Customer_message");
                     $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
                     $this->load->model("notification");

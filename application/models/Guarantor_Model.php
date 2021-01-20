@@ -62,8 +62,12 @@ class Guarantor_Model extends CI_Model
         $id = $this->input->post('update_guarantorID',TRUE);
         $phone_no = $this->input->post('update_guarantorPhone',TRUE);
         $address = $this->input->post('update_guarantorAddress',TRUE);
+        $name = $this->input->post('update_guarantorName',TRUE);
+        $nic = $this->input->post('update_guarantorNIC',TRUE);
 
         $values=array(
+            'name'=>$name,
+            'nic'=>$nic,
             'phone'=>$phone_no,
             'address'=>$address
         );

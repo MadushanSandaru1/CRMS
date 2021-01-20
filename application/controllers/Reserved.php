@@ -1,6 +1,5 @@
 <?php
 
-
 class Reserved extends CI_Controller
 {
     public function add_reserved(){
@@ -13,8 +12,7 @@ class Reserved extends CI_Controller
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_tempdata('reservedCustomerID_fill' , $this->input->post('reservedCustomerID',TRUE), 5); 
-            $this->session->set_tempdata('reservedVehicleID_fill' , $this->input->post('reservedVehicleID',TRUE), 5); 
-            $this->session->set_tempdata('reservedVehicleFromDate_fill', $this->input->post('reservedVehicleFromDate', TRUE), 5);
+            $this->session->set_tempdata('reservedVehicleID_fill' , $this->input->post('reservedVehicleID',TRUE), 5);
             $this->session->set_tempdata('reservedVehicleToDate_fill', $this->input->post('reservedVehicleToDate', TRUE), 5);
             $this->session->set_tempdata('reservedVehicleStartValue_fill', $this->input->post('reservedVehicleStartValue', TRUE), 5);
             $this->session->set_tempdata('reservedVehicleAdvancedPayment_fill', $this->input->post('reservedVehicleAdvancedPayment', TRUE), 5);
@@ -83,9 +81,8 @@ class Reserved extends CI_Controller
         $this->pdf->loadHtml($html);
         $this->pdf->setPaper('A5', 'portrait');
         $this->pdf->render();
-        //$output = $this->pdf->output();
-        //file_put_contents("guarantor_report".date("Ymd_his").".pdf", $output);
-        $this->pdf->stream("guarantor_report".date("Ymd_his").".pdf",array("Attachment" => 0));
+
+        $this->pdf->stream("reserved_bill_report".date("Ymd_his").".pdf",array("Attachment" => 0));
     }
     //** report generator function **
 

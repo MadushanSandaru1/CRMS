@@ -60,10 +60,10 @@
             }
 
             public function deleteUser(){
-
                 $values = array( 'is_deleted' => '1');
 
                 $this->db->where('id', $this->input->post('deluserid'));
+                $this->db->where('is_deleted', 0);
                 return $this->db->update('user',$values);
             }
 
@@ -72,7 +72,6 @@
                 $id = $this->input->post('staff_user_id',TRUE);
                 $email = $this->input->post('update_email',TRUE);
                 $phone_no = $this->input->post('update_phone_no',TRUE);
-//                $address = ucwords($this->input->post('address',TRUE));
 
                 if($img_path==""){
 
@@ -89,6 +88,7 @@
                         'image'=>$img_path
                     );
                     $this->db->where('id',$id);
+                    $this->db->where('is_deleted', 0);
                     return $this->db->update('user', $values);
                 }
             }
