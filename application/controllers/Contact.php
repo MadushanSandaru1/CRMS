@@ -10,7 +10,11 @@
             $this->form_validation->set_rules('message_content', 'Message', 'required|max_length[500]');
 
             if ($this->form_validation->run() == FALSE) {
-                $this->load->view('contact');
+
+                $this->session->set_tempdata('message_name', $this->input->post('message_name', TRUE), 5);
+                $this->session->set_tempdata('message_email', $this->input->post('message_email', TRUE), 5);
+                $this->session->set_tempdata('message_subject', $this->input->post('message_subject', TRUE), 5);
+                redirect('Home/contact#contact_form');
             } else {
                 $this->load->model('Customer_message');
                 $response = $this->Customer_message->insertMessageData();
