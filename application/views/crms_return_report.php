@@ -13,9 +13,12 @@ $total_balance=0;
 $price_per_day=0;
 $price_per_km=0;
 $price_per_hour=0;
-$today = Date('Y-m-d h:i:s a',time());
+$today = Date('Y-m-d h:i:s ',time());
 $actual_hours=0;
 $planed_hours=0;
+$vehicle_id=0;
+$advance_payment=0;
+
 foreach ($reserved_details as $values)
 {
     $reserved_v_no = $values->vehicle_id;
@@ -25,6 +28,7 @@ foreach ($reserved_details as $values)
     $drop = $values->to_date;
     $start_meter= $values->start_meter_value;
     $end_meter = $values->stop_meter_value;
+    $advance_payment = $values->advance_payment;
 }
 
 foreach ($vehicle_data as $value)
@@ -34,6 +38,7 @@ foreach ($vehicle_data as $value)
         $price_per_day = $value->price_per_day;
         $price_per_km = $value->additional_price_per_km;
         $price_per_hour = $value->additional_price_per_hour;
+        $vehicle_id = $value->id;
     }
 }
 
@@ -145,15 +150,12 @@ foreach ($customer_data as $value)
             <td>:
                 <b id="total_hours">
                     <?php
+                        $h=10;
                         $sd= new DateTime($pickup);
                         $ed= new DateTime($today);
-                        $datediffs = $sd->diff($ed);
-                        $days = $datediffs->h;
-                        $actual_hours = $days + ($datediffs->days*24);
-                        $days = $days + ($datediffs->days);
-                        //$d_diff = $datediffs->format('%H');
-                        echo $days." Day";
-
+                        $date_diffs = $sd->diff($ed);
+                        $actual_hours=$date_diffs->format('%h');
+                        echo $date_diffs->format('%a Day and %h hours');
                     ?>
                 </b>
             </td>
@@ -163,38 +165,46 @@ foreach ($customer_data as $value)
             <td>:
                 <b>
                     <?php
-                        $sd= new DateTime($pickup);
-                        $ed= new DateTime($drop);
-                        $datediffs_expected = $sd->diff($ed);
-                        $days_expected=$datediffs_expected->h;
-                        $planed_hours = $days_expected+($datediffs_expected->days*24);
-                        $days_expected=$days_expected+($datediffs_expected->days);
+                        $start_time= new DateTime($pickup);
+                        $end_time= new DateTime($drop);
+                        $datediffs_expected = $start_time->diff($end_time);
+                        //$planed_hours = $datediffs_expected->format('%d')*24;
+                        $planed_hours = $datediffs_expected->format('%h');
                         //$d_diff_exped = $datediffs_expected->format('%d');
 
-                        if(($end_meter - $start_meter) >=200 && $days>$days_expected)
+
+                        if(($end_meter - $start_meter) >=200 && $actual_hours>$planed_hours)
                         {
                             $hours =$actual_hours - $planed_hours;
                             $total_balance +=(($end_meter - $start_meter)*$price_per_km);
                             $total_balance +=$hours*$price_per_hour;
                             $total_balance+=$price_per_day;
+                            $total_balance -=$advance_payment;
                             $this->session->set_tempdata('vehicle_return_income',$total_balance, 10);
+                            $this->session->set_tempdata('vehicle_return_v_id',$vehicle_id, 10);
                         }
-                        else if(($end_meter - $start_meter) >=200 && $days==$days_expected) {
+                        else if(($end_meter - $start_meter) >=200 && $actual_hours==$planed_hours) {
                             $total_balance +=(($end_meter - $start_meter)*$price_per_km);
                             $total_balance +=$price_per_day;
+                            $total_balance -=$advance_payment;
                             $this->session->set_tempdata('vehicle_return_income',$total_balance, 10);
+                            $this->session->set_tempdata('vehicle_return_v_id',$vehicle_id, 10);
                         }
-                        else if(($end_meter - $start_meter) < 200 && $days>$days_expected) {
+                        else if(($end_meter - $start_meter) < 200 && $actual_hours>$planed_hours) {
                             $hours =$actual_hours - $planed_hours;
                             $total_balance +=$hours*$price_per_hour;
                             $total_balance +=$price_per_day;
+                            $total_balance -=$advance_payment;
                             $this->session->set_tempdata('vehicle_return_income',$total_balance, 10);
+                            $this->session->set_tempdata('vehicle_return_v_id',$vehicle_id, 10);
                         }
-                        else if(($end_meter - $start_meter) < 200 && $days<$days_expected) {
-                            $hours =$planed_hours-$actual_hours;
-                            $total_balance +=$hours*$price_per_hour;
+                        else if(($end_meter - $start_meter) < 200 && $actual_hours<$planed_hours) {
+                            $total_balance +=$price_per_day;
+                            $total_balance -=$advance_payment;
                             $this->session->set_tempdata('vehicle_return_income',$total_balance, 10);
+                            $this->session->set_tempdata('vehicle_return_v_id',$vehicle_id, 10);
                         }
+
                         echo $total_balance." LKR/-";
                     ?>
                 </b>

@@ -108,8 +108,13 @@ class Returned extends CI_Controller
         $this->pdf->loadHtml($html);
         $this->pdf->setPaper('A5', 'portrait');
         $this->pdf->render();
-
         $this->pdf->stream("vehicle_return_report".date("Ymd_his").".pdf",array("Attachment" => 0));
+
+        //insert vehicle return income
+        $amount=$this->session->tempdata('vehicle_return_income');
+        $vehicle_id = $this->session->tempdata('vehicle_return_v_id');
+        $this->load->model('VehicleReturnModel');
+        $this->VehicleReturnModel->insertVehicleIncome($vehicle_id,$amount);
     }
 
     public function vehicleReturnIncome($amount)
