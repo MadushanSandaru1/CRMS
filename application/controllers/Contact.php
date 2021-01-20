@@ -13,7 +13,8 @@
 
                 $this->session->set_tempdata('message_name', $this->input->post('message_name', TRUE), 5);
                 $this->session->set_tempdata('message_email', $this->input->post('message_email', TRUE), 5);
-                $this->session->set_tempdata('message_subject', $this->input->post('message_subject', TRUE), 5);
+                $this->session->set_tempdata('message_subject', $this->input->post('message_subject', TRUE), 5);ව
+                $this->session->set_tempdata('message_content', $this->input->post('message_content', TRUE), 5);
                 $this->load->view('contact');
             } else {
                 $this->load->model('Customer_message');
