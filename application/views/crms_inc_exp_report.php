@@ -44,7 +44,7 @@
                         if($this->session->flashdata('expenses_report_status'))
                         {
                             ?>
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-success" role="alert" id="alertDiv">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <?php
                                 echo $this->session->flashdata('expenses_report_status');
@@ -133,6 +133,11 @@
         </div>
 
         <script type="text/javascript">
+
+            setTimeout(function() {
+                $('#alertDiv').fadeOut('fast');
+            }, 300000);
+
             function set_min_date(){
                 min = document.getElementById("start_date").value;
                 document.getElementById("end_date").value = null;
