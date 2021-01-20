@@ -10,6 +10,14 @@
                 return $query->result();
             }
 
+            public function getStaffDetailsForAutoId()
+            {
+                $this->db->order_by('id', 'ASC');
+
+                $query = $this->db->get('user');
+                return $query->result();
+            }
+
             public function insertStaff($image_path)
             {
                 $random_password = rand(10000000,99999999);
@@ -67,30 +75,26 @@
                 return $this->db->update('user',$values);
             }
 
-            public function updateStaff($img_path){
+            public function updateStaff(){
 
                 $id = $this->input->post('staff_user_id',TRUE);
+                $name = $this->input->post('update_full_name', TRUE);
+                $nic = $this->input->post('update_nic', TRUE);
                 $email = $this->input->post('update_email',TRUE);
                 $phone_no = $this->input->post('update_phone_no',TRUE);
+                $address = $this->input->post('update_address', TRUE);
 
-                if($img_path==""){
+                $values = array(
+                    'name'=> $name,
+                    'nic'=> $nic,
+                    'email'=> $email,
+                    'phone'=> $phone_no,
+                    'address'=> $address
+                );
 
-                    $values = array(
-                        'email'=> $email,
-                        'phone'=> $phone_no
-                    );
-                    $this->db->where('id',$id);
-                    return $this->db->update('user', $values);
-                }else{
-                    $values = array(
-                        'email'=> $email,
-                        'phone'=> $phone_no,
-                        'image'=>$img_path
-                    );
-                    $this->db->where('id',$id);
-                    $this->db->where('is_deleted', 0);
-                    return $this->db->update('user', $values);
-                }
+                $this->db->where('id',$id);
+                $this->db->where('is_deleted', 0);
+                return $this->db->update('user', $values);
             }
         }
  ?>
