@@ -105,7 +105,7 @@
                                     <small class="text-danger"><?php echo form_error('reservedVehicleID'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reservedVehicleDate">Reserved Date</label>
+                                    <label for="reservedVehicleDate">Reserved Date </label>
                                     <input type="datetime-local" class="form-control" name="reservedVehicleFromDate" id="reservedVehicleFromDate" onchange="set_dropoff_min()" placeholder="Reserved Date" min="<?php echo Date('Y-m-d\TH:i',time()) ?>"  value="<?php if($this->session->tempdata('reservedVehicleFromDate_fill')) echo $this->session->tempdata('reservedVehicleFromDate_fill'); else echo Date('Y-m-d\TH:i',time()); ?>">
                                     <small class="text-danger"><?php echo form_error('reservedVehicleFromDate'); ?></small>
                                 </div>
@@ -230,6 +230,13 @@
                 document.getElementById("addReservedVehicle").classList.add("show");
             </script>
         <?php } ?>
+
+        <?php if($this->session->tempdata('form')=='add_form') { ?>
+            <script>
+                document.getElementById("addReservedVehicle").classList.add("show");
+            </script>
+        <?php } ?>
+        
 
         <script type="text/javascript">
             function set_dropoff_min(){

@@ -128,17 +128,15 @@
 
 <script>
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyDxrMJZbOnpAbPctXwashBp_dmlC-g0UTs",
-    authDomain: "gps-tracking-291518.firebaseapp.com",
-    databaseURL: "https://gps-tracking-291518-default-rtdb.firebaseio.com",
-    projectId: "gps-tracking-291518",
-    storageBucket: "gps-tracking-291518.appspot.com",
-    messagingSenderId: "768782133031",
-    appId: "1:768782133031:web:204ca92cee90f8ae10ab02",
-    measurementId: "G-NL62KRG6HN"
+    apiKey: "AIzaSyAUupoER_mSO2D04ArrICsecEgO3mjXoZk",
+    authDomain: "tracker-fe14d.firebaseapp.com",
+    databaseURL: "https://tracker-fe14d-default-rtdb.firebaseio.com",
+    projectId: "tracker-fe14d",
+    storageBucket: "tracker-fe14d.appspot.com",
+    messagingSenderId: "487604763565",
+    appId: "1:487604763565:web:3f8957533cdaea81f97f24"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -154,14 +152,15 @@ function trackinmap(){
     var vid = document.getElementById("vehicleid");
     var strvid = vid.options[vid.selectedIndex].value;
 
+    var ref = firebase.database().ref();
 
-    var ref = firebase.database().ref().child('/vehicles/'+strvid);
-    
     ref.on("value", function(snapshot) {
 
-        if (snapshot.val()!=null) {
-            localStorage.setItem('Latitude', snapshot.val().Latitude);
-            localStorage.setItem('Longitude', snapshot.val().Longitude);
+        //console.log(snapshot.child(strvid).val());
+
+        if (snapshot.child(strvid).val()!=null) {
+            localStorage.setItem('Latitude', snapshot.child(strvid).val().latitude);
+            localStorage.setItem('Longitude', snapshot.child(strvid).val().longitude);
         }else{
             localStorage.setItem('Latitude', null);
             localStorage.setItem('Longitude', null);

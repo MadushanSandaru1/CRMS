@@ -71,8 +71,8 @@
                                             if ($available_vehicle->num_rows() > 0) {
                                                 foreach($available_vehicle->result() as $row){
 
-                                                    if ($this->session->tempdata('vehicle_fill')) {
-                                                        if ($this->session->tempdata('vehicle_fill')==$row->id) {
+                                                    if ($this->session->tempdata('booking_vehicle_fill')) {
+                                                        if ($this->session->tempdata('booking_vehicle_fill')==$row->id) {
                                                             echo "<option value={$row->id} selected>{$row->title}</option>";
                                                         }else{
                                                             echo "<option value={$row->id} >{$row->title}</option>";
@@ -92,45 +92,45 @@
 
                                 <div class="form-group">
                                     <label for="pickup">Pickup</label>
-                                    <input type="datetime-local" class="form-control" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('pickup_fill')) echo $this->session->tempdata('pickup_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_pickup_fill')) echo $this->session->tempdata('booking_pickup_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('pickup'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="drop_off">Drop off</label>
-                                    <input type="datetime-local" class="form-control" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('pickup_fill')) echo $this->session->tempdata('drop_off_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_drop_off_fill')) echo $this->session->tempdata('booking_drop_off_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('drop_off'); ?></small>
                                     
                                 </div>
 
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input  class="form-control"  type="text" id="name" name="name" placeholder="Customer's name" value="<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>" >
+                                    <input  class="form-control"  type="text" id="name" name="name" placeholder="Customer's name" value="<?php if($this->session->tempdata('booking_name_fill')) echo $this->session->tempdata('booking_name_fill'); ?>" >
                                     <small class="text-danger"><?php echo form_error('name'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nic">NIC</label>
-                                    <input class="form-control" type="text" id="nic" name="nic" placeholder="Customer's NIC" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>">
+                                    <input class="form-control" type="text" id="nic" name="nic" placeholder="Customer's NIC" value="<?php if($this->session->tempdata('booking_nic_fill')) echo $this->session->tempdata('booking_nic_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('nic'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input class="form-control" type="email" id="email" name="email" placeholder="Customer's email" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" >
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="Customer's email" value="<?php if($this->session->tempdata('booking_email_fill')) echo $this->session->tempdata('booking_email_fill'); ?>" >
                                     <small class="text-danger"><?php echo form_error('email'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="Customer's Phone" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>">
+                                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="Customer's Phone" value="<?php if($this->session->tempdata('booking_phone_fill')) echo $this->session->tempdata('booking_phone_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('phone'); ?></small>
 
                                 </div>
 
                                 <div class="form-group">
                                     <label for="msg">Message</label>
-                                    <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"> <?php if($this->session->tempdata('msg_fill')) echo $this->session->tempdata('msg_fill'); ?> </textarea>
+                                    <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"> <?php if($this->session->tempdata('booking_msg_fill')) echo $this->session->tempdata('booking_msg_fill'); ?> </textarea>
                                     <small class="text-danger"><?php echo form_error('msg'); ?></small>
                                 </div>
 
@@ -168,8 +168,8 @@
                                             if ($available_vehicle->num_rows() > 0) {
                                                 foreach($available_vehicle->result() as $row){
 
-                                                    if ($this->session->tempdata('update_vehicle_fill')) {
-                                                        if ($this->session->tempdata('update_vehicle_fill')==$row->id) {
+                                                    if ($this->session->tempdata('booking_update_vehicle_fill')) {
+                                                        if ($this->session->tempdata('booking_update_vehicle_fill')==$row->id) {
                                                             echo "<option value={$row->id} selected>{$row->title}</option>";
                                                         }else{
                                                             echo "<option value={$row->id} >{$row->title}</option>";
@@ -189,45 +189,45 @@
 
                                 <div class="form-group">
                                     <label for="update_pickup">Pickup</label>
-                                    <input type="datetime-local" class="form-control" name="update_pickup" id="update_pickup" placeholder="Date and Time" onchange="set_update_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('update_pickup_fill')) echo $this->session->tempdata('update_pickup_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="update_pickup" id="update_pickup" placeholder="Date and Time" onchange="set_update_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_update_pickup_fill')) echo $this->session->tempdata('booking_update_pickup_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('update_pickup'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="update_drop_off">Drop off</label>
-                                    <input type="datetime-local" class="form-control" name="update_drop_off" id="update_drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('update_drop_off_fill')) echo $this->session->tempdata('update_drop_off_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="update_drop_off" id="update_drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_update_drop_off_fill')) echo $this->session->tempdata('booking_update_drop_off_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('update_drop_off'); ?></small>
                                     
                                 </div>
 
                                 <div class="form-group">
                                     <label for="update_name">Name</label>
-                                    <input  class="form-control"  type="text" id="update_name" name="update_name" placeholder="Customer's name" value="<?php if($this->session->tempdata('update_name_fill')) echo $this->session->tempdata('update_name_fill'); ?>" >
+                                    <input  class="form-control"  type="text" id="update_name" name="update_name" placeholder="Customer's name" value="<?php if($this->session->tempdata('booking_update_name_fill')) echo $this->session->tempdata('booking_update_name_fill'); ?>" >
                                     <small class="text-danger"><?php echo form_error('update_name'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="update_nic">NIC</label>
-                                    <input class="form-control" type="text" id="update_nic" name="update_nic" placeholder="Customer's NIC" value="<?php if($this->session->tempdata('update_nic_fill')) echo $this->session->tempdata('update_nic_fill'); ?>">
+                                    <input class="form-control" type="text" id="update_nic" name="update_nic" placeholder="Customer's NIC" value="<?php if($this->session->tempdata('booking_update_nic_fill')) echo $this->session->tempdata('booking_update_nic_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('update_nic'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="update_email">Email</label>
-                                    <input class="form-control" type="email" id="update_email" name="update_email" placeholder="Customer's email" value="<?php if($this->session->tempdata('update_email_fill')) echo $this->session->tempdata('update_email_fill'); ?>" >
+                                    <input class="form-control" type="email" id="update_email" name="update_email" placeholder="Customer's email" value="<?php if($this->session->tempdata('booking_update_email_fill')) echo $this->session->tempdata('booking_update_email_fill'); ?>" >
                                     <small class="text-danger"><?php echo form_error('update_email'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="update_phone">Phone</label>
-                                    <input class="form-control" type="tel" id="update_phone" name="update_phone" placeholder="Customer's Phone" value="<?php if($this->session->tempdata('update_phone_fill')) echo $this->session->tempdata('update_phone_fill'); ?>">
+                                    <input class="form-control" type="tel" id="update_phone" name="update_phone" placeholder="Customer's Phone" value="<?php if($this->session->tempdata('booking_update_phone_fill')) echo $this->session->tempdata('booking_update_phone_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('update_phone'); ?></small>
 
                                 </div>
 
                                 <div class="form-group">
                                     <label for="update_msg">Message</label>
-                                    <textarea class="form-control txt-field" placeholder="Message" name="update_msg" id="update_msg"> <?php if($this->session->tempdata('update_msg_fill')) echo $this->session->tempdata('update_msg_fill'); ?> </textarea>
+                                    <textarea class="form-control txt-field" placeholder="Message" name="update_msg" id="update_msg"> <?php if($this->session->tempdata('booking_update_msg_fill')) echo $this->session->tempdata('booking_update_msg_fill'); ?> </textarea>
                                     <small class="text-danger"><?php echo form_error('update_msg'); ?></small>
                                 </div>
 
@@ -450,13 +450,13 @@
 
 
 
-<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+<?php  if ($this->session->tempdata('form')=='booking_add_form') { ?>
 <script>
         document.getElementById("add_div").style.display = "block";
         document.getElementById("update_div").style.display = "none";
         document.getElementById("addBooking").classList.add("show");
 </script>
-<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+<?php }else if($this->session->tempdata('form')=='booking_update_form'){ ?>
 <script>
         document.getElementById("update_div").style.display = "block";
         document.getElementById("add_div").style.display = "none";

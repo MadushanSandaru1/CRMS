@@ -58,15 +58,15 @@ class Booking extends CI_Controller{
 
 		if ($this->form_validation->run() == FALSE) {
 
-			$this->session->set_tempdata('vehicle_fill', $this->input->post('vehicle', TRUE), 5);
-            $this->session->set_tempdata('pickup_fill', $this->input->post('pickup', TRUE), 5);
-            $this->session->set_tempdata('drop_off_fill', $this->input->post('drop_off', TRUE), 5);
-            $this->session->set_tempdata('name_fill', $this->input->post('name', TRUE), 5);
-            $this->session->set_tempdata('nic_fill', $this->input->post('nic', TRUE), 5);
-            $this->session->set_tempdata('email_fill', $this->input->post('email', TRUE), 5);
-            $this->session->set_tempdata('phone_fill', $this->input->post('phone', TRUE), 5);
-            $this->session->set_tempdata('msg_fill', $this->input->post('msg', TRUE), 5);
-            $this->session->set_tempdata('form','add_form',5);
+			$this->session->set_tempdata('booking_vehicle_fill', $this->input->post('vehicle', TRUE), 5);
+            $this->session->set_tempdata('booking_pickup_fill', $this->input->post('pickup', TRUE), 5);
+            $this->session->set_tempdata('booking_drop_off_fill', $this->input->post('drop_off', TRUE), 5);
+            $this->session->set_tempdata('booking_name_fill', $this->input->post('name', TRUE), 5);
+            $this->session->set_tempdata('booking_nic_fill', $this->input->post('nic', TRUE), 5);
+            $this->session->set_tempdata('booking_email_fill', $this->input->post('email', TRUE), 5);
+            $this->session->set_tempdata('booking_phone_fill', $this->input->post('phone', TRUE), 5);
+            $this->session->set_tempdata('booking_msg_fill', $this->input->post('msg', TRUE), 5);
+            $this->session->set_tempdata('form','booking_add_form',5);
             
             $this->load->model("Customer_Model");
         	$data["regular_customers"] = $this->Customer_Model->getCustomers();
@@ -115,15 +115,15 @@ class Booking extends CI_Controller{
 
 		if ($this->form_validation->run() == FALSE) {
 
-			$this->session->set_tempdata('update_vehicle_fill', $this->input->post('update_vehicle', TRUE), 5);
-            $this->session->set_tempdata('update_pickup_fill', $this->input->post('update_pickup', TRUE), 5);
-            $this->session->set_tempdata('update_drop_off_fill', $this->input->post('update_drop_off', TRUE), 5);
-            $this->session->set_tempdata('update_name_fill', $this->input->post('update_name', TRUE), 5);
-            $this->session->set_tempdata('update_nic_fill', $this->input->post('update_nic', TRUE), 5);
-            $this->session->set_tempdata('update_email_fill', $this->input->post('update_email', TRUE), 5);
-            $this->session->set_tempdata('update_phone_fill', $this->input->post('update_phone', TRUE), 5);
-            $this->session->set_tempdata('update_msg_fill', $this->input->post('update_msg', TRUE), 5);
-            $this->session->set_tempdata('form','update_form',5);
+			$this->session->set_tempdata('booking_update_vehicle_fill', $this->input->post('update_vehicle', TRUE), 5);
+            $this->session->set_tempdata('booking_update_pickup_fill', $this->input->post('update_pickup', TRUE), 5);
+            $this->session->set_tempdata('booking_update_drop_off_fill', $this->input->post('update_drop_off', TRUE), 5);
+            $this->session->set_tempdata('booking_update_name_fill', $this->input->post('update_name', TRUE), 5);
+            $this->session->set_tempdata('booking_update_nic_fill', $this->input->post('update_nic', TRUE), 5);
+            $this->session->set_tempdata('booking_update_email_fill', $this->input->post('update_email', TRUE), 5);
+            $this->session->set_tempdata('booking_update_phone_fill', $this->input->post('update_phone', TRUE), 5);
+            $this->session->set_tempdata('booking_update_msg_fill', $this->input->post('update_msg', TRUE), 5);
+            $this->session->set_tempdata('form','booking_update_form',5);
             
 
             $this->load->model("Customer_Model");
@@ -248,7 +248,7 @@ class Booking extends CI_Controller{
         $this->session->set_tempdata('name_fill', rawurldecode($name) , 5);
         $this->session->set_tempdata('email_fill', rawurldecode($email), 5);
         $this->session->set_tempdata('phone_fill', rawurldecode($phone), 5);
-        $this->session->set_tempdata('form','add_form',5);
+        $this->session->set_tempdata('form','customer_add_form',5);
 
 
         $this->load->model("Customer_message");
@@ -267,13 +267,20 @@ class Booking extends CI_Controller{
 
 
     public function init_for_reserve($customerID,$vehicleID,$from,$to){
+
+    	$fromdateTime = new DateTime(rawurldecode($from));
+		$from = $fromdateTime->format("Y-m-d\TH:i:s");
+
+		$todateTime = new DateTime(rawurldecode($to));
+		$to = $todateTime->format("Y-m-d\TH:i:s");
         
         $this->session->set_tempdata('reservedCustomerID_fill' , rawurldecode($customerID), 5); 
         $this->session->set_tempdata('reservedVehicleID_fill' , rawurldecode($vehicleID), 5); 
-        $this->session->set_tempdata('reservedVehicleFromDate_fill', rawurldecode($from), 5);
-        $this->session->set_tempdata('reservedVehicleToDate_fill', rawurldecode($to), 5);
+        $this->session->set_tempdata('reservedVehicleFromDate_fill', $from, 5);
+        $this->session->set_tempdata('reservedVehicleToDate_fill', $to, 5);
 
         $this->session->set_tempdata('form','add_form',5);
+
 
 
         $this->load->model("Customer_message");
