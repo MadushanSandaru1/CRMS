@@ -105,32 +105,32 @@
 
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input  class="form-control"  type="text" id="name" name="name" placeholder="Customer's name" value="<?php if($this->session->tempdata('booking_name_fill')) echo $this->session->tempdata('booking_name_fill'); ?>" >
+                                    <input  class="form-control"  type="text" id="name" name="name" placeholder="Customer's name" maxlength="100" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed" value="<?php if($this->session->tempdata('booking_name_fill')) echo $this->session->tempdata('booking_name_fill'); ?>" >
                                     <small class="text-danger"><?php echo form_error('name'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nic">NIC</label>
-                                    <input class="form-control" type="text" id="nic" name="nic" placeholder="Customer's NIC" value="<?php if($this->session->tempdata('booking_nic_fill')) echo $this->session->tempdata('booking_nic_fill'); ?>">
+                                    <input class="form-control" type="text" id="nic" name="nic" placeholder="Customer's NIC" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" maxlength="12" title="Please enter a according to correct pattern"  value="<?php if($this->session->tempdata('booking_nic_fill')) echo $this->session->tempdata('booking_nic_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('nic'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input class="form-control" type="email" id="email" name="email" placeholder="Customer's email" value="<?php if($this->session->tempdata('booking_email_fill')) echo $this->session->tempdata('booking_email_fill'); ?>" >
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="Customer's email" maxlength="100" value="<?php if($this->session->tempdata('booking_email_fill')) echo $this->session->tempdata('booking_email_fill'); ?>" >
                                     <small class="text-danger"><?php echo form_error('email'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="Customer's Phone" value="<?php if($this->session->tempdata('booking_phone_fill')) echo $this->session->tempdata('booking_phone_fill'); ?>">
+                                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="Customer's Phone" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern" value="<?php if($this->session->tempdata('booking_phone_fill')) echo $this->session->tempdata('booking_phone_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('phone'); ?></small>
 
                                 </div>
 
                                 <div class="form-group">
                                     <label for="msg">Message</label>
-                                    <textarea class="form-control txt-field" placeholder="Message" name="msg" id="msg"> <?php if($this->session->tempdata('booking_msg_fill')) echo $this->session->tempdata('booking_msg_fill'); ?> </textarea>
+                                    <textarea class="form-control txt-field" placeholder="Type your message here..." name="msg" id="msg"><?php if($this->session->tempdata('booking_msg_fill')) echo $this->session->tempdata('booking_msg_fill'); ?></textarea>
                                     <small class="text-danger"><?php echo form_error('msg'); ?></small>
                                 </div>
 
