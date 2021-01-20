@@ -85,4 +85,81 @@ class Vehicle extends CI_Controller
     }
     //** record delete function **
 
+    public function update_vehicle()
+    {
+        $this->form_validation->set_rules('u_vehicleType', 'Vehicle Type', 'required|max_length[255]');
+        $this->form_validation->set_rules('u_vehicleRegisteredNumber', 'Vehicle Registered Number', 'required|is_unique[vehicle.registered_number]|max_length[15]');
+        $this->form_validation->set_rules('u_vehicleSeat', 'Vehicle Seat', 'required');
+        $this->form_validation->set_rules('u_vehicleFuelType', 'Vehicle Fuel Type', 'required');
+        $this->form_validation->set_rules('u_vehiclePrice', 'Vehicle Price', 'required');
+        $this->form_validation->set_rules('u_vehicleAddKM', 'Additional price per KM', 'required');
+        $this->form_validation->set_rules('u_vehicleAddHour', 'Additional price per Hour', 'required');
+        $this->form_validation->set_rules('u_vehicleInsurance', 'Vehicle Insurance Date', 'required');
+        $this->form_validation->set_rules('u_vehicleLicense', 'Vehicle License Date', 'required');
+
+        if(!empty($this->input->post('vehicle_proofment'))){
+
+            if (empty($_FILES['update_vehicle_copy']['name']))
+            {
+                $this->form_validation->set_rules('update_vehicle_copy', 'Vehicle Image', 'required');
+            }
+        }
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_tempdata('vehicleType_fill', $this->input->post('u_vehicleType', TRUE), 5);
+            $this->session->set_tempdata('vehicleRegisteredNumber_fill', $this->input->post('u_vehicleRegisteredNumber', TRUE), 5);
+            $this->session->set_tempdata('vehicleSeat_fill', $this->input->post('u_vehicleSeat', TRUE), 5);
+            $this->session->set_tempdata('vehicleFuelType_fill', $this->input->post('u_vehicleFuelType', TRUE), 5);
+            //$this->session->set_tempdata('vehicleImage_fill', $this->input->post('update_vehicle_copy', TRUE), 5);
+            $this->session->set_tempdata('vehiclePrice_fill', $this->input->post('u_vehiclePrice', TRUE), 5);
+            $this->session->set_tempdata('vehicleAddKM_fill', $this->input->post('u_vehicleAddKM', TRUE), 5);
+            $this->session->set_tempdata('vehicleAddHour_fill', $this->input->post('u_vehicleAddHour', TRUE), 5);
+            $this->session->set_tempdata('vehicleInsurance_fill', $this->input->post('u_vehicleInsurance', TRUE), 5);
+            $this->session->set_tempdata('vehicleLicense_fill', $this->input->post('u_vehicleLicense', TRUE), 5);
+
+            if(!empty($this->input->post('vehicle_proofment'))){
+                $this->session->set_tempdata('vehicleImage_fill', $this->input->post('vehicle_proofment', TRUE), 5);
+            }
+
+            $this->load->model("Vehicle_Model");
+            $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
+
+            $this->load->model("Customer_message");
+            $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+            $this->load->model("notification");
+            $data["insurence_date"]=$this->notification->insurence_date();
+            $data["revenue_license_date"]=$this->notification->revenue_license_date();
+            $data["car_booking_notification"]=$this->notification->car_booking_notification();
+            $data["car_not_recive"]=$this->notification->car_not_recive();
+            $this->session->set_flashdata('vehicle_status', 'Unable Vehicle Update');
+            $this->session->set_tempdata('form','update_form',5);
+            $this->load->view('crms_car', $data);
+        }
+        else {
+
+            $vehicle_copy_data = null;
+
+            if (!empty($_FILES['update_vehicle_copy']['name'])){
+                $vehicle_copy_data = $this->uploadFiles('update_vehicle_copy');
+            }
+
+
+            $this->load->model('Vehicle_Model');
+            $response = $this->Vehicle_Model->updateVehicleData($vehicle_copy_data);
+
+            if($response) {
+                $this->session->set_tempdata('form','add_form',5);
+                $this->session->set_flashdata('vehicle_status', 'Vehicle Updated successful');
+                redirect('Home/crms_car');
+            } else {
+                $this->session->set_tempdata('form','update_form',5);
+                $this->session->set_flashdata('vehicle_status', 'Vehicle update not successful');
+                redirect('Home/crms_car');
+            }
+
+
+
+        }
+    }
+
 }

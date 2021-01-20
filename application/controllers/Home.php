@@ -104,6 +104,9 @@ class Home extends CI_Controller {
         $data['new_booking_data']=$this->Dashboard_Model->getNewBookingCount();
         $data['accepted_booking_data']=$this->Dashboard_Model->getAcceptedBookingCount();
 
+        $data['daily_income_data']=$this->Dashboard_Model->getDailyIncome();
+        $data['daily_expense_data']=$this->Dashboard_Model->getDailyExpense();
+
         $data['weekly_income_data']=$this->Dashboard_Model->getWeeklyIncome();
         $data['weekly_expense_data']=$this->Dashboard_Model->getWeeklyExpense();
         $data['weekly_date_data']=$this->Dashboard_Model->getWeeklyDate();
@@ -114,6 +117,9 @@ class Home extends CI_Controller {
 
         $data['damage_vehicles_data']=$this->Dashboard_Model->getDamageVehicleCount();
         $data['monthly_damage_data']=$this->Dashboard_Model->getDamageInMonth();
+
+        $data['reserved_count_data']=$this->Dashboard_Model->getReserved();
+        $data['reserved_delay_count_data']=$this->Dashboard_Model->getReservedDelay();
 
         $this->load->view('crms_dashboard',$data);
     }
@@ -150,7 +156,7 @@ class Home extends CI_Controller {
 
         $this->load->model("Vehicle_Model");
         $data['vehicle_data'] = $this->Vehicle_Model->getVehicleData();
-
+        $this->session->set_tempdata('form','add_form',5);
         $this->load->view('crms_car', $data);
     }
 

@@ -88,18 +88,18 @@
                                     </select>
                                     <small class="text-danger"><?php echo form_error('description'); ?></small>
                                 </div>
+
                                 <div class="form-group">
                                     <label><b>Upload Damage Vehicle Picture</b></label>
-                                    <input type="file"  class="form-control" name="image_file" >
-                                    <!-- <small class="text-danger"><?php echo form_error('image_file'); ?></small>   -->
-                                    <!--
+                                    <input type="file" name="image_file" class="file-upload-default">
                                     <div class="input-group col-xs-12">
-                                        <input type="file" class="form-control name="image_file" file-upload-info" disabled placeholder="Upload Image">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                         <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                                        </span>
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                    </span>
                                     </div>
-                                -->
+                                    <small class="text-danger"><?php echo form_error('image_file'); ?></small>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputCity1"><b>Reserved From</b></label><br><br>
@@ -168,7 +168,7 @@
                                     </div>
                                     <div class="collapse " id="fix" aria-labelledby="fix_amount">
                                         <br>
-                                        <input type="text" name="fix_amount" id="" class="form-control" value="0" placeholder="Enter fix amount">
+                                        <input type="text" name="fix_amount" id="" class="form-control" value="<?php echo $this->session->tempdata('fix_amount_fill');?>" placeholder="Enter fix amount">
                                         
                                     </div>
                                 </div>

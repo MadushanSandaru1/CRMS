@@ -61,7 +61,7 @@
                         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item" href="<?php echo base_url('index.php/Home/crms_profile'); ?>"><i class="mdi mdi-account-circle mr-2 text-success"></i> Profile </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo base_url('index.php/User/user_signout'); ?>"><i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#signoutModal"><i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
                         </div>
                     </li>
 
