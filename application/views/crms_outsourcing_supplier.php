@@ -57,27 +57,27 @@ if (!$this->session->userdata('user_id')) {
                         <?php echo form_open_multipart('OutSourceSupplier/outSourcingSupplier'); ?>
                         <div class="form-group">
                             <label for="expenseVehicleID"><b>Name</b></label>
-                            <input type="text" name="name" class="form-control" placeholder="Type Supplier Name" >
+                            <input type="text" name="name" class="form-control" placeholder="Type Supplier Name" value="<?php if($this->session->tempdata('name_fill')) echo $this->session->tempdata('name_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('name'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expensedVehicleDate">NIC</label>
-                            <input type="text" name="nic" class="form-control" id="expensedVehicleDate" placeholder="Supplier NIC Number" >
+                            <input type="text" name="nic" class="form-control" id="expensedVehicleDate" placeholder="Supplier NIC Number" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('nic'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Email</label>
-                            <input type="email" name="email" class="form-control" id="expenseAmount" placeholder="Supplier Email" >
+                            <input type="email" name="email" class="form-control" id="expenseAmount" placeholder="Supplier Email" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('email'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Phone Number</label>
-                            <input type="text" name="phone" class="form-control" id="expenseAmount" placeholder="Supplier Phone Number">
+                            <input type="text" name="phone" class="form-control" id="expenseAmount" placeholder="Supplier Phone Number" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('phone'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Address</label>
-                            <input type="text" name="address" class="form-control" id="expenseAmount" placeholder="Supplier Address" >
+                            <input type="text" name="address" class="form-control" id="expenseAmount" placeholder="Supplier Address" value="<?php if($this->session->tempdata('address_fill')) echo $this->session->tempdata('address_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('address'); ?></small>
                         </div>
 
@@ -122,27 +122,27 @@ if (!$this->session->userdata('user_id')) {
                         </div>
                         <div class="form-group">
                             <label for="expenseVehicleID"><b>Name</b></label>
-                            <input type="text" name="sup_name" class="form-control" placeholder="Type Supplier Name" id="sup_name">
+                            <input type="text" name="sup_name" class="form-control" placeholder="Type Supplier Name" id="sup_name" value="<?php if($this->session->tempdata('sup_name_fill')) echo $this->session->tempdata('sup_name_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('name'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expensedVehicleDate">NIC</label>
-                            <input type="text" name="sup_nic" class="form-control" id="sup_nic" placeholder="Supplier NIC Number" >
+                            <input type="text" name="sup_nic" class="form-control" id="sup_nic" placeholder="Supplier NIC Number" value="<?php if($this->session->tempdata('sup_nic_fill')) echo $this->session->tempdata('sup_nic_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('nic'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Email</label>
-                            <input type="email" name="sup_email" class="form-control" id="sup_email" placeholder="Supplier Email" >
+                            <input type="email" name="sup_email" class="form-control" id="sup_email" placeholder="Supplier Email" value="<?php if($this->session->tempdata('sup_email_fill')) echo $this->session->tempdata('sup_email_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('email'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Phone Number</label>
-                            <input type="text" name="sup_phone" class="form-control" id="sup_phone" placeholder="Supplier Phone Number">
+                            <input type="text" name="sup_phone" class="form-control" id="sup_phone" placeholder="Supplier Phone Number" value="<?php if($this->session->tempdata('sup_phone_fill')) echo $this->session->tempdata('sup_phone_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('phone'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Address</label>
-                            <input type="text" name="sup_address" class="form-control" id="sup_address" placeholder="Supplier Address" >
+                            <input type="text" name="sup_address" class="form-control" id="sup_address" placeholder="Supplier Address" value="<?php if($this->session->tempdata('sup_address_fill')) echo $this->session->tempdata('sup_address_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('address'); ?></small>
                         </div>
 
@@ -211,7 +211,7 @@ if (!$this->session->userdata('user_id')) {
     </div>
     <?php if(validation_errors()) { ?>
         <script>
-            document.getElementById("addOutsourcingVehicle").classList.add("show");
+            document.getElementById("addOutsourcingSupplier").classList.add("show");
         </script>
     <?php } ?>
     <!-- Modal -->

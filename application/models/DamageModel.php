@@ -156,7 +156,7 @@
 
             public function damageSolved()
             {
-                $result=false;
+
                 $id=$this->input->post('soldamageid', TRUE);
                 $cus_amount = $this->input->post('customer_paid', TRUE);
                 $solved_amount = $this->input->post('solve_price', TRUE);
@@ -167,9 +167,8 @@
                     $values = array(
                         'is_solved' => 1,
                     );
-                    $this->db->where('id', $this->input->post('soldid'));
-                    $this->db->update('damage', $values);
-                    $result =$this->insertVehicleIncome($id,$total_in);
+
+                    $this->insertVehicleIncome($id,$total_in);
                 }
 
                 if ($cus_amount < $solved_amount)
@@ -178,12 +177,12 @@
                     $values = array(
                         'is_solved' => 1,
                     );
-                    $this->db->where('id', $this->input->post('soldid'));
-                    $this->db->update('damage', $values);
-                    $result =$this->insertVehicleExpense($id,$total_ex);
+
+                    $this->insertVehicleExpense($id,$total_ex);
                 }
 
-                return $result;
+                $this->db->where('id', $this->input->post('soldid'));
+                return $this->db->update('damage', $values);
             }
         }
 

@@ -268,7 +268,7 @@
                 $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
 
                 $this->session->set_tempdata('form','add_form',5);
-                $this->session->set_flashdata('damage_status', 'Data Solved Successfully!');
+                $this->session->set_flashdata('damage_status', 'Data Solved not Successfully!');
                 $this->load->view('crms_damage', $data);
             }
         }
