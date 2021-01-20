@@ -66,8 +66,7 @@
 				</div>														
 			</div>
 			<div class="col-lg-8">
-                <a name="contact_form"></a>
-				<?php echo form_open('Contact/customer_message'); ?>
+                <?php echo form_open('Contact/customer_message'); ?>
 
 				<form class="form-area " id="myForm" method="post" class="contact-form text-right">
 					<div class="row">
@@ -77,6 +76,9 @@
 
 							<input name="message_email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" type="email">
                             <small class="text-danger"><?php echo form_error('message_email'); ?></small>
+
+                            <!-- fouces if error ocurred -->
+                            <div id="error_focus_point" tabindex="1"></div>
 
 							<input name="message_subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" type="text">
 							<div class="mt-20 alert-msg" style="text-align: left;"></div>
@@ -98,7 +100,14 @@
 
             </div>
 		</div>
-	</div>	
+	</div>
+
+    <script type="text/javascript">
+        <?php if(validation_errors()) { ?>
+            document.getElementById('error_focus_point').focus();
+        <?php  } ?>
+    </script>
+
 </section>
 <!-- End contact-page Area -->
 
