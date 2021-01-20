@@ -101,22 +101,22 @@
                                 
                                 <div class="form-group">
                                     <label for="full_name"><b>Full Name</b></label>
-                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="A. B. Abhaya Car" maxlength="50" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed.">
+                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="A. B. Abhaya Car" value="<?php if($this->session->tempdata('full_name_fill')) echo $this->session->tempdata('full_name_fill'); ?>" maxlength="50" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed.">
                                     <small class="text-danger"><?php echo form_error('full_name'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="nic"><b>NIC</b></label>
-                                    <input type="text" class="form-control" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}"  name="nic" id="nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" maxlength="12" title="Please enter a according to correct pattern.">
+                                    <input type="text" class="form-control" name="nic" id="nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" title="Please enter a according to correct pattern.">
                                     <small class="text-danger"><?php echo form_error('nic'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="email"><b>Email</b></label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="example@abhaya.com" maxlength="100">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="example@abhaya.com" value="<?php if($this->session->tempdata('email_fill')) echo $this->session->tempdata('email_fill'); ?>" maxlength="100">
                                     <small class="text-danger"><?php echo form_error('email'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone_no"><b>Phone No</b></label>
-                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="0xxxxxxxxx" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern">
+                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="0xxxxxxxxx" value="<?php if($this->session->tempdata('phone_no_fill')) echo $this->session->tempdata('phone_no_fill'); ?>" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern">
                                     <small class="text-danger"><?php echo form_error('phone_no'); ?></small>
                                 </div>
                                 <div class="form-group">
@@ -172,60 +172,41 @@
 
                         <div class="collapse mt-4" id="updateStaffUser" aria-labelledby="customRadioInline2">
                             <?php echo form_open_multipart('Staff/updateStaffDetails'); ?>
-<!--                                <div class="form-group row mt-2">-->
-<!--                                    <label class="col-sm-3 col-form-label"><b>Role Type</b></label>-->
-<!--                                    <div class="col-sm-2">-->
-<!--                                        <div class="form-check">-->
-<!--                                            <label class="form-check-label">-->
-<!--                                            <input type="radio" class="form-check-input" onclick="roletype();" name="role_staff" id="cashier" value="cashier" checked> Cashier </label>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-sm-2">-->
-<!--                                        <div class="form-check">-->
-<!--                                            <label class="form-check-label">-->
-<!--                                            <input type="radio" class="form-check-input" onclick="roletype();" name="role_staff" id="admin" value="admin"> Admin </label>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
                                 <div class="form-group">
                                     <label for="expenseVehicleID"><b><b>Staff ID</b></b></label>
-                                    <input type="text" name="staff_user_id" id="update_usr_id" class="form-control" readonly>
+                                    <input type="text" name="staff_user_id" id="update_usr_id" value="<?php if($this->session->tempdata('ustaff_user_id_fill')) echo $this->session->tempdata('ustaff_user_id_fill'); ?>" class="form-control" readonly>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="full_name"><b>Full Name</b></label>
-                                    <input type="text" class="form-control" name="update_full_name" id="update_full_name" readonly>
+                                    <input type="text" class="form-control" name="update_full_name" id="update_full_name" placeholder="A. B. Abhaya Car" value="<?php if($this->session->tempdata('ufull_name_fill')) echo $this->session->tempdata('ufull_name_fill'); ?>" maxlength="50" pattern="[A-Za-z .]+" title="Numbers and special characters are not allowed." readonly>
+                                    <small class="text-danger"><?php echo form_error('update_full_name'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="nic"><b>NIC</b></label>
-                                    <input type="text" class="form-control" name="update_nic" id="update_nic" readonly>
-                                    <small class="text-danger"><?php echo form_error('nic'); ?></small>
+                                    <input type="text" class="form-control" name="update_nic" id="update_nic" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('unic_fill')) echo $this->session->tempdata('unic_fill'); ?>" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" title="Please enter a according to correct pattern." readonly>
+                                    <small class="text-danger"><?php echo form_error('update_nic'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="email"><b>Email</b></label>
-                                    <input type="email" class="form-control" name="update_email" id="update_email" placeholder="Staff Email Address" >
-                                    <small class="text-danger"><?php echo form_error('email'); ?></small>
+                                    <input type="email" class="form-control" name="update_email" id="update_email" value="<?php if($this->session->tempdata('uemail_fill')) echo $this->session->tempdata('uemail_fill'); ?>" placeholder="example@abhaya.com" maxlength="100">
+                                    <small class="text-danger"><?php echo form_error('update_email'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone_no"><b>Phone No</b></label>
-                                    <input type="text" class="form-control" name="update_phone_no" id="update_phone_no" placeholder="0xxxxxxxxx" pattern="0[0-9]{9}">
-                                    <small class="text-danger"><?php echo form_error('phone_no'); ?></small>
+                                    <input type="text" class="form-control" name="update_phone_no" id="update_phone_no" placeholder="0xxxxxxxxx" value="<?php if($this->session->tempdata('uphone_no_fill')) echo $this->session->tempdata('uphone_no_fill'); ?>" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern">
+                                    <small class="text-danger"><?php echo form_error('update_phone_no'); ?></small>
                                 </div>
-<!--                                <div class="form-group">-->
-<!--                                    <label for="address"><b>Address</b></label>-->
-<!--                                    <textarea  id="" cols="30" rows="4" name="update_address" id="update_address" class="form-control" ></textarea>-->
-<!--                                    <small class="text-danger">--><?php //echo form_error('address'); ?><!--</small>-->
-<!--                                </div>-->
                                 <div class="form-group">
                                     <label for="staff_picture"><b>Upload Picture</b></label>
                                     <input type="file" name="update_staff_picture" class="file-upload-default">
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Staff Picture">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder=".jpg | .png | .jpeg">
                                         <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Browse</button>
                                         </span>
                                     </div>
-                                    <small class="text-danger"><?php echo form_error('staff_picture'); ?></small>
+                                    <small class="text-danger"><?php echo form_error('update_staff_picture'); ?></small>
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
                                 <button class="btn btn-light">Cancel</button>
@@ -389,7 +370,12 @@
     </script>
 <?php } ?>
 
-<?php require_once 'crms_footer.php';?>
+<?php if($this->session->tempdata('address_fill')) { ?>
+    <script>
+        let address=<?php echo json_encode($this->session->tempdata('address_fill')); ?>;
+        document.getElementById("address").value = address;
+    </script>
+<?php } ?>
 
 <?php  if ($this->session->tempdata('form')=='add_form') { ?>
     <script>
@@ -400,6 +386,7 @@
     <script>
         document.getElementById("update_user").style.display = "block";
         document.getElementById("add_user").style.display = "none";
+        document.getElementById("updateStaffUser").classList.add("show");
     </script>
 <?php }else{ ?>
     <script>
@@ -407,3 +394,6 @@
         document.getElementById("update_user").style.display = "none";
     </script>
 <?php } ?>
+
+
+<?php require_once 'crms_footer.php';?>
