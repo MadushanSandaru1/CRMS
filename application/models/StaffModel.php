@@ -12,11 +12,22 @@
 
             public function getStaffDetailsForAutoId()
             {
-                $this->db->order_by('id', 'ASC');
+                // $this->db->order_by('id', 'ASC');
 
-                $query = $this->db->get('user');
-                return $query->result();
+                // $query = $this->db->get('user');
+
+                $query = $this->db->query("SELECT * FROM `user` ORDER BY `id` ASC");
+                //return $query->result();
+                return $query;
             }
+
+
+
+            public function debugings(){
+                $query = $this->db->query("SELECT * FROM `user`");
+                return $query;
+            }
+
 
             public function insertStaff($image_path)
             {
