@@ -29,7 +29,7 @@ class Reserved extends CI_Controller
             $data["revenue_license_date"]=$this->notification->revenue_license_date();
             $data["car_booking_notification"]=$this->notification->car_booking_notification();
             $data["car_not_recive"]=$this->notification->car_not_recive();
-
+            $this->session->set_tempdata('form','add_form',5);
             $this->load->view('crms_reserved', $data);
         }
         else {
@@ -48,9 +48,11 @@ class Reserved extends CI_Controller
                 $this->session->set_tempdata('report_details', $this->input->post('reservedVehicleID', TRUE), 5);
 
                 $this->session->set_flashdata('reserved_status', 'Vehicle reserved details added successfully');
+                $this->session->set_tempdata('form','add_form',5);
                 redirect('Home/crms_reserved');
             } else {
                 $this->session->set_flashdata('reserved_status', 'Failed to add vehicle reserved details');
+                $this->session->set_tempdata('form','add_form',5);
                 redirect('Home/crms_reserved');
             }
         }
@@ -64,6 +66,7 @@ class Reserved extends CI_Controller
 
         if($response) {
             $this->session->set_flashdata('reserved_status', 'Reserved details were successfully removed');
+            $this->session->set_tempdata('form','add_form',5);
             redirect('Home/crms_reserved');
         }
     }

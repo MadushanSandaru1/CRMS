@@ -26,6 +26,7 @@ if (!$this->session->userdata('user_id')) {
                 <div class="card">
                     <div class="card-body">
                         <?php
+<<<<<<< Updated upstream
                         if($this->session->flashdata('returned_status'))
                         {
                             ?>
@@ -43,6 +44,25 @@ if (!$this->session->userdata('user_id')) {
                             </div>
                             <?php
                         }
+=======
+                            if($this->session->flashdata('returned_status'))
+                            {
+                                ?>
+                                <div class="alert alert-success">
+                                    <?php echo $this->session->flashdata('returned_status'); ?>
+                                    <?php echo "<a href='".base_url('index.php/Returned/report_returned/'.$this->session->tempdata('report_reserved_id'))."' target='_blank'> print bill</a>";?>
+                                </div>
+                                <?php
+                            }
+                            if($this->session->flashdata('extend_status'))
+                            {
+                                ?>
+                                <div class="alert alert-success">
+                                    <?php echo $this->session->flashdata('extend_status'); ?>
+                                </div>
+                                <?php
+                            }
+>>>>>>> Stashed changes
                         ?>
 
                         <div class="d-flex justify-content-between">

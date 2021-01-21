@@ -32,7 +32,7 @@
         <div class="row">
             <!-- add reserved vehicle form start-->
 
-            <div class="col-12 grid-margin stretch-card">
+            <div class="col-12 grid-margin stretch-card" id="add_reserved">
                 <div class="card">
                     <div class="card-body">
 
@@ -133,6 +133,96 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 grid-margin stretch-card" id="update_reserved">
+                <div class="card">
+                    <div class="card-body">
+
+                        <?php
+                        if($this->session->flashdata('reserved_status'))
+                        {
+                            ?>
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php
+                                echo $this->session->flashdata('reserved_status');
+                                if ($this->session->tempdata('report_details'))
+                                    echo "<a href='".base_url('index.php/Reserved/report_reserved/'.$this->session->tempdata('report_details'))."' target='_blank'> print bill</a>";
+                                ?>
+                            </div>
+                            <br>
+                            <?php
+                        }
+                        ?>
+
+                        <button type="button" class="btn btn-gradient-primary mb-2" data-toggle="collapse" href="#updateReservedVehicle" aria-expanded="false" aria-controls="viewDetails">Update Reserved Vehicle Details</button>
+
+                        <div class="collapse " id="updateReservedVehicle" aria-labelledby="customRadioInline2">
+                            <?php echo form_open('Reserved/update_reserved');  ?>
+                            <div class="form-group">
+                                <input type="text" name="" id="r_reserved_id">
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedCustomerID"><b>Customer ID</b></label>
+                                <select class="custom-select" name="reservedCustomerID" id="r_customer_id">
+                                    <option value="" disabled selected hidden>Select Customer ID</option>
+                                    <?php
+                                    if($customer_data->num_rows() > 0) {
+                                        foreach ($customer_data->result() as $data_row) {
+                                            echo "<option value='".$data_row->id."'>".$data_row->nic." - ".$data_row->name."</option>";
+                                        }
+                                    } else {
+                                        echo "<option>Data not found</option>";
+                                    }
+                                    ?>
+
+                                </select>
+                                <small class="text-danger"><?php echo form_error('reservedCustomerID'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleID"><b>Vehicle ID</b></label>
+                                <select class="custom-select" name="reservedVehicleID"  id="r_reserved_v">
+                                    <option value="" disabled selected hidden>Select Vehicle ID</option>
+                                    <?php
+                                    if($vehicle_data->num_rows() > 0) {
+                                        foreach ($vehicle_data->result() as $data_row) {
+                                            echo "<option value='".$data_row->id."'>".$data_row->registered_number." - ".$data_row->title."</option>";
+                                        }
+                                    } else {
+                                        echo "<option>Data not found</option>";
+                                    }
+                                    ?>
+
+                                </select>
+                                <small class="text-danger"><?php echo form_error('reservedVehicleID'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleDate">Reserved Date</label>
+                                <input type="datetime-local" class="form-control" name="reservedVehicleFromDate" id="r_reservedVehicleFromDate" placeholder="Reserved Date" max="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('reservedVehicleFromDate_fill')) echo $this->session->tempdata('reservedVehicleFromDate_fill'); else echo Date('Y-m-d\TH:i',time()); ?>">
+                                <small class="text-danger"><?php echo form_error('reservedVehicleFromDate'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleDate">Returned Date</label>
+                                <input type="datetime-local" class="form-control" name="reservedVehicleToDate" id="r_reservedVehicleToDate" placeholder="Returned Date" value="<?php if($this->session->tempdata('reservedVehicleToDate_fill')) echo $this->session->tempdata('reservedVehicleToDate_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('reservedVehicleToDate'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleStartValue">Start Meter Value</label>
+                                <input type="number" class="form-control" name="reservedVehicleStartValue" id="r_reservedVehicleStartValue" placeholder="In meters" value="<?php if($this->session->tempdata('reservedVehicleStartValue_fill')) echo $this->session->tempdata('reservedVehicleStartValue_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('reservedVehicleStartValue'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservedVehicleAdvancedPayment">Advanced Payment</label>
+                                <input type="number" class="form-control" name="reservedVehicleAdvancedPayment" id="r_reservedVehicleAdvancedPayment" placeholder="1000.00" value="<?php if($this->session->tempdata('reservedVehicleAdvancedPayment_fill')) echo $this->session->tempdata('reservedVehicleAdvancedPayment_fill'); ?>">
+                                <small class="text-danger"><?php echo form_error('reservedVehicleAdvancedPayment'); ?></small>
+                            </div>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
+                            <button type="reset" class="btn btn-light">Cancel</button>
+
+                            <?php echo form_close();  ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -174,6 +264,19 @@
                                             <td>
                                                 <a href="<?php echo base_url('index.php/Reserved/report_reserved/'.$data_row->vehicle_id); ?>" target="_blank"><span class="mdi mdi-printer"> Bill</span></a>
                                         <?php if($this->session->userdata('user_role') == 'admin'){ ?>
+<<<<<<< Updated upstream
+=======
+                                            <a id="view" data-toggle="collapse" href="#updateReservedVehicle" aria-expanded="false"
+                                               aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success ml-3"
+                                                                                 onclick="update_reserved('<?php echo $data_row->id;?>',
+                                                                                         '<?php echo $data_row->customer_id;?>',
+                                                                                         '<?php echo $data_row->vehicle_id;?>',
+                                                                                         '<?php echo $data_row->from_date;?>',
+                                                                                         '<?php echo $data_row->to_date;?>',
+                                                                                         '<?php echo $data_row->start_meter_value;?>',
+                                                                                         '<?php echo $data_row->advance_payment;?>',
+                                                                                         )">Edit</span></a>
+>>>>>>> Stashed changes
                                                 <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_reserved('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                         <?php } ?>
                                             </td>
@@ -281,6 +384,39 @@
                     }
                 }
             }
+            function update_reserved(id,cus_id,v_id,f_date,t_date,s_meter,advance_p){
+
+                //display form if clickd edit in view table
+                document.getElementById("add_reserved").style.display = "none";
+                document.getElementById("update_reserved").style.display = "block";
+
+                //load data into form
+                document.getElementById("r_reserved_id").value = id;
+                document.getElementById("r_customer_id").value = cus_id;
+                document.getElementById("r_reserved_v").value = v_id;
+                document.getElementById("r_reservedVehicleFromDate").value =getlocal_time(f_date);
+                document.getElementById("r_reservedVehicleToDate").value = getlocal_time(t_date);
+                document.getElementById("r_reservedVehicleStartValue").value = s_meter;
+                document.getElementById("r_reservedVehicleAdvancedPayment").value = advance_p;
+            }
+
+            function  getlocal_time(time)
+            {
+                var dateString = time;
+
+                if (dateString !== "") {
+
+                    var dateVal = new Date(dateString);
+                    var day = dateVal.getDate().toString().padStart(2, "0");
+                    var month = (1 + dateVal.getMonth()).toString().padStart(2, "0");
+                    var hour = dateVal.getHours().toString().padStart(2, "0");
+                    var minute = dateVal.getMinutes().toString().padStart(2, "0");
+                    var sec = dateVal.getSeconds().toString().padStart(2, "0");
+                    var ms = dateVal.getMilliseconds().toString().padStart(3, "0");
+                    var inputDate = dateVal.getFullYear() + "-" + (month) + "-" + (day) + "T" + (hour) + ":" + (minute) + ":" + (sec) + "." + (ms);
+                    return inputDate;
+                }
+            }
         </script>
 
         <?php if(validation_errors()) { ?>
@@ -299,3 +435,21 @@
     </div>
     <!-- content-wrapper ends -->
 <?php require_once 'crms_footer.php';?>
+<?php  if ($this->session->tempdata('form')=='add_form') { ?>
+    <script>
+        document.getElementById("add_reserved").style.display = "block";
+        document.getElementById("update_reserved").style.display = "none";
+
+    </script>
+<?php }else if($this->session->tempdata('form')=='update_form'){ ?>
+    <script>
+        document.getElementById("update_reserved").style.display = "block";
+        document.getElementById("add_reserved").style.display = "none";
+
+    </script>
+<?php }else{ ?>
+    <script>
+        document.getElementById("add_reserved").style.display = "block";
+        document.getElementById("update_reserved").style.display = "none";
+    </script>
+<?php } ?>

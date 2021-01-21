@@ -53,6 +53,7 @@ class VehicleReturnModel extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+<<<<<<< Updated upstream
 
     public function insertVehicleIncome($vehicle_id, $amount){
         $vehicle_expense = array(
@@ -64,4 +65,6 @@ class VehicleReturnModel extends CI_Model
 
         $this->db->insert('transaction',$vehicle_expense);
     }
+=======
+>>>>>>> Stashed changes
 }
