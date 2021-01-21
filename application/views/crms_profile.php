@@ -9,7 +9,11 @@
     }
 
 ?>
-
+<style>
+    .img_hover:hover{
+        cursor: pointer;
+    }
+</style>
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">
@@ -39,7 +43,7 @@
 
                         <div id="addProfile">
                             <center>
-                            <div data-toggle="modal" data-target="#profile_pic">
+                            <div data-toggle="modal" class="img_hover" data-target="#profile_pic" title="Click Here to Change Profile Picture">
                                 <img src="<?php echo base_url('assets/images/users/'.$this->session->userdata('user_image'));?>" class="rounded-circle" alt="Profile pic" width="20%">
                             </div>
                                 <br>
