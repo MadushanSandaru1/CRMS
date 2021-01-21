@@ -103,7 +103,7 @@
                                 <div class="form-group">
                                     <label for="exampleSelectGender"><b>Nature of Damage</b></label>
                                     <select class="custom-select mr-sm-2" id="exampleSelectGender" name="description" value="<?php if($this->session->tempdata('description_fill')) echo $this->session->tempdata('description_fill'); ?>">
-                                        <option disabled selected hidden>Select Vehicle ID</option>
+                                        <option disabled selected hidden>Select Damage Type</option>
                                         <?php
                                             if($this->session->tempdata('u_description_fill')) echo $this->session->tempdata('u_description_fill');
                                         ?>
