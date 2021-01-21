@@ -264,8 +264,7 @@
                                             <td>
                                                 <a href="<?php echo base_url('index.php/Reserved/report_reserved/'.$data_row->vehicle_id); ?>" target="_blank"><span class="mdi mdi-printer"> Bill</span></a>
                                         <?php if($this->session->userdata('user_role') == 'admin'){ ?>
-<<<<<<< Updated upstream
-=======
+
                                             <a id="view" data-toggle="collapse" href="#updateReservedVehicle" aria-expanded="false"
                                                aria-controls="viewDetails"><span class="mdi mdi-eyedropper text-success ml-3"
                                                                                  onclick="update_reserved('<?php echo $data_row->id;?>',
@@ -276,7 +275,7 @@
                                                                                          '<?php echo $data_row->start_meter_value;?>',
                                                                                          '<?php echo $data_row->advance_payment;?>',
                                                                                          )">Edit</span></a>
->>>>>>> Stashed changes
+
                                                 <a style="cursor: pointer;" data-toggle="modal" data-target="#deleteModal" onclick="delete_reserved('<?php echo$data_row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </a>
                                         <?php } ?>
                                             </td>

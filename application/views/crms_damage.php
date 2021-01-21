@@ -308,10 +308,10 @@
                                                             echo "<option value='".$getReservedID->id."' selected>".$getReservedID->id." - ".$getVehicleID->registered_number."</option>";
                                                         }
                                                         else
-                                                            echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")>"."</option>";
+                                                            echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")"."</option>";
                                                     }
                                                     else
-                                                        echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")>"."</option>";
+                                                        echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")"."</option>";
                                                     ?>
 
                                                 <?php endif; ?>
