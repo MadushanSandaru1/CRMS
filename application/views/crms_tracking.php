@@ -47,10 +47,15 @@
                           
                           <select class="form-control file-upload-info" id="vehicleid" onchange="trackinmap()">
                             <option value="" hidden disabled selected>Select a vehicle</option>
-                            <?php 
+                            <?php
+                            if($vehicle_data->num_rows() > 0){
                                 foreach ($vehicle_data->result() as $row) {
                                     echo "<option value='".$row->registered_number."''>".$row->title." - ".$row->registered_number."</option>";
                                 }
+                            } else {
+                                echo "<option disabled selected hidden>Data not found</option>";
+                            }
+
                              ?>
                          </select>
 

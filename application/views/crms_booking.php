@@ -86,7 +86,7 @@
                                                     }
                                                 }                                        
                                             }else{
-                                                    echo "<option class='text-danger'>No data found</option>";
+                                                echo "<option disabled selected hidden>Data not found</option>";
                                             }
                                         ?>
                                     </select>
