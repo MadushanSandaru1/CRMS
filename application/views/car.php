@@ -56,11 +56,11 @@
 			</div>
 		</div>
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-5 pb-40 header-text">
-                <input type="email" id="searchTxt" onkeyup="searchCars()" class="form-control form-control-sm border-danger text-danger text-center" placeholder="Search vehicle">
-            </div>
-        </div>
+<!--        <div class="row d-flex justify-content-center">-->
+<!--            <div class="col-md-5 pb-40 header-text">-->
+<!--                <input type="email" id="searchTxt" onkeyup="searchCars()" class="form-control form-control-sm border-danger text-danger text-center" placeholder="Search vehicle">-->
+<!--            </div>-->
+<!--        </div>-->
 
 		<div id="vehicleList" class="row item-container d-flex justify-content-center">
 			<!-- item model -->

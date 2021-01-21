@@ -85,7 +85,7 @@
                       </div>
                       <div class="form-group">
                           <label for="guarantorNIC">NIC</label>
-                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="guarantorNIC" name="guarantorNIC" maxlength="12" placeholder="xxxxxxxxxV | xxxxxxxxxxxx" value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
+                          <input type="text" class="form-control" onkeyup="check_guarantor()" id="guarantorNIC" name="guarantorNIC" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" title="Please enter a according to correct pattern." value="<?php if($this->session->tempdata('guarantorNIC_fill')) echo $this->session->tempdata('guarantorNIC_fill'); ?>">
                           <small class="text-warning" id="nic_warning"></small>
                           <small class="text-danger"><?php echo form_error('guarantorNIC'); ?></small>
                       </div>
