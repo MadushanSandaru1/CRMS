@@ -59,10 +59,10 @@
                             date_default_timezone_set('Asia/Colombo');
                             $today=date("Y-m-d");
                             foreach($revenue_license_date->result() as $row){
-                                $after_one_year=date("Y-m-d",strtotime($row->revenue_license_date."+365 day"));
-                                $min_date_revenue_license=date("Y-m-d",strtotime($after_one_year."-30 day"));
+                                $after_one_year_rev=date("Y-m-d",strtotime($row->revenue_license_date."+365 day"));
+                                $min_date_revenue_license=date("Y-m-d",strtotime($after_one_year_rev."-30 day"));
                                 $today=date("Y-m-d");
-                                if( $today> $after_one_year) {
+                                if( $today> $after_one_year_rev) {
                                     $txt_coloe = "#ff0000";
                                     $exp = "expired";
                                 }else{
@@ -70,9 +70,9 @@
                                     $exp="will expire on";
                                 }
                         ?>
-                        <div class="alert notification  text-black" data-toggle="modal" data-target="#revenueL" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
+                        <div class="alert notification  text-black" data-toggle="modal" data-target="#revenueL" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year_rev;?>','<?php echo $row->registered_number;?>')">
                             <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
-                            <label class="mr-10">Revenue License <b><?php echo $row->registered_number;?></b> vehicle <?php echo $exp;?> <b><?php echo $after_one_year;?>.</b></label>
+                            <label class="mr-10">Revenue License <b><?php echo $row->registered_number;?></b> vehicle <?php echo $exp;?> <b><?php echo $after_one_year_rev;?>.</b></label>
                         </div>
                         <?php
                             }
