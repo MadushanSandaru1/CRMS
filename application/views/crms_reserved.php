@@ -159,7 +159,7 @@
                         <div class="collapse " id="updateReservedVehicle" aria-labelledby="customRadioInline2">
                             <?php echo form_open('Reserved/update_reserved');  ?>
                             <div class="form-group">
-                                <input type="text" name="" id="r_reserved_id">
+                                <input type="text" name="" id="r_reserved_id" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="reservedCustomerID"><b>Customer ID</b></label>
@@ -171,7 +171,7 @@
                                             echo "<option value='".$data_row->id."'>".$data_row->nic." - ".$data_row->name."</option>";
                                         }
                                     } else {
-                                        echo "<option>Data not found</option>";
+                                        echo "<option disabled selected hidden>Data not found</option>";
                                     }
                                     ?>
 
@@ -181,14 +181,15 @@
                             <div class="form-group">
                                 <label for="reservedVehicleID"><b>Vehicle ID</b></label>
                                 <select class="custom-select" name="reservedVehicleID"  id="r_reserved_v">
-                                    <option value="" disabled selected hidden>Select Vehicle ID</option>
+                                    <option disabled selected hidden>Select Vehicle ID</option>
+
                                     <?php
                                     if($vehicle_data->num_rows() > 0) {
                                         foreach ($vehicle_data->result() as $data_row) {
                                             echo "<option value='".$data_row->id."'>".$data_row->registered_number." - ".$data_row->title."</option>";
                                         }
                                     } else {
-                                        echo "<option>Data not found</option>";
+                                        echo "<option disabled selected hidden>Data not found</option>";
                                     }
                                     ?>
 
