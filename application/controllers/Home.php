@@ -139,8 +139,7 @@ class Home extends CI_Controller {
         $this->load->model('StaffModel');
         $data["staff_details"] = $this->StaffModel->getStaffDetails();
         $data["staff_details_for_id"] = $this->StaffModel->getStaffDetailsForAutoId();
-        //var_dump($this->StaffModel->debugings());
-        
+     
         $this->load->view('crms_user', $data);
         
     }
