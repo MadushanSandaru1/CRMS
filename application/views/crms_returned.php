@@ -26,7 +26,7 @@ if (!$this->session->userdata('user_id')) {
                 <div class="card">
                     <div class="card-body">
                         <?php
-<<<<<<< Updated upstream
+
                         if($this->session->flashdata('returned_status'))
                         {
                             ?>
@@ -44,7 +44,7 @@ if (!$this->session->userdata('user_id')) {
                             </div>
                             <?php
                         }
-=======
+
                             if($this->session->flashdata('returned_status'))
                             {
                                 ?>
@@ -62,7 +62,7 @@ if (!$this->session->userdata('user_id')) {
                                 </div>
                                 <?php
                             }
->>>>>>> Stashed changes
+
                         ?>
 
                         <div class="d-flex justify-content-between">
