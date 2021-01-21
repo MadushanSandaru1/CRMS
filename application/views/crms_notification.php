@@ -70,8 +70,7 @@
                                     $exp="will expire on";
                                 }
                         ?>
-                        <div class="alert notification  text-black" data-toggle="modal" data-target="#
-" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
+                        <div class="alert notification  text-black" data-toggle="modal" data-target="#revenueL" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
                             <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
                             <label class="mr-10">Revenue License <b><?php echo $row->registered_number;?></b> vehicle <?php echo $exp;?> <b><?php echo $after_one_year;?>.</b></label>
                         </div>
