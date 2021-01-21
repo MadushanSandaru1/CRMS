@@ -71,7 +71,7 @@
                                 }
                         ?>
                         <div class="alert notification  text-black" data-toggle="modal" data-target="#revenueL" style="color:<?php echo $txt_coloe;?>" onclick="revenue_lic(<?php echo $row->id;?>,'<?php echo $after_one_year_rev;?>','<?php echo $row->registered_number;?>')">
-                            <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
+                            <img src="<?php echo base_url('assets/images/vehicles/'.$row->image);?>">&nbsp;&nbsp;
                             <label class="mr-10">Revenue License <b><?php echo $row->registered_number;?></b> vehicle <?php echo $exp;?> <b><?php echo $after_one_year_rev;?>.</b></label>
                         </div>
                         <?php
@@ -90,7 +90,7 @@
                                 }
                         ?>
                         <div class="alert notification text-black"  data-toggle="modal" data-target="#Insurance" style="color:<?php echo $bg_coloe;?>" onclick="Insurance(<?php echo $row->id;?>,'<?php echo $after_one_year;?>','<?php echo $row->registered_number;?>')">
-                            <img src="<?php echo base_url('assets/images/'.$row->image);?>">&nbsp;&nbsp;
+                            <img src="<?php echo base_url('assets/images/vehicles/'.$row->image);?>">&nbsp;&nbsp;
                             <label class="mr-4">Insurance Licence <b><?php echo $row->registered_number;?></b>   <?php echo $exp;?> on <b><?php echo $after_one_year;?></b></label>
                         </div>
                         <?php
