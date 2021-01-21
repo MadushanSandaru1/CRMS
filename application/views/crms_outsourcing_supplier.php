@@ -62,7 +62,7 @@ if (!$this->session->userdata('user_id')) {
                         </div>
                         <div class="form-group">
                             <label for="expensedVehicleDate">NIC</label>
-                            <input type="text" name="nic" class="form-control" id="expensedVehicleDate" placeholder="Supplier NIC Number" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>">
+                            <input type="text" name="nic" class="form-control" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" title="Please enter a according to correct pattern." id="expensedVehicleDate" placeholder="Supplier NIC Number" value="<?php if($this->session->tempdata('nic_fill')) echo $this->session->tempdata('nic_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('nic'); ?></small>
                         </div>
                         <div class="form-group">
@@ -127,7 +127,7 @@ if (!$this->session->userdata('user_id')) {
                         </div>
                         <div class="form-group">
                             <label for="expensedVehicleDate">NIC</label>
-                            <input type="text" name="sup_nic" class="form-control" id="sup_nic" placeholder="Supplier NIC Number" value="<?php if($this->session->tempdata('sup_nic_fill')) echo $this->session->tempdata('sup_nic_fill'); ?>">
+                            <input type="text" name="sup_nic" class="form-control" id="sup_nic" maxlength="12" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" title="Please enter a according to correct pattern." placeholder="Supplier NIC Number" value="<?php if($this->session->tempdata('sup_nic_fill')) echo $this->session->tempdata('sup_nic_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('nic'); ?></small>
                         </div>
                         <div class="form-group">

@@ -9,7 +9,7 @@
 
     .vehicleItem {
         width: 100%;
-        display: none;
+        /*display: none;*/
     }
 </style>
 
