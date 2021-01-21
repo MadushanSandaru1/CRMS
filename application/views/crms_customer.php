@@ -640,11 +640,11 @@
 </script>
 
 
-<?php if($this->session->tempdata('avatar_fill')) { ?> 
-<!-- <script>
-  document.getElementById("capturedFrame").innerHTML='<img id="avatar" class="imageCaptured" src="'+ $this->session->tempdata('avatar_fill')  +'"/>';
-</script>  -->
+<!-- <?php if($this->session->tempdata('avatar_fill')) {  ?> 
+<script>
+ document.getElementById("capturedFrame").innerHTML='<img id="avatar" class="imageCaptured" src="'+ document.getElementById("InputAvatar").value +'"/>';
+</script>
 <?php } ?>
-
+ -->
 
 <?php require_once 'crms_footer.php';?>

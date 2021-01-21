@@ -30,12 +30,11 @@ class Booking_Model extends CI_Model{
 
     function getBooking(){
 
-        /*$this->db->select('*');
-        $this->db->where('is_deleted', 0);
-        $this->db->order_by('id', 'ASC');
-        $query = $this->db->get('booking');*/
-        //$query=$this->db->query("SELECT * FROM booking WHERE is_deleted=0 ORDER BY id ASC ");
-        $query=$this->db->query("SELECT b.`id`,b.`customer_nic`,b.`customer_name`,b.`customer_email`,b.`customer_phone`,v.`id` as `vehicle_id`,v.`title`,v.`registered_number`,b.`from_date`,b.`to_date`,b.`posting_date`,b.`message`,b.`status` FROM booking as b, vehicle as v WHERE v.`id`= b.vehicle_id AND b.is_deleted=0 ORDER BY b.id ASC");
+        //delete expired booking recodes
+        $this->delete_expired_bookings();
+
+        //select booking recodes
+        $query=$this->db->query("SELECT b.`id`,b.`customer_nic`,b.`customer_name`,b.`customer_email`,b.`customer_phone`,v.`id` as `vehicle_id`,v.`title`,v.`registered_number`,b.`from_date`,b.`to_date`,b.`posting_date`,b.`message`,b.`status` FROM booking as b, vehicle as v WHERE v.`id`= b.vehicle_id AND b.is_deleted=0 ORDER BY b.`from_date` ASC");
         return $query;
 
     }
@@ -88,6 +87,16 @@ class Booking_Model extends CI_Model{
 
        /* $query = UPDATE `booking` SET `customer_nic`= ,`customer_name`= ,`customer_email`= ,`customer_phone`= ,`vehicle_id`= ,`from_date`= ,`to_date`= ,`message`=  WHERE `id` =*/
     }
+
+
+
+    public function delete_expired_bookings(){
+
+        //$this->db->where('from_date <', Date('Y-m-d\TH:i',time())  );
+        $this->db->where('from_date <', date("Y-m-d\TH:i", strtotime("-12 hour", strtotime(Date('Y-m-d\TH:i',time()))))  );  
+        $this->db->delete('booking');
+    }
+
 
 }
 
