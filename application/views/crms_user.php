@@ -36,23 +36,30 @@
             <?php 
                     $cashier_id="";
                     $admin_id="";
-                    for($i=0;$i<sizeof($staff_details_for_id);$i++)
-                    {
-                        if($staff_details_for_id[$i]->role == "cashier")
-                        {
-                            $cashier_id = $staff_details_for_id[$i]->id;
-                            $cashier_id[5] = $cashier_id[5]+1;
-                        }
+
+                    // var_dump(sizeof($staff_details_for_id));
+
+                    foreach($staff_details_for_id->result() as $row){
+                        echo $row->ud;
                     }
 
-                    for($i=0;$i<sizeof($staff_details_for_id);$i++)
-                    {
-                        if($staff_details_for_id[$i]->role == "admin")
-                        {
-                            $admin_id = $staff_details_for_id[$i]->id;
-                            $admin_id[5] = $admin_id[5]+1;
-                        }
-                    }
+                    // for($i=0;$i<sizeof($staff_details_for_id);$i++)
+                    // {
+                    //     if($staff_details_for_id[$i]->role == "cashier")
+                    //     {
+                    //         $cashier_id = $staff_details_for_id[$i]->id;
+                    //         $cashier_id[5] = $cashier_id[5]+1;
+                    //     }
+                    // }
+
+                    // for($i=0;$i<sizeof($staff_details_for_id);$i++)
+                    // {
+                    //     if($staff_details_for_id[$i]->role == "admin")
+                    //     {
+                    //         $admin_id = $staff_details_for_id[$i]->id;
+                    //         $admin_id[5] = $admin_id[5]+1;
+                    //     }
+                    // }
             ?>
 <!--            add user-->
             <div class="col-12 grid-margin stretch-card" id="add_user">
@@ -95,7 +102,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="expenseVehicleID"><b><b>Staff ID</b></b></label>
-                                    <input type="text" name="staff_cashier_id" id="usr_cashier" class="form-control" readonly value=<?php echo $cashier_id;?>>
+                                    <input type="text" name="staff_cashier_id" id="usr_cashier" class="form-control" readonly value=<?php echo $cashier_id;?>
                                     <input type="text" name="staff_admin_id" id="usr_admin" class="form-control" readonly value=<?php echo $admin_id;?> >
                                 </div>
                                 
