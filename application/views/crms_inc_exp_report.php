@@ -102,11 +102,11 @@
                                 <br>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="date" name="start_date" id="start_date" onchange="set_min_date()" class="form-control" value="<?php if($this->session->tempdata('start_date_fill')) echo $this->session->tempdata('start_date_fill'); ?>">
+                                        <input type="date" name="start_date" id="start_date" onchange="set_min_date()" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" value="<?php if($this->session->tempdata('start_date_fill')) echo $this->session->tempdata('start_date_fill'); ?>">
                                         <small class="text-danger"><?php echo form_error('start_date'); ?></small>
                                     </div>
                                     <div class="col">
-                                        <input type="date" name="end_date" id="end_date" class="form-control" value="<?php if($this->session->tempdata('end_date_fill')) echo $this->session->tempdata('end_date_fill'); ?>">
+                                        <input type="date" name="end_date" id="end_date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>" value="<?php if($this->session->tempdata('end_date_fill')) echo $this->session->tempdata('end_date_fill'); ?>">
                                         <small class="text-danger"><?php echo form_error('end_date'); ?></small>
                                     </div>
                                 </div>
@@ -118,14 +118,14 @@
                             <label for="exampleInputPassword1"><b>Types</b></label>
                             <select class="custom-select" name="type">
                                 <option value="all" <?php if($this->session->tempdata('type_fill')=="all") echo "selected"; ?>>All</option>
-                                <option value="income <?php if($this->session->tempdata('type_fill')=="income") echo "selected"; ?>">Income</option>
+                                <option value="income" <?php if($this->session->tempdata('type_fill')=="income") echo "selected"; ?>>Income</option>
                                 <option value="expense" <?php if($this->session->tempdata('type_fill')=="expense") echo "selected"; ?>>Expense</option>
                             </select>
                         </div>
 
 
                         <button type="submit" class="btn btn-gradient-primary mr-2">Generate</button>
-                        <button class="btn btn-light">Cancel</button>
+                        <button type="reset" class="btn btn-light">Cancel</button>
                         <?php echo form_close(); ?>
                     </div>
                 </div>

@@ -54,13 +54,28 @@
                             `<div class="form-group">
                                 <label for="exampleInputUsername1"><b>Vahicle ID</b></label>
                                 <select class="custom-select" name="vehicle_id">
-                                    <option value="">Select Vahicle ID</option>
-                                    <?php if(count($getVehicleID)): ?>
-                                        <?php foreach($getVehicleID as $value):?>
-                                            <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
-                                        <?php endforeach;?>
-                                    <?php endif; ?>
-                                 </select>
+                                    <option disabled selected hidden>Select Vehicle ID</option>
+                                    <?php
+                                    if($getVehicleID) {
+                                        foreach ($getVehicleID as $data_row) {
+
+                                            if ($this->session->tempdata('expenseVehicleID_fill')) {
+                                                if ($this->session->tempdata('expenseVehicleID_fill')==$data_row->id) {
+                                                    echo "<option value='".$data_row->id."' selected>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                                } else {
+                                                    echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                                }
+
+                                            }else{
+                                                echo "<option value='".$data_row->id."'>".$data_row->id." - ".$data_row->registered_number."</option>";
+                                            }
+
+                                        }
+                                    } else {
+                                        echo "<option disabled selected hidden>Data not found</option>";
+                                    }
+                                    ?>
+                                </select>
                                  <small class="text-danger"><?php echo form_error('vehicle_id'); ?></small>
                             </div>`
                             <div class="form-group">

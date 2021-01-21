@@ -9,7 +9,11 @@
     }
 
 ?>
-
+<style>
+    .img_hover:hover{
+        cursor: pointer;
+    }
+</style>
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
         <!--div class="row" id="proBanner">
@@ -39,9 +43,22 @@
 
                         <div id="addProfile">
                             <center>
-                            <div>
+                            <div data-toggle="modal" class="img_hover" data-target="#profile_pic" title="Click Here to Change Profile Picture">
                                 <img src="<?php echo base_url('assets/images/users/'.$this->session->userdata('user_image'));?>" class="rounded-circle" alt="Profile pic" width="20%">
                             </div>
+                                <br>
+                                <?php
+                                if($this->session->flashdata('profile_status'))
+                                {
+                                    ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <?php echo $this->session->flashdata('profile_status'); ?>
+                                    </div>
+                                    <br>
+                                    <?php
+                                }
+                                ?>
                             </center>
                             <div class="form-group">
                                 <label for="profileId">Id</label>
@@ -129,6 +146,50 @@
             </div>
         </div>
 
+        <!-- profile pic update model-->
+        <div class="modal fade" id="profile_pic" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color: #f5005e" id="exampleModalLongTitle">Update Profile Picture  <label id="i_reg_num"></label></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo form_open_multipart('Staff/update_profil_pic'); ?>
+                        <form method="post">
+                            <input type="hidden" id="i_ve_id" name="vehicle_id">
+                            <center>
+                                <div>
+                                    <img src="<?php echo base_url('assets/images/users/'.$this->session->userdata('user_image'));?>" class="rounded-circle" alt="Profile pic" width=30%">
+                                </div>
+
+                            <br>
+                            <div class="form-row">
+                                <div class="form-group col-md-2"></div>
+                                <div class="form-group col-md-8">
+                                    <input type="file" name="update_profile_Image" class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Browse</button>
+                                        </span>&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-primary">Save </button>
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-md-2"></div>
+                            </div>
+                            </center>
+                        </form>
+                        <?php echo form_close(); ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--end model -->
         <script>
             let address=<?php echo json_encode($this->session->userdata('user_address')); ?>;
             document.getElementById("profileAddress").value = address;

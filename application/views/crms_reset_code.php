@@ -47,7 +47,7 @@
                                 <div class="pt-3">
                                     <!-- reset code -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-lg" name="recover_code" id="recover_code" placeholder="RESET CODE"><!-- resend code button -->
+                                        <input type="text" class="form-control form-control-lg" name="recover_code" maxlength="6" id="recover_code" placeholder="RESET CODE"><!-- resend code button -->
                                         <small class="text-danger"><?php echo form_error('recover_code'); ?></small>
                                         <a href="<?php echo base_url('index.php/User/recover_password'); ?>" class="mt-1 float-right auth-link text-black">Resend code</a>
                                     </div>

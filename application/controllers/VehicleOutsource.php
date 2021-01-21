@@ -22,6 +22,11 @@ class VehicleOutsource extends CI_Controller
         $this->form_validation->set_rules('insurence_date','Insurence Date','required');
         $this->form_validation->set_rules('revenue_license_date','Revenue Licence Date','required');
 
+        if (empty($_FILES['outsource_pic']['name']))
+        {
+            $this->form_validation->set_rules('outsource_pic', 'OutSource Vehicle Image File', 'required');
+        }
+
         if($this->form_validation->run() == FALSE)
         {
             $this->session->set_tempdata('title_fill',$this->input->post('vehicle_title',TRUE),5);
@@ -117,9 +122,48 @@ class VehicleOutsource extends CI_Controller
 
         $table = "";
         $table.="<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>";
-        $table.="<img src=assets/images/report_header.png  width=100% heighr=20%>";
-        $table.="<br><center><h3>Vehicle Outsource Details</h3></center><br>";
+        $table.="<style>";
+        $table.="footer {
+            position: fixed;
+            bottom: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 2cm;
+            background-color: #C70039;
+            color: #ffffff;
+        }";
+        $table.="@page {
+        margin: 0cm 0cm;
+        }";
+        $table.="body {
+            font-family: 'Times New Roman', serif;
+            margin-top: 5.5cm;
+            margin-bottom: 2cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
+        }";
+        $table.="table {
+            margin: 0 auto;
+            width: 80%;
+        }";
+        $table.="header {
+            position: fixed;
+            top: 0cm;
+            left: 0cm;
+            right: 0cm;
+        }";
+        $table.="</style>";
+
+        $table.="<br><br><center><h3>Vehicle Outsource Details</h3></center><br>";
+        $table.="<header>
+            <img src='assets/images/report_header.png' width='100%' height='20%'/>
+            <small><pre class='text-right mr-4'>printed date: ".Date('Y-m-d h:i:s a',time())."</pre></small>
+        </header>";
+        $table.="<footer class='text-center'>".
+            "<p class='mt-4'>"."<small>Copyright &copy;".date("Y")."All rights reserved | Team Semicolon</small></p>".
+            "</footer>";
         $table.="<table class='table'>";
+
         for($i=0;$i<sizeof($outSourceDetails);$i++)
         {
             if($outSourceDetails[$i]->id == $id)
@@ -205,6 +249,7 @@ class VehicleOutsource extends CI_Controller
         $table.="<br>Signature";
         $table.="<br>(Owner of the Outsource Vehicle)";
         $this->pdf->loadHtml($table);
+        $this->pdf->setPaper('A4', 'portrait');
         $this->pdf->render();
         $this->pdf->stream("Vehicle Outsourcing Details.pdf",array("Attachment" => 0));
     }

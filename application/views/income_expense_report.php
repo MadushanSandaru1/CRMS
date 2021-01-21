@@ -1,5 +1,9 @@
 <?php date_default_timezone_set("Asia/Colombo"); ?>
 
+<?php
+    foreach($report_vehicle->result() as $row){}
+?>
+
 <html>
 <head>
     <!-- meta tags -->
@@ -67,17 +71,23 @@
                 <tr>
                     <td colspan="4" class="text-danger text-center">
                         <h6>
+
                             Vehicle
                             <?php
                                 if($this->session->tempdata('expense_report_type') == 'all')
                                     echo "Income/Expenses";
-                            elseif($this->session->tempdata('expense_report_type') == 'income')
-                                echo "Income";
-                            else
+                            elseif($this->session->tempdata('expense_report_type') == 'expense')
                                 echo "Expenses";
+                            else
+                                echo "Income";
                             ?>
-                            Report - <?php echo $this->session->tempdata('expense_report_vehicleId'); ?>
+                            Report - <?php echo $row->registered_number; ?>
                         </h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <?php echo $row->title; ?>
                     </td>
                 </tr>
 
@@ -92,12 +102,16 @@
                     <?php
                 }
                 ?>
+                <tr>
+                    <td colspan="4" class="py-3">
 
-                <tr class="mt-3">
+                    </td>
+                </tr>
+                <tr>
                     <th style="padding: 5px; width: 10%;">#</th>
                     <th style="padding: 5px; width: 20%;">Date</th>
                     <th style="padding: 5px; width: 15%;">Type</th>
-                    <th style="padding: 5px; width: 20%;">Amount</small></th>
+                    <th style="padding: 5px; width: 20%;">Amount (LKR)</th>
                 </tr>
                 <?php
                     $i=1;
@@ -124,14 +138,24 @@
             </table>
 
             <table class="mt-5">
+                <?php
+                if($this->session->tempdata('expense_report_type') != 'expense') {
+                ?>
                 <tr>
                     <td style="width: 15%;">Total Income: </td>
-                    <td style="width: 25%;"><b><?php echo number_format($income_sum, 2); ?></b></td>
+                    <td style="width: 25%;"><b>LKR <?php echo number_format($income_sum, 2); ?></b></td>
                 </tr>
+                <?php
+                }
+                if($this->session->tempdata('expense_report_type') != 'income') {
+                ?>
                 <tr>
                     <td style="width: 15%;">Total Expense: </td>
-                    <td style="width: 25%;"><b><?php echo number_format($expense_sum, 2); ?></b></td>
+                    <td style="width: 25%;"><b>LKR <?php echo number_format($expense_sum, 2); ?></b></td>
                 </tr>
+                <?php
+                }
+                ?>
             </table>
 
             <table class="mt-5">

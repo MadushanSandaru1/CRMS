@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-4 stretch-card grid-margin">
+    <a href="<?php echo base_url('index.php/Home/crms_booking'); ?>" class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-primary card-img-holder text-white">
             <div class="card-body">
                 <img src="<?php echo base_url('assets/images/dashboard/circle.svg');?>" class="card-img-absolute" alt="circle-image" />
@@ -21,9 +21,9 @@
                 ?>
             </div>
         </div>
-    </div>
+    </a>
 
-    <div class="col-md-4 stretch-card grid-margin">
+    <a href="<?php echo base_url('index.php/Home/crms_damage'); ?>" class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-dark card-img-holder text-white">
             <div class="card-body">
                 <img src="<?php echo base_url('assets/images/dashboard/circle.svg');?>" class="card-img-absolute" alt="circle-image" />
@@ -46,9 +46,9 @@
                 ?>
             </div>
         </div>
-    </div>
+    </a>
 
-    <div class="col-md-4 stretch-card grid-margin">
+    <a href="<?php echo base_url('index.php/Home/crms_reserved'); ?>" class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-success card-img-holder text-white">
             <div class="card-body">
                 <img src="<?php echo base_url('assets/images/dashboard/circle.svg');?>" class="card-img-absolute" alt="circle-image" />
@@ -71,5 +71,5 @@
                 ?>
             </div>
         </div>
-    </div>
+    </a>
 </div>

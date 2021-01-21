@@ -26,6 +26,7 @@ class Vehicle_Model extends CI_Model
     //get guarantor data function
     public function getVehicleData() {
         $this->db->where('is_deleted', 0);
+        $this->db->where('is_service_out', 0);
         $this->db->order_by('id', 'ASC');
 
         return $this->db->get('vehicle');

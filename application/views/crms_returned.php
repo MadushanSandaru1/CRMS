@@ -9,7 +9,7 @@ if (!$this->session->userdata('user_id')) {
 }
 
 ?>
-
+<?php $start =0; ?>
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
 
@@ -141,7 +141,7 @@ if (!$this->session->userdata('user_id')) {
                                     <label>End Meter Value : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="number" name="stop_meter_value" id="stop_meter" class="form-control" min="1">
+                                    <input type="number" name="stop_meter_value" id="stop_meter" class="form-control"  required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -199,7 +199,7 @@ if (!$this->session->userdata('user_id')) {
                                     <label>Extend Date : </label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="date" name="n_r_date" class="form-control">
+                                    <input type="date" name="n_r_date" class="form-control" min="<?php echo Date('Y-m-d',time()) ?>" required>
                                 </div>
                             </div>
                             <div class="form-row">

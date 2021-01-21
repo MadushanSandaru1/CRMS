@@ -96,7 +96,7 @@ foreach ($customer_data as $value)
         }
 
         table {
-            margin: 3px auto;
+            margin: 1px auto;
             width: 80%;
         }
     </style>
@@ -170,6 +170,9 @@ foreach ($customer_data as $value)
                         $datediffs_expected = $start_time->diff($end_time);
                         //$planed_hours = $datediffs_expected->format('%d')*24;
                         $planed_hours = $datediffs_expected->format('%h');
+                        $planed_days = $datediffs_expected->format('%a');
+                        if($planed_days ==0)
+                            $planed_days=1;
                         //$d_diff_exped = $datediffs_expected->format('%d');
 
 
@@ -178,14 +181,14 @@ foreach ($customer_data as $value)
                             $hours =$actual_hours - $planed_hours;
                             $total_balance +=(($end_meter - $start_meter)*$price_per_km);
                             $total_balance +=$hours*$price_per_hour;
-                            $total_balance+=$price_per_day;
+                            $total_balance+=$price_per_day*$planed_days;
                             $total_balance -=$advance_payment;
                             $this->session->set_tempdata('vehicle_return_income',$total_balance, 10);
                             $this->session->set_tempdata('vehicle_return_v_id',$vehicle_id, 10);
                         }
                         else if(($end_meter - $start_meter) >=200 && $actual_hours==$planed_hours) {
                             $total_balance +=(($end_meter - $start_meter)*$price_per_km);
-                            $total_balance +=$price_per_day;
+                            $total_balance +=$price_per_day*$planed_days;
                             $total_balance -=$advance_payment;
                             $this->session->set_tempdata('vehicle_return_income',$total_balance, 10);
                             $this->session->set_tempdata('vehicle_return_v_id',$vehicle_id, 10);
@@ -193,7 +196,7 @@ foreach ($customer_data as $value)
                         else if(($end_meter - $start_meter) < 200 && $actual_hours>$planed_hours) {
                             $hours =$actual_hours - $planed_hours;
                             $total_balance +=$hours*$price_per_hour;
-                            $total_balance +=$price_per_day;
+                            $total_balance +=$price_per_day*$planed_days;
                             $total_balance -=$advance_payment;
                             $this->session->set_tempdata('vehicle_return_income',$total_balance, 10);
                             $this->session->set_tempdata('vehicle_return_v_id',$vehicle_id, 10);

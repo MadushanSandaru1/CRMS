@@ -118,7 +118,7 @@
                                 <th>#</th>
                                 <th>Vehicle ID</th>
                                 <th>Date</th>
-                                <th>Amount</th>
+                                <th>Amount LKR</th>
                                 <th>Type</th>
                             </tr>
                             </thead>
@@ -127,11 +127,11 @@
                             if($vehicle_expense_data->num_rows() > 0) {
                                 foreach ($vehicle_expense_data->result() as $data_row){
                             ?>
-                            <tr class="<?php if($data_row->type=="E") echo "table-danger"; else echo "table-success"; ?>">
+                            <tr>
                                 <td class="nr"><?php echo $data_row->id; ?></td>
                                 <td><?php echo $data_row->vehicle_id.' - '.$data_row->registered_number; ?></td>
                                 <td><?php echo $data_row->date; ?></td>
-                                <td class="text-right"><?php echo number_format($data_row->amount,2); ?></td>
+                                <td class="text-right <?php if($data_row->type=="E") echo "text-danger"; ?>"><?php echo number_format($data_row->amount,2); ?></td>
                                 <td><?php echo $data_row->type; ?></td>
                             </tr>
                             <?php

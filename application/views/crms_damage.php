@@ -9,7 +9,11 @@
     }
 
 ?>
-<?php $vehicle_reg=""; ?>
+<?php
+    $vehicle_reg="";
+    $cus_name ="";
+    $cus_nic="";
+?>
 <?php require_once 'crms_header.php';?>
     
     <div class="content-wrapper">
@@ -67,11 +71,29 @@
                                 <div class="form-group">
                                     <label for="exampleInputName1"><b>Vehicle ID</b></label>
                                     <select name="vehicle_id" id="" class="custom-select mr-sm-2" >
-                                        <option value="">Select Vehicle ID</option>
+                                        <option disabled selected hidden>Select Vehicle ID</option>
                                         <?php if(count($getVehicleID)): ?>
                                             <?php foreach($getVehicleID as $value):?>
-                                                <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
+                                                <?php
+                                                if($this->session->tempdata('u_vehicle_id_fill')) {
+                                                    if($this->session->tempdata('u_vehicle_id_fill') == $value->id)
+                                                    {
+                                                        echo "<option value='".$value->id."' selected>".$value->id." - ".$value->registered_number."</option>";
+                                                    }
+                                                    else
+                                                    {
+                                                        echo "<option value='".$value->id."'>".$value->id." - ".$value->registered_number."</option>";
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    echo "<option value='".$value->id."'>".$value->id." - ".$value->registered_number."</option>";
+                                                }
+                                                ?>
                                             <?php endforeach;?>
+                                        <?php else: ?>
+                                            <option disabled selected hidden>Data not found</option>
                                         <?php endif; ?>
                                     </select>
                                     <small class="text-danger"><?php echo form_error('vehicle_id'); ?></small>
@@ -80,8 +102,11 @@
                             
                                 <div class="form-group">
                                     <label for="exampleSelectGender"><b>Nature of Damage</b></label>
-                                    <select class="custom-select mr-sm-2" id="exampleSelectGender" name="description">
-                                        <option value="">Select Nature of Damage</option>
+                                    <select class="custom-select mr-sm-2" id="exampleSelectGender" name="description" value="<?php if($this->session->tempdata('description_fill')) echo $this->session->tempdata('description_fill'); ?>">
+                                        <option disabled selected hidden>Select Vehicle ID</option>
+                                        <?php
+                                            if($this->session->tempdata('u_description_fill')) echo $this->session->tempdata('u_description_fill');
+                                        ?>
                                         <option values="left or Right Signal light">left or Right Signal light</option>
                                         <option values="Door damage">Door damage</option>
                                         <option value="Left and Right Side mirror damages">Left and Right Side mirror damages</option>
@@ -110,46 +135,37 @@
                                         
                                     </div>
                                     <small class="text-danger"><?php echo form_error('chooser'); ?></small>
-                                    <!-- <div class="collapse " id="collapseExample" aria-labelledby="customRadioInline1">
-                                    <br>
-                                        <select name="cr_vehicle_id" id="showReservedId" class="custom-select"  >
-                                            <option value="">Select Reserved ID</option>    
-                                            <?php if(count($getReservedID)): ?>
-                                                <?php foreach($getReservedID as $value):?>
-                                                    <option value=<?php echo $value->id;?>><?php echo "".$value->id;?></option>
-                                                <?php endforeach;?>
-                                            <?php endif; ?>
-                                        </select>
-                                    </div> -->
+
                                     <div class="collapse " id="custome" aria-labelledby="customRadioInline2">
                                         <br>
                                         <div class="row">
                                             <div class="col">
-                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  >
-                                                    <option value="">Select Vehicle ID</option>
-                                                    <?php if(count($getReservedID) && count($getVehicleID)): ?>
+                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  value="<?php if($this->session->tempdata('c_vehicle_id_fill')) echo $this->session->tempdata('c_vehicle_id_fill'); ?>">
+                                                    <option disabled selected hidden>Select Vehicle ID</option>
+                                                    <?php if(count($getReservedID) && count($getVehicleID) || count($getCustomerDetails)): ?>
                                                          <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
-                                                              <?php if($getReservedID->vehicle_id == $getVehicleID->registered_number):?>
-                                                                    <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getVehicleID[$i]->registered_number;?></option>
+                                                              <?php if($getReservedID->vehicle_id == $getVehicleID->registered_number || $getReservedID->customer_id == $getCustomerDetails->id):?>
+                                                                <?php
+                                                                if($this->session->tempdata('uc_vehicle_id_fill'))
+                                                                {
+                                                                    if ($this->session->tempdata('uc_vehicle_id_fill')==$getReservedID->id) {
+                                                                        echo "<option value='".$getReservedID->id."' selected>".$getReservedID->id." - ".$getVehicleID->registered_number."</option>";
+                                                                    }
+                                                                    else
+                                                                        echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")"."</option>";
+                                                                }
+                                                                else
+                                                                    echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")"."</option>";
+                                                                ?>
                                                               <?php endif; ?>
                                                               <?php endfor;?>
+                                                    <?php else: ?>
+                                                        <option disabled selected hidden>Data not found</option>
                                                     <?php endif; ?>
                                                 </select>
                                                 <!-- <small class="text-danger"><?php echo form_error('c_vehicle_id'); ?></small> -->
                                             </div>
-                                            <div class="col">
-                                                <select name="c" id="showReservedId" class="custom-select" >
-                                                    <option value="">Select Customer</option>
-                                                    <?php if(count($getReservedID) && count($getCustomerDetails)): ?>
-                                                         <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
-                                                              <?php if($getReservedID->customer_id == $getCustomerDetails->id):?>
-                                                                    <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getCustomerDetails[$i]->nic;?></option>
-                                                              <?php endif; ?>
-                                                              <?php endfor;?>
-                                                    <?php endif; ?>
-                                                </select> 
-                                                <!-- <small class="text-danger"><?php echo form_error('c'); ?></small>       -->
-                                            </div>
+
                                         </div>
                                     
                                     
@@ -168,23 +184,28 @@
                                     </div>
                                     <div class="collapse " id="fix" aria-labelledby="fix_amount">
                                         <br>
-                                        <input type="text" name="fix_amount" id="" class="form-control" value="<?php echo $this->session->tempdata('fix_amount_fill');?>" placeholder="Enter fix amount">
+                                        <input type="text" name="fix_amount" id="" class="form-control" value="<?php if($this->session->tempdata('fix_amount_fill')) echo $this->session->tempdata('fix_amount_fill'); ?>" placeholder="Enter pay amount">
                                         
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleSelectGender"><b>Is damage solved</b></label><br><br>
-                                    <input type="checkbox" name="is_solved" id="damage_solved" value="1" class="">
-                                    <label for="exampleInputCity1 "> Yes</label>
-                                                                
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="checkbox" id="damage_solved" name="is_solved" class="" data-toggle="collapse" href="#solved" aria-expanded="false" aria-controls="solved" value="1">
+                                        <label for="exampleInputCity1 "> Yes</label>
+                                    </div>
+                                    <div class="collapse " id="solved" aria-labelledby="solved">
+                                        <br>
+                                        <input type="text" name="solved_amount" id="" class="form-control"  placeholder="Enter solved amount" value="<?php if($this->session->tempdata('solved_amount_fill')) echo $this->session->tempdata('solved_amount_fill'); ?>">
+
+                                    </div>
+
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Add</button>
                                 <input type="reset" class="btn btn-light" value="Cancel">
                             <?php echo form_close(); ?>   
                         </div>
-                        
 
-                       
                     </div>
                 </div>
             </div>
@@ -219,11 +240,29 @@
                                 <div class="form-group">
                                     <label for="exampleSelectGender" class="mt-3"><b>Vehicle ID</b></label>
                                     <select name="u_vehicle_id" id="u_vehicle_id" class="custom-select mr-sm-2" >
-                                        <option value="" >Select Vehicle ID</option>
+                                        <option disabled selected hidden>Select Vehicle ID</option>
                                         <?php if(count($getVehicleID)): ?>
                                             <?php foreach($getVehicleID as $value):?>
-                                                <option value=<?php echo $value->id;?>><?php echo $value->registered_number;?></option>
+                                                <?php
+                                                    if($this->session->tempdata('u_vehicle_id_fill')) {
+                                                        if($this->session->tempdata('u_vehicle_id_fill') == $value->id)
+                                                        {
+                                                            echo "<option value='".$value->id."' selected>".$value->id." - ".$value->registered_number."</option>";
+                                                        }
+                                                        else
+                                                        {
+                                                            echo "<option value='".$value->id."'>".$value->id." - ".$value->registered_number."</option>";
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        echo "<option value='".$value->id."'>".$value->id." - ".$value->registered_number."</option>";
+                                                    }
+                                                ?>
                                             <?php endforeach;?>
+                                        <?php else: ?>
+                                            <option disabled selected hidden>Data not found</option>
                                         <?php endif; ?>
                                     </select>
                                     <small class="text-danger"><?php echo form_error('vehicle_id'); ?></small>
@@ -231,7 +270,7 @@
                                 <div class="form-group">
                                     <label for="exampleSelectGender" class="mt-0"><b>Nature of Damage</b></label>
                                     <select class="custom-select mr-sm-2" id="u_description" name="u_description" >
-                                        <option value="">Select Nature of Damage</option>
+                                        <option disabled selected hidden>Select Vehicle ID</option>
                                         <option values="left or Right Signal light">left or Right Signal light</option>
                                         <option values="Door damage">Door damage</option>
                                         <option value="Left and Right Side mirror damages">Left and Right Side mirror damages</option>
@@ -245,83 +284,46 @@
                                 </div>
                                 <div class="form-group">
                                     <label><b>Upload Damage Vehicle Picture</b></label>
-                                    <input type="file"  class="form-control" name="u_image_file" >
-                                    <!-- <small class="text-danger"><?php echo form_error('image_file'); ?></small>   -->
-                                    <!--
+                                    <input type="file" name="u_image_file" class="file-upload-default">
                                     <div class="input-group col-xs-12">
-                                        <input type="file" class="form-control name="image_file" file-upload-info" disabled placeholder="Upload Image">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Damage Vehicle Image(jpg|png|jpeg)">
                                         <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                                        </span>
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                    </span>
                                     </div>
-                                -->
+                                    <small class="text-danger"><?php echo form_error('u_image_file'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputCity1"><b>Reserved From</b></label><br><br>
+                                    <select name="uc_vehicle_id" id="c_showReservedId" class="custom-select mb-2 "  value="<?php if($this->session->tempdata('uc_vehicle_id_fill')) echo $this->session->tempdata('uc_vehicle_id_fill'); ?>">
+                                        <option disabled selected hidden>Select Vehicle ID</option>
+                                        <?php if(count($getReservedID) && count($getVehicleID) || count($getCustomerDetails)): ?>
 
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="chooser" class="custom-control-input" data-toggle="collapse" href="#custome" aria-expanded="false" aria-controls="custom " >
-                                        <label class="mdi mdi-swap-vertical " for="customRadioInline2">Custom Choose </label>
+                                            <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
+                                                <?php if($getReservedID->vehicle_id == $getVehicleID->registered_number || $getReservedID->customer_id == $getCustomerDetails->id):?>
+                                                    <?php
+                                                    if($this->session->tempdata('uc_vehicle_id_fill'))
+                                                    {
+                                                        if ($this->session->tempdata('uc_vehicle_id_fill')==$getReservedID->id) {
+                                                            echo "<option value='".$getReservedID->id."' selected>".$getReservedID->id." - ".$getVehicleID->registered_number."</option>";
+                                                        }
+                                                        else
+                                                            echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")>"."</option>";
+                                                    }
+                                                    else
+                                                        echo "<option value=".$getReservedID[$i]->id.">".$getReservedID[$i]->id." - ".$getVehicleID[$i]->registered_number." (". $getCustomerDetails[$i]->nic.")>"."</option>";
+                                                    ?>
 
-                                    </div>
-                                    <small class="text-danger"><?php echo form_error('chooser'); ?></small>
-                                    <!-- <div class="collapse " id="collapseExample" aria-labelledby="customRadioInline1">
-                                    <br>
-                                        <select name="cr_vehicle_id" id="showReservedId" class="custom-select"  >
-                                            <option value="">Select Reserved ID</option>
-                                            <?php if(count($getReservedID)): ?>
-                                                <?php foreach($getReservedID as $value):?>
-                                                    <option value=<?php echo $value->id;?>><?php echo "".$value->id;?></option>
-                                                <?php endforeach;?>
-                                            <?php endif; ?>
-                                        </select>
-                                    </div> -->
-                                    <div class="collapse " id="custome" aria-labelledby="customRadioInline2">
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <select name="c_vehicle_id" id="showReservedId" class="custom-select mb-2 "  >
-                                                    <option value="">Select Vehicle ID</option>
-                                                    <?php if(count($getReservedID) && count($getVehicleID)): ?>
-                                                        <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
-                                                            <?php if($getReservedID->vehicle_id == $getVehicleID->registered_number):?>
-                                                                <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getVehicleID[$i]->registered_number;?></option>
-                                                            <?php endif; ?>
-                                                        <?php endfor;?>
-                                                    <?php endif; ?>
-                                                </select>
-                                                <!-- <small class="text-danger"><?php echo form_error('c_vehicle_id'); ?></small> -->
-                                            </div>
-                                            <div class="col">
-                                                <select name="c" id="showReservedId" class="custom-select" >
-                                                    <option value="">Select Customer</option>
-                                                    <?php if(count($getReservedID) && count($getCustomerDetails)): ?>
-                                                        <?php for($i=0; $i < sizeof($getReservedID);$i++):?>
-                                                            <?php if($getReservedID->customer_id == $getCustomerDetails->id):?>
-                                                                <option value=<?php echo $getReservedID[$i]->id;?>><?php echo "".$getCustomerDetails[$i]->nic;?></option>
-                                                            <?php endif; ?>
-                                                        <?php endfor;?>
-                                                    <?php endif; ?>
-                                                </select>
-                                                <!-- <small class="text-danger"><?php echo form_error('c'); ?></small>       -->
-                                            </div>
-                                        </div>
-
-
-                                    </div>
+                                                <?php endif; ?>
+                                            <?php endfor;?>
+                                        <?php else: ?>
+                                            <option disabled selected hidden>Data not found</option>
+                                        <?php endif; ?>
+                                    </select>
+                                    <!-- <small class="text-danger"><?php echo form_error('c_vehicle_id'); ?></small> -->
 
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputCity1"><b>Fix Amount</b></label><br><br>
-                                    <input type="text" name="u_fix_amount" id="u_fix_amount" class="form-control">
-                                    <small class="text-danger"><?php echo form_error('fix_amount'); ?></small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelectGender"><b>Is damage solved</b></label><br><br>
-                                    <input type="checkbox" name="u_is_solved" id="damage_solved" value="1" class="">
-                                    <label for="exampleInputCity1 "> Yes</label>
 
-                                </div>
                                 <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
                                 <input type="reset" class="btn btn-light" value="Cancel">
                                 <?php echo form_close(); ?>
@@ -350,7 +352,7 @@
                                         <th>Discription</th>
                                         <th>Reserved ID</th>
                                         <!--<th style="text-align: center;">Picture</th>-->
-                                        <th>Fix Amount</th>
+                                        <th>Customer Paid Amount</th>
                                         <th>Is Solved</th>
                                         <th>Actions</th>
                                     </tr>
@@ -374,7 +376,10 @@
                                                 <td>
                                                     <?php for($i=0;$i < sizeof($getCustomerDetails);$i++): ?>
                                                         <?php if($values->reserved_id == $getCustomerDetails[$i]->id):?>
-                                                            <?php echo $getCustomerDetails[$i]->nic; ?>
+                                                            <?php
+                                                                echo $getCustomerDetails[$i]->nic;
+                                                                $cus_nic =$getCustomerDetails[$i]->nic;
+                                                            ?>
                                                         <?php endif;?>
                                                     <?php endfor;?>
                                                 </td>
@@ -391,8 +396,11 @@
                                                     ?>
                                                 </td>
                                                 <td>
+                                                    <?php if($values->is_solved == 0):?>
+                                                        <label class="cursor-pointer" data-toggle="modal" data-target="#solvedModal" onclick="solved_damage('<?php echo $values->id;?>','<?php echo $values->vehicle_id;?>','<?php echo $vehicle_reg;?>','<?php echo $cus_nic;?>','<?php echo $values->fix_amount;?>')"> <span class="mdi mdi-car-wash text-dark ml-4 mr-4"> Solve Damage</span> </label>
+                                                    <?php endif;?>
                                                     <a id="view"  href="<?php echo base_url("index.php/Damage/DamageReport/$values->id");?>" target="_blank"><span class="mdi mdi-note "> Get Report</span></a>
-                                                    <a  id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="EditDetails"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_damage('<?php echo $values->id;?>','<?php echo $values->vehicle_id;?>','<?php echo $values->description;?>','<?php echo $values->d_date;?>','<?php echo $values->fix_amount;?>','<?php echo $values->reserved_id;?>')"> Edit</span></a>
+                                                    <a  id="view" data-toggle="collapse" href="#EditDetails" aria-expanded="false" aria-controls="EditDetails"><span class="mdi mdi-eyedropper text-success ml-4" onclick="update_damage('<?php echo $values->id;?>','<?php echo $values->vehicle_id;?>','<?php echo $values->description;?>','<?php echo $values->d_date;?>','<?php echo $values->reserved_id;?>')"> Edit</span></a>
                                                     <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_damage('<?php echo$values->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
                                                 </td>
 
@@ -439,12 +447,58 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="solvedModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Solved Damage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php echo form_open('Damage/prepareToSolvedDamage');?>
+                <form>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="hidden" name="soldamageid" id="soldamageid" required>
+                                <input type="hidden" name="soldid" id="soldid" required>
+                                Vehicle No <br>
+                                <input type="text" name="soldvehicleid" id="soldvehicleid" required class="form-control mt-2 mb-2" readonly>
+                                Customer NIC  <br>
+                                <input type="text" name="soldcusnic" id="soldcusnic" required class="form-control mt-2 mb-2" readonly>
+                                Customer Paid <br>
+                                <input type="text" name="customer_paid" id="soldfix" required class="form-control mt-2 mb-1" readonly><br>
+                                solve Price <br>
+                                <input type="text" name="solve_price" id="" required class="form-control mt-2 mb-2" ><br>
 
+                                <button type="submit" class="btn btn-primary">Solve</button>
+                                <button type="reset" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </form>
+                <?php echo form_close(); ?>
+            </div>
+        </div>
+    </div>
 <script type="text/javascript">
     function delete_damage(del_damage_id){
         document.getElementById("deldamageid").value = del_damage_id;
     }
-    function update_damage(id,update_vehicle_id,update_description,d_date,update_fix_amount,res_id){
+
+    function solved_damage(d_id,sol_damage_id,sol_vehicle_id,sol_reserved_id,sol_fix_amount){
+        document.getElementById("soldid").value = d_id;
+        document.getElementById("soldamageid").value = sol_damage_id;
+        document.getElementById("soldvehicleid").value = sol_vehicle_id;
+        document.getElementById("soldcusnic").value = sol_reserved_id;
+        document.getElementById("soldfix").value = sol_fix_amount;
+    }
+
+    function update_damage(id,update_vehicle_id,update_description,d_date,res_id){
 
         //display form if clickd edit in view table
         document.getElementById("add_damage").style.display = "none";
@@ -455,8 +509,7 @@
         document.getElementById("u_vehicle_id").value = update_vehicle_id;
         document.getElementById("u_description").value = update_description;
         document.getElementById("reported_date").value = d_date;
-        document.getElementById("u_fix_amount").value = update_fix_amount;
-        document.getElementById("c_vehicle_id").className = res_id;
+        document.getElementById("c_showReservedId").value = res_id;
 
     }
 </script>

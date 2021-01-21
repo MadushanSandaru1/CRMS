@@ -14,6 +14,12 @@
                 if($this->form_validation->run() == FALSE)
                  {
                     $this->session->set_tempdata('fix_amount_fill', $this->input->post('fix_amount', TRUE), 5);
+                    $this->session->set_tempdata('solved_amount_fill', $this->input->post('solved_amount', TRUE), 5);
+                    $this->session->set_tempdata('vehicle_id_fill',$this->input->post('vehicle_id', TRUE),5);
+                    $this->session->set_tempdata('description_fill',$this->input->post('description', TRUE),5);
+                    //$this->session->set_tempdata('image_file_fill',$this->input->post('image_file', TRUE),5);
+                    $this->session->set_tempdata('c_vehicle_id_fill',$this->input->post('c_vehicle_id', TRUE),5);
+
                     $this->load->model("Customer_message");
                     $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
                     $this->load->model("notification");
@@ -129,13 +135,15 @@
             $this->form_validation->set_rules('u_vehicle_id','Vehicle ID','required');
             $this->form_validation->set_rules('u_description','Nature of Damage','required');
             //$this->form_validation->set_rules('u_image_file','Damage Image File','required');
-//            $this->form_validation->set_rules('chooser','Reserved ID','required');
-            $this->form_validation->set_rules('u_fix_amount','Fix Amount','required');
-            //$this->form_validation->set_rules('u_is_solved','Is Solved','required');
+            $this->form_validation->set_rules('uc_vehicle_id','Reserved ID','required');
             $this->form_validation->set_rules('u_reported_date','Damage Date','required');
 
             if($this->form_validation->run() == FALSE)
             {
+                $this->session->set_tempdata('u_vehicle_id_fill', $this->input->post('u_vehicle_id', TRUE), 5);
+                $this->session->set_tempdata('u_description_fill', $this->input->post('u_description', TRUE), 5);
+                $this->session->set_tempdata('uc_vehicle_id_fill',$this->input->post('uc_vehicle_id', TRUE),5);
+
                 $this->load->model("Customer_message");
                 $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
                 $this->load->model("notification");
@@ -216,6 +224,52 @@
                         $this->load->view('crms_damage', $data);
                     }
                 }
+            }
+        }
+
+        public function prepareToSolvedDamage()
+        {
+            $this->load->model('DamageModel');
+            $response = $this->DamageModel->damageSolved();
+            if ($response)
+            {
+                $this->load->model("Customer_message");
+                $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                $this->load->model("notification");
+                $data["insurence_date"]=$this->notification->insurence_date();
+                $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                $data["car_booking_notification"]=$this->notification->car_booking_notification();
+                $data["car_not_recive"]=$this->notification->car_not_recive();
+
+                $this->load->model('DamageModel');
+                $data["getDamageDetails"] = $this->DamageModel->getDamageDetails();
+                $data["getVehicleID"] = $this->DamageModel->getVehicleID();
+                $data["getReservedID"] = $this->DamageModel->getReservedID();
+                $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
+
+                $this->session->set_tempdata('form','add_form',5);
+                $this->session->set_flashdata('damage_status', 'Data Solved Successfully!');
+                $this->load->view('crms_damage', $data);
+            }
+            else
+            {
+                $this->load->model("Customer_message");
+                $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
+                $this->load->model("notification");
+                $data["insurence_date"]=$this->notification->insurence_date();
+                $data["revenue_license_date"]=$this->notification->revenue_license_date();
+                $data["car_booking_notification"]=$this->notification->car_booking_notification();
+                $data["car_not_recive"]=$this->notification->car_not_recive();
+
+                $this->load->model('DamageModel');
+                $data["getDamageDetails"] = $this->DamageModel->getDamageDetails();
+                $data["getVehicleID"] = $this->DamageModel->getVehicleID();
+                $data["getReservedID"] = $this->DamageModel->getReservedID();
+                $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
+
+                $this->session->set_tempdata('form','add_form',5);
+                $this->session->set_flashdata('damage_status', 'Data Solved not Successfully!');
+                $this->load->view('crms_damage', $data);
             }
         }
     }
