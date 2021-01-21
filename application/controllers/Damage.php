@@ -191,7 +191,7 @@
                         $data["getReservedID"] = $this->DamageModel->getReservedID();
                         $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
 
-                        $this->session->set_tempdata('form','update_form',5);
+                        $this->session->set_tempdata('form','add_form',5);
                         $this->session->set_flashdata('damage_status', 'Data Updated Successfully!');
                         $this->load->view('crms_damage', $data);
                     }
@@ -219,7 +219,7 @@
                         $data["getReservedID"] = $this->DamageModel->getReservedID();
                         $data["getCustomerDetails"] = $this->DamageModel->getCustomerDetails();
 
-                        $this->session->set_tempdata('form','update_form',5);
+                        $this->session->set_tempdata('form','add_form',5);
                         $this->session->set_flashdata('damage_status', 'Data Updated Successfully!');
                         $this->load->view('crms_damage', $data);
                     }
