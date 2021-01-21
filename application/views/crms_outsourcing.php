@@ -59,7 +59,7 @@ if (!$this->session->userdata('user_id')) {
                             <div class="form-group">
                                 <label for="vehicleTitle">Supplier</label>
                                 <select name="supplier_id" id="" class="custom-select">
-                                    <option value="">Select Supplier..</option>
+                                    <option disabled selected hidden>Select Supplier</option>
                                     <?php for($i=0;$i < sizeof($supplier);$i++): ?>
                                         <option value=<?php echo $supplier[$i]->id;?>><?php echo $supplier[$i]->name;?></option>
                                     <?php endfor;?>
