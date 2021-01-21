@@ -33,33 +33,26 @@
         </div>
 
         <div class="row">
-            <?php 
-                    $cashier_id="";
-                    $admin_id="";
+            <?php
+            $cashier_id="";
+            $admin_id="";
+            for($i=0;$i<sizeof($staff_details);$i++)
+            {
+                if($staff_details[$i]->role == "cashier")
+                {
+                    $cashier_id = $staff_details[$i]->id;
+                    $cashier_id[5] = $cashier_id[5]+1;
+                }
+            }
 
-                    // var_dump(sizeof($staff_details_for_id));
-
-                    foreach($staff_details_for_id->result() as $row){
-                        echo $row->ud;
-                    }
-
-                    // for($i=0;$i<sizeof($staff_details_for_id);$i++)
-                    // {
-                    //     if($staff_details_for_id[$i]->role == "cashier")
-                    //     {
-                    //         $cashier_id = $staff_details_for_id[$i]->id;
-                    //         $cashier_id[5] = $cashier_id[5]+1;
-                    //     }
-                    // }
-
-                    // for($i=0;$i<sizeof($staff_details_for_id);$i++)
-                    // {
-                    //     if($staff_details_for_id[$i]->role == "admin")
-                    //     {
-                    //         $admin_id = $staff_details_for_id[$i]->id;
-                    //         $admin_id[5] = $admin_id[5]+1;
-                    //     }
-                    // }
+            for($i=0;$i<sizeof($staff_details);$i++)
+            {
+                if($staff_details[$i]->role == "admin")
+                {
+                    $admin_id = $staff_details[$i]->id;
+                    $admin_id[5] = $admin_id[5]+1;
+                }
+            }
             ?>
 <!--            add user-->
             <div class="col-12 grid-margin stretch-card" id="add_user">
@@ -312,13 +305,15 @@
     {
         if(document.getElementById('cashier').checked)
         {
-            document.getElementById('usr_admin').style.display = 'none';
             document.getElementById('usr_cashier').style.display = 'block';
+            document.getElementById('usr_admin').style.display = 'none';
+
         }
         if(document.getElementById('admin').checked)
         {
-            document.getElementById('usr_cashier').style.display = 'none';
             document.getElementById('usr_admin').style.display = 'block';
+            document.getElementById('usr_cashier').style.display = 'none';
+
         }
     }
 
