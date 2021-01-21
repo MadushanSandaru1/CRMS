@@ -17,15 +17,7 @@
                 // $query = $this->db->get('user');
 
                 $query = $this->db->query("SELECT * FROM `user` ORDER BY `id` ASC");
-                //return $query->result();
-                return $query;
-            }
-
-
-
-            public function debugings(){
-                $query = $this->db->query("SELECT * FROM `user`");
-                return $query;
+                return $query->result();
             }
 
 

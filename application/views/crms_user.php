@@ -36,20 +36,20 @@
             <?php
             $cashier_id="";
             $admin_id="";
-            for($i=0;$i<sizeof($staff_details);$i++)
+            for($i=0;$i<sizeof($staff_details_for_id);$i++)
             {
-                if($staff_details[$i]->role == "cashier")
+                if($staff_details_for_id[$i]->role == "cashier")
                 {
-                    $cashier_id = $staff_details[$i]->id;
+                    $cashier_id = $staff_details_for_id[$i]->id;
                     $cashier_id[5] = $cashier_id[5]+1;
                 }
             }
 
-            for($i=0;$i<sizeof($staff_details);$i++)
+            for($i=0;$i<sizeof($staff_details_for_id);$i++)
             {
-                if($staff_details[$i]->role == "admin")
+                if($staff_details_for_id[$i]->role == "admin")
                 {
-                    $admin_id = $staff_details[$i]->id;
+                    $admin_id = $staff_details_for_id[$i]->id;
                     $admin_id[5] = $admin_id[5]+1;
                 }
             }
@@ -297,7 +297,7 @@
 <script type="text/javascript">
     //admin id field hide when page load
     window.onload = function(){
-        document.getElementById('usr_admin').style.display = 'none';
+        document.getElementById('usr_admin').style.display = 'block';
     }
 
     //auto generate id by role type
