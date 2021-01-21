@@ -138,7 +138,7 @@ class Home extends CI_Controller {
 
         $this->load->model('StaffModel');
         $data["staff_details"] = $this->StaffModel->getStaffDetails();
-        $data["staff_details_for_id"] = $this->StaffModel->debugings();
+        $data["staff_details_for_id"] = $this->StaffModel->getStaffDetailsForAutoId();
         //var_dump($this->StaffModel->debugings());
         
         $this->load->view('crms_user', $data);
@@ -211,7 +211,7 @@ class Home extends CI_Controller {
         $data['vehicle_data'] = $this->Reserved_Model->getVehicleData();
         $data['customer_data'] = $this->Reserved_Model->getCustomerData();
         $data['reserved_data'] = $this->Reserved_Model->getVehicleReservedData();
-        $this->session->set_tempdata('form','add_form',5);
+
         $this->load->view('crms_reserved', $data);
     }
 
@@ -326,7 +326,7 @@ class Home extends CI_Controller {
         $this->load->model('OutsourceVehicleModel');
         $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
         $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
-        $this->session->set_tempdata('form','add_form',5);
+
         $this->load->view('crms_outsourcing',$data);
     }
 
@@ -343,7 +343,7 @@ class Home extends CI_Controller {
 
         $this->load->model('OutSourceSuplierModel');
         $data["supplier_details"] = $this->OutSourceSuplierModel->getSupplierDetails();
-        $this->session->set_tempdata('form','add_form',5);
+
         $this->load->view('crms_outsourcing_supplier', $data);
     }
 

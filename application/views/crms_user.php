@@ -37,10 +37,10 @@
                     $cashier_id="";
                     $admin_id="";
 
-                    // var_dump(sizeof($staff_details_for_id));
+                    var_dump($staff_details_for_id);
 
                     foreach($staff_details_for_id->result() as $row){
-                        echo $row->ud;
+                        echo $row->id; 
                     }
 
                     // for($i=0;$i<sizeof($staff_details_for_id);$i++)
