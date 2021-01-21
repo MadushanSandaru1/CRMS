@@ -12,15 +12,7 @@
 
 <?php require_once 'crms_header.php';?>
     <div class="content-wrapper">
-        <!--div class="row" id="proBanner">
-            <div class="col-12">
-                <span class="d-flex align-items-center purchase-popup">
-                  <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
-                  <a href="" class="btn download-button purchase-button ml-auto">Upgrade To Pro</a>
-                  <i class="mdi mdi-close" id="bannerClose"></i>
-                </span>
-            </div>
-        </div-->
+        
 
         <div class="page-header">
             <h3 class="page-title">
@@ -145,7 +137,6 @@
 
 function trackinmap(){
 
-
     var vid = document.getElementById("vehicleid");
     var strvid = vid.options[vid.selectedIndex].value;
 
@@ -172,73 +163,13 @@ function trackinmap(){
 }
 
 
+//init local storage
+localStorage.setItem('Latitude', null);
+localStorage.setItem('Longitude', null);
 
-
-// $(document).ready(function() {
-//         setInterval(function refreshDarkSky() {
-//             $("#imap").attr("src", "<?php echo base_url('index.php/Home/loadmap'); ?>");
-//         }, 10000);
-// });
-
-
-
-
-
-
-
-
-
-
-
-
- /* var x = document.getElementById('x');
-  var dbRef = firebase.database().ref().child('vehicels');
-  dbRef.on('value',snap => x.innerHTML = snap.val());
-*/
-
-  /*Fetch veihicels*/
-/*
-var ref = firebase.database().ref().child('/vehicles');
-
-ref.on("value", function(snapshot) {
-
-    snapshot.forEach(function(ChildSnapshot){
-        console.log(ChildSnapshot.key());
-    });
-
-    /*foreach(function(snapshot){
-        console.log(child.key+': '+child.val());
-    }
-
-   //console.log(Object.values(snapshot.val()) );
-   //console.log(snapshot.val());
-
-}, function (error) {
-   console.log("Error: " + error.code);
-});
-
-*/
-
-  // function initMap() { 
-
-  //       var uluru = {lat: 6.806635, lng: 79.97114630000002}; 
-  //       var map = new google.maps.Map(document.getElementById('map'), { 
-  //       zoom: 15, 
-  //       center: uluru 
-  //       }); 
-  //       var marker = new google.maps.Marker({ 
-  //       position: uluru, 
-  //       map: map 
-  //       }); 
-  //   } 
 
 
 </script>
-
-<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2bXKNDezDf6YNVc-SauobynNHPo4RJb8&callback=initMap"> </script> 
-
- -->
-
 
 
 

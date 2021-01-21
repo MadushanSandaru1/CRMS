@@ -13,6 +13,8 @@
       }
     </style>
     <script>
+      
+   
       // Initialize and add the map
       function initMap() {
 
@@ -30,6 +32,7 @@
             position: current_location,
             map: map,
         });
+
 
          // setInterval(function initMap(){
 

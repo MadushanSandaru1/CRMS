@@ -22,6 +22,7 @@
             </div>
         </div-->
 
+
         <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -35,6 +36,8 @@
                 </ul>
             </nav>
         </div>
+
+
 
         <div class="row">
 
@@ -92,13 +95,13 @@
 
                                 <div class="form-group">
                                     <label for="pickup">Pickup</label>
-                                    <input type="datetime-local" class="form-control" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_pickup_fill')) echo $this->session->tempdata('booking_pickup_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo date("Y-m-d\TH:i", strtotime("1 day", strtotime(Date('Y-m-d\TH:i',time())))) ?>" value="<?php if($this->session->tempdata('booking_pickup_fill')) echo $this->session->tempdata('booking_pickup_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('pickup'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="drop_off">Drop off</label>
-                                    <input type="datetime-local" class="form-control" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_drop_off_fill')) echo $this->session->tempdata('booking_drop_off_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo date("Y-m-d\TH:i", strtotime("2 day", strtotime(Date('Y-m-d\TH:i',time())))) ?>" value="<?php if($this->session->tempdata('booking_drop_off_fill')) echo $this->session->tempdata('booking_drop_off_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('drop_off'); ?></small>
                                     
                                 </div>
@@ -189,13 +192,13 @@
 
                                 <div class="form-group">
                                     <label for="update_pickup">Pickup</label>
-                                    <input type="datetime-local" class="form-control" name="update_pickup" id="update_pickup" placeholder="Date and Time" onchange="set_update_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_update_pickup_fill')) echo $this->session->tempdata('booking_update_pickup_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="update_pickup" id="update_pickup" placeholder="Date and Time" onchange="set_update_dropoff_min()"  min="<?php echo date("Y-m-d\TH:i", strtotime("1 day", strtotime(Date('Y-m-d\TH:i',time())))) ?>" value="<?php if($this->session->tempdata('booking_update_pickup_fill')) echo $this->session->tempdata('booking_update_pickup_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('update_pickup'); ?></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="update_drop_off">Drop off</label>
-                                    <input type="datetime-local" class="form-control" name="update_drop_off" id="update_drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('booking_update_drop_off_fill')) echo $this->session->tempdata('booking_update_drop_off_fill'); ?>">
+                                    <input type="datetime-local" class="form-control" name="update_drop_off" id="update_drop_off" placeholder="Date and Time" min="<?php echo date("Y-m-d\TH:i", strtotime("2 day", strtotime(Date('Y-m-d\TH:i',time())))) ?>" value="<?php if($this->session->tempdata('booking_update_drop_off_fill')) echo $this->session->tempdata('booking_update_drop_off_fill'); ?>">
                                     <small class="text-danger"><?php echo form_error('update_drop_off'); ?></small>
                                     
                                 </div>
@@ -264,7 +267,7 @@
                                     <th>Booked date</th>
                                     <th>Message</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th colspan="3">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -301,6 +304,7 @@
                                           
                                       </td>
                                       <td>
+                                        <?php if(-1!=$row->status){ ?>
                                             <label class="cursor-pointer" onclick="update_booking(<?php 
                                                 echo $row->id.','.
                                                 $row->vehicle_id.',\''.
@@ -313,9 +317,14 @@
                                                 $row->message.'\'';
                                                ?>)">
                                             <span class="mdi mdi-eyedropper text-success"> Edit</span> </label>
-
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?php if(0!=$row->status){ ?>
                                             <label class="cursor-pointer" data-toggle="modal" data-target="#deleteModal" onclick="delete_booking('<?php echo $row->id; ?>')"> <span class="mdi mdi-close-circle text-danger ml-4"> Remove</span> </label>
-
+                                         <?php } ?>
+                                    </td>
+                                    <td>
                                             <?php if (1==$row->status) { ?>
                                             
                                                     <?php 

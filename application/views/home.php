@@ -120,7 +120,7 @@ With our extensive range of high end cars, classic cars and something more comfo
                         <div class="col-md-6 wrap-right">
                             <div class="input-group dates-wrap">
 
-                                 <input type="datetime-local" class="<?php if(form_error('pickup')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('pickup_fill')) echo $this->session->tempdata('pickup_fill'); ?>">
+                                 <input type="datetime-local" class="<?php if(form_error('pickup')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" name="pickup" id="pickup" placeholder="Date and Time" onchange="set_dropoff_min()"  min="<?php echo date("Y-m-d\TH:i", strtotime("1 day", strtotime(Date('Y-m-d\TH:i',time())))) ?>" value="<?php if($this->session->tempdata('pickup_fill')) echo $this->session->tempdata('pickup_fill'); ?>">
                                 
                                 <!--input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text"-->
                                 <!--div class="input-group-prepend">
@@ -137,7 +137,7 @@ With our extensive range of high end cars, classic cars and something more comfo
                         </div>
                         <div class="col-md-6 wrap-right">
                             <div class="input-group dates-wrap">
-                                <input type="datetime-local" class="<?php if(form_error('drop_off')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo Date('Y-m-d\TH:i',time()) ?>" value="<?php if($this->session->tempdata('drop_off_fill')) echo $this->session->tempdata('drop_off_fill'); ?>">
+                                <input type="datetime-local" class="<?php if(form_error('drop_off')) echo 'form-control txt-field border border-danger'; else echo 'form-control txt-field' ?>" name="drop_off" id="drop_off" placeholder="Date and Time" min="<?php echo date("Y-m-d\TH:i", strtotime("2 day", strtotime(Date('Y-m-d\TH:i',time())))) ?>" value="<?php if($this->session->tempdata('drop_off_fill')) echo $this->session->tempdata('drop_off_fill'); ?>">
                                  
                                 <!--input id="datepicker2" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text">
                                 <div class="input-group-prepend">
