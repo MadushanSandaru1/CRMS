@@ -20,7 +20,6 @@
                 return $query->result();
             }
 
-
             public function insertStaff($image_path)
             {
                 $random_password = rand(10000000,99999999);
