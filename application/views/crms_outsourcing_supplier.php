@@ -72,7 +72,7 @@ if (!$this->session->userdata('user_id')) {
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Phone Number</label>
-                            <input type="text" name="phone" class="form-control" id="expenseAmount" placeholder="Supplier Phone Number" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>">
+                            <input type="text" name="phone" class="form-control" id="expenseAmount" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern" placeholder="Supplier Phone Number" value="<?php if($this->session->tempdata('phone_fill')) echo $this->session->tempdata('phone_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('phone'); ?></small>
                         </div>
                         <div class="form-group">
@@ -137,7 +137,7 @@ if (!$this->session->userdata('user_id')) {
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Phone Number</label>
-                            <input type="text" name="sup_phone" class="form-control" id="sup_phone" placeholder="Supplier Phone Number" value="<?php if($this->session->tempdata('sup_phone_fill')) echo $this->session->tempdata('sup_phone_fill'); ?>">
+                            <input type="text" name="sup_phone" class="form-control" id="sup_phone" placeholder="Supplier Phone Number" maxlength="10" pattern="0[0-9]{9}" title="Please follow the requested pattern" value="<?php if($this->session->tempdata('sup_phone_fill')) echo $this->session->tempdata('sup_phone_fill'); ?>">
                             <small class="text-danger"><?php echo form_error('phone'); ?></small>
                         </div>
                         <div class="form-group">
