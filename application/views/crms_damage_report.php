@@ -93,10 +93,10 @@
                                         <br>
                                         <div class="row">
                                             <div class="col">
-                                                <input type="date" name="start_date" class="form-control" value="9">
+                                                <input type="date" name="start_date" class="form-control" value="9" max="<?php echo Date('Y-m-d',time()) ?>">
                                             </div>
                                             <div class="col">
-                                                <input type="date" name="end_date" class="form-control">
+                                                <input type="date" name="end_date" class="form-control" max="<?php echo Date('Y-m-d',time()) ?>">
                                             </div>
                                         </div>
                                     
