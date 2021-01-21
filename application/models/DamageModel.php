@@ -187,32 +187,31 @@
 
                     $this->insertVehicleExpense($id,$total_ex);
                 }
-<<<<<<< Updated upstream
+
 
                 $this->db->where('id', $this->input->post('soldid'));
-=======
-                if($this->input->post('u_fix_amount',TRUE) > 0)
-                {
-                    $this->insertVehicleExpense(
-                        $this->input->post('u_vehicle_id', TRUE),
-                        $this->input->post('u_reported_date', TRUE),
-                        $this->input->post('u_fix_amount', TRUE));
-                }
+//                if($this->input->post('u_fix_amount',TRUE) > 0)
+//                {
+//                    $this->insertVehicleExpense(
+//                        $this->input->post('u_vehicle_id', TRUE),
+//                        $this->input->post('u_reported_date', TRUE),
+//                        $this->input->post('u_fix_amount', TRUE));
+//                }
                 $this->db->where('id', $this->input->post('damage_id'));
->>>>>>> Stashed changes
+
                 return $this->db->update('damage', $values);
             }
 
-            public function insertVehicleExpense($vehicle_id,$date,$amount){
-                $vehicle_expense = array(
-                    'vehicle_id' => $vehicle_id,
-                    'type' => "E",
-                    'date' => $date,
-                    'amount' => $amount,
-                );
-
-                return $this->db->insert('transaction',$vehicle_expense);
-            }
+//            public function insertVehicleExpense($vehicle_id,$date,$amount){
+//                $vehicle_expense = array(
+//                    'vehicle_id' => $vehicle_id,
+//                    'type' => "E",
+//                    'date' => $date,
+//                    'amount' => $amount,
+//                );
+//
+//                return $this->db->insert('transaction',$vehicle_expense);
+//            }
         }
 
  ?>
