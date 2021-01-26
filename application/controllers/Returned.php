@@ -108,7 +108,6 @@ class Returned extends CI_Controller
         $this->pdf->loadHtml($html);
         $this->pdf->setPaper('A5', 'portrait');
         $this->pdf->render();
-<<<<<<< Updated upstream
         $this->pdf->stream("vehicle_return_report".date("Ymd_his").".pdf",array("Attachment" => 0));
 
         //insert vehicle return income
@@ -121,10 +120,9 @@ class Returned extends CI_Controller
     public function vehicleReturnIncome($amount)
     {
 
-=======
 
         $this->pdf->stream("vehicle_return_report".date("Ymd_his").".pdf",array("Attachment" => 0));
->>>>>>> Stashed changes
+
     }
 
 }

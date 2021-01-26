@@ -125,33 +125,33 @@ if (!$this->session->userdata('user_id')) {
                         </div>
                         <div class="form-group">
                             <label for="expenseVehicleID"><b>Name</b></label>
-                            <input type="text" name="sup_name" class="form-control" placeholder="Type Supplier Name" id="sup_name">
-                            <small class="text-danger"><?php echo form_error('name'); ?></small>
+                            <input type="text" name="sup_name" class="form-control" placeholder="Type Supplier Name" id="sup_name" value="<?php if($this->session->tempdata('sup_name_fill')) echo $this->session->tempdata('sup_name_fill'); ?>">
+                            <small class="text-danger"><?php echo form_error('sup_name'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expensedVehicleDate">NIC</label>
-                            <input type="text" name="sup_nic" class="form-control" id="sup_nic" placeholder="Supplier NIC Number" >
-                            <small class="text-danger"><?php echo form_error('nic'); ?></small>
+                            <input type="text" name="sup_nic" class="form-control" id="sup_nic" placeholder="Supplier NIC Number" pattern="[0-9]{9}[v|V|x|X]|[0-9]{12}" value="<?php if($this->session->tempdata('sup_nic_fill')) echo $this->session->tempdata('sup_nic_fill'); ?>">
+                            <small class="text-danger"><?php echo form_error('sup_nic'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Email</label>
-                            <input type="email" name="sup_email" class="form-control" id="sup_email" placeholder="Supplier Email" >
-                            <small class="text-danger"><?php echo form_error('email'); ?></small>
+                            <input type="email" name="sup_email" class="form-control" id="sup_email" placeholder="Supplier Email" value="<?php if($this->session->tempdata('sup_email_fill')) echo $this->session->tempdata('sup_email_fill'); ?>">
+                            <small class="text-danger"><?php echo form_error('sup_email'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Phone Number</label>
-                            <input type="text" name="sup_phone" class="form-control" id="sup_phone" placeholder="Supplier Phone Number">
-                            <small class="text-danger"><?php echo form_error('phone'); ?></small>
+                            <input type="text" name="sup_phone" class="form-control" id="sup_phone" placeholder="Supplier Phone Number" pattern="0[0-9]{9}" value="<?php if($this->session->tempdata('sup_phone_fill')) echo $this->session->tempdata('sup_phone_fill'); ?>">
+                            <small class="text-danger"><?php echo form_error('sup_phone'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Address</label>
-                            <input type="text" name="sup_address" class="form-control" id="sup_address" placeholder="Supplier Address" >
-                            <small class="text-danger"><?php echo form_error('address'); ?></small>
+                            <input type="text" name="sup_address" class="form-control" id="sup_address" placeholder="Supplier Address" value="<?php if($this->session->tempdata('sup_address_fill')) echo $this->session->tempdata('sup_address_fill'); ?>">
+                            <small class="text-danger"><?php echo form_error('sup_address'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="expenseAmount">Upload NIC Picture</label>
                             <input type="file" name="sup_nic_copy" class="form-control" id="expenseAmount" placeholder="Supplier NIC Picture" >
-                            <small class="text-danger"><?php echo form_error('nic_copy'); ?></small>
+                            <small class="text-danger"><?php echo form_error('sup_nic_copy'); ?></small>
                         </div>
                         <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
                         <button class="btn btn-light">Cancel</button>
