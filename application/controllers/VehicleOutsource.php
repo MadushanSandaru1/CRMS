@@ -39,7 +39,7 @@ class VehicleOutsource extends CI_Controller
             $this->session->set_tempdata('insurence_date_fill',$this->input->post('insurence_date',TRUE),5);
             $this->session->set_tempdata('revenue_license_date_date_fill',$this->input->post('revenue_license_date',TRUE),5);
 
-<<<<<<< Updated upstream
+
             $this->load->model("Customer_message");
             $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
             $this->load->model("notification");
@@ -47,21 +47,10 @@ class VehicleOutsource extends CI_Controller
             $data["revenue_license_date"]=$this->notification->revenue_license_date();
             $data["car_booking_notification"]=$this->notification->car_booking_notification();
             $data["car_not_recive"]=$this->notification->car_not_recive();
-=======
-                $this->load->view('crms_outsourcing',$data);
-            } 
-            else{
-                $config['allowed_types'] = 'jpg|png|jpeg';
-                $config['upload_path'] = './assets/images/outsourceVehicles/';
-                $this->load->library('upload',$config);
->>>>>>> Stashed changes
-
-            $this->load->model('OutsourceVehicleModel');
-            $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
-            $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
 
             $this->load->view('crms_outsourcing',$data);
         }
+
         else{
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['upload_path'] = './assets/images/outsourceVehicles/';
@@ -381,102 +370,7 @@ class VehicleOutsource extends CI_Controller
             }
         }
 
-        public function updateOutsourcingVehicle()
-        {
-            $this->form_validation->set_rules('update_supplier_id','Supplier ID','required');
-            $this->form_validation->set_rules('u_vehicleTitle','Vehicle Title','required');
-            //$this->form_validation->set_rules('u_outsource_pic','OutSource Vehicle Image File','required');
-            $this->form_validation->set_rules('u_vehicleRegisteredNumber','Registered Number','required');
-            $this->form_validation->set_rules('u_vehicleSeat','No of seats','required');
-            $this->form_validation->set_rules('u_vehicleFuelType','Fuel Type','required');
-            $this->form_validation->set_rules('u_vehiclePrice','Price Per Day','required');
-            $this->form_validation->set_rules('u_vehicleAddKM','Price Per KM','required');
-            $this->form_validation->set_rules('u_vehicleAddHour','Price Per Hour','required');
-            $this->form_validation->set_rules('u_vehicleInsurance','Insurance Date','required');
-            $this->form_validation->set_rules('u_vehicleLicense','Revenue Licence Date','required');
 
-            if($this->form_validation->run() == FALSE)
-            {
-                $this->load->model("Customer_message");
-                $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
-                $this->load->model("notification");
-                $data["insurence_date"]=$this->notification->insurence_date();
-                $data["revenue_license_date"]=$this->notification->revenue_license_date();
-                $data["car_booking_notification"]=$this->notification->car_booking_notification();
-                $data["car_not_recive"]=$this->notification->car_not_recive();
-
-                $this->load->model('OutsourceVehicleModel');
-                $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
-                $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
-
-                $this->session->set_tempdata('form','update_form',5);
-                $this->load->view('crms_outsourcing',$data);
-            }
-            else{
-                $config['allowed_types'] = 'jpg|png|jpeg';
-                $config['upload_path'] = './assets/images/outsourceVehicles/';
-                $this->load->library('upload',$config);
-
-                if($this->upload->do_upload('u_outsource_pic'))
-                {
-                    $data = $this->input->post();
-                    $info = $this->upload->data();
-                    $image_path= "assets/images/outsourceVehicles/".$info['raw_name'].$info['file_ext'];
-                    $this->load->model('OutsourceVehicleModel');
-                    $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
-                    $supplier = $this->OutsourceVehicleModel->getSupplier();
-                    $response = $this->OutsourceVehicleModel->updateOutsourceVehicle($image_path);
-
-                    if ($response)
-                    {
-                        $this->load->model("Customer_message");
-                        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
-                        $this->load->model("notification");
-                        $data["insurence_date"]=$this->notification->insurence_date();
-                        $data["revenue_license_date"]=$this->notification->revenue_license_date();
-                        $data["car_booking_notification"]=$this->notification->car_booking_notification();
-                        $data["car_not_recive"]=$this->notification->car_not_recive();
-
-                        $this->load->model('OutsourceVehicleModel');
-                        $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
-                        $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
-
-                        $this->session->set_flashdata('outsource_status',"Data Updated Successfully");
-                        $this->session->set_tempdata('form','add_form',5);
-                        $this->load->view('crms_outsourcing',$data);
-
-                    }
-
-                }
-                else
-                {
-                    $this->load->model('OutsourceVehicleModel');
-                    $outSourceDetails = $this->OutsourceVehicleModel->getOutsourceDetails();
-                    $supplier = $this->OutsourceVehicleModel->getSupplier();
-                    $response = $this->OutsourceVehicleModel->updateOutsourceVehicle(" ");
-
-                    if ($response)
-                    {
-                        $this->load->model("Customer_message");
-                        $data["message_data"]=$this->Customer_message->getCustomMessageForHeader();
-                        $this->load->model("notification");
-                        $data["insurence_date"]=$this->notification->insurence_date();
-                        $data["revenue_license_date"]=$this->notification->revenue_license_date();
-                        $data["car_booking_notification"]=$this->notification->car_booking_notification();
-                        $data["car_not_recive"]=$this->notification->car_not_recive();
-
-                        $this->load->model('OutsourceVehicleModel');
-                        $data["outsourceVehicle"] = $this->OutsourceVehicleModel->getOutsourceDetails();
-                        $data["supplier"] = $this->OutsourceVehicleModel->getSupplier();
-
-                        $this->session->set_flashdata('outsource_status',"Data Updated Successfully");
-                        $this->session->set_tempdata('form','add_form',5);
-                        $this->load->view('crms_outsourcing',$data);
-
-                    }
-                }
-            }
-        }
     }
 }
 ?>

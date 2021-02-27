@@ -49,6 +49,7 @@ class OutSourceSuplierModel extends CI_Model
 
         if($path !=" ")
         {
+
             $values = array(
                 'name' => $this->input->post('sup_name',TRUE),
                 'nic' => $this->input->post('sup_nic',TRUE),
@@ -57,6 +58,7 @@ class OutSourceSuplierModel extends CI_Model
                 'address'=> $this->input->post('sup_address',TRUE),
                 'nic_copy'=>$this->input->post('sup_nic_copy',TRUE),
             );
+
         }
         $this->db->where('id', $this->input->post('outsource_sup_id'));
         return $this->db->update('outsourcing_supplier', $values);
